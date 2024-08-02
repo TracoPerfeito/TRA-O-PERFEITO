@@ -22,6 +22,10 @@ body{
     border-radius: 5px;
 }
 
+.titulo {
+    font-size: 40px;
+}
+
 .form-image {
     width: 50%;
     display: flex;
