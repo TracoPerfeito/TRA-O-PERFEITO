@@ -32,7 +32,10 @@ router.get("/cadastro", function (req, res) {
  
 });
 
-
+router.get("/tabela-precos", function (req, res) {
+    res.render('pages/tabela-precos');
+ 
+});
 
 
 
