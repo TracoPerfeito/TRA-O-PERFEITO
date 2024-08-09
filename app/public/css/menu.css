@@ -1,6 +1,7 @@
 @import url(blocos.css);
 @import url(barrapesquisa.css);
 @import url(like.css);
+@import url(quemsomos.css);
  
 *{
     margin: 0;
@@ -130,10 +131,6 @@ p {
    
 }
 
-.rodape_fale_conosco{
- 
-
-}
 
 .fa-brands{
     font-size: 30px;
