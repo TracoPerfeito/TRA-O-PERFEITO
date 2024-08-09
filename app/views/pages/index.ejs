@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/menu.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,10 +22,24 @@
 <body>
     <header>
         <nav class="menu" id="menu">
-           <img src="imagens/logo 1.png" id="logo"><a href="#" class="logo" ></a></img>
+
+
+           <img src="imagens/logo.png" id="logo"><a href="#" class="logo" ></a></img>
            <img src="imagens/traço perfeito.png" id="traco" alt="Traço Perfeito">
+
+<!--
+           <section class="mobile-menu">
+
+            <section class="line1"></section>
+            <section class="line2"></section>
+            <section class="line3"></section>
+
+
+           </section>
+
+           -->
             <ul>
-                <li><p><a href="#" class="pri">EXPLORAR</a></p></li>
+                <li><p><a href="/cadastroArtista" class="pri">EXPLORAR</a></p></li>
                 <li><p><a href=/contratar class="ter">CONTRATAR</a></p></li>
                 <li><p><a href=/quemsomos class="qua">QUEM SOMOS</a></p></li>
                 <li><p><a href=/cadastro class="direita02">CADASTRAR-SE</p></a></li>
@@ -279,33 +294,33 @@
            
                
                 </main>
+
+
+
+                <footer class="rodape">
+
+                    <section class="img-rodape">
+                        <img src="imagens/logo.png" alt="Logotipo">
+                    </section>
+
+                   <section class="info-rodape">
+                       <h1>Traço Perfeito</h1>
+                       <p>Lorem ipsum dolor sit, amet coquatur!</p>
+
+                       <h1>Termos e condições</h1>
+                   </section>
+
+                   <section class="rodape_fale_conosco">
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-square-facebook"></i>
+                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-square-x-twitter"></i>
+             
+                  </section>
+                </footer>
  
- 
-    <script>
-
-document.addEventListener('DOMContentLoaded', function() {
-            var buttons = document.querySelectorAll('.like-button');
-        
-            buttons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                   
-                    button.classList.toggle('liked');
-                    
-                    
-                    var icon = button.querySelector('i');
-                    if (icon.classList.contains('far')) {
-                        icon.classList.remove('far');
-                        icon.classList.add('fas');
-                    } else {
-                        icon.classList.remove('fas');
-                        icon.classList.add('far');
-                    }
-                });
-            });
-        });
-
-
-    </script>
+    <script src="js/like.js"></script>
+    <script src="js/mobile-navbar.js"></script>
  
 </body>
 </html>

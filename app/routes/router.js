@@ -100,7 +100,7 @@ router.get("/quemsomos", function (req, res) {
 
 
 router.get("/login", function (req, res) {
-    res.render('pages/login');
+    res.render('pages/login',  {retorno: null, valores: {email: "", password: ""}, errosLogin: null});
 
  
 });
@@ -109,6 +109,13 @@ router.get("/login", function (req, res) {
 
 router.get("/planos", function (req, res) {
     res.render('pages/planos');
+
+ 
+});
+
+
+router.get("/cadastroArtista", function (req, res) {
+    res.render('pages/cadastroArtista');
 
  
 });
@@ -123,15 +130,15 @@ router.get("/cadastro", function (req, res) {
 router.post(
     "/cadastro",
 
-    body("nome").isLength({ min: 10, max: 50 }).withMessage('O nome deve ter de 10 a 50 caracteres.'),
+    body("nome").isLength({ min: 1, max: 20 }).withMessage('O nome deve ter de 10 a 50 caracteres.'),
 
-    body("sobrenome").isLength({ min: 10, max: 50 }).withMessage('O sobrenome deve ter de 10 a 50 caracteres.'),
+    body("sobrenome").isLength({ min: 2, max: 50 }).withMessage('O sobrenome deve ter de 10 a 50 caracteres.'),
 
     body("email").isEmail().withMessage('Insira um e-mail válido.'),
 
     body('celular').isLength({ min: 10, max: 11 }).withMessage('Número de celular inválido.')
 
-       .custom(celular => verificadorCelular(celular)).withMessage('Númr inválido.'),
+       .custom(celular => verificadorCelular(celular)).withMessage('Número de celular inválido.'),
 
     body('password').isLength({ min: 8 }).withMessage('A senha deve ter no mínimo 8 caracteres.'),
     body('confirmpassword').custom((value, { req }) => {
@@ -146,13 +153,35 @@ router.post(
         const listaErros = validationResult(req);
 
         if (listaErros.isEmpty()) {
-            // Sem erros, prosseguir com o cadastro
-            // Aqui você pode adicionar lógica para salvar os dados e redirecionar
-            return res.redirect("/planos"); // Redirecionar para uma página de sucesso
+
+            return res.redirect("/planos");
         } else {
-            // Se houver erros, renderize a página de cadastro novamente com erros
+        
             console.log(listaErros);
             return res.render("pages/cadastro", { retorno: null, valores: {nome: req.body.nome, sobrenome: req.body.sobrenome, email: req.body.email, celular: req.body.celular, password: req.body.password, confirmpassword: req.body.confirmpassword}, listaErros: listaErros });
+        }
+    }
+);
+
+
+router.post(
+    "/login",
+
+    body("email").isEmail().withMessage('Insira um e-mail válido.'),
+
+    body('password').isLength({ min: 8 }).withMessage('Senha incorreta.'), //Vai estar como senha incorreta mas ná vdd é só pq não oito dígitos mesmo.
+   
+    function (req, res) {
+
+        const errosLogin = validationResult(req);
+
+        if (errosLogin.isEmpty()) {
+
+            return res.redirect("/index"); // voltar pra página inicial mesmo
+        } else {
+            
+            console.log(errosLogin);
+            return res.render("pages/login", { retorno: null, valores: {email: req.body.email, password: req.body.password}, errosLogin: errosLogin});
         }
     }
 );

@@ -1,25 +1,21 @@
-var btn = document.getElementById("coracao");
-
-function colorir() {
-    if(btn.classList.contains("normal")){
-        btn.classList.remove("normal");
-        btn.classList.add("colorido");
-
-    } else {
-        btn.classList.remove("colorido");
-        btn.classList.add("normal");
-    }
-}
-
-function likebtn(icon){
-    colorir(icon);
-}
 
 document.addEventListener('DOMContentLoaded', function() {
-    var icons = document.querySelectorAll(".coracao");
-    icons.forEach(function(icon) {
-        icon.addEventListener('click', function() {
-            likeBtn(icon);
+    var buttons = document.querySelectorAll('.like-button');
+
+    buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
+           
+            button.classList.toggle('liked');
+            
+            
+            var icon = button.querySelector('i');
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+            }
         });
     });
 });

@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel = "stylesheet" href="css/cadastro.css">
+<link rel = "stylesheet" href="css/teste.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 <title>Cadastro</title>
 </head>
- 
-<body background="images/fundo.jfif">
 
+<body>
+ 
 <% 
 let cssErros = {nome: "", sobrenome: "", email: "", celular: "", password: "", confirmpassword: ""};
 let msgErros = {nome: "", sobrenome: "", email: "", celular: "", password: "", confirmpassword: ""};
@@ -53,91 +53,80 @@ if(listaErros){
 %>
     
 <section class="container">
-   
-<section class="form-image">
-<img src="images/logo.png" >
-</section>
-<section class="form">
 
 
-<form action="/cadastro" method="post">
-<section class="form-header"></section>
-<section class="title">
-<h1 class="titulo">CADASTRE-SE</h1>
-</section>
-<section class="input-group">
-<section class="input-box">
+    <section class="secaoimagens">
+        <img src="imagens/logo.png" id="img1">
+        <img src="imagens/tracoperfeitoazul.png" id="img2">
+    </section>
+    
 
-<label for="nome"> Primeiro Nome</label>
-<input  type=" text"  id="nome" name="nome"   value="<%= valores.nome%>" class="<%= cssErros.nome %>"  placeholder="Digite seu primeiro nome:" required>
-<span><%= msgErros.nome %></span> <br>
-</section>
- 
-                    <section class="input-box">
-<label for="sobrenome"> Sobrenome</label>
-<input type=" text" id="sobrenome"  name="sobrenome" required value="<%= valores.sobrenome%>" class="<%= cssErros.sobrenome %>" placeholder="Digite seu Sobrenome:" >
-<span><%= msgErros.sobrenome %></span> <br>
-</section>
- 
-                    <section class="input-box">
-<label for="email"> Email</label>
-<input id="email" type=" email" name="email" placeholder="Digite seu email:" required  value="<%= valores.email %>" class="<%= cssErros.email %>">
-<span><%= msgErros.email %></span> <br>
-</section>
- 
-                    <section class="input-box">
-<label for="celular"> Celular</label>
-<input id="celular" type=" " name="celular" placeholder="(xx) xxxx-xxxx" required  value="<%= valores.celular %>" class="<%= cssErros.celular %>">
-<span><%= msgErros.celular %></span> <br>
-</section>
 
-                    <section class="input-box">
-<label for="password"> Senha</label>
-<input id="password" type=" password" name="password" placeholder="Crie senha:" required  value="<%= valores.password %>" class="<%= cssErros.password %>">
-<span><%= msgErros.password %></span> <br>
-</section>
- 
-                    <section class="input-box">
-<label for="confirmpassword"> Confirme sua senha</label>
-<input id="confirmpassword" type=" password" name="confirmpassword" placeholder="Confirme sua senha:" required  value="<%= valores.confirmpassword %>" class="<%= cssErros.confirmpassword %>">
-<span><%= msgErros.confirmpassword %></span> <br>
-</section>
-</section>
- 
-                <section class="gender-inputs">
-<section class="gender-title">
-<h6>Gênero:</h6>
-</section>
-<section class="gende-group">
-<section class="gender-input">
-<input type="radio" id="feminino" name="genero" >
-<label for="feminino"> Feminino</label>
-</section>
-<section class="gender-input">
-<input type="radio" id="masculino" name="genero" >
-<label for="masculino"> Masculino</label>
-</section>
-<section class="gender-input">
-<input type="radio" id="outros" name="genero" >
-<label for="outros"> outros</label>
-</section>
-<section class="gender-input">
-<input type="radio" id="none" name="genero" >
-<label for="none"> Prefiro não dizer</label>
-</section>
-</section>
- 
+    <section class="secao-form">
+
+        <form action="/cadastro" method="post">
+            <section class="form-header"></section>
+            <section class="title">
+            <h1 class="titulo">CADASTRE-SE</h1>
+            </section>
+            <section class="input-group">
+            <section class="input-box">
+            
+            <label for="nome"> Primeiro Nome</label>
+            <input  type=" text"  id="nome" name="nome"   value="<%= valores.nome%>" class="<%= cssErros.nome %>"  placeholder="Digite seu primeiro nome:" required>
+            <span class="msg-erro"><%= msgErros.nome %></span> <br>
+            </section>
+             
+                                <section class="input-box">
+            <label for="sobrenome"> Sobrenome</label>
+            <input type=" text" id="sobrenome"  name="sobrenome" required value="<%= valores.sobrenome%>" class="<%= cssErros.sobrenome %>" placeholder="Digite seu Sobrenome:" >
+            <span class="msg-erro"><%= msgErros.sobrenome %></span> <br>
+            </section>
+             
+                                <section class="input-box">
+            <label for="email"> Email</label>
+            <input id="email" type=" email" name="email" placeholder="Digite seu email:" required  value="<%= valores.email %>" class="<%= cssErros.email %>">
+            <span class="msg-erro"><%= msgErros.email %></span> <br>
+            </section>
+             
+                                <section class="input-box">
+            <label for="celular"> Celular</label>
+            <input id="celular" type=" " name="celular" placeholder="(xx) xxxx-xxxx" required  value="<%= valores.celular %>" class="<%= cssErros.celular %>">
+            <span class="msg-erro"><%= msgErros.celular %></span> <br>
+            </section>
+            
+                                <section class="input-box">
+            <label for="password"> Senha</label>
+            <input id="password" type=" password" name="password" placeholder="Crie senha:" required  value="<%= valores.password %>" class="<%= cssErros.password %>">
+            <span class="msg-erro"><%= msgErros.password %></span> <br>
+            </section>
+             
+                                <section class="input-box">
+            <label for="confirmpassword"> Confirme sua senha</label>
+            <input id="confirmpassword" type=" password" name="confirmpassword" placeholder="Confirme sua senha:" required  value="<%= valores.confirmpassword %>" class="<%= cssErros.confirmpassword %>">
+            <span class="msg-erro"><%= msgErros.confirmpassword %></span> <br>
+            </section>
+            </section>
+    
+            <section class="continue-button">
+                <button type="submit">Continuar</button>
                 </section>
-<section class="continue-button">
-<button type="submit">Continuar</button>
+             
+            </form>
+             
+            </section>
+            </section>
+
+
+    </section>
+   
+
 </section>
-</form>
- 
-</section>
-</section>
+
+
+
  
  
     
 </body>
-</html>
-
+</html> 

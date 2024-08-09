@@ -8,25 +8,48 @@
     <title>Traço Perfeito</title>
 </head>
 <body>
+
+    
+<% 
+let cssErros = {email: "", password: ""};
+let msgErros = {email: "", password: ""};
+if(errosLogin){
+    errosLogin.errors.forEach(function (elemento){
+        if(elemento.path == "email"){
+            cssErros.email = "erro-form";
+            msgErros.email = elemento.msg;
+        }
+
+        if(elemento.path == "password"){
+            cssErros.password = "erro-form";
+            msgErros.password = elemento.msg;
+        }
+
+    });
+}
+
+%>
  
  
  
  
-        <form action="#">
+        <form action="/login" method="post">
  
             <h1>LOGIN</h1>
  
             <label for="email">Digite seu e-mail</label><br>
-            <input type="email" name="" id="email"><br>
- 
+            <input type="email" name="email" id="email"  value="<%= valores.email %>" class="<%= cssErros.email %>" required><br>
+            <span class="msg-erro"><%= msgErros.email %></span> <br>
+
             <label for="senha">Digite sua senha</label><br>
-            <input type="password" name="" id="senha"><br>
- 
+            <input type="password" name="password" id="password"  value="<%= valores.password %>" class="<%= cssErros.password %>" required><br>
+            <span class="msg-erro"><%= msgErros.password %></span> <br>
+
             <p class="p1"><a href="#">Esqueceu sua senha?</a></p>
  
             <p class="p2">Não tem uma conta? <a href="#">Cadastra-se</a></p>
  
-            <button>Entrar</button>
+            <button type="submit">Entrar</button>
  
  
  

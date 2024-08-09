@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel = "stylesheet" href="css/teste.css">
+<link rel = "stylesheet" href="css/cadastro.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 <title>Cadastro</title>
 </head>
  
-
+<body background="images/fundo.jfif">
 
 <% 
 let cssErros = {nome: "", sobrenome: "", email: "", celular: "", password: "", confirmpassword: ""};
@@ -54,10 +54,9 @@ if(listaErros){
     
 <section class="container">
    
-
+<section class="form-image">
 <img src="images/logo.png" >
-
-
+</section>
 <section class="form">
 
 
@@ -105,8 +104,30 @@ if(listaErros){
 </section>
 </section>
  
+                <section class="gender-inputs">
+<section class="gender-title">
+<h6>Gênero:</h6>
+</section>
+<section class="gende-group">
+<section class="gender-input">
+<input type="radio" id="feminino" name="genero" >
+<label for="feminino"> Feminino</label>
+</section>
+<section class="gender-input">
+<input type="radio" id="masculino" name="genero" >
+<label for="masculino"> Masculino</label>
+</section>
+<section class="gender-input">
+<input type="radio" id="outros" name="genero" >
+<label for="outros"> outros</label>
+</section>
+<section class="gender-input">
+<input type="radio" id="none" name="genero" >
+<label for="none"> Prefiro não dizer</label>
+</section>
+</section>
  
-              
+                </section>
 <section class="continue-button">
 <button type="submit">Continuar</button>
 </section>
@@ -114,11 +135,8 @@ if(listaErros){
  
 </section>
 </section>
-
-
  
  
     
 </body>
 </html>
-

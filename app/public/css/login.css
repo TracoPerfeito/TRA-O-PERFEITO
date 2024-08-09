@@ -88,3 +88,18 @@ button:hover{
     transition: 0.5s;
 }
  
+
+
+.erro-form {
+    
+    color: red;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding-left: 5px;
+    background-color: lightpink
+}
+
+.msg-erro{
+    margin-left: 6.5%;
+    color: firebrick;
+}
