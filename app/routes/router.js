@@ -98,6 +98,12 @@ router.get("/quemsomos", function (req, res) {
  
 });
 
+router.get("/perfil", function (req, res) {
+    res.render('pages/perfil')
+ 
+});
+
+
 
 router.get("/login", function (req, res) {
     res.render('pages/login',  {retorno: null, valores: {email: "", password: ""}, errosLogin: null});
