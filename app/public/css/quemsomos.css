@@ -1,3 +1,5 @@
+@import url(menu.css);
+
 * {
     margin: 0;
     padding: 0;
@@ -18,6 +20,18 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.meio {
+    margin-right: 0;
+    margin-left: 0;
+    padding-bottom: 0;
+}
+
+.container-quemsomos {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column
 }
 
 #servico-secao h2 {
