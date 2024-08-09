@@ -12,6 +12,45 @@
 </head>
  
 <body background="images/fundo.jfif">
+
+<% 
+let cssErros = {nome: "", sobrenome: "", email: "", celular: "", password: "", confirmpassword: ""};
+let msgErros = {nome: "", sobrenome: "", email: "", celular: "", password: "", confirmpassword: ""};
+if(listaErros){
+    listaErros.errors.forEach(function (elemento){
+        if(elemento.path == "nome"){
+            cssErros.nome = "erro-form";
+            msgErros.nome = elemento.msg;
+        }
+
+        if(elemento.path == "sobrenome"){
+            cssErros.sobrenome = "erro-form";
+            msgErros.sobrenome = elemento.msg;
+        }
+
+        if(elemento.path == "email"){
+            cssErros.email = "erro-form";
+            msgErros.email = elemento.msg;
+        }
+
+        if(elemento.path == "celular"){
+            cssErros.celular = "erro-form";
+            msgErros.celular = elemento.msg;
+        }
+
+        if(elemento.path == "password"){
+            cssErros.password = "erro-form";
+            msgErros.password = elemento.msg;
+        }
+
+        if(elemento.path == "confirmpassword"){
+            cssErros.confirmpassword = "erro-form";
+            msgErros.confirmpassword = elemento.msg;
+        }
+    });
+}
+
+%>
     
 <section class="container">
    
@@ -19,40 +58,49 @@
 <img src="images/logo.png" >
 </section>
 <section class="form">
-<form action="#">
+
+
+<form action="/cadastro" method="post">
 <section class="form-header"></section>
 <section class="title">
 <h1 class="titulo">CADASTRE-SE</h1>
 </section>
 <section class="input-group">
 <section class="input-box">
-<label for="priemiroNome"> Primeiro Nome</label>
-<input id="primeiroNome" type=" text" name="primeiroNome" placeholder="Digite seu primeiro nome:" required>
+
+<label for="nome"> Primeiro Nome</label>
+<input  type=" text"  id="nome" name="nome"   value="<%= valores.nome%>" class="<%= cssErros.nome %>"  placeholder="Digite seu primeiro nome:" required>
+<span><%= msgErros.nome %></span> <br>
 </section>
  
                     <section class="input-box">
-<label for="Sobrenome"> Sobrenome</label>
-<input id="Sobrenome" type=" text" name="Sobrenome" placeholder="Digite seu Sobrenome:" required>
+<label for="sobrenome"> Sobrenome</label>
+<input type=" text" id="sobrenome"  name="sobrenome" required value="<%= valores.sobrenome%>" class="<%= cssErros.sobrenome %>" placeholder="Digite seu Sobrenome:" >
+<span><%= msgErros.sobrenome %></span> <br>
 </section>
  
                     <section class="input-box">
 <label for="email"> Email</label>
-<input id="email" type=" email" name="email" placeholder="Digite seu email:" required>
+<input id="email" type=" email" name="email" placeholder="Digite seu email:" required  value="<%= valores.email %>" class="<%= cssErros.email %>">
+<span><%= msgErros.email %></span> <br>
 </section>
  
                     <section class="input-box">
-<label for="number"> Celular</label>
-<input id="number" type=" tel" name="number" placeholder="(xx) xxxx-xxxx" required>
+<label for="celular"> Celular</label>
+<input id="celular" type=" " name="celular" placeholder="(xx) xxxx-xxxx" required  value="<%= valores.celular %>" class="<%= cssErros.celular %>">
+<span><%= msgErros.celular %></span> <br>
 </section>
- 
+
                     <section class="input-box">
 <label for="password"> Senha</label>
-<input id="password" type=" password" name="password" placeholder="Digite sua senha:" required>
+<input id="password" type=" password" name="password" placeholder="Crie senha:" required  value="<%= valores.password %>" class="<%= cssErros.password %>">
+<span><%= msgErros.password %></span> <br>
 </section>
  
                     <section class="input-box">
-<label for="password"> Confirme sua senha</label>
-<input id="Confirmpassword" type=" password" name="Confirmpassword" placeholder="Digite sua senha:" required>
+<label for="confirmpassword"> Confirme sua senha</label>
+<input id="confirmpassword" type=" password" name="confirmpassword" placeholder="Confirme sua senha:" required  value="<%= valores.confirmpassword %>" class="<%= cssErros.confirmpassword %>">
+<span><%= msgErros.confirmpassword %></span> <br>
 </section>
 </section>
  
@@ -81,7 +129,7 @@
  
                 </section>
 <section class="continue-button">
-<button><a href="#">Continuar</a></button>
+<button type="submit">Continuar</button>
 </section>
 </form>
  
@@ -92,3 +140,4 @@
     
 </body>
 </html>
+
