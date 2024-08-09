@@ -1,27 +1,13 @@
-let count = 1; 
-    
-        document.getElementById('radio1').checked = true; 
-    
-     
-    
-         setInterval(() => { 
-    
-         nextImage(); 
-    
-          }, 5000); 
-    
-     
-    
-         function nextImage() { 
-    
-          count++; 
-    
-         if (count > 3) { 
-    
-         count = 1; 
-    
-         } 
-    
-         document.getElementById('radio' + count).checked = true; 
-    
+var temp = 1;
+function Carrossel(){
+    document.getElementById('slide'+temp).checked = false;
+    temp +=1;
+    if(document.getElementById('slide'+temp)==null){
+        temp=1;
     }
+    document.getElementById('slide'+temp).checked = true;
+}
+let passar;
+function PassarProLado() {if(!passar){
+    passar =setInterval(Carrossel, 2000);
+}}

@@ -1,9 +1,11 @@
 @import url(blocos.css);
 @import url(barrapesquisa.css);
 @import url(like.css);
+
  
 *{
     margin: 0;
+
     padding: 0;
     box-sizing: border-box;
 }
@@ -106,40 +108,63 @@ p {
     background-color: #132d46;
     color: White;
     font-family: "Montserrat";
-    font-weight: 200;
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 5px ;
+    column-gap: 5px;
     height: 150px;
+    padding: 22px;
+    padding-left: 100px;
+   
 }
 
 
 .img-rodape img{
     width: 100px;
     grid-column: 1;
-    margin: 25px 10px 10px 20px ;
+    margin: auto;
 
 }
 
 .info-rodape h1{
-    margin: 25px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    font-weight: 200;
+    font-size: larger;
 }
 
 
 .info-rodape p{
-    margin: 25px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
+    font-weight: 100;
    
 }
 
-.rodape_fale_conosco{
- 
+.termos h1{
+    margin: 0px 0px 0px 0px;
+    font-weight: 200;
+    font-size: larger ;
 
 }
+
 
 .fa-brands{
-    font-size: 30px;
-    margin: 25px 25px 0px 25px;
+    display: inline-block;
     
 }
+
+.fa-brands i{
+    font-size: 50px;
+    margin-right: 50px;
+
+
+    
+}
+ #fale-conosco{
+    margin: 0px 0px 30px 0px;
+    font-weight: 200;
+    font-size: larger ;
+
+ }
 
 @media (max-width: 999px){
     body{
