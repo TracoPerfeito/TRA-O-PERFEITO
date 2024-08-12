@@ -13,6 +13,7 @@ body{
     margin: auto;
     margin-top: 0px;
     position: relative;
+    margin-bottom: 35px;
 }
  .slider li{
     list-style:none;

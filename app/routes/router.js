@@ -52,6 +52,10 @@ router.get("/planos", function (req, res) {
  
 });
 
+router.get("/quemcadastra", function (req, res) {
+    res.render('pages/quemcadastra');
+})
+
 
 router.get("/contacomum", function (req, res) {
     res.render('pages/contacomum');
