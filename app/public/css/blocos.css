@@ -6,7 +6,7 @@
 
 .container{
 
-    margin: 50px;
+    margin: 50px 150px 50px 150px;
     border: 100px ;
     display: grid;
  
@@ -21,7 +21,6 @@
 
 .item{
     border: 10px;
-    border-color: rgb(16, 16, 117);
     row-gap: 500px;
     margin-bottom: 50px;
     height: 100%;

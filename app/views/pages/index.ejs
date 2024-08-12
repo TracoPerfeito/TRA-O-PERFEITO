@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/banner.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="../js/banner.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
 </head>
@@ -20,7 +21,7 @@
  
  
 <!-------------------------------BODY------------------------------------------------>
-<body>
+<body onload="PassarProLado()">
     <header>
         <nav class="menu" id="menu">
 
@@ -40,7 +41,7 @@
 
            -->
             <ul>
-                <li><p><a href="/cadastroArtista" class="pri">EXPLORAR</a></p></li>
+                <li><p><a href="#" class="pri">EXPLORAR</a></p></li>
                 <li><p><a href=/contratar class="ter">CONTRATAR</a></p></li>
                 <li><p><a href=/quemsomos class="qua">QUEM SOMOS</a></p></li>
                 <li><p><a href=/quemcadastra class="direita02">CADASTRAR-SE</p></a></li>
@@ -61,19 +62,19 @@
                     <li>
                         <input type="radio" id="slide1" name="slider" checked>
                         <label for="slide1" ></label>
-                        <img src="imagens/banner4.png">
+                        <img src="../imagens/banner1.png">
                
                     </li>
                     <li>
                         <input type="radio" id="slide2" name="slider" >
                         <label for="slide2" ></label>
-                        <img src="imagens/banner5.png">
+                        <img src="../imagens/banner5.png">
                
                     </li>
                     <li>
                         <input type="radio" id="slide3" name="slider" >
                         <label for="slide3" ></label>
-                        <img src="imagens/banner4.png">
+                        <img src="../imagens/banner4.png">
                
                     </li>
        
@@ -352,7 +353,7 @@
  
     <script src="js/like.js"></script>
     <script src="js/mobile-navbar.js"></script>
-    <script src="js/banner.js"></script>
+    
  
 </body>
 </html>
