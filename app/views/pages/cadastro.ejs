@@ -20,7 +20,7 @@ let msgErros = {nome: "", sobrenome: "", email: "", celular: "", password: "", c
 if(listaErros){
     listaErros.errors.forEach(function (elemento){
         if(elemento.path == "nome"){
-            cssErros.nome = "erro-form";
+            cssErros.nome = "erro-form"; 
             msgErros.nome = elemento.msg;
         }
 

@@ -104,6 +104,12 @@ router.get("/perfil", function (req, res) {
 });
 
 
+router.get("/publicacao", function (req, res) {
+    res.render('pages/publicacao')
+ 
+});
+
+
 
 router.get("/login", function (req, res) {
     res.render('pages/login',  {retorno: null, valores: {email: "", password: ""}, errosLogin: null});
