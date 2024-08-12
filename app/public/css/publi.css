@@ -83,6 +83,7 @@
 
 */
 
+
 .container {
     display: grid;
     grid-template-areas: 
@@ -92,10 +93,12 @@
     grid-template-columns: 4fr 1fr;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
+    margin: 50px 200px 50px 200px;
 }
 .conteudo {
     padding: 0px  20px;
-    margin: 20px 20px 20px 100px;
+    margin: 20px 20px 20px 100px; 
+    width: 660px;
 }
 
 .publi-info{
@@ -121,14 +124,27 @@
     width: 600px;
     border-radius: 15px;
 }
-
+.comentarios{
+    margin: 0px;
+    padding: 0px;
+}
 .comentario{
-    background-color: #64ffd355;
+    background-color: #acdabf7a;
     display: grid;
     grid-template-columns: 1fr 12fr;
-    padding: 10px;
-    margin: 10px;
+    padding: 10px 10px 0px 10px;
+    margin-bottom: 10px;
     border-radius: 15px;
+    width: 600px;
+}
+
+.comentario img {
+    margin-right: 0px;
+}
+
+.comentario p{
+    margin-left: 0px;
+
 }
  .foto-nome{
     grid-template-columns: 1fr 1fr;
@@ -137,22 +153,38 @@
     border-radius: 50%;
     width: 30px;
 }
+ 
+
+.titulo-img{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 200;
+    font-size: larger;
+    grid-row: 1;
+    padding: 0px;
+    display: inline-block;
+ 
+
+}
 
 .descricao{
-    
-    display: grid;
-    grid-template-columns: 1fr 9fr 1fr; 
-    align-items: center;
-    gap: 0px; 
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
+.descricao button{
+   grid-row: 1;
+   align-items: flex-end;
+
 }
 
 .descricao p{
     margin: 0px;
+    grid-row: 3;
 }
 
 .comentario p{
     margin: 0px;
-}
+} 
 .lado {
 
     padding: 20px;
@@ -164,7 +196,7 @@
 .publi-re{
 
     
-    background-color: #64ffd355;
+    background-color: #acdabf7a;
     display: grid;
     grid-template-columns: 1fr 12fr;
     padding: 10px;

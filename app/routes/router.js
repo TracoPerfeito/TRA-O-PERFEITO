@@ -1,77 +1,4 @@
-/*var express = require("express");
-var router = express.Router();
-const { verificadorCelular } = require("express-validator");
-var {verificadorCelular} = require("../helpers/validacoes");
 
-
-
-
-router.get("/", function (req, res) {
-    res.render('pages/index')
- 
-});
-
-
-router.get("/contratar", function (req, res) {
-    res.render('pages/contratar')
- 
-});
-
-
-router.get("/quemsomos", function (req, res) {
-    res.render('pages/quemsomos')
- 
-});
-
-
-router.get("/login", function (req, res) {
-    res.render('pages/login');
-
- 
-});
-
-
-router.get("/cadastro", function (req, res) {
-    res.render('pages/cadastro');
- 
-});
-
-
-router.post(
-    "/cadastro",
-    body("nome").isLength({min: 10, max: 50}).withMessage('O nome deve ter de 10 a 50 caracteres.'),
-    body("email").isEmail().withMessage('Insira um e-mail válido'),
-    body('celular').isLength({min: 10, max: 11}).withMessage('Insira um npumero de celular válido.')
-    .custom((celular)  => {
-        if(verificarCelular(celular)) {
-            return true;
-        } else {
-            throw new Error('Número de celular inválido.');
-        }
-    }),
-
-    function(req, res) {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()){
-            console.log(errors);
-            return res.render("pages/cadastro",{"erros": null, "valores":req.body, "retorno":req.body});
-
-        }else{
-            
-                //temos erros
-                console.log(listaErros);
-                return res.render("pages/cadastro", { resultado: null, valores: { nome: req.body.nome, celular:req.body.celular }, listaErros:listaErros });
-            
-        }
-    }
-
-);
-
-
-
-module.exports = router;
-
-*/
 var express = require("express");
 var router = express.Router();
 const { body, validationResult } = require("express-validator");
@@ -121,6 +48,13 @@ router.get("/login", function (req, res) {
 
 router.get("/planos", function (req, res) {
     res.render('pages/planos');
+
+ 
+});
+
+
+router.get("/contacomum", function (req, res) {
+    res.render('pages/contacomum');
 
  
 });

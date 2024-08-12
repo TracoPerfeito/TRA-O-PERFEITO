@@ -17,10 +17,28 @@ body{
 .container {
     width: 80%;
     height: 80vh;
-    display: flex;
+   
     box-shadow: 5px 5px 10px rgb(33, 70, 119);
     border-radius: 5px;
 }
+
+.secao-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+}
+
+.nome label{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.sobrenome label {
+    grid-column: 2;
+    grid-row: 1;
+}
+
 
 .titulo {
     font-size: 40px;
@@ -172,6 +190,11 @@ body{
     color: white;
 }
 
+
+
+
+/* 
+
 @media screen and (max-width: 3330) {
     .form-image {
         display: none;
@@ -181,6 +204,9 @@ body{
     }
     .form {
         width: 100%;
+    }
+    label {
+        min-width: 200px;
     }
 }
 
@@ -196,16 +222,11 @@ body{
         max-width: 10rem;
         padding-right: 5rem;
     }
-    .gender-inputs {
-        margin-top: 2rem;
+
+    label {
+        min-width: 200px;
     }
-    .gender-group {
-        flex-direction: column;
-    }
-    .gender-input {
-        margin-top: 0.5rem;
-    }
-}
+} */
 
 
 .erro-form {
