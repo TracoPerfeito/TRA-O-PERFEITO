@@ -1,0 +1,93 @@
+body{
+    margin: 0;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    background: url(imagens/fundo.jfif);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around
+ 
+}
+.esquerda{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+   
+   
+}
+.Artista-Comum{
+    color: #77ffc0;
+ 
+}
+.direita{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+   
+}
+.card-button{
+    width: 60%;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    padding: 30px 35px;
+    background: rgba(25, 255, 232, 0.363);
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #1bff9563;
+    flex-direction: column;
+}
+.cadastro{
+    color: #ffffff;
+    font-weight: 700;
+    font-size: x-large;
+ 
+}
+.artista{
+    width: 45%;
+    padding: 16px;
+    margin: 25px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: 800;
+    background: #132d46;
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: #2fff9e41;
+    font-size: 15px;
+    letter-spacing: 3px;
+}
+.comum{
+    width: 45%;
+    padding: 16px;
+    margin: 25px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: 800;
+    background: #132d46;
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: #2fff9e41;
+    font-size: 15px;
+    letter-spacing: 3px;
+}
+.caixa{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+h1{
+    font-size: 50px;
+    margin: 0;
+    color: #ffffff;
+}
+ 

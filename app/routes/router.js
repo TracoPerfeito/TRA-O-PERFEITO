@@ -119,6 +119,10 @@ router.get("/planos", function (req, res) {
  
 });
 
+router.get("/quemcadastra", function (req, res) {
+    res.render('pages/quemcadastra');
+})
+
 
 router.get("/cadastroArtista", function (req, res) {
     res.render('pages/cadastroArtista');

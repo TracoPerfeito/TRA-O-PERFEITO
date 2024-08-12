@@ -24,7 +24,7 @@ nav{
 nav{
     display: grid;
     padding: 0px 0px;
-    margin: 0px auto 30px;
+    margin: 0px auto;
     background-color: #132d46;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 70px;
