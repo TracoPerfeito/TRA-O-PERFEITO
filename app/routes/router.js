@@ -104,7 +104,7 @@ router.post(
 
         if (listaErros.isEmpty()) {
 
-            return res.redirect("/planos");
+            return res.redirect("/index");
         } else {
         
             console.log(listaErros);
