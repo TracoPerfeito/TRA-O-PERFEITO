@@ -20,6 +20,12 @@ router.get("/contratar", function (req, res) {
 });
 
 
+router.get("/index", function (req, res) {
+    res.render('pages/index')
+ 
+});
+
+
 router.get("/quemsomos", function (req, res) {
     res.render('pages/quemsomos')
  
