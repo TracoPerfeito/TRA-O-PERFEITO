@@ -11,7 +11,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: 64FFD4;
+   
 }
 
 
@@ -113,7 +113,7 @@ body{
     content: '';
     display: block;
     width: 5rem;
-    background-color: #64FFD4;
+  
     margin: 0 auto;
     position: absolute;
     border-radius: 10px;
@@ -148,38 +148,7 @@ body{
     outline: 1px solid #53d3af;
 }
 
-.input-box label,
-.gender-title h6 {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: black;
-}
 
-.input-box input::placeholder {
-    color: black;
-}
-
-.gender-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 0.62rem;
-    padding: 0 0.5rem;
-}
-
-.gender-input {
-    display: flex;
-    align-items: center;
-}
-
-.gender-input input {
-    margin-right: 0.35rem;
-}
-
-.gender-input label {
-    font-size: 0.81rem;
-    font-weight: 600;
-    color: #0f0f0f;
-}
 
 .continue-button button {
     width: 100%;

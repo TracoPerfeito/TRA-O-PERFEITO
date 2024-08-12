@@ -83,6 +83,18 @@
 
 */
 
+.btn-voltar{
+    background-color: #132d46;
+    color: White;
+    font-family: "Josefin Sans";
+    border-radius: 5px;
+    border-color: none;
+    box-shadow: none;
+    margin: 20px 0px 0px 300px;
+    width: 70px;
+    height: 25px;
+}
+
 
 .container {
     display: grid;

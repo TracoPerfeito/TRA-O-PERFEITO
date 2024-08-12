@@ -5,21 +5,23 @@
 }
  
 body{
+    
+    width: 100%;
     height: 100vh;
-    background-color: #08415C;
-    background-repeat: no-repeat;
-    background-size: cover;
-   
+
+    background-color: 64FFD4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
  
 form{
     width: 500px;
-    height: 500px;
+    padding: 20px;
     background: transparent;
     backdrop-filter: blur( 23px );
-    border: 2px solid white;
-    margin: 10%;
-    position: relative;
+    border: 2px solid rgb(13, 15, 56);
+
     left: 27%;
     border-radius: 10px;
    
@@ -29,13 +31,14 @@ form h1{
     padding: 5%;
     font-weight: 400;
     font-size: 40px;
-    color: white;
+    color: rgb(0, 0, 0);
 }
  
 form label{
     padding-top: 11%;
     padding-left: 6.5%;
-    color: white;
+    color: rgb(0, 0, 0);
+    border-color: #132d46;
 }
  
  
@@ -47,15 +50,49 @@ form input{
     border: none;
     border-radius: 5px;
     outline: none;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #000000;
  
 }
+
+
+.secaoimagens{
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 20px;
+
+}
+
+
+
+#img1{
+    width: 70px;
+    display: block;
+    grid-column: 2;
+    margin: auto;
+   
+}
+
+#img2{
+    width: 180px;
+    grid-column: 2;
+    margin: auto;
+    margin-top: 20px;
+}
+
+
+
+
+
  
 p{
-    color: white;
+    color: rgb(0, 0, 0);
 }
  
 p a{
-    color: white;
+    color: rgb(0, 0, 0);
 }
  
  
@@ -78,7 +115,7 @@ button{
     border-radius: 5px;
     border: none;
     background-color: #132d46;
-    color: white;
+    color: rgb(255, 255, 255);
     cursor: pointer;
  
 }
@@ -86,6 +123,10 @@ button{
 button:hover{
     background-color: #33506b;
     transition: 0.5s;
+}
+
+.btn-voltar {
+    left: 0%;
 }
  
 
