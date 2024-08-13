@@ -179,7 +179,7 @@ p {
         width: 50vw;
         height: 92vh;
         background: #23232e;
-        display: none;
+        
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
