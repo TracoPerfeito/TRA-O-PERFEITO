@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.filtragem{
+    margin-left: 67%;
+    top: 49%;
+    background-color:#acdabf7a;
+    padding: 7px;
+    border: none;
+    position: absolute;
+}
+
+.filtragem img{
+    width: 30px;
+}
+
+.filtragem:hover{
+    cursor: pointer;
+}
+
+.filtro{
+    display: block;
+    background-color: #132d46;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: none;
+}
+
+.filtro:hover{
+    background-color: #2a5680;  
+}
+
+.filtragem:hover .filtro{
+    display: block;
+}
+
+ul{
+    list-style: none;
+    margin-top: 2%;
+    padding: 15px;
+    display: none;
+}
+
+li a{
+    text-decoration: none;
+    color: white;
+    background-color: #132d46;
+}
+
+li a:hover{
+    background-color: #2a5680; 
+}
+
+.filtro:hover .lista{
+    display: block;
+}
