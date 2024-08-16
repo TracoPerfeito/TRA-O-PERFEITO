@@ -90,9 +90,10 @@
     border-radius: 5px;
     border-color: none;
     box-shadow: none;
-    margin: 20px 0px 0px 300px;
+    margin: 30px 0px 0px 117px;
     width: 70px;
-    height: 25px;
+    height: 35px;
+    font-size: large;
 }
 
 
@@ -102,15 +103,22 @@
         "title title"
         "content aside"
         "footer footer";
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 4fr fr;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
-    margin: 50px 200px 50px 200px;
+    margin: 20px 0px 200px;
 }
 .conteudo {
     padding: 0px  20px;
     margin: 20px 20px 20px 100px; 
     width: 660px;
+}
+
+.coluna-esquerda {
+  padding: 20px 0px;
+  max-width: 350px;
+  position: relative;
+  margin: 0 ;
 }
 
 .publi-info{
@@ -202,8 +210,20 @@
     padding: 20px;
     margin-top: 20px;
     font-family: "Josefin Sans";
+    position: relative;
+    left: 200px;
     
 }
+
+.publi-relacio {
+        display: block;
+        font-size: 1.5em;
+        margin-block-start: 0;
+        margin-block-end: 0.83em;
+        font-weight: bold;
+        unicode-bidi: isolate;
+}
+
 
 .publi-re{
 
@@ -214,7 +234,7 @@
     padding: 10px;
     margin: 20px 100px 20px 10px;
     border-radius: 15px;
-
+    
 }
 
 .publi-re img{
@@ -254,6 +274,28 @@
     grid-row: 2;
 
 }
+
+
+.like-button{
+    background-color: transparent;
+    border: 0px;
+    font-size: 20px;
+    grid-column: 3;
+    /* justify-self: end;  */
+    float: right ;
+}
+
+.like-button.liked{
+    color: red;
+}
+
+
+
+
+
+
+
+
 
 
 @media (max-width: 768px) {
