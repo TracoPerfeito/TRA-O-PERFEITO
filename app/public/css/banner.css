@@ -12,8 +12,11 @@ body{
     width: 100%;
     margin: auto;
     margin-top: 0px;
+    margin-bottom: 0px;
     position: relative;
-    margin-bottom: 35px;
+    
+  
+
 }
  .slider li{
     list-style:none;
@@ -63,4 +66,28 @@ body{
     opacity: 1;
     visibility: visible;
     z-index: 10;
+}
+
+.button-holder a{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-decoration: none;
+}
+
+.call-to-action {
+    background-color:rgb(12, 53, 77);
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 15px;
+    transform: translateY(-35px);
+    align-content: center;
+    top: -80px;
+    border: none;
+    grid-column: 2;
+    width: 300px;
+    margin: auto;
+  
+    
+    
 }

@@ -1,0 +1,61 @@
+* {
+
+    margin: 0px;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.conteudo {
+    margin: 0px 100px 0px 100px;
+}
+
+h1 {
+    font-family: "Montserrat";
+}
+
+.fora {
+    margin: 0px;
+}
+
+.blocos {
+    
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+}
+
+
+
+.pedido {
+    background-color: aquamarine ;
+    border-radius: 15px;
+    overflow: hidden;
+    max-height: 300px;
+
+}
+
+.pedido p{
+    color: black;
+    margin: 15px;
+}
+
+.pedido h2 {
+    margin: 15px 0px 0px 0px;
+    font-family: "Josefin Sans";
+
+}
+
+.pedido img {
+    border-radius: 50%;
+    width: 30px;
+    height: auto;
+    margin: 10px;
+
+}
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}

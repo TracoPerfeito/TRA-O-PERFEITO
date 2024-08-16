@@ -47,6 +47,29 @@ router.get("/chat", function (req, res) {
  
 });
 
+router.get("/teste", function (req, res) {
+    res.render('pages/teste')
+ 
+});
+
+
+router.get("/menu", function (req, res) {
+    res.render('pages/menu')
+ 
+});
+
+
+router.get("/menu-artista-logado", function (req, res) {
+    res.render('pages/menu-artista-logado')
+ 
+});
+
+
+router.get("/meu-perfil-artista", function (req, res) {
+    res.render('pages/meu-perfil-artista')
+ 
+});
+
 
 
 
@@ -81,6 +104,13 @@ router.get("/contacomum", function (req, res) {
 
 router.get("/cadastroArtista", function (req, res) {
     res.render('pages/cadastroArtista');
+
+ 
+});
+
+
+router.get("/oportunidades", function (req, res) {
+    res.render('pages/oportunidades');
 
  
 });

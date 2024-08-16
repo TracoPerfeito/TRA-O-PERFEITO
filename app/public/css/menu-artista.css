@@ -1,7 +1,3 @@
-@import url(blocos.css);
-@import url(barrapesquisa.css);
-@import url(like.css);
-
  
 *{
     margin: 0;
@@ -10,99 +6,92 @@
     box-sizing: border-box;
 }
 
-/*
-nav{
-    background-color: #132d46;
-    padding: 10px 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
- 
- 
-} */
+
  
 nav{
-    display: grid;
+    
     padding: 0px 0px;
     margin: 0px auto;
     background-color: #132d46;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 70px;
     justify-content: center;
 }
  
-nav .logo {
-   position: absolute;
-   left: 5px;
- 
-}
+
  
 nav ul{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    column-gap: 5px;
     align-items: center;
     list-style: none;
     padding: 10px;
+    
+
+    
+}
+
+
+nav li {
+    align-items: center;
+  
+
 }
  
-.direita02{
-    position: absolute;
-    right: 2.5%;
-   
-   
-}
- 
-.direita01{
-    position: absolute;
-    right: 13%;
- 
-}
- 
- 
-nav li{
-    margin-left: 7px;
-}
  
 nav li a{
     position: absolute;
- 
     text-decoration: none;
     color: #fff;
-    font-size: 15px;
+    font-size: 14px;
     font-family: "Montserrat", sans-serif;
     font-weight: 300;
-    padding: 8px 15px;
-    border-radius: 5px;
+    padding: auto;
+    margin-bottom: 15px ;
     transition: all 0.4s;
+    /* Define o item como um contêiner flex */
+    
+  /* Centraliza verticalmente */
+    
+    
+ 
 }
  
 a:hover {
    transform: translateY(-5px);
    cursor: pointer;
 }
- 
-p {
-    margin-right: 100px;
-    margin-left: 100px;
-    padding-bottom: 30px;
- 
- 
-}
+
+
  
 #logo{
-    margin-top: 5px;
-    margin-left: 45%;
-    width: 55px;
+    margin-top: 10px;
+    margin-left: 35%;
+    width: 45px;
  
 }
  
 #traco{
-    margin: auto;
     margin-left: 20%;
-    width: 180px;
+  
+    width: 150px;
  
  
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+configurações rodapé */
 
 .rodape{
     background-color: #132d46;

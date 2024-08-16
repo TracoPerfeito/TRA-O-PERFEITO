@@ -12,7 +12,7 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/menu.css">
+  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -20,22 +20,9 @@
 </head>
   <body>
 
-    <header>
-        <nav class="menu" id="menu">
+    <%- include('menu-artista-logado.ejs') -%>
 
-
-           <img src="logo.png" id="logo"><a href="#" class="logo" ></a></img>
-           <img src="traço perfeito.png" id="traco" alt="Traço Perfeito">
-           <ul>
-            <li><p><a href="/cadastroArtista" class="pri">EXPLORAR</a></p></li>
-            <li><p><a href=/contratar class="ter">CONTRATAR</a></p></li>
-            <li><p><a href=/quemsomos class="qua">QUEM SOMOS</a></p></li>
-            <li><p><a href=/cadastro class="direita02">CADASTRAR-SE</p></a></li>
-            <li><p><a href=/login class="direita01">ENTRAR</a></p></li>
-        </ul>
-       
-    </nav>
-</header>
+   
 
     <section class="base_cabecalho">
       <header></header>
@@ -86,7 +73,7 @@
               <li><a href="">Trabalhos</a></li>
               <li><a href="">Colaborações</a></li>
             </ul>
-            <button>Conversar</button>
+            <a href=/chat><button>Conversar</button></a>
           </section>
 
           <section class="publi">
