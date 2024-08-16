@@ -10,6 +10,8 @@
     background: #acdabf7a;
     width: 600px;
     margin: auto;
+
+    grid-area: barra-de-pesquisa;
 }
  
 .search-input{
