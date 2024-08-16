@@ -174,40 +174,100 @@ body{
 
 /* Tentativa de responsividade*/
 
-@media screen and (max-width: 3330) {
-    .form-image {
-        display: none;
+
+@media (max-width: 999px){
+
+
+    .secao-form{
+        min-width: 400px;
     }
+
+    .input-group {
+     
+       min-width: 100%;
+       padding: 0px;
+       margin: auto;
+   
+    }
+
+    
     .container {
-        width: 50%;
+    width: 80%;
+    border: 2px solid #000; 
+    border-radius: 5px;
+    padding: 30px;
+    margin-top: 60px;
+   
     }
-    .form {
-        width: 100%;
+
+    .title {
+        text-align: center;
+        padding: 0%;
+        margin: 0px;
+
+        display: block;
+        width: fit-content;
+   
     }
+
+    .titulo{
+        padding: 0%;
+        margin: 0%;
+        font-size: 20px;
+    }
+
+    .input-box {
+       
+      
+        max-width: 300px;
+     
+       
+    }
+
+    
+.continue-button button {
+    width: 70%;
+   
 }
 
-@media screen and (max-width: 1064px) {
-    .container {
-        width: 90%;
-        height: auto;    
-    }
-    .input-group {
-        flex-direction: column;
-        overflow-y: scroll;
-        flex-wrap: nowrap;
-        max-width: 10rem;
-        padding-right: 5rem;
-    }
-    .gender-inputs {
-        margin-top: 2rem;
-    }
-    .gender-group {
-        flex-direction: column;
-    }
-    .gender-input {
-        margin-top: 0.5rem;
-    }
+
+ 
+
+ 
 }
+
+
+@media (max-width: 500px) {
+
+    
+    .container {
+        width: 80%;
+        border: none;
+        padding: 30px;
+        margin-top: 150px;
+        margin: auto;
+       
+        }
+
+        .input-box {
+       
+      
+            width: 100%;
+         
+           
+        }
+
+            
+        .continue-button button {
+              width: 75%;
+   
+         }
+
+     
+}
+
+
+
 
 /* Validações */
 .erro-form {
