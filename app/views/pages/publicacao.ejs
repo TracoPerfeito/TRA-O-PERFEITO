@@ -17,9 +17,9 @@
    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
 </head>
 <body>
+    <%- include('../partials/navbar'); %>
+ 
 
-    <%- include('menu.ejs') -%>
-    
     <main>
 
         <section class="botao">   
@@ -45,7 +45,7 @@
 
             <section class="conteudo">
 
-              
+              <section class="coluna-esquerda">
                 <section class="publi">
 
                     <section class="publi-info">
@@ -90,12 +90,12 @@
 
                 </section>
 
-
+               </section>
             </section>
 
             <section class="lado">
 
-                <h1>Publicações relacionadas</h1>
+                <h1 class="publi-relacio">Publicações relacionadas</h1>
 
                 <section class="publi-re">
                     <img src="imagens/5.jpg" class="outras-publi"><br>

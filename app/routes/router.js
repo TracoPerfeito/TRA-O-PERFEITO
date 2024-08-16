@@ -47,6 +47,10 @@ router.get("/chat", function (req, res) {
  
 });
 
+router.get("/perfil", function (req, res) {
+    res.render('perfil/index')
+})
+
 router.get("/teste", function (req, res) {
     res.render('pages/teste')
  
