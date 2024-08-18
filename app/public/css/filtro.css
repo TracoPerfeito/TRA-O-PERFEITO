@@ -1,8 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 .filtragem{
     margin-left: 67%;
@@ -55,6 +50,3 @@ li a:hover{
     background-color: #2a5680; 
 }
 
-.filtro:hover .lista{
-    display: block;
-}

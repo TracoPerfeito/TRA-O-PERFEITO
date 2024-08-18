@@ -1,13 +1,12 @@
 *{
     padding: 0;
     margin: 10;
-    box-sizing: border-box;
+   
 }
 
 .container{
-
-    margin: 50px 150px 50px 150px;
-    border: 100px ;
+    align-self: center;
+    padding: 50px 100px 100px 100px;
     display: grid;
  
     column-gap: 30px;
