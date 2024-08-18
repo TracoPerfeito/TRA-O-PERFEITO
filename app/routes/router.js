@@ -43,10 +43,6 @@ router.get("/publicacao", function (req, res) {
 });
 
 
-router.get("/publicacao2", function (req, res) {
-    res.render('pages/publicacao2')
- 
-});
 
 router.get("/chat", function (req, res) {
     res.render('pages/chat')

@@ -5,37 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Traço Perfeito</title>
 <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
- 
-<link rel="stylesheet" href="css/menu.css">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<link rel="stylesheet" href="css/barrapesquisa.css">
 <link rel="stylesheet" href="css/contratar.css">
 </head>
 <body>
-    <header>
-        <nav class="menu" id="menu">
- 
- 
-           <img src="imagens/logo.png" id="logo"><a href="#" class="logo" ></a></img>
-           <img src="imagens/traço perfeito.png" id="traco" alt="Traço Perfeito">
- 
-            <ul>
-                <li><p><a href=/index class="pri">EXPLORAR</a></p></li>
-                <li><p><a href="#" class="ter">CONTRATAR</a></p></li>
-                <li><p><a href=/quemsomos class="qua">QUEM SOMOS</a></p></li>
-                <li><p><a href=/cadastro class="direita02">CADASTRAR-SE</p></a></li>
-                <li><p><a href=/login class="direita01">ENTRAR</a></p></li>
-            </ul>
-           
-        </nav>
-    </header>
+
+    <%- include('../partials/menu'); %>
+
+    <section class="pesquisas">
+        <section class="search">
+            <section class="icon"> <ion-icon name="search-outline"></ion-icon></section>
+            <input class="search-input" type="search" placeholder="O que você está procurando hoje?">
+        
+        </section>
+
+   
  
  
            
+ <section class="container-perfis">
+     
+        <%- include('../partials/contratos'); %>
+        <%- include('../partials/contratos'); %>
+        <%- include('../partials/contratos'); %>
+      
+ </section>
  
-    <%- include('../partials/contratos'); %>        
-    <%- include('../partials/contratos'); %>
-    <%- include('../partials/contratos'); %>
-    <%- include('../partials/contratos'); %>
- 
+ <%- include('../partials/rodape'); %>
  
 </body>
 </html>

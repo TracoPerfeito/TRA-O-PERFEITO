@@ -4,6 +4,10 @@ body {
     font-family: Arial, sans-serif;
 }
 
+main {
+    align-content: center;
+}
+
 .container {
     display: grid;
     grid-template-areas: 
@@ -15,8 +19,9 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto 1fr auto;
     gap: 20px;
-    margin:0px;
-    padding-top: 0px;
+    margin:auto;
+    margin-left: 90px;
+    padding: 0px;
    
 
    
@@ -131,6 +136,10 @@ gap: 20px;
     margin-bottom: 10px;
 }
 
+.publi-re img:hover{
+    filter: brightness(50%);
+}
+
 .publi-re {
 
 justify-content: center;
@@ -208,7 +217,7 @@ left:83.5%
 
 
 .botao {
-padding: 10px 20px 10px 100px;
+padding: 10px 20px 10px 187.5px;
 margin: 0px;
 display: flex;
 background-color: rgba(224, 236, 240, 0.37);
