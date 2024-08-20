@@ -42,8 +42,6 @@ router.get("/publicacao", function (req, res) {
  
 });
 
-
-
 router.get("/chat", function (req, res) {
     res.render('pages/chat')
  

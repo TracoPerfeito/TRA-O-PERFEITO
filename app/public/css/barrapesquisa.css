@@ -10,6 +10,8 @@
     background: #acdabf7a;
     width: 600px;
     margin: auto;
+
+    grid-area: barra-de-pesquisa;
 }
  
 .search-input{
@@ -38,16 +40,3 @@
     color: #165040;
   }
  
-
-  @media (max-width: 999px){
-
-    .search {
-        max-width: 300px;
-    }
-
-    .search-input{
-        font-size: 14px;
-     
-    }
-
-  }

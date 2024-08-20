@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <link rel="stylesheet" href="css/banner.css">
-    <!-- <link rel="stylesheet" href="css/filtro.css">  -->
+    <link rel="stylesheet" href="css/filtro.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="../js/banner.js"></script>
@@ -23,7 +23,7 @@
  
 <!-------------------------------BODY------------------------------------------------>
 <body onload="PassarProLado()">
-    <%- include('../partials/menu'); %>
+    <%- include('../partials/navbar'); %>
  
  
  
@@ -73,8 +73,10 @@
                             <input class="search-input" type="search" placeholder="O que você está procurando hoje?">
                         
                         </section>
+                        
+                    </section>
 
-<!--                         
+                   
                         <button class="filtragem"><img src="imagens/filter.svg" alt="filter icon" onclick="Aparecer()">
                             <a class="filtro" href="#">Data de Publicação</a>
                             <ul class="lista">
@@ -100,12 +102,12 @@
                                 <li><a href="#">Linha tracejada</a></li>
                                 <li><a href="#">Linha traço-ponto</a></li>
                             </ul>
-                            </button> -->
-                        
-                    </section>
-
+                            </button>
                     
-                    
+ 
+ 
+ 
+ 
  
  
  
@@ -115,11 +117,11 @@
                     <section class="container">
            
                         <section class="item item-1">
-                            <a href=/publicacao> <img src="imagens/5.jpg" alt=""></a>
+                            <a href="/publicacao"> <img src="imagens/5.jpg" alt=""></a>
                             <section class="info">
                                 
                                 <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <h1 class="nome"><a href=/meu-perfil-artista >Jaqueline Maria</a></h1>
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
@@ -132,15 +134,14 @@
            
                        
                         <section class="item item-1">
-                            <a href=/publicacao ><img src="imagens/2.jpg"></a>
+                            <img src="imagens/2.jpg" alt="">
                             <section class="info">
-                                <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <img src="imagens/fotoperfil1.jpeg" class="perfil"><h1 class="nome">Nome</h1>
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
     
-                                <p class="descricao">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <p class="descricao">Descrição</p>
                             </section>
                           
 
@@ -149,16 +150,16 @@
            
                        
                         <section class="item item-1">
-                            <a href=/publicacao><img src="imagens/3.jpg"></a>
+                            <img src="imagens/3.jpg" alt="">
                             <section class="info">
                                 <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <h1 class="nome">Nome</h1>
 
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
     
-                                <p class="descricao">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <p class="descricao">Descrição</p>
                             </section>
                           
                             
@@ -166,16 +167,16 @@
            
                        
                         <section class="item item-1">
-                            <a href=/publicacao><img src="imagens/9.jpg" ></a>
+                            <img src="imagens/9.jpg" alt="">
                             <section class="info">
                                 <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <h1 class="nome">Nome</h1>
 
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
     
-                                <p class="descricao">Lorem ipsum dolor sit amet, consectetur </p>
+                                <p class="descricao">Descrição</p>
                             </section>
                           
 
@@ -183,48 +184,48 @@
            
                        
                         <section class="item item-1">
-                            <a href=/publicacao><img src="imagens/3.jpg" ></a>
+                            <img src="imagens/3.jpg" alt="">
                             <section class="info">
                                 <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <h1 class="nome">Nome</h1>
 
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
     
-                                <p class="descricao">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <p class="descricao">Descrição</p>
                             </section>
                           
                         </section>
            
                        
                         <section class="item item-1">
-                            <a href=/publicacao><img src="imagens/6.jpg" ></a>
+                            <img src="imagens/6.jpg" alt="">
                             <section class="info">
                                 <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <h1 class="nome">Nome</h1>
 
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
     
-                                <p class="descricao">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <p class="descricao">Descrição</p>
                             </section>
                         
                         </section>
            
                        
                         <section class="item item-1">
-                            <a href=/publicacao><img src="imagens/7.jpg" ></a>
+                            <img src="imagens/7.jpg" alt="">
                             <section class="info">
                                 <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <h1 class="nome">Nome</h1>
 
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
     
-                                <p class="descricao">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <p class="descricao">Descrição</p>
                             </section>
                           
 
@@ -232,32 +233,32 @@
            
                        
                         <section class="item item-1">
-                            <a href=/publicacao><img src="imagens/8.jpg" ></a>
+                            <img src="imagens/8.jpg" alt="">
                             <section class="info">
                                 <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <h1 class="nome">Nome</h1>
 
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
     
-                                <p class="descricao">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <p class="descricao">Descrição</p>
                             </section>
                           
 
                         </section>
 
                         <section class="item item-1">
-                            <a href=/publicacao><img src="imagens/9.jpg"></a>
+                            <img src="imagens/9.jpg" alt="">
                             <section class="info">
                                 <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <h1 class="nome">Nome</h1>
 
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
     
-                                <p class="descricao">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <p class="descricao">Descrição</p>
                             </section>
                           
 
@@ -265,18 +266,17 @@
            
                        
                         <section class="item item-1">
-                            <a href=/publicacao></a>
-                            <img src="imagens/10.jpg" >
+                            <img src="imagens/10.jpg" alt="">
                             <section class="info">
                                 
                                 <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <h1 class="nome">Nome</h1>
 
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
     
-                                <p class="descricao">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <p class="descricao">Descrição</p>
                             </section>
                           
 
@@ -284,17 +284,17 @@
            
                        
                         <section class="item item-1">
-                            <a href=/publicacao><img src="imagens/11.jpg"></a>
+                            <img src="imagens/11.jpg" alt="">
                             <section class="info">
                                 
                                 <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <h1 class="nome">Nome</h1>
 
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
     
-                                <p class="descricao">DLorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <p class="descricao">Descrição</p>
                             </section>
                           
 
@@ -302,18 +302,18 @@
            
                        
                         <section class="item item-1">
-                            <a href=/publicacao><img src="imagens/12.jpg" ></a>
+                            <img src="imagens/12.jpg" alt="">
                            
                             <section class="info">
                                 
                                 <img src="imagens/fotoperfil1.jpeg" class="perfil">
-                                <h1 class="nome"><a href=/perfil >Jaqueline Maria</a></h1>
+                                <h1 class="nome">Nome</h1>
 
                                 <button class="like-button">
                                     <i class="far fa-heart"></i> 
                                 </button>
     
-                                <p class="descricao">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <p class="descricao">Desrição</p>
                             </section>
                           
                         </section>
@@ -329,10 +329,35 @@
                
                 </main>
 
-                <%- include('../partials/rodape'); %>
 
 
+                <footer class="rodape">
 
+                    <section class="img-rodape">
+                        <img src="imagens/logo.png" alt="Logotipo">
+                    </section>
+
+                   <section class="info-rodape">
+
+                       <h1>TRAÇO PERFEITO</h1>
+                       <p>Lorem ipsum dolor sit, amet coquatur!</p>
+            
+                   </section>
+
+                   <section class="termos">
+
+                    <h1>TERMOS E CONDIÇÕES</h1>
+                   </section>
+
+                   <section class="rodape_fale_conosco">
+                    <h1 id="fale-conosco">FALE CONOSCO</h1>
+                    <a href="https://www.instagram.com/traco_perfeito_?igsh=N2JhZmUwdGo3MnNz" class="link-social"><i class="fa-brands fa-instagram"></i></a>
+                    <i class="fa-brands fa-square-facebook"></i>
+                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-square-x-twitter"></i>
+             
+                  </section>
+                </footer>
  
     <script src="js/like.js"></script>
     <script src="js/mobile-navbar.js"></script>

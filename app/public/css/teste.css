@@ -174,100 +174,40 @@ body{
 
 /* Tentativa de responsividade*/
 
-
-@media (max-width: 999px){
-
-
-    .secao-form{
-        min-width: 400px;
+@media screen and (max-width: 3330) {
+    .form-image {
+        display: none;
     }
+    .container {
+        width: 50%;
+    }
+    .form {
+        width: 100%;
+    }
+}
 
+@media screen and (max-width: 1064px) {
+    .container {
+        width: 90%;
+        height: auto;    
+    }
     .input-group {
-     
-       min-width: 100%;
-       padding: 0px;
-       margin: auto;
-   
+        flex-direction: column;
+        overflow-y: scroll;
+        flex-wrap: nowrap;
+        max-width: 10rem;
+        padding-right: 5rem;
     }
-
-    
-    .container {
-    width: 80%;
-    border: 2px solid #000; 
-    border-radius: 5px;
-    padding: 30px;
-    margin-top: 60px;
-   
+    .gender-inputs {
+        margin-top: 2rem;
     }
-
-    .title {
-        text-align: center;
-        padding: 0%;
-        margin: 0px;
-
-        display: block;
-        width: fit-content;
-   
+    .gender-group {
+        flex-direction: column;
     }
-
-    .titulo{
-        padding: 0%;
-        margin: 0%;
-        font-size: 20px;
+    .gender-input {
+        margin-top: 0.5rem;
     }
-
-    .input-box {
-       
-      
-        max-width: 300px;
-     
-       
-    }
-
-    
-.continue-button button {
-    width: 70%;
-   
 }
-
-
- 
-
- 
-}
-
-
-@media (max-width: 500px) {
-
-    
-    .container {
-        width: 80%;
-        border: none;
-        padding: 30px;
-        margin-top: 150px;
-        margin: auto;
-       
-        }
-
-        .input-box {
-       
-      
-            width: 100%;
-         
-           
-        }
-
-            
-        .continue-button button {
-              width: 75%;
-   
-         }
-
-     
-}
-
-
-
 
 /* Validações */
 .erro-form {
