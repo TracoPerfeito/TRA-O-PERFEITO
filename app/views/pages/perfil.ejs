@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/perfil.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
     <title>Perfil de ....</title>
 </head>
 <body>
@@ -13,8 +19,18 @@
     
   <%- include('../partials/menu'); %>
 
+  <section class="botao">   
+    <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+        
+       
+    </button>
+    <p class="lado-botao">Publicação de Jaqueline Maria </p>
+</section>
+
     <section class="base_cabecalho">
-      <header></header>
+      <header>
+        <img src="imagens/bg.png" id="banner-perfil">
+      </header>
       <section class="coluna_contaneir">
         <section class="coluna-esquerda">
 
@@ -62,7 +78,7 @@
               <li><a href="">Trabalhos</a></li>
               <li><a href="">Colaborações</a></li>
             </ul>
-            <button><a href=/chat>Conversar</a></button>
+            <button id="irparachat"><a href=/chat>Conversar</a></button>
           </section>
 
           <section class="publi">
@@ -77,8 +93,10 @@
       </section>
     </section>
 
+    <%- include('../partials/rodape'); %>
 
 
+    <script src="js/voltar.js"></script>
     
  
 

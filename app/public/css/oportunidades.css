@@ -12,10 +12,12 @@
 
 h1 {
     font-family: "Montserrat";
+    margin: 20px 0px;
 }
 
 .fora {
     margin: 0px;
+    font-family: "Josefin Sans";
 }
 
 .blocos {
@@ -23,28 +25,45 @@ h1 {
     display:grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    margin-bottom: 150px;
 
 }
 
 
 
 .pedido {
-    background-color: #acdabf7a;
+    background-color: whitesmoke;
     border-radius: 15px;
     overflow: hidden;
     max-height: 300px;
+    padding: 10px;
+    box-shadow: 5px 8px 24px rgba(78, 78, 78, 0.329) ;
+    border: #91a79a7a 2px solid;
 
+}
+
+.pedido:hover {
+    border: #25382d7a 2px solid;
+    cursor: pointer;
+    transform: translateY(-5px);
+   
 }
 
 .pedido p{
     color: black;
     margin: 15px;
+    font-family: "Josefin Sans";
 }
 
 .pedido h2 {
-    margin: 15px 0px 0px 0px;
+    margin: 10px 0px 0px 5px;
     font-family: "Josefin Sans";
+    font-size: 18px;
 
+}
+
+.pedido h2:hover{
+    text-decoration: underline;
 }
 
 .pedido img {

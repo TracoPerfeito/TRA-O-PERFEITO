@@ -31,7 +31,8 @@
     grid-area: conversas-anteriores;
     padding: 10px;
     overflow-y: auto;
-    border-right: 1px solid #000000;
+    width: 100%;
+    border-right: 1px solid #0610369a;
 
 }
 
@@ -44,7 +45,7 @@
 
 .conversa {
    
-   border-bottom: 1px solid #000000;
+   border-bottom: 1px solid #0610369a;
    margin: 10px;
    padding: 10px;
    display: grid;
@@ -85,11 +86,16 @@
 .chat-atual {
     grid-area: chat-atual;
     color: #061036;
+    background-color: rgba(224, 236, 240, 0.74);
     padding: 10px;
+    margin: 0px;
     display: grid;
     grid-template-areas: 
     "fotoperfil nome";
     grid-template-columns: 1fr 17fr;
+    border-bottom: #0610369a 1px solid;
+    font-family: "Josefin Sans";
+
 }
 
 .foto-chat-atual {
@@ -101,7 +107,7 @@
 }
 
 #nome-chat-atual {
-    padding: 0px;
+    padding: 7px 0px 5px 0px;
     margin: 0px;
 }
 
@@ -135,6 +141,7 @@
     justify-self: end;
     margin: 15px 0px 15px 0px;
     width: 100%;
+    color: #000000;
   
 }
 
@@ -171,6 +178,7 @@
     margin: 25px 0px 25px 0px;
    display: block;
    width: 100%;
+   color: #000000;
 
 }
 
@@ -183,9 +191,9 @@
     border-right: 25px solid transparent;
     border-top: 25px solid #8ED0D0;
     border-left: 25px solid transparent;
-    bottom: -10px;
-    left: 0%;
-    transform: rotate(30deg);
+    bottom: -20px;
+    left: 10%;
+   
  
    
 }
@@ -204,6 +212,7 @@
     padding: 10px 40px 10px 40px;
     margin: 5px;
     height: auto;
+    cursor: pointer;
 }
 
 .digite input {
@@ -214,6 +223,7 @@
     border: none;
     padding: 10px;
     margin-bottom: 0px;
+    
 
 }
 
@@ -226,6 +236,7 @@
     padding: 10px;
     color: #103b2b;
     font-size: 18px;
+    margin-bottom: 0px;
    
 }
 
@@ -241,61 +252,38 @@
 
 
 
-/* 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body, html {
-    height: 100%;
-    font-family: Arial, sans-serif;
-}
-
-.container {
-    display: grid;
-    grid-template-areas:
-        "menu menu"
-        "conversas-anteriores mensagens"
-        "conversas-anteriores entrada"
-        "rodape rodape";
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1fr 3fr;
-    height: 100vh;
-    gap: 10px;
-}
-
-.menu {
-    grid-area: menu;
-    background-color: #f1f1f1;
-    padding: 10px;
-    text-align: center;
-}
-
-.conversas-anteriores {
-    grid-area: conversas-anteriores;
-    background-color: #e2e2e2;
-    padding: 10px;
-    overflow-y: auto;
-}
-
-.mensagens {
-    grid-area: mensagens;
-    background-color: #fff;
-    padding: 10px;
-    overflow-y: auto;
-}
-
-.entrada {
-    grid-area: entrada;
-    background-color: #f9f9f9;
-    padding: 10px;
-}
-
-.rodape {
-    grid-area: rodape;
-    background-color: #d1d1d1;
-    padding: 10px;
-    text-align: center;
-} */
+.botao {
+    padding: 10px 20px 10px 20px;
+    margin: 0px;
+    display: flex;
+    background-color: rgba(224, 236, 240, 0.801);
+    border-bottom: #0610369a solid 1px;
+    
+    }
+    
+    .lado-botao{
+    padding: 5px;
+    margin: 10px 0px 5px 10px;
+    font-family: "Josefin Sans";
+    
+    }
+    
+    
+    .btn-voltar{
+        grid-area: botao;
+        background-color: #acdabf7a;
+        padding: 10px;
+        border-radius: 50%;
+        border: none;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        
+        
+        }
+    
+    #seta {
+    color:#165040;
+    font-size: 20px;
+    }
+    

@@ -1,123 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layout com CSS Grid</title>
-    <style>
-         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            display: grid;
-            grid-template-areas: 
-                
-                "principal principalcomentarios"
-                "publicacoes-rela";
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto 1fr auto;
-            gap: 10px;
-            padding: 10px;
-           
-        }
-        
-        .principal {
-            grid-area: principal;
-            background-color: #9f1818;
-        }
-
-        .menu {
-            grid-area: menu;
-            background-color: #ccc;
-            text-align: center;
-            padding: 20px;
-            font-size: 24px;
-        }
-
-        .foto {
-            grid-area: foto;
-            background-color: #9f1818;
-            padding: 20px;
-            text-align: center;
-            font-size: 48px;
-        }
-
-        .comentarios {
-            grid-area: comentarios;
-            background-color: #77b2a7;
-            padding: 20px;
-        }
-
-        .publi-relacionadas {
-    grid-area: publicacoes-rela;
-    background-color: aqua;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-        .publi-re img{
-            width: 300px;
-            height: auto;
-        }
-        
-        .publi-re {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-    </style>
-</head>
-<body>
-
-
-
-    <div class="container">
-       
-       
-        <section class="principal">
-            <img src="imagens/casteo.jpg">
-            kjdfhieurfbh
-        </section>
-        <section class="comentarios">
-            
-            <section class="comentario"> 
-                <p>wiuefhiurefheirufher</p>
-            </section>
-
-            <section class="comentario"> 
-                <p>wiuefhiurefheirufher</p>
-            </section>
-
-            <section class="comentario"> 
-                <p>wiuefhiurefheirufher</p>
-            </section>
-
-            <section class="comentario"> 
-                <p>wiuefhiurefheirufher</p>
-            </section>
-        </section>
-
-        <section class="publi-relacionadas">
-
-            <section class="publi-re"> 
-                <img src="imagens/3.jpg">
-            </section>
-
-            <section class="publi-re"> 
-                <img src="imagens/3.jpg">
-            </section>
-
-            <section class="publi-re"> 
-                <img src="imagens/3.jpg">
-            </section>
-
-        </section>
-</body>
-</html> -->
 
 
 <!DOCTYPE html>
@@ -167,7 +47,9 @@
             <section class="principal">
                 <section class="publi-info">
                     <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
-                    <p class="nome-dono-post">Jaqueline Maria  </p>
+                    <a href=/perfil>
+                        <p class="nome-dono-post">Jaqueline Maria  </p>
+                    </a>
                 </section>
                 <img src="imagens/castelo.jpg" id="img-principal">
                 <section class="descricao-like">
@@ -213,7 +95,9 @@
                 <section class="comentario">
                     <section class="comentario-info">
                         <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                        <p class="nome-comentario"> Mariana Sanchez</p>
+                        <a href=/perfil>
+                            <p class="nome-comentario"> Mariana Sanchez</p>
+                        </a>
                     </section>
                     <section class="escrita-comentario">
                         <p>Lorem ipsum dolor sit, amet consectetur adipis
@@ -227,7 +111,9 @@
                 <section class="comentario">
                     <section class="comentario-info">
                         <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                        <p class="nome-comentario"> Fábinho Ilustrações</p>
+                        <a href=/perfil>
+                            <p class="nome-comentario"> Fábinho Ilustrações</p>
+                        </a>
                     </section>
                     <section class="escrita-comentario">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ipsam lacupiditate voluptate. Accusamus totam labore tenetur.
@@ -242,7 +128,9 @@
                 <section class="comentario">
                     <section class="comentario-info">
                         <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                        <p class="nome-comentario"> Creuza Aparecida </p>
+                        <a href=/perfil>
+                            <p class="nome-comentario"> Creuza Aparecida </p>
+                        </a>
                     </section>
                     <section class="escrita-comentario">
                         <p>Mi piace il tuo lavoro! Accusamus totam labore tenetur</p>
@@ -274,7 +162,9 @@
 
                         <section class="publi-rel-info">
                             <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                            <p>fulao de tal</p>
+                            <a href=/perfil>
+                                <p>Joaquim Fernandes</p>
+                            </a>
                         </section>
 
                     </section>
@@ -284,18 +174,9 @@
 
                         <section class="publi-rel-info">
                             <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                            <p>fulano de tal</p>
-                        </section>
-
-                    </section>
-    
-
-                    <section class="publi-re">
-                        <img src="imagens/3.jpg" >
-
-                        <section class="publi-rel-info">
-                            <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                            <p>fulano de tal</p>
+                            <a href=/perfil>
+                                <p>Adriana Maria</p>
+                            </a>
                         </section>
 
                     </section>
@@ -306,7 +187,22 @@
 
                         <section class="publi-rel-info">
                             <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                            <p>fulano de tal</p>
+                            <a href=/perfil>
+                                <p>Neuleivys da Costa</p>
+                            </a>
+                        </section>
+
+                    </section>
+    
+
+                    <section class="publi-re">
+                        <img src="imagens/3.jpg" >
+
+                        <section class="publi-rel-info">
+                            <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                            <a href=/perfil>
+                                <p>Marianne - Pinturas</p>
+                            </a>
                         </section>
 
                     </section>

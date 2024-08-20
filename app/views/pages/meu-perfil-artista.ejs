@@ -20,7 +20,7 @@
 </head>
   <body>
 
-    <%- include('menu-artista-logado.ejs') -%>
+    <%- include('../partials/menu-logado'); %>
 
    
     <section class="base_cabecalho">
@@ -43,10 +43,10 @@
         <div id="editarperfil-suspenso" class="suspenso-conteudo">
             <form>
                 <label for="name">Nome:</label>
-                <input type="text" id="name" name="name" placeholder="Seu Nome">
+                <input type="text" id="name" name="name" placeholder="Seu Nome" class="input-alteracao">
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com">
+                <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" class="input-alteracao">
 
                 <button type="submit" class="salvar">Salvar</button>
             </form>
@@ -74,7 +74,7 @@
               <i class="fab fa-whatsapp"></i>
             </ul>
           </section>
-          <button class="sair-da-conta">Sair da conta</button>
+          <a href=/index ><button class="sair-da-conta">Sair da conta</button></a>
 
         </section>
         <section class="coluna-direta">
@@ -84,8 +84,8 @@
               <li><a href="">Trabalhos</a></li>
               <li><a href="">Colaborações</a></li>
             </ul>
-            <button>Conversar</button>
-            <a href="index.ejs"><button>Conversar</button></a>
+           
+            <a href=/chat-logado ><button id="irparachat">Conversar</button></a>
           </section>
 
           <section class="publi">
@@ -99,5 +99,7 @@
         </section>
       </section>
     </section>
+
+    <%- include('../partials/rodape'); %>
   </body>
 </html>

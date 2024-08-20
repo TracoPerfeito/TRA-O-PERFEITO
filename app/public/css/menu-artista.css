@@ -12,12 +12,13 @@ nav{
     
     padding: 0px 0px;
     margin: 0px auto;
+    margin-bottom: 300px;
     background-color: #132d46;
     justify-content: center;
 }
  
 
- 
+  
 nav ul{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
