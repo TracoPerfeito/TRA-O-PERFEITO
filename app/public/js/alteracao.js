@@ -2,7 +2,7 @@
 var dropdown = document.getElementById("editarperfil-suspenso");
 var btn = document.getElementById("editarperfilbotao");
  
-// Quando o botão for clicado, a dropdown será mostrada ou escondida
+// Quando o botão for clicado, a seção de alterar será mostrada ou escondida
 btn.onclick = function() {
 if (dropdown.style.display === "block") {
 dropdown.style.display = "none";

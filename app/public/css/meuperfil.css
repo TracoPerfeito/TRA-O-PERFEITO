@@ -51,7 +51,7 @@ a {
   display: block;
   box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
 }
-.base_cabecalho .coluna_contaneir .coluna-esquerda .img__container span {
+/* .base_cabecalho .coluna_contaneir .coluna-esquerda .img__container span {
   position: absolute;
   background: #2afa6a;
   width: 16px;
@@ -60,7 +60,7 @@ a {
   bottom: 3px;
   right: 11px;
   border: 2px solid #fff;
-}
+} */
 .base_cabecalho .coluna_contaneir .coluna-esquerda h2 {
   margin-top: 60px;
   font-weight: 600;
@@ -167,6 +167,36 @@ input[type='file'] {
   display: none;
 }
 
+.sair-da-conta {
+  background-color: #132d46;
+  color: #fff;
+  font-family: "Josefin Sans";
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+}
+
+
+.input-alteracao{
+  border-radius: 5px;
+  border: 1px solid #132d46;
+}
+
+.salvar {
+  background-color: #132d46;
+  color: #fff;
+  font-family: "Josefin Sans";
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 5px;
+}
+
+
+#irparachat{
+  background-color: #132d46;
+  
+}
 
 /* Responsiveness */
 

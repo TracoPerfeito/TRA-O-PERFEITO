@@ -78,6 +78,23 @@ router.get("/meu-perfil-artista", function (req, res) {
 
 
 
+router.get("/explorar-logado", function (req, res) {
+    res.render('pages/explorar-logado')
+ 
+});
+
+
+router.get("/contratar-logado", function (req, res) {
+    res.render('pages/contratar-logado')
+ 
+});
+
+
+
+
+
+
+
 
 
 
@@ -155,7 +172,7 @@ router.post(
 
         if (listaErros.isEmpty()) {
 
-            return res.redirect("/index");
+            return res.redirect("/explorar-logado");
         } else {
         
             console.log(listaErros);
@@ -178,7 +195,7 @@ router.post(
 
         if (errosLogin.isEmpty()) {
 
-            return res.redirect("/index"); // voltar pra página inicial mesmo
+            return res.redirect("/explorar-logado"); // voltar pra página inicial mesmo
         } else {
             
             console.log(errosLogin);

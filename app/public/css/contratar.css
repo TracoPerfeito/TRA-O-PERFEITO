@@ -98,6 +98,7 @@
     text-align: center;
     border-radius: 15px;
     max-width: 400px;
+ 
     
 }
  
@@ -122,6 +123,7 @@
 
 .designer-detalhes h3{
     text-align: left;
+    font-family: "Josefin Sans";
 }
  
 .designer-detalhes {
@@ -145,6 +147,8 @@
     font-weight: bold;
     text-align:justify;
     z-index: 0;
+    font-family: "Josefin Sans";
+
 }
  
 .designer-details .user-info {
@@ -153,10 +157,18 @@
     text-align: left;
     margin-top: 1px;
     z-index: 0;
+
 }
  
 .user-info {
     text-align: left;
+    font-family: "Josefin Sans";
+    
+}
+
+.user-info p{
+    margin: 0px;
+    padding: 0px;
 }
  
 

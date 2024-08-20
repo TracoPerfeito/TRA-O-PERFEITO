@@ -10,6 +10,29 @@
     background: #acdabf7a;
     width: 600px;
     margin: auto;
+
+}
+
+.search1 {
+ 
+    --padding: 7px;
+ 
+    width:max-content;
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+    border-radius: 10px;
+    background: #acdabf7a;
+    width: 600px;
+    margin: auto;
+    margin-top: 20px;
+
+}
+
+
+
+.search:hover{
+    border: 1px solid #165040;
 }
  
 .search-input{

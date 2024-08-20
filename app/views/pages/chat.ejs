@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat de Jaqueline</title>
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/chat.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,36 +14,18 @@
 </head>
 <body>
 
-    <header>
-        <nav class="menu" id="menu">
+    <%- include('../partials/menu'); %>
 
-
-           <img src="imagens/logo.png" id="logo"><a href="#" class="logo" ></a></img>
-           <img src="imagens/traço perfeito.png" id="traco" alt="Traço Perfeito">
-
-<!--
-           <section class="mobile-menu">
-
-            <section class="line1"></section>
-            <section class="line2"></section>
-            <section class="line3"></section>
-
-
-           </section>
-
-           -->
-            <ul>
-                <li><p><a href=/quemcadastra class="pri">EXPLORAR</a></p></li>
-                <li><p><a href=/contratar class="ter">CONTRATAR</a></p></li>
-                <li><p><a href=/quemsomos class="qua">QUEM SOMOS</a></p></li>
-                <li><p><a href=/cadastro class="direita02">CADASTRAR-SE</p></a></li>
-                <li><p><a href=/login class="direita01">ENTRAR</a></p></li>
-            </ul>
-           
-        </nav>
-    </header>
 
     <main>
+
+        <section class="botao">   
+            <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+                
+               
+            </button>
+            <p class="lado-botao"> Conversas</p>
+        </section>
 
         <section class="principal">
 
@@ -93,7 +76,7 @@
 
                     <section class="msg-recebida"><p>Oi, boa tarde! entre 500 a 1500, depende do tamanho do projeto... </p></section>
 
-                    <section class="msg-enviada"><p>Dahora! Tenho uma loja e queria uma identidade visual pra ela. Cê faz? Quanto vai sair?</p></section>
+                 
 
                     
                   
@@ -117,39 +100,11 @@
 
         </section>
 
-
-
-
-
-        <footer class="rodape">
-
-                <section class="img-rodape">
-                    <img src="imagens/logo.png" alt="Logotipo">
-                </section>
-
-               <section class="info-rodape">
-
-                   <h1>TRAÇO PERFEITO</h1>
-                   <p>Lorem ipsum dolor sit, amet coquatur!</p>
-        
-               </section>
-
-               <section class="termos">
-
-                <h1>TERMOS E CONDIÇÕES</h1>
-               </section>
-
-               <section class="rodape_fale_conosco">
-                <h1 id="fale-conosco">FALE CONOSCO</h1>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-square-facebook"></i>
-                <i class="fa-brands fa-linkedin"></i>
-                <i class="fa-brands fa-square-x-twitter"></i>
-         
-              </section>
-        </footer>
-       
     </main>
+
+    <%- include('../partials/rodape'); %>
+
+    <script src="js/voltar.js"></script>
 
 
     
