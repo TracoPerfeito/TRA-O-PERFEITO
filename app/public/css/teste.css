@@ -7,7 +7,7 @@
 
 body{
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,6 +29,7 @@ body{
     border: 2px solid #000; 
     border-radius: 5px;
     padding: 30px;
+    margin-top: 100px;
    
 }
 
@@ -175,11 +176,50 @@ body{
     color: white;
 }
 
+
+
 .botao {
-    padding: 10px 20px 10px 187.5px;
+    margin: 30px 0px 100px 30px;
+    display: flex;
+    
+}
+
+.lado-botao {
+    padding: 5px 7px;
+    font-family: "Josefin Sans";
+    margin: 6px 5px;
+
+}
+
+.btn-voltar{
+    grid-area: botao;
+    background-color: #132d46;
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin: 0px;
+    
+    }
+
+    
+#seta{
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+   
+    
+}
+
+
+/* 
+.botao {
+    padding: 10px 2220px 10px 1050px;    
     margin: 0px;
     display: flex;
     background-color: rgba(224, 236, 240, 0.37);
+    align-content: first baseline;
     
 }
     
@@ -187,6 +227,8 @@ body{
     padding: 5px;
     margin: 10px 0px 5px 10px;
     font-family: "Josefin Sans";
+    position: relative;
+    bottom: 15%;
     
 }
 
@@ -207,7 +249,7 @@ body{
 #seta{
     font-size: 25px;
     color: White;
-}
+} */
 
 
 .botao {

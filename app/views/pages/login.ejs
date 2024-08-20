@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="css/login.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
 
     <title>Traço Perfeito</title>
 </head>
@@ -35,48 +40,54 @@ if(errosLogin){
 
 %>
 
-<main>
-
-<script src="js/voltar.js"></script>
-<section class="botao">   
-    <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
-    </button>
-    <p class="lado-botao">Voltar </p>
-</main>
-</section>
 
 
-
-       <form action="/login" method="post">
-
-            
-    <section class="secaoimagens">
-        <img src="imagens/logo.png" id="img1">
-        <img src="imagens/tracoperfeitoazul.png" id="img2">
-    </section>
+   <header>
+       
+       <script src="js/voltar.js"></script>
+       <section class="botao">
+           <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+           </button>
+           <p class="lado-botao">Voltar </p>
+       </section>
+       
+   </header>
     
+    
+    
+    
+           <form action="/login" method="post">
+    
+    
+        <section class="secaoimagens">
+            <img src="imagens/logo.png" id="img1">
+            <img src="imagens/tracoperfeitoazul.png" id="img2">
+        </section>
+    
+    
+    
+                <h1>LOGIN</h1>
+    
+                <label for="email">Digite seu e-mail:</label><br>
+                <input type="email" name="email" id="email"  value="<%= valores.email %>" class="<%= cssErros.email %>" required><br>
+                <span class="msg-erro"><%= msgErros.email %></span> <br>
+    
+                <label for="senha">Digite sua senha:</label><br>
+                <input type="password" name="password" id="password"  value="<%= valores.password %>" class="<%= cssErros.password %>" required><br>
+                <span class="msg-erro"><%= msgErros.password %></span> <br>
+    
+                <p class="p1"><a href="#">Esqueceu sua senha?</a></p>
+    
+                <p class="p2">Não tem uma conta? <a href="/cadastro">Cadastre-se</a></p>
+    
+                <button type="submit">Entrar</button>
+    
+    
+    
+            </form>
 
- 
-            <h1>LOGIN</h1>
- 
-            <label for="email">Digite seu e-mail:</label><br>
-            <input type="email" name="email" id="email"  value="<%= valores.email %>" class="<%= cssErros.email %>" required><br>
-            <span class="msg-erro"><%= msgErros.email %></span> <br>
 
-            <label for="senha">Digite sua senha:</label><br>
-            <input type="password" name="password" id="password"  value="<%= valores.password %>" class="<%= cssErros.password %>" required><br>
-            <span class="msg-erro"><%= msgErros.password %></span> <br>
-
-            <p class="p1"><a href="#">Esqueceu sua senha?</a></p>
- 
-            <p class="p2">Não tem uma conta? <a href="/cadastro">Cadastre-se</a></p>
- 
-            <button type="submit">Entrar</button>
- 
- 
- 
-        </form>
- 
+    
 
 </body>
 </html>
