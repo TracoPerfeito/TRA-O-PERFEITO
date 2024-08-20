@@ -11,6 +11,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
    
 }
 
@@ -120,10 +121,13 @@ body{
 }
 
 .input-group {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 1rem 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
 }
 
 .input-box {
@@ -171,43 +175,160 @@ body{
     color: white;
 }
 
+.botao {
+    padding: 10px 20px 10px 187.5px;
+    margin: 0px;
+    display: flex;
+    background-color: rgba(224, 236, 240, 0.37);
+    
+}
+    
+.lado-botao{
+    padding: 5px;
+    margin: 10px 0px 5px 10px;
+    font-family: "Josefin Sans";
+    
+}
+
+.btn-voltar{
+ 
+    background-color: #132d46;
+    color: White;
+    font-family: "Josefin Sans";
+    border-radius: 50%;
+    border-color: none;
+    box-shadow: none;
+    margin: 20px 0px 0px 270px;
+    width: 35px;
+    height: 35px;
+}
+
+
+#seta{
+    font-size: 25px;
+    color: White;
+}
+
+
+.botao {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.botao p {
+    color: #132d46;
+    font-size: 20px;
+    margin: 29px 0px 0px 10px;
+    font-family: "Josefin Sans";
+}
+
 
 /* Tentativa de responsividade*/
 
-@media screen and (max-width: 3330) {
-    .form-image {
-        display: none;
+
+@media (max-width: 999px){
+
+
+    .secao-form{
+        min-width: 400px;
     }
+
+    .input-group {
+     
+       min-width: 100%;
+       padding: 0px;
+       margin: auto;
+       grid-template-columns: repeat(3, 1fr);
+   
+    }
+
+    
     .container {
-        width: 50%;
+    width: 80%;
+    border: 2px solid #000; 
+    border-radius: 5px;
+    padding: 30px;
+    margin-top: 60px;
+   
     }
-    .form {
-        width: 100%;
+
+    .title {
+        text-align: center;
+        padding: 0%;
+        margin: 0px;
+
+        display: block;
+        width: fit-content;
+   
     }
+
+    .titulo{
+        padding: 0%;
+        margin: 0%;
+        font-size: 20px;
+    }
+
+    .input-box {
+       
+      
+        max-width: 300px;
+     
+       
+    }
+
+    
+.continue-button button {
+    width: 70%;
+   
 }
 
-@media screen and (max-width: 1064px) {
-    .container {
-        width: 90%;
-        height: auto;    
-    }
-    .input-group {
-        flex-direction: column;
-        overflow-y: scroll;
-        flex-wrap: nowrap;
-        max-width: 10rem;
-        padding-right: 5rem;
-    }
-    .gender-inputs {
-        margin-top: 2rem;
-    }
-    .gender-group {
-        flex-direction: column;
-    }
-    .gender-input {
-        margin-top: 0.5rem;
-    }
+
+ 
+
+ 
 }
+
+
+@media (max-width: 500px) {
+
+    
+    .container {
+        width: 80%;
+        border: none;
+        padding: 30px;
+        margin-top: 150px;
+        margin: auto;
+       
+        }
+
+    .input-group {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        flex-wrap: wrap;
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .input-box {
+       
+
+            width: 100%;
+         
+           
+    }
+
+            
+    .continue-button button {
+              width: 75%;
+   
+    }
+
+     
+}
+
+
+
 
 /* Validações */
 .erro-form {

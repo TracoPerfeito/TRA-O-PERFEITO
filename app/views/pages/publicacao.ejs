@@ -1,24 +1,154 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!-- <!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traço Perfeito</title>
-    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-   <link rel="stylesheet" href="css/publi.css">
-   <link rel="stylesheet" href="css/menu.css">
-   
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+    <title>Layout com CSS Grid</title>
+    <style>
+         body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: grid;
+            grid-template-areas: 
+                
+                "principal principalcomentarios"
+                "publicacoes-rela";
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            gap: 10px;
+            padding: 10px;
+           
+        }
+        
+        .principal {
+            grid-area: principal;
+            background-color: #9f1818;
+        }
+
+        .menu {
+            grid-area: menu;
+            background-color: #ccc;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+        }
+
+        .foto {
+            grid-area: foto;
+            background-color: #9f1818;
+            padding: 20px;
+            text-align: center;
+            font-size: 48px;
+        }
+
+        .comentarios {
+            grid-area: comentarios;
+            background-color: #77b2a7;
+            padding: 20px;
+        }
+
+        .publi-relacionadas {
+    grid-area: publicacoes-rela;
+    background-color: aqua;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+        .publi-re img{
+            width: 300px;
+            height: auto;
+        }
+        
+        .publi-re {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    </style>
 </head>
 <body>
-    <%- include('../partials/navbar'); %>
- 
+
+
+
+    <div class="container">
+       
+       
+        <section class="principal">
+            <img src="imagens/casteo.jpg">
+            kjdfhieurfbh
+        </section>
+        <section class="comentarios">
+            
+            <section class="comentario"> 
+                <p>wiuefhiurefheirufher</p>
+            </section>
+
+            <section class="comentario"> 
+                <p>wiuefhiurefheirufher</p>
+            </section>
+
+            <section class="comentario"> 
+                <p>wiuefhiurefheirufher</p>
+            </section>
+
+            <section class="comentario"> 
+                <p>wiuefhiurefheirufher</p>
+            </section>
+        </section>
+
+        <section class="publi-relacionadas">
+
+            <section class="publi-re"> 
+                <img src="imagens/3.jpg">
+            </section>
+
+            <section class="publi-re"> 
+                <img src="imagens/3.jpg">
+            </section>
+
+            <section class="publi-re"> 
+                <img src="imagens/3.jpg">
+            </section>
+
+        </section>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/publicacao.css">
+
+    
+    <title>Publicação</title>
+</head>
+
+
+
+<body>
+
+    
+    <%- include('../partials/menu'); %>
+
+
+
+
 
     <main>
 
@@ -27,133 +157,175 @@
                 
                
             </button>
-            <p>Publicação</p>
+            <p class="lado-botao">Publicação de Jaqueline Maria </p>
         </section>
-
-
-     
 
       
 
-        <!-------------------- CONTEÚDO  --------------------->
-
-  
         <section class="container">
 
-           
-
-
-            <section class="conteudo">
-
-              <section class="coluna-esquerda">
-                <section class="publi">
-
-                    <section class="publi-info">
-                        <img src="imagens/fotoperfil1.jpeg" id="perfilpost" >
-                        <h2>Sthefany Rocha </h2>
-                    </section>
-
-                    <section class="img-principal"><img src="imagens/castelo.jpg" ></section>
+            <section class="principal">
+                <section class="publi-info">
+                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <p class="nome-dono-post">Jaqueline Maria  </p>
                 </section>
-                <section class="descricao">
-                    <p class="titulo-img">Ilustração Castelo Perdido</p>  <button class="like-button">
-                        <i class="far fa-heart"></i> 
-                    </button><br>
-                    <p >
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea temporibus praesentium dignissimos porro quas qui omnis minima nam sunt quibusdam! Soluta illum ipsa, qui neque culpa fuga vel deleniti veritatis.
-                    </p>
-                 
+                <img src="imagens/castelo.jpg" id="img-principal">
+                <section class="descricao-like">
+                    <section class="nome-like">
+                        <p class="nome-da-publicacao">Castelinho</p>
+                        <button class="like-button" title="Curtir">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </section>
+                    <p class="descricao">Lorem ipsum dolor sit amet consectetur,
+                         adipisicing elit. Aut minima nisi similique numquam velit
+                        , ut quas odit ratione consequuntur repudiandae fuga volupta
+                        tes cumque nostrum magnam, officia commodi eaque dignissimo
+                        s! Mollitia!</p>
+                      
                 </section>
 
-                <section class="comentarios">
-
-                    <section class="comentario">
-                        <img src="imagens/fotoperfil1.jpeg">
-                        <h2>Ciclano de tal</h2> <br>
-                        <p>Lorem ipsum dolor  tempora facere.</p>
-                    </section>
-
-                    <section class="comentario">
-                        <img src="imagens/fotoperfil1.jpeg">
-                        <h2>Ciclano de tal</h2> <br>
-                        <p>Lorem ipsum dolor  tempora facere.</p>
-                    </section>
-
-                    <section class="comentario">
-                        
-                            <img src="imagens/fotoperfil1.jpeg">
-                            <h2>Ciclano de tal</h2>
-                            <br>
-                    
-                        <p>Lorem ipsum dolor  tempora facere. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas quisquam ab quis placeat, ut dolor et. Ducimus molestiae explicabo, reprehenderit sit consequuntur culpa voluptatum minima? Aliquam repellat magni quae architecto.[</p>
-                    </section>
-
-                </section>
-
-               </section>
             </section>
 
-            <section class="lado">
 
-                <h1 class="publi-relacio">Publicações relacionadas</h1>
 
-                <section class="publi-re">
-                    <img src="imagens/5.jpg" class="outras-publi"><br>
-                   
+
+
+            <section class="comentarios">
+
+                <h2> Comentários</h2>
+
+                <section class="adicionar-comentario">
+
+
+
+                    <form>
+                        <label for="adicionar-comentario" >Adicionar comentário:</label>
+                        <textarea id="ad-comentario" name="ad-comentario" rows="4" cols="50" placeholder="Digite seu comentário aqui..."></textarea>
+                        <br>
+                        <section class="button-container"><input type="submit" value="Enviar" class="enviar-comentario"></section>
+                      </form>
+
+
+
                 </section>
 
-                <section class="publi-re">
-                    <img src="imagens/5.jpg" class="outras-publi"><br>
-                   
+                <section class="comentario">
+                    <section class="comentario-info">
+                        <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                        <p class="nome-comentario"> Mariana Sanchez</p>
+                    </section>
+                    <section class="escrita-comentario">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipis
+                            icing elit. Amet earum nulla facilis, soluta ipsam do
+                            loremque corporis neque porro possimus quas assu
+                            menda dignissimos ea expedita commodi atque magn
+                            am tenetur obcaecati labore!</p>
+                    </section>
                 </section>
 
+                <section class="comentario">
+                    <section class="comentario-info">
+                        <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                        <p class="nome-comentario"> Fábinho Ilustrações</p>
+                    </section>
+                    <section class="escrita-comentario">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ipsam lacupiditate voluptate. Accusamus totam labore tenetur.
 
-                <section class="publi-re">
-                    <img src="imagens/5.jpg" class="outras-publi"><br>
-                   
+
+                        </p>
+                    </section>
+                </section>
+    
+            
+
+                <section class="comentario">
+                    <section class="comentario-info">
+                        <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                        <p class="nome-comentario"> Creuza Aparecida </p>
+                    </section>
+                    <section class="escrita-comentario">
+                        <p>Mi piace il tuo lavoro! Accusamus totam labore tenetur</p>
+                    </section>
                 </section>
 
+              
+    
+            
+    
+            
 
+            </section>
+
+
+            <section class="publi-relacionadas">
+
+                <section class="titulo-publi-relacionadas">
+
+                    <h2 class="publicacoes-relacionadas">
+                        Publicações Relacionadas
+                    </h2>
+                    
+                </section>
+                <section class="publicacoes-rel-caixas">
+    
+                    <section class="publi-re">
+                        <img src="imagens/3.jpg" >
+
+                        <section class="publi-rel-info">
+                            <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                            <p>fulao de tal</p>
+                        </section>
+
+                    </section>
+
+                    <section class="publi-re">
+                        <img src="imagens/3.jpg" >
+
+                        <section class="publi-rel-info">
+                            <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                            <p>fulano de tal</p>
+                        </section>
+
+                    </section>
+    
+
+                    <section class="publi-re">
+                        <img src="imagens/3.jpg" >
+
+                        <section class="publi-rel-info">
+                            <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                            <p>fulano de tal</p>
+                        </section>
+
+                    </section>
+    
+
+                    <section class="publi-re">
+                        <img src="imagens/3.jpg" >
+
+                        <section class="publi-rel-info">
+                            <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                            <p>fulano de tal</p>
+                        </section>
+
+                    </section>
+    
+    
+</section>
+
+            </section>
 
 
             </section>
         </section>
 
-        
-</main>
 
+    </main>
 
-<!------------------------RODAPÉ----------------------------->
-<footer class="rodape">
-
-    <section class="img-rodape">
-        <img src="imagens/logo.png" alt="Logotipo">
-    </section>
-
-   <section class="info-rodape">
-
-       <h1>TRAÇO PERFEITO</h1>
-       <p>Lorem ipsum dolor sit, amet coquatur!</p>
-
-   </section>
-
-   <section class="termos">
-
-    <h1>TERMOS E CONDIÇÕES</h1>
-   </section>
-
-   <section class="rodape_fale_conosco">
-    <h1 id="fale-conosco">FALE CONOSCO</h1>
-    <i class="fa-brands fa-instagram"></i>
-    <i class="fa-brands fa-square-facebook"></i>
-    <i class="fa-brands fa-linkedin"></i>
-    <i class="fa-brands fa-square-x-twitter"></i>
-
-  </section>
-</footer>
-
-<script src="js/like.js"></script>
-<script src="js/voltar.js"></script>
-
+    <%- include('../partials/rodape'); %>
+    <script src="js/like.js"></script>
+    <script src="js/voltar.js"></script>
+    
 </body>
 </html>

@@ -29,6 +29,7 @@ nav{
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 70px;
     justify-content: center;
+   
 }
  
 nav .logo {
@@ -167,7 +168,7 @@ p {
     font-size: larger ;
 
  }
-
+/* 
 @media (max-width: 999px){
     body{
         overflow-x: hidden;
@@ -200,7 +201,7 @@ p {
 .menu.active {
     transform: translateX(0);
 }
-
+/* 
 @keyframes navLinkFade {
     from {
         opacity: 0;
@@ -227,4 +228,4 @@ opacity: 0;
     
 
 }
- 
+  */ 

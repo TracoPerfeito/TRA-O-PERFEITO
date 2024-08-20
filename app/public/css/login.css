@@ -8,11 +8,11 @@ body{
     
     width: 100%;
     height: 100vh;
-
     background-color: 64FFD4;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
  
 form{
@@ -143,4 +143,51 @@ button:hover{
 .msg-erro{
     margin-left: 6.5%;
     color: firebrick;
+}
+
+.botao {
+    padding: 10px 20px 10px 187.5px;
+    margin: 0px;
+    display: flex;
+    background-color: rgba(224, 236, 240, 0.37);
+    
+}
+    
+.lado-botao{
+    padding: 5px;
+    margin: 10px 0px 5px 10px;
+    font-family: "Josefin Sans";
+    
+}
+
+.btn-voltar{
+ 
+    background-color: #132d46;
+    color: White;
+    font-family: "Josefin Sans";
+    border-radius: 50%;
+    border-color: none;
+    box-shadow: none;
+    margin: 20px 0px 0px 270px;
+    width: 35px;
+    height: 35px;
+}
+
+
+#seta{
+    font-size: 25px;
+    color: White;
+}
+
+
+.botao {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.botao p {
+    color: #132d46;
+    font-size: 20px;
+    margin: 29px 0px 0px 10px;
+    font-family: "Josefin Sans";
 }

@@ -110,8 +110,9 @@ body{
 .input-group {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 1rem 0;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .input-box {
