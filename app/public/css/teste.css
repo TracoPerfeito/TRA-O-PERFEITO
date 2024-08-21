@@ -7,11 +7,11 @@
 
 body{
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
-   
+    flex-wrap: wrap;
 }
 
 
@@ -24,11 +24,13 @@ body{
 }
 
 .container {
-    width: 50%;
+    /* width: 50%; */
+    align-self: center;
     border: 2px solid #000; 
     border-radius: 5px;
     padding: 30px;
-   
+    margin-top: 100px;
+    margin-left: 300px;
 }
 
 
@@ -70,13 +72,12 @@ body{
 
 .form {
     width: 50%;
-   
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: gainsboro;
     padding: 3rem;
-    border-radius: 5px;
+    border-radius: 5px;    
 }
 
 
@@ -120,10 +121,14 @@ body{
 }
 
 .input-group {
-    display: flex;
+    
+    display: grid;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 1rem 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
 }
 
 .input-box {
@@ -172,6 +177,93 @@ body{
 }
 
 
+
+.botao {
+    margin: 30px 0px 30px 30px;
+    display: flex;
+    grid-template-columns: 1fr 3fr;
+    position: fixed;
+    left: 0;
+    
+}
+
+.lado-botao {
+    padding: 5px 7px;
+    font-family: "Josefin Sans";
+    margin: 6px 5px;
+    left: 10px;
+
+}
+
+.btn-voltar{
+    grid-area: botao;
+    background-color: #132d46;
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin: 0px;
+    }
+
+    
+#seta{
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+   
+    
+}
+
+
+/* 
+.botao {
+    padding: 10px 2220px 10px 1050px;    
+    margin: 0px;
+    display: flex;
+    background-color: rgba(224, 236, 240, 0.37);
+    align-content: first baseline;
+    
+}
+    
+.lado-botao{
+    padding: 5px;
+    margin: 10px 0px 5px 10px;
+    font-family: "Josefin Sans";
+    position: relative;
+    bottom: 15%;
+    
+}
+
+.btn-voltar{
+ 
+    background-color: #132d46;
+    color: White;
+    font-family: "Josefin Sans";
+    border-radius: 50%;
+    border-color: none;
+    box-shadow: none;
+    margin: 20px 0px 0px 270px;
+    width: 35px;
+    height: 35px;
+}
+
+
+#seta{
+    font-size: 25px;
+    color: White;
+} */
+
+
+
+.botao p {
+    color: #132d46;
+    font-size: 20px;
+    margin: 5px 0px 0px 10px;
+    font-family: "Josefin Sans";
+}
+
+
 /* Tentativa de responsividade*/
 
 
@@ -187,6 +279,7 @@ body{
        min-width: 100%;
        padding: 0px;
        margin: auto;
+       grid-template-columns: repeat(3, 1fr);
    
     }
 
@@ -249,19 +342,28 @@ body{
        
         }
 
-        .input-box {
+    .input-group {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        flex-wrap: wrap;
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .input-box {
        
-      
+
             width: 100%;
          
            
-        }
+    }
 
             
-        .continue-button button {
+    .continue-button button {
               width: 75%;
    
-         }
+    }
 
      
 }

@@ -29,7 +29,7 @@ width: 100%;
 
 .base_cabecalho header {
   width: 100%;
-  background: url("bg.png") no-repeat 50% 20% / cover;
+  background: url(../imagens/bg.png) no-repeat 50% 20% / cover;  
   min-height: calc(100px + 15vw);
 }
 
@@ -155,6 +155,7 @@ width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 20px;
 }
+
 .base_cabecalho .coluna_contaneir .coluna-direta .publi img {
   max-width: 100%;
   display: block;
