@@ -82,7 +82,7 @@ router.get("/explorar-logado", function (req, res) { //inicial logado
 });
 
 
-router.get("/contratarlogado", function (req, res) {  //contratar logado
+router.get("/contratar-logado", function (req, res) {  //contratar logado
     res.render('pages/contratar-logado')
  
 });
@@ -113,6 +113,13 @@ router.get("/nova-publi-pedido", function (req, res) { //perfil alheio logado
     res.render('pages/nova-publi-pedido')
  
 });
+
+
+router.get("/chat-logado", function (req, res) { //chat
+    res.render('pages/chat-logado')
+ 
+});
+
 
 
 

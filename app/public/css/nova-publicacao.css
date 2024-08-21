@@ -3,22 +3,22 @@ body {
     margin: 0;
     background-color: #f4f4f4;
 }
-.novaPublicacao{
+ .novaPublicacao{
     padding: 0px;
     font-size: 70px;
 }
 .propostadeprojeto{
     padding: 0px;
     font-size: 70px;
-}
-.container {
+} 
+ .container {
     max-width: 100%;
     margin: auto;
     background:transparent;
     padding: 100px 100px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
    
-}
+} 
 .button-group {
     margin-bottom: 50px;
 }
@@ -109,7 +109,7 @@ button:active{
 
 
 
-/*--------------upload das imagens------------*/
+/*--------------upload das imagens------------ */
 
 #picture__input {
     display: none;
@@ -153,4 +153,3 @@ button:active{
   .picture__img {
     max-width: 100%;
   }
-  
