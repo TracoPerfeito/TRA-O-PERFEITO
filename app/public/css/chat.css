@@ -21,7 +21,7 @@
     grid-template-rows:  auto 1fr auto;
     grid-template-columns: 1fr 3fr;
     height: 80vh;
-    gap: 10px;
+    gap: 0px;
 }
 
 
@@ -32,7 +32,7 @@
     padding: 10px;
     overflow-y: auto;
     width: 100%;
-    border-right: 1px solid #0610369a;
+    border-right: 1px solid #01c38d;
 
 }
 
@@ -45,7 +45,7 @@
 
 .conversa {
    
-   border-bottom: 1px solid #0610369a;
+   border-bottom: 1px solid #01c38d;
    margin: 10px;
    padding: 10px;
    display: grid;
@@ -93,7 +93,7 @@
     grid-template-areas: 
     "fotoperfil nome";
     grid-template-columns: 1fr 17fr;
-    border-bottom: #0610369a 1px solid;
+    border-bottom: #01c38d 1px solid;
     font-family: "Josefin Sans";
 
 }
@@ -120,11 +120,13 @@
     gap: 30px;
     grid-auto-rows: 1fr 1fr 1fr;
    
-
+    padding: 10px;
     overflow: scroll;
     height: 100%;
-   
-   
+}
+
+.mensagens::-webkit-scrollbar {
+    display: none;
 }
 
 
@@ -245,6 +247,10 @@
     padding-bottom: 0px;
     height: 50px;
 }
+input:focus {
+    border: 2px solid #01c38d; /* Altere a cor para a desejada */
+    outline: none; /* Remove o contorno padrão do navegador */
+}
 
 #nova-mensagem {
     width: 100%;
@@ -257,7 +263,7 @@
     margin: 0px;
     display: flex;
     background-color: rgba(224, 236, 240, 0.801);
-    border-bottom: #0610369a solid 1px;
+    border-bottom: #01c38d solid 1px;
     
     }
     

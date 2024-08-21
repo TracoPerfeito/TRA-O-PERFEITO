@@ -12,7 +12,6 @@ body{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-   
 }
 
 
@@ -31,7 +30,7 @@ body{
     border-radius: 5px;
     padding: 30px;
     margin-top: 100px;
-   
+    margin-left: 300px;
 }
 
 

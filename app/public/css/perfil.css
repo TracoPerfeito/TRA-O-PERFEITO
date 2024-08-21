@@ -155,6 +155,7 @@ width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 20px;
 }
+
 .base_cabecalho .coluna_contaneir .coluna-direta .publi img {
   max-width: 100%;
   display: block;
