@@ -12,7 +12,7 @@
 }
  
 .suspenso-conteudo {
-    display: none; /* Escondido por padrão */
+    display: none; 
     background-color: #01C38D;
     min-width: 200px;
     margin-top: 15px;

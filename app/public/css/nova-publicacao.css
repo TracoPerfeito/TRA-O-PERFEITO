@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+.novaPublicacao{
+    padding: 0px;
+    font-size: 70px;
+}
+.propostadeprojeto{
+    padding: 0px;
+    font-size: 70px;
+}
+.container {
+    max-width: 100%;
+    margin: auto;
+    background:transparent;
+    padding: 100px 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   
+}
+.button-group {
+    margin-bottom: 50px;
+}
+
+.button-group button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #01c38d;
+    color: white;
+    border-radius: 10px;
+}
+.button-group button:hover {
+    background-color: #009682;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group input, .form-group textarea {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.form-group textarea {
+    height: 300px;
+}
+.form-group button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #01c38d;
+    color: white;
+    border-radius: 5px;
+}
+.form-group button:hover {
+    background-color: #009682;
+}
+button:active{
+    background: #132d46;
+}
+.colorido{
+    background-color: #acdabf86;
+    border-bottom: #009682 solid 2px;
+
+}
+
+.form-group1 {
+    margin-bottom: 15px;
+}
+.form-group1 label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group1 input, .form-group1 textarea {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.form-group1 textarea {
+    height: 300px;
+}
+.form-group1 button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #01c38d;
+    color: white;
+    border-radius: 5px;
+}
+.form-group1 button:hover {
+    background-color: #009682;
+}
+
+
+
+
+
+
+/*--------------upload das imagens------------*/
+
+#picture__input {
+    display: none;
+ 
+
+  }
+  
+  .picture {
+    width: 400px;
+    aspect-ratio: 16/9;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    border: 2px dashed currentcolor;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+  }
+  
+  .picture:hover {
+    color: #777;
+    background: #ccc;
+  }
+  
+  .picture:active {
+    border-color: turquoise;
+    color: turquoise;
+    background: #eee;
+  }
+  
+  .picture:focus {
+    color: #777;
+    background: #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .picture__img {
+    max-width: 100%;
+  }
+  

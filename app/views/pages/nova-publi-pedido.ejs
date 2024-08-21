@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/nova-publicacao.css">
+    
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+ 
+    
+
+    <title>Nova Publicação</title>
+</head>
+
+    <body>
+        
+        <%- include('../partials/menu-logado'); %>
+
+   <section class="container">
+   
+        <h1 class="propostadeprojeto">Proposta de projeto</h1>
+        <br>
+        <br>
+        <section class="button-group">
+           
+            <button><a href=/nova-publi-pedido class="proposta">Proposta de projeto</a></button>
+            <button ><a href=/nova-publicacao class="NovaPublicacao">Meu trabalho</a></button>
+
+    </section>
+      
+    <form>
+        <section class="form-group">
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" name="titulo"   class="colorido" required>
+        </section>
+        <section class="form-group">
+            <label for="descricao">Descrição</label>
+            <input type="text" id="descricao" name="descricao"class="colorido" required>
+        </section>
+        <section class="form-group">
+            <label for="conteudo">Conteúdo</label>
+            <textarea id="conteudo" name="conteudo"class="colorido" required></textarea>
+        </section>
+        <section class="form-group">
+            <button type="submit">Publicar</button>
+        </section>
+    </form>
+   </section>
+
+   <%- include('../partials/rodape'); %>
+
+   
+<script src="js/nova-publicacao.js"></script>
+
+</body>
+</html>

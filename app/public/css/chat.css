@@ -45,7 +45,7 @@
 
 .conversa {
    
-   border-bottom: 1px solid #0610369a;
+   border-bottom: 1px solid #696e79;
    margin: 10px;
    padding: 10px;
    display: grid;
@@ -80,6 +80,7 @@
  
     padding-top: 0px;
     margin-top: 0px;
+    gap: 10px;
   
 }
 
@@ -93,7 +94,7 @@
     grid-template-areas: 
     "fotoperfil nome";
     grid-template-columns: 1fr 17fr;
-    border-bottom: #0610369a 1px solid;
+    border-bottom: #696e79 1px solid;
     font-family: "Josefin Sans";
 
 }

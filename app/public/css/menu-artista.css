@@ -42,18 +42,14 @@ nav li {
 nav li a{
     position: absolute;
     text-decoration: none;
-    color: #fff;
+    color: rgb(255, 255, 255);
     font-size: 14px;
     font-family: "Montserrat", sans-serif;
     font-weight: 300;
     padding: auto;
-    margin-bottom: 15px ;
+    margin-bottom: 18px ;
     transition: all 0.4s;
-    /* Define o item como um contêiner flex */
-    
-  /* Centraliza verticalmente */
-    
-    
+   
  
 }
  
@@ -73,14 +69,12 @@ a:hover {
  
 #traco{
     margin-left: 20%;
+   
   
     width: 150px;
  
  
 }
-
-
-
 
 
 

@@ -8,50 +8,48 @@ const { verificadorCelular } = require("../helpers/validacoes");
 
 
 
-router.get("/", function (req, res) {
+router.get("/", function (req, res) { //index
     res.render('pages/index')
  
 });
 
 
-router.get("/contratar", function (req, res) {
+router.get("/contratar", function (req, res) { //contratar 
     res.render('pages/contratar')
  
 });
 
 
-router.get("/index", function (req, res) {
+router.get("/index", function (req, res) { //index
     res.render('pages/index')
  
 });
 
 
-router.get("/quemsomos", function (req, res) {
+router.get("/quemsomos", function (req, res) { //quemsomos
     res.render('pages/quemsomos')
  
 });
 
-router.get("/perfil", function (req, res) {
+router.get("/perfil", function (req, res) { //perfil-alheio
     res.render('pages/perfil')
  
 });
 
 
-router.get("/publicacao", function (req, res) {
+router.get("/publicacao", function (req, res) { //publicacao
     res.render('pages/publicacao')
  
 });
 
 
 
-router.get("/chat", function (req, res) {
+router.get("/chat", function (req, res) { //chat
     res.render('pages/chat')
  
 });
 
-router.get("/perfil", function (req, res) {
-    res.render('perfil/index')
-})
+
 
 router.get("/teste", function (req, res) {
     res.render('pages/teste')
@@ -59,33 +57,60 @@ router.get("/teste", function (req, res) {
 });
 
 
-router.get("/menu", function (req, res) {
+router.get("/menu", function (req, res) { //menu
     res.render('pages/menu')
  
 });
 
 
-router.get("/menu-artista-logado", function (req, res) {
+router.get("/menu-artista-logado", function (req, res) { //menu-logado
     res.render('pages/menu-artista-logado')
  
 });
 
 
-router.get("/meu-perfil-artista", function (req, res) {
+router.get("/meu-perfil-artista", function (req, res) { //perfil pessoal logado
     res.render('pages/meu-perfil-artista')
  
 });
 
 
 
-router.get("/explorar-logado", function (req, res) {
+router.get("/explorar-logado", function (req, res) { //inicial logado
     res.render('pages/explorar-logado')
  
 });
 
 
-router.get("/contratar-logado", function (req, res) {
+router.get("/contratarlogado", function (req, res) {  //contratar logado
     res.render('pages/contratar-logado')
+ 
+});
+
+
+router.get("/publicacaologado", function (req, res) { //publicação logado
+    res.render('pages/publicacaologado')
+ 
+});
+
+
+
+router.get("/perfilalogado", function (req, res) { //perfil alheio logado
+    res.render('pages/perfilalogado')
+ 
+});
+
+
+
+router.get("/nova-publicacao", function (req, res) { //publicação logado
+    res.render('pages/nova-publicacao')
+ 
+});
+
+
+
+router.get("/nova-publi-pedido", function (req, res) { //perfil alheio logado
+    res.render('pages/nova-publi-pedido')
  
 });
 
@@ -98,8 +123,7 @@ router.get("/contratar-logado", function (req, res) {
 
 
 
-
-router.get("/login", function (req, res) {
+router.get("/login", function (req, res) { //login
     res.render('pages/login',  {retorno: null, valores: {email: "", password: ""}, errosLogin: null});
 
  
@@ -107,13 +131,13 @@ router.get("/login", function (req, res) {
 
 
 
-router.get("/planos", function (req, res) {
+router.get("/planos", function (req, res) { //planos
     res.render('pages/planos');
 
  
 });
 
-router.get("/quemcadastra", function (req, res) {
+router.get("/quemcadastra", function (req, res) { //quem cadastra
     res.render('pages/quemcadastra');
 })
 
@@ -132,20 +156,20 @@ router.get("/cadastroArtista", function (req, res) {
 });
 
 
-router.get("/oportunidades", function (req, res) {
+router.get("/oportunidades", function (req, res) { //oportunidades logado
     res.render('pages/oportunidades');
 
  
 });
 
-router.get("/cadastro", function (req, res) {
+router.get("/cadastro", function (req, res) { //cadastrar
     res.render('pages/cadastro', {retorno: null, valores: {nome: "", sobrenome: "", email: "", celular: "", password: "", confirmpassword: ""}, listaErros: null});
  
 });
 
 
 
-router.post(
+router.post( //validações cadastrar
     "/cadastro",
 
     body("nome").isLength({ min: 1, max: 20 }).withMessage('O nome deve ter de 10 a 50 caracteres.'),
@@ -182,7 +206,7 @@ router.post(
 );
 
 
-router.post(
+router.post( //validações login
     "/login",
 
     body("email").isEmail().withMessage('Insira um e-mail válido.'),
@@ -195,7 +219,7 @@ router.post(
 
         if (errosLogin.isEmpty()) {
 
-            return res.redirect("/explorar-logado"); // voltar pra página inicial mesmo
+            return res.redirect("/explorar-logado"); 
         } else {
             
             console.log(errosLogin);
