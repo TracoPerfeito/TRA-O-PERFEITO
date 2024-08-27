@@ -23,14 +23,14 @@ a {
 }
 
 #banner-perfil {
-height: 400px;
+height: 8vw;
 width: 100%;
 }
 
 .base_cabecalho header {
   width: 100%;
   background: url(../imagens/bg.png) no-repeat 50% 20% / cover;  
-  min-height: calc(100px + 15vw);
+  min-height: calc(10px + 8vw);
 }
 
 .base_cabecalho .coluna_contaneir .coluna-esquerda {
@@ -46,7 +46,6 @@ width: 100%;
   top: -60px;
   left: 50%;
   transform: translatex(-50%);
-  cursor: pointer;
 }
 .base_cabecalho .coluna_contaneir .coluna-esquerda .img__container img {
   width: 120px;
