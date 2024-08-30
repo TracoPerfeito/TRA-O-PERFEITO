@@ -120,9 +120,10 @@ router.get("/chat-logado", function (req, res) { //chat
  
 });
 
-
-
-
+router.get("/propostadeprojeto", function (req, res) { //pagina de proposta de projeto
+    res.render('pages/propostadeprojeto')
+ 
+});
 
 
 

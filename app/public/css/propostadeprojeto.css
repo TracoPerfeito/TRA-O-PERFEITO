@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+body {
+    font-family: Arial, sans-serif;
+
+}
+ 
+.containerp {
+    display: flex;
+    margin-left: 70px;
+    padding: 20px;
+    flex-direction: row;
+
+}
+ 
+header {
+    display: flex;
+    /* justify-content: space-between;
+    align-items: center; */
+    margin-bottom: 20px;
+    flex-direction: column;
+}
+ 
+header h1 {
+    font-size: 24px;
+}
+
+.projeto {
+    flex: 2;
+    margin-right: 20px;
+}
+ 
+.perfil {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+ 
+.perfil img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.conversar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 450px;
+}
+ 
+.perfil h2 {
+    font-size: 18px;
+    color: #666;
+}
+ 
+.projeto p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+ 
+.interessados {
+    flex: 1;
+    margin-left: 20px;
+}
+ 
+.interessados h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+ 
+.interessado {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+ 
+.interessado h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #666;
+}
+ 
+.interessado p {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-left: 5px;
+}
+
+.titulo-maior {
+    font-size: 30px;
+}
+
+.pedidodescrito {
+    margin: 0;
+    padding-left: 0;
+}
+
+.textopedido {
+    margin-left: 60px;
+}
+
+
+
+
+
+
+
+.botao {
+    margin: 30px 0px 30px 30px;
+    display: flex;
+    
+}
+
+.lado-botao {
+    padding: 5px 7px;
+    font-family: "Josefin Sans";
+    margin: 6px 5px;
+    font-size: 20px;
+}
+
+.btn-voltar{
+    grid-area: botao;
+    background-color: #132d46;
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin: 0px;
+    
+    }
+
+    
+#seta{
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+   
+    
+}
