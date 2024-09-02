@@ -339,32 +339,27 @@ body{
         width: 80%;
         border: none;
         padding: 30px;
-        margin-top: 150px;
         margin: auto;
-       
-        }
+        margin-top: 30px;
+    }
 
     .input-group {
         display: flex;
         justify-content: space-between;
         padding: 1rem 0;
         flex-wrap: wrap;
-        grid-template-columns: repeat(2, 1fr);
-
+        gap: 0px;
     }
 
     .input-box {
-       
-
-            width: 100%;
-         
-           
+        width: 100%;
+        margin-bottom: 0px
     }
 
             
     .continue-button button {
-              width: 75%;
-   
+        width: 75%;
+        margin-top: 5px;
     }
 
      
@@ -388,3 +383,41 @@ body{
     margin-left: 6.5%;
     color: firebrick;
 }
+
+
+/* Tentativa de resposividadde em celular pequeno */
+
+/* 
+@media (max-width: 390px) {
+
+    .botao {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        margin: 0px;
+        padding: 0px;
+        height: 5px;
+        width: 5px;
+    }
+
+    .lado-botao {
+        height: 10px;
+    }
+    .container {
+        position: relative;
+
+    }
+    .input-group {
+        display: grid;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 1rem 0;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0px;
+    }
+    
+    .input-box {
+        margin-bottom: 0px;
+    }
+    
+} */
