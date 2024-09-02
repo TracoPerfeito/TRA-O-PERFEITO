@@ -104,8 +104,8 @@ p {
  
  
 }
-
-
+/* 
+CONFIGURAÇÕES RODAPE */
 .rodape{
     background-color: #132d46;
     color: White;
@@ -114,7 +114,7 @@ p {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 5px ;
     column-gap: 5px;
-    height: 150px;
+    height: 100px;
     padding: 22px;
     padding-left: 100px;
    
@@ -122,41 +122,44 @@ p {
 
 
 .img-rodape img{
-    width: 100px;
+    width: 60px;
     grid-column: 1;
     margin: auto;
 
 }
 
 .info-rodape h1{
-    margin: 0px 0px 0px 0px;
+    margin: 0px;
     font-weight: 200;
-    font-size: larger;
+    font-size:16px;
 }
 
 
 .info-rodape p{
-    margin: 10px 0px 0px 0px;
+    margin: 15px 0px 0px 0px;
     font-weight: 100;
+    font-size: 12px;
    
 }
 
 .termos h1{
     margin: 0px 0px 0px 0px;
     font-weight: 200;
-    font-size: larger ;
+    font-size:16px;
 
 }
 
 
 .fa-brands{
     display: inline-block;
+    gap: 10px;
     
 }
 
 .fa-brands i{
     font-size: 50px;
     margin-right: 50px;
+
     
 }
 
@@ -164,9 +167,19 @@ p {
     color: #fff;
 }
  #fale-conosco{
-    margin: 0px 0px 30px 0px;
+    margin: 0px 0px 15px 0px;
     font-weight: 200;
-    font-size: larger ;
+    font-size: 16px;
+    width: fit-content;
+   
+ }
+
+ .icones{
+    width: 130px;
+    display: flex;
+    justify-content: space-between;
+   
+   
 
  }
 /* 

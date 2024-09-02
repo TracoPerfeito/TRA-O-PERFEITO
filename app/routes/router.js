@@ -63,6 +63,13 @@ router.get("/menu", function (req, res) { //menu
 });
 
 
+router.get("/pedido", function (req, res) { //pedido (publicacao do oportunidades)
+    res.render('pages/pedido')
+ 
+});
+
+
+
 router.get("/menu-artista-logado", function (req, res) { //menu-logado
     res.render('pages/menu-artista-logado')
  

@@ -9,7 +9,7 @@
     border-radius: 10px;
     background: #acdabf7a;
     width: 600px;
-    margin: auto;
+   
 
 }
 
@@ -55,8 +55,9 @@
  
 }
  
-.search-input::placeholder, .search-icon {
+.search-input::placeholder, #botao-filtro, .search-icon {
     color: #165040;
+ 
  
 }
  
@@ -67,6 +68,35 @@
     cursor: pointer;
     color: #165040;
   }
+
+
+#botao-filtro {
+    background-color: #acdabf7a;
+    border-radius: 10px;
+    border: none;
+    padding: 7px;
+    margin-left: 10px;
+    width: 50px;
+    height: auto;
+   
+}
+
+
+#botao-filtro:hover{
+    border: 1px solid #165040;
+
+
+}
+
+#icon-filtro {
+    font-size: 25px;
+ }
+
+.pesquisas {
+    display: flex;
+    justify-content: center;
+    font-size: "Josefin Sans";
+}
  
 
   @media (max-width: 999px){
