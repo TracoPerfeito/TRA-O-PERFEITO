@@ -29,7 +29,7 @@ nav{
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 70px;
     justify-content: center;
-   
+
 }
  
 nav .logo {
