@@ -125,7 +125,10 @@ router.get("/propostadeprojeto", function (req, res) { //pagina de proposta de p
  
 });
 
-
+router.get("/avaliacoes", function (req, res) { //pagina das avaliações
+    res.render('pages/avaliacoes')
+ 
+});
 
 
 
