@@ -420,3 +420,27 @@ body{
     }
     
 } */
+
+
+/*Tentativa de responsidade para Tablets*/
+
+
+@media only screen and (max-width: 768px) {
+    .container {
+        margin-top: 100px;
+        width: 100%;
+    }
+    .input-group {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    .input-box {
+        margin-bottom: 5px;
+    }
+    .continue-button button {
+        width: 100%;
+    }
+    .botao {
+        position: absolute;
+    }
+}
