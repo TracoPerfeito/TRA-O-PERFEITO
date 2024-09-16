@@ -27,7 +27,9 @@
     grid-template-rows: auto auto auto; 
     gap: 10px;
     min-width: 300px;
-    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
+    /* box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18); */
+    box-shadow: 6px 6px 12px #c5c5c5,
+    -6px -6px 12px #ffffff;
     border-radius: 7px;
     
 
