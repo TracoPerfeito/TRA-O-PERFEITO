@@ -135,7 +135,7 @@ a {
   font-weight: 600;
 }
 .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita button {
-  background: #0091ff;
+  /* background: #0091ff; */
   color: #fff;
   border: none;
   padding: 10px 25px;
@@ -194,6 +194,15 @@ input[type='file'] {
   margin-top: 5px;
 }
 
+.nova-publi-perfil {
+  background-color: #01c38d;
+}
+
+.base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita ul li .nova-publ {
+  color: #fff;
+  text-transform: uppercase;
+  
+}
 
 #irparachat{
   background-color: #132d46;
@@ -236,5 +245,6 @@ input[type='file'] {
   }
   .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita button {
     margin-top: 0;
+    margin-left: 150px;
   }
 }
