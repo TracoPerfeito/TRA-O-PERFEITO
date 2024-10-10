@@ -54,11 +54,14 @@ body{
    
 }
 
-
-.item img:hover {
-   
+.publi-img {
+    transition: 0.2s ease;
 }
 
+.publi-img:hover {
+    filter: brightness(50%);
+
+}
 
 .info {
     display: grid;
