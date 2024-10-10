@@ -412,7 +412,7 @@ font-size: 20px;
     max-height: 80%;
     margin-top: 5%;
     transition: transform 0.3s ease, transform-origin 0.3s ease; /* Transição suave para o zoom */
-    cursor: zoom-in; /* Cursor de zoom ao passar o mouse */
+    cursor: zoom-in; 
 }
 
 .fechar {
@@ -427,4 +427,136 @@ font-size: 20px;
 
 .fechar:hover, .fechar:focus {
     color: #999;
+}
+
+/* 
+RESPONSIVIDADE */
+
+
+/* 
+RESPONSIVIDADE 
+*/
+/* 
+@media (max-width: 768px) {
+
+
+    .container {
+        padding: 10px;
+    }
+    .publicacoes-rel-caixas {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .publi-re {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .botao {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .lado-botao {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .enviar-comentario {
+        width: 100%;
+    }
+
+    .descricao {
+        font-size: smaller;
+    }
+
+    
+
+    #img-principal{
+    border-radius: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+  
+}
+}
+
+@media (max-width: 480px) {
+    .publicacoes-rel-caixas {
+        grid-template-columns: 1fr;
+    }
+
+    .publi-re img {
+        width: 100%;
+        height: auto;
+    }
+
+    .publi-re {
+        padding: 5px;
+    }
+
+    .foto-de-perfil {
+        width: 30px;
+        height: 30px;
+    }
+
+    .btn-voltar {
+        width: 30px;
+        height: 30px;
+    }
+
+    .comentario-info img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .publi-rel-info img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .publi-rel-info p {
+        font-size: small;
+    }
+
+    .nome-dono-post,
+    .nome-comentario {
+        font-size: small;
+    }
+} */
+
+@media (max-width: 680px) {
+
+
+    
+.container {
+    display: grid;
+   
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: auto;
+    margin-left: 90px;
+    padding: 0px;
+   
+}
+   
+    .principal,
+    .comentarios,
+    .publi-relacionadas {
+        padding: 10px;
+    }
+
+    .descricao {
+        font-size: x-small;
+    }
+
+    .lado-botao {
+        font-size: smaller;
+    }
+
+    .enviar-comentario {
+        font-size: small;
+        padding: 6px 8px;
+    }
 }

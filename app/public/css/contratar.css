@@ -1,204 +1,104 @@
-/* 
-.tab {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
- 
-.contrato {
-    flex: 1 0 21%;
-    margin: 1%;
-    background-color: var(--branco);
-    padding: 0px 0px 5px 0px;
-    box-shadow: 0px 0px 74px -31px rgba(0,0,0,0.12) inset;
-    box-sizing: border-box;
-    text-align: center;
-    border-radius: 15px;
-    max-width: 400px;
- 
-    
-}
- 
-.contrato img ,.designer-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 15px 15px 0px 0px;
-    padding-bottom: 0px;
-    margin-bottom: 5px;
-    z-index: 0;
-}
- 
-.designer-detalhes {
-    display: flex;
-    align-items: left;
-    margin-bottom: 1px;
-    z-index: 0;
- 
-   
-}
-
-.designer-detalhes h3{
-    text-align: left;
-    font-family: "Josefin Sans";
-}
- 
-.designer-detalhes {
-    text-align: left;
-}
- 
-.designer-detalhes img , .user-img {
-    width: 70px;
-    justify-items: lcenter;
-    justify-content: left;
-    height: 70px;
-    border-radius: 50%;
-    margin-right: 10px;
-    z-index: 0;
-}
-
- 
-.designer-details h3 {
+*{
     margin: 0;
-    font-size: 1.10em;
-    font-weight: bold;
-    text-align:justify;
-    z-index: 0;
-    font-family: "Josefin Sans";
+    padding: 0;
+    box-sizing: border-box;
 
 }
- 
-.designer-details .user-info {
-    font-size: 0.9em;
-    color: #666;        
-    text-align: left;
-    margin-top: 1px;
-    z-index: 0;
-
-}
- 
-.user-info {
-    text-align: left;
-    font-family: "Josefin Sans";
-    
-}
-
-.user-info p{
-    margin: 0px;
-    padding: 0px;
-}
- 
 
 .container-perfis {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    padding: 50px;
+    margin: auto;
+    width: fit-content;
+
 }
 
 
-.pesquisas {
-    margin-top: 20px;
-} */
-
-
-.tab {
-    flex-wrap: wrap;
-    justify-content: space-around;
+.card {
+    background-color: #fff;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: 'Josefin Sans';
 }
- 
-.contrato {
-    flex: 1 0 21%;
-    margin: 3%;
-    background-color: var(--branco);
-    padding: 0px 0px 0px 0px;
-    box-shadow: 0px 0px 74px -31px rgba(0,0,0,0.12) inset;
-    box-sizing: border-box;
-    text-align: center;
-    border-radius: 15px;
-    max-width: 400px;
- 
-   
-}
- 
-.contrato img ,.designer-image {
+
+.card-header .background-image {
     width: 100%;
-    height: 200px;
+    height: 90px;
     object-fit: cover;
-    border-radius: 15px 15px 0px 0px;
-    padding-bottom: 0px;
-    margin-bottom: 5px;
-    z-index: 0;
 }
- 
-.designer-detalhes {
+
+.card-content {
+    padding: 15px;
+    padding-top: 0px;
+}
+
+.profile {
     display: flex;
-    align-items: left;
-    margin-bottom: 1px;
-    z-index: 0;
- 
-   
+    align-items: center;
 }
- 
-.designer-detalhes h3{
-    text-align: left;
-    font-family: "Josefin Sans";
-    margin-top: 25px;
-}
- 
-.designer-detalhes {
-    text-align: left;
-}
- 
-.designer-detalhes img , .user-img {
+
+.profile-image {
     width: 70px;
-    justify-items: lcenter;
-    justify-content: left;
     height: 70px;
     border-radius: 50%;
-    margin-right: 10px;
-    z-index: 0;
+    border: 3px solid #fff;
+    object-fit: cover;
+    margin-top: -40px; /* Ajuste solicitado */
 }
- 
- 
-.designer-details h3 {
+
+.informacoes-card {
+    margin-left: 15px;
+}
+
+.name-row {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    font-size: 18px;
     margin: 0;
-    font-size: 1.10em;
     font-weight: bold;
-    text-align:justify;
-    z-index: 0;
-    font-family: "Josefin Sans";
- 
 }
- 
-.designer-details .user-info {
-    font-size: 0.9em;
-    color: #666;        
-    text-align: left;
-    margin-top: 1px;
-    z-index: 0;
- 
+
+.role {
+    color: #666;
+    margin: 2px 0 0;
+    font-size: 13px;
 }
- 
-.user-info {
-    text-align: left;
-    font-family: "Josefin Sans";
-   
+
+.estrela {
+    color: #f5b301;
+    font-size: 18px;
+    margin-left: 45px;
+    padding-bottom: 20px;
 }
- 
-.user-info p{
-    margin: 0px;
-    padding: 0px;
+
+.rating {
+    font-weight: bold;
+    margin-left: 5px;
+    padding-bottom: 20px;
 }
- 
- 
+
+.description {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+}
+
+
 .container-perfis {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
-    padding: 50px 80px;
+    gap: 1em;
+    padding: 2em;
+
 }
- 
+
+
+/* teste acaba aqui */
+
  
 .pesquisas {
     margin-top: 20px;
@@ -337,3 +237,32 @@
    animation: reverse;
 }
 
+/* CONFIGURAÇÕES RESPONSIVIDADE */
+
+
+
+
+@media (max-width: 1240px) {
+ 
+    .container-perfis {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1050px) {
+ 
+  
+
+    .container-perfis {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 680px) {
+
+   
+    .container-perfis {
+        grid-template-columns: 1fr; 
+    }
+
+}

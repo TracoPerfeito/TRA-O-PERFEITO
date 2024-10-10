@@ -1,6 +1,6 @@
 @import url(blocos.css);
 @import url(barrapesquisa.css);
-
+@import url(like.css);
 
 /* 
 *{
@@ -99,7 +99,7 @@ p {
 #traco{
     margin: auto;
     margin-left: 0%;
-    margin-top: 10%;
+    margin-top: 15%;
     width: 180px;
  
  
@@ -179,7 +179,6 @@ p {
     cursor: pointer;
     justify-content: space-between;
    
-   
   }
   
   .mobile-menu section {
@@ -199,91 +198,7 @@ p {
     margin-left: 50px;
     display: flex;
   }
-
-
-
-
-  
-/* 
-CONFIGURAÇÕES RODAPE */
-.rodape{
-  background-color: #132d46;
-  color: White;
-  font-family: "Montserrat";
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  row-gap: 5px ;
-  column-gap: 5px;
-  height: 100px;
-  padding: 22px;
-  padding-left: 100px;
- 
- 
-}
-
-
-.img-rodape img{
-  width: 60px;
-  grid-column: 1;
-  margin: auto;
-
-}
-
-.info-rodape h1{
-  margin: 0px;
-  font-weight: 200;
-  font-size:16px;
-}
-
-
-.info-rodape p{
-  margin: 15px 0px 0px 0px;
-  font-weight: 100;
-  font-size: 12px;
- 
-}
-
-.termos h1{
-  margin: 0px 0px 0px 0px;
-  font-weight: 200;
-  font-size:16px;
-
-}
-
-
-.fa-brands{
-  display: inline-block;
-  gap: 10px;
-  
-}
-
-.fa-brands i{
-  font-size: 50px;
-  margin-right: 50px;
-
-  
-}
-
-.link-social {
-  color: #fff;
-}
-#fale-conosco{
-  margin: 0px 0px 15px 0px;
-  font-weight: 200;
-  font-size: 16px;
-  width: fit-content;
- 
-}
-
-.icones{
-  width: 130px;
-  display: flex;
-  justify-content: space-between;
- 
-/*  
-CONFIGURAÇÕES RESPONSIVIDADE */
-}
-  @media (max-width: 1050px) {
+  @media (max-width: 999px) {
     body {
       overflow-x: hidden;
     }
@@ -299,7 +214,6 @@ CONFIGURAÇÕES RESPONSIVIDADE */
       justify-content: space-around;
       transform: translateX(100%);
       transition: transform 0.3s ease-in;
-      z-index: 2;
     }
     .nav-list li {
       margin-left: 0;
@@ -308,7 +222,6 @@ CONFIGURAÇÕES RESPONSIVIDADE */
     .mobile-menu {
       display: block;
       justify-content: space-between;
-      overflow: hidden;
       
     }
 
@@ -321,34 +234,13 @@ CONFIGURAÇÕES RESPONSIVIDADE */
        
       }
 
-      
-      .rodape{
-        bottom: 0;
-        
-       
-       
-      }
-
-
-      .info-sob-traco {
-        display: none;
-      }
-
-
-      .rodape h1 {
-        font-size: 15px;
-      }
-
-      #nome-traco {
-        display: none;
-      }
   
   }
- 
+  
   .nav-list.active {
     transform: translateX(0);
-  } 
-   
+  }
+  
   @keyframes navLinkFade {
     from {
       opacity: 0;
@@ -358,7 +250,7 @@ CONFIGURAÇÕES RESPONSIVIDADE */
       opacity: 1;
       transform: translateX(0);
     }
-  } 
+  }
   
   .mobile-menu.active #line1 {
     transform: rotate(-45deg) translate(-8px, 8px);
@@ -372,3 +264,82 @@ CONFIGURAÇÕES RESPONSIVIDADE */
     transform: rotate(45deg) translate(-5px, -7px);
   } 
 
+
+/* 
+CONFIGURAÇÕES RODAPE */
+.rodape{
+    background-color: #132d46;
+    color: White;
+    font-family: "Montserrat";
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 5px ;
+    column-gap: 5px;
+    height: 100px;
+    padding: 22px;
+    padding-left: 100px;
+   
+}
+
+
+.img-rodape img{
+    width: 60px;
+    grid-column: 1;
+    margin: auto;
+
+}
+
+.info-rodape h1{
+    margin: 0px;
+    font-weight: 200;
+    font-size:16px;
+}
+
+
+.info-rodape p{
+    margin: 15px 0px 0px 0px;
+    font-weight: 100;
+    font-size: 12px;
+   
+}
+
+.termos h1{
+    margin: 0px 0px 0px 0px;
+    font-weight: 200;
+    font-size:16px;
+
+}
+
+
+.fa-brands{
+    display: inline-block;
+    gap: 10px;
+    
+}
+
+.fa-brands i{
+    font-size: 50px;
+    margin-right: 50px;
+
+    
+}
+
+.link-social {
+    color: #fff;
+}
+ #fale-conosco{
+    margin: 0px 0px 15px 0px;
+    font-weight: 200;
+    font-size: 16px;
+    width: fit-content;
+   
+ }
+
+ .icones{
+    width: 130px;
+    display: flex;
+    justify-content: space-between;
+   
+   
+
+ }
