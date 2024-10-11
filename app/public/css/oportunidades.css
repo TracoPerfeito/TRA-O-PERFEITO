@@ -26,18 +26,19 @@ h1 {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     margin-bottom: 150px;
+    margin-top: 20px;
 
 }
 
 
 
 .pedido {
-    background-color: whitesmoke;
+    background-color: rgb(255, 255, 255);
     border-radius: 15px;
     overflow: hidden;
     max-height: 300px;
     padding: 10px;
-    box-shadow: 5px 8px 24px rgba(78, 78, 78, 0.329) ;
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
     border: #91a79a7a 2px solid;
     
 

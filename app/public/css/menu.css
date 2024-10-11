@@ -156,13 +156,7 @@ p {
     background: #132d46;
     height: 8vh; 
   }
-  
-  main {
-    background: url("bg.jpg") no-repeat center center;
-    background-size: cover;
-    height: 92vh;
-  }
-  
+ 
   .nav-list {
     list-style: none;
     display: flex;
