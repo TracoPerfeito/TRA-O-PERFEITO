@@ -7,59 +7,76 @@
     <link rel="stylesheet" href="css/nova-publicacao.css">
     
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
 
     
 
     
 
 </head>
+
+    
+  
 <body>
 
     
     <%- include('../partials/menu-logado'); %>
-  
-    <h1>Página em manutenção</h1>
-<!--    
-    <section class="container">
-        <h1 class="novaPublicacao">Nova Publicação</h1>
-        <br>
-        <br>
-        <section class="button-group">
-           
-                <button><a href="proposta-de-projeto.html" class="proposta">Proposta de projeto</a></button>
-                <button ><a href="index.html" class="publicacao">Nova Publicação</a></button>
-        </section>
-        <form>
-            <section class="form-group1">
-                <label for="titulo">Título</label>
-                <input type="text" id="titulo" name="titulo" class="colorido" required>
-            </section>
-            <section class="form-group1">
-                <label for="descricao">Descrição</label>
-                <input type="text" id="descricao" name="descricao" class="colorido" required>
-            </section>
-           ---------------colocar aquele negocio do upload----------------------
-           <section class="imgContainer">
-            <label class="picture" for="picture__input" >
-                <span class="picture__image"></span>
-              </label>
-              
-              <input type="file" name="picture__input" id="picture__input" accept="image/*">
-            </section>
-         <!--------------------------------------------------------------------------
-         <section class="form-group">
-                <label for="conteudo">Conteúdo</label>
-                <textarea id="conteudo" name="conteudo" class="colorido
-                " required></textarea>
-            </section>
-            <section class="form-group">
-                <button type="submit" class="publicar">Publicar</button>
-            </section>
-        </form>
-    </section>
-</section> -->
 
-<script src="js/nova-publicacao.js"></script>
+<main>
+    
+            <h1 class="novaPublicacao">Nova Publicação</h1>
+            <br>
+            <br>
+            <p class="instrucao-tipo-btn">Selecione o tipo de publicação que você deseja fazer:</p>
+            <section class="button-group">
+    
+    
+                    <button class="ativo"><a href=/nova-publicacao >Nova Publicação</a></button>
+                    <button class="nao-ativo"><a href=/nova-publi-pedido >Proposta de projeto</a></button>
+    
+            </section>
+
+            <p class="p-explicativo-np">Publique seu trabalho para compor seu portfólio.</p>
+            <form>
+    
+    
+                <section class="form-grupo-1" id="titulo-publicacao">
+                    <label for="titulo">Título:</label> <br>
+                    <input type="text" id="titulo" name="titulo" class="caixa-texto" required>
+                </section>
+                <section class="form-grupo-1" id="descricao-publicacao">
+                    <label for="descricao">Descrição:</label> <br>
+                    <input type="text" id="descricao" name="descricao" class="caixa-texto" required>
+                </section>
+                <!-----------------colocar aquele negocio do upload---------------------->
+               <section class="lugar-botar-img">
+                <label class="picture" for="picture__input" >
+                    <span class="picture__image"></span>
+                    <p>Carregar imagens</p>
+                  </label>
+    
+                  <input type="file" name="picture__input" id="picture__input" accept="image/*">
+                </section>
+             <!-------------------------------------------------------------------------->
+             <section class="form-grupo-1" id="conteudo-publicacao">
+                    <label for="conteudo">Conteúdo:</label> <br>
+                    <textarea id="conteudo" name="conteudo" class="caixa-texto grande
+                    " required></textarea>
+                </section>
+                <section class="btn-publicar-area">
+                    <button type="submit" class="btn-publicar">PUBLICAR</button>
+                </section>
+            </form>
+        </section>
+</main>
+
+
+<%- include('../partials/rodape'); %>
+
+<script src="js/mobile-navbar.js"></script>
 </body>
 </html>
 

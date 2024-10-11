@@ -1,57 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Publicação - Proposta de Projeto</title>
     <link rel="stylesheet" href="css/nova-publicacao.css">
     
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
- 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
     
 
-    <title>Nova Publicação</title>
+    
+
 </head>
 
-    <body>
-        
-        <%- include('../partials/menu-logado'); %>
+    
+  
+<body>
 
-   <section class="container">
-   
-        <h1 class="propostadeprojeto">Proposta de projeto</h1>
-        <br>
-        <br>
-        <section class="button-group">
-           
-            <button><a href=/nova-publi-pedido class="proposta">Proposta de projeto</a></button>
-            <button ><a href=/nova-publicacao class="NovaPublicacao">Meu trabalho</a></button>
+    
+    <%- include('../partials/menu-logado'); %>
 
-    </section>
-      
-    <form>
-        <section class="form-group">
-            <label for="titulo">Título</label>
-            <input type="text" id="titulo" name="titulo"   class="colorido" required>
+<main>
+    
+            <h1 class="novaPublicacao">Nova Publicação</h1>
+            <br>
+            <br>
+            <p class="instrucao-tipo-btn">Selecione o tipo de publicação que você deseja fazer:</p>
+            <section class="button-group">
+    
+    
+                    <button class="nao-ativo"><a href=/nova-publicacao >Nova Publicação</a></button>
+                    <button class="ativo"><a href=/nova-publi-pedido >Proposta de projeto</a></button>
+    
+            </section>
+
+            <p class="p-explicativo-np"> Especifique o que você deseja para que os artistas em nosso site possam entrar em contato com você.</p>
+            <form>
+       
+    
+    
+                <section class="form-grupo-1" id="titulo-publicacao">
+                    <label for="titulo">Título:</label> <br>
+                    <input type="text" id="titulo" name="titulo" class="caixa-texto" required>
+                </section>
+                <section class="form-grupo-1" id="descricao-publicacao">
+                    <label for="descricao">Descrição breve:</label> <br>
+                    <input type="text" id="descricao" name="descricao" class="caixa-texto" required>
+                </section>
+                <!-----------------colocar aquele negocio do upload---------------------->
+                <section class="lugar-botar-img">
+                <label class="picture" for="picture__input" >
+                    <span class="picture__image"></span>
+                    <p>Carregar imagens</p>
+                  </label>
+    
+                  <input type="file" name="picture__input" id="picture__input" accept="image/*">
+                </section> 
+             <!-------------------------------------------------------------------------->
+             <section class="form-grupo-1" id="conteudo-publicacao">
+                    <label for="conteudo"> Explique o que você está procurando:</label> <br>
+                    <textarea id="conteudo" name="conteudo" class="caixa-texto grande
+                    " required></textarea>
+                </section>
+                <section class="btn-publicar-area">
+                    <button type="submit" class="btn-publicar" >PUBLICAR</button>
+                </section>
+            </form>
         </section>
-        <section class="form-group">
-            <label for="descricao">Descrição</label>
-            <input type="text" id="descricao" name="descricao"class="colorido" required>
-        </section>
-        <section class="form-group">
-            <label for="conteudo">Conteúdo</label>
-            <textarea id="conteudo" name="conteudo"class="colorido" required></textarea>
-        </section>
-        <section class="form-group">
-            <button type="submit">Publicar</button>
-        </section>
-    </form>
-   </section>
+</main>
 
-   <%- include('../partials/rodape'); %>
 
-   
-<script src="js/nova-publicacao.js"></script>
+<%- include('../partials/rodape'); %>
 
+<script src="js/mobile-navbar.js"></script>
 </body>
 </html>
+
+
