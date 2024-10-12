@@ -28,11 +28,10 @@
 
 
 
-
-
+    
     <main>
 
-        <section class="botao">   
+        <section class="botao-de-voltar">   
             <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
                 
                
@@ -42,9 +41,9 @@
 
       
 
-        <section class="container">
+        <section class="container-pag-publi">
 
-            <section class="principal">
+            <section class="principal-pag-publi">
                 <section class="publi-info">
                     <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
                     <a href=/perfil>
@@ -58,15 +57,15 @@
                     <img src="imagens/castelo.jpg" id="img-principal">
     
                 </section>
-
+<!-- 
 
                 <section class="con-img-expandida" id="con-img-expandida">
 
                     <span class="fechar" id="fechar" > &times; </span>
-                    <img src="imagens/castelo.jpg" id="imgExpandida">
+                    <img src="castelo.jpg" id="imgExpandida">
     
 
-                </section>
+                </section> -->
 
 
                 <section class="descricao-like">
@@ -76,7 +75,7 @@
                             <i class="far fa-heart"></i>
                         </button>
                     </section>
-                    <p class="descricao">Lorem ipsum dolor sit amet consectetur,
+                    <p class="descricao-publi-prin">Lorem ipsum dolor sit amet consectetur,
                          adipisicing elit. Aut minima nisi similique numquam velit
                         , ut quas odit ratione consequuntur repudiandae fuga volupta
                         tes cumque nostrum magnam, officia commodi eaque dignissimo
@@ -96,16 +95,12 @@
 
                 <section class="adicionar-comentario">
 
-
-
                     <form>
                         <label for="adicionar-comentario" >Adicionar comentário:</label>
                         <textarea id="ad-comentario" name="ad-comentario" rows="4" cols="50" placeholder="Digite seu comentário aqui..."></textarea>
                         <br>
-                        <section class="button-container"><input type="submit" value="Enviar" class="enviar-comentario"></section>
+                        <section class="button-container-submit"><input type="submit" value="Enviar" class="enviar-comentario"></section>
                       </form>
-
-
 
                 </section>
 
@@ -165,67 +160,92 @@
 
             <section class="publi-relacionadas">
 
-                <section class="titulo-publi-relacionadas">
 
                     <h2 class="publicacoes-relacionadas">
                         Publicações Relacionadas
                     </h2>
                     
-                </section>
+               
                 <section class="publicacoes-rel-caixas">
     
                     <section class="publi-re">
-                        <img src="imagens/3.jpg" >
+                        <img src="imagens/2.jpg" >
 
                         <section class="publi-rel-info">
-                            <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                            <a href=/perfil>
-                                <p>Joaquim Fernandes</p>
-                            </a>
+
+                            <section class="foto-nome-p-rel">
+                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <a href=/perfil>
+                                    <p>Joaquina Fernandes</p>
+                                </a>
+                            </section>
+                            <button class="like-button" title="Curtir">
+                                <i class="far fa-heart"></i>
+                            </button>
                         </section>
 
                     </section>
+
 
                     <section class="publi-re">
-                        <img src="imagens/3.jpg" >
+                        <img src="imagens/5.jpg" >
 
                         <section class="publi-rel-info">
-                            <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                            <a href=/perfil>
-                                <p>Adriana Maria</p>
-                            </a>
+
+                            <section class="foto-nome-p-rel">
+                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <a href=/perfil>
+                                    <p>Joaquina Fernandes</p>
+                                </a>
+                            </section>
+                            <button class="like-button" title="Curtir">
+                                <i class="far fa-heart"></i>
+                            </button>
                         </section>
 
                     </section>
-    
+
 
                     <section class="publi-re">
-                        <img src="imagens/3.jpg" >
+                        <img src="imagens/11.jpg" >
 
                         <section class="publi-rel-info">
-                            <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                            <a href=/perfil>
-                                <p>Neuleivys da Costa</p>
-                            </a>
+
+                            <section class="foto-nome-p-rel">
+                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <a href=/perfil>
+                                    <p>Joaquina Fernandes</p>
+                                </a>
+                            </section>
+                            <button class="like-button" title="Curtir">
+                                <i class="far fa-heart"></i>
+                            </button>
                         </section>
 
                     </section>
-    
 
+                    
                     <section class="publi-re">
-                        <img src="imagens/3.jpg" >
+                        <img src="imagens/arte4.jpg" >
 
                         <section class="publi-rel-info">
-                            <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                            <a href=/perfil>
-                                <p>Marianne - Pinturas</p>
-                            </a>
+
+                            <section class="foto-nome-p-rel">
+                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <a href=/perfil>
+                                    <p>Joaquina Fernandes</p>
+                                </a>
+                            </section>
+                            <button class="like-button" title="Curtir">
+                                <i class="far fa-heart"></i>
+                            </button>
                         </section>
 
                     </section>
+
+                   
     
-    
-</section>
+                </section>
 
             </section>
 
@@ -235,6 +255,10 @@
 
 
     </main>
+
+
+
+
 
     <%- include('../partials/rodape'); %>
     <script src="js/like.js"></script>
