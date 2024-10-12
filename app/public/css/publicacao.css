@@ -13,11 +13,21 @@
     width: 30px;
     height: 30px;
     background-color: #acdabf7a;
+    color: #165040;
     margin: 0px 0px 0px 60px;
+    font-size: 17px;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .lado-botao {
     margin: 0px 10px;
+    font-family: "Josefin Sans";
+    font-weight: 400;
+    font-size: 15px;
+    color: #474747;
 }
 
 
@@ -75,25 +85,34 @@
 .descricao-like {
     margin: 10px 20px;
     width: 90%;
+    font-family: "Josefin Sans";
+   
 }
 
 .nome-like{
     width: 90%;
     display: flex;
     justify-content: space-between;
+    font-weight: 600;
 }
 
 
 .descricao-publi-prin {
     margin: 10px 0px;
     width: 90%;
+    font-family: "Josefin Sans";
 }
 
 
 .comentarios {
     width: 90%;
     margin: 20px;
+    font-family: "Josefin Sans";
 
+}
+
+#comentarios-nome-secao {
+    font-family: "Montserrat";
 }
 
 .adiionar-comentario {
@@ -186,6 +205,10 @@
   
 }
 
+#publi-rel-nome-secao{
+    font-family: "Montserrat";
+}
+
 .publicacoes-rel-caixas {
     width: 100%;
     display: grid;
@@ -194,6 +217,7 @@
 
 .publi-re {
     margin: 10px 0px;
+    font-family: "Josefin Sans";
 }
 
 .publi-re img{
@@ -297,6 +321,8 @@
 
 
 
+
+
  @media (max-width:890px){
 
 
@@ -358,7 +384,7 @@
     
 
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
 
     .botao-de-voltar{
         width: 100%;
@@ -547,6 +573,21 @@
 
     .publi-rel-info button {
        justify-self: flex-end;
+    }
+
+
+}
+
+
+
+
+@media (min-width: 450px) and (max-width: 650px){
+
+    
+    .publicacoes-rel-caixas {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
 
