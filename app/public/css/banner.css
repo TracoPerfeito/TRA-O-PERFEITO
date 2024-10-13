@@ -1,15 +1,7 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-body{
-    background-color: rgb(255, 255, 255);
-    
- 
-}
+
 .slider{
     display: block;
-    height: 350px;
+    height: 250px;
     width: 100%;
     margin: auto;
     margin-top: 0px;
@@ -27,7 +19,7 @@ body{
  .slider img{
     margin-bottom: auto;
      margin: auto;
-     height: 350px;
+     height: auto;
      width: 100%;
      vertical-align: top;
  

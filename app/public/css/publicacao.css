@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
 .botao-de-voltar{
     width: 100%;
     background-color:  rgba(224, 236, 240, 0.37);
@@ -323,7 +329,7 @@
 
 
 
- @media (max-width:890px){
+ @media screen and (max-width:890px){
 
 
         .principal-pag-publi {
@@ -384,7 +390,7 @@
     
 
 
-@media (max-width: 650px) {
+@media screen and (max-width: 650px) {
 
     .botao-de-voltar{
         width: 100%;
@@ -581,7 +587,7 @@
 
 
 
-@media (min-width: 450px) and (max-width: 650px){
+@media screen and (min-width: 450px) and (max-width: 650px){
 
     
     .publicacoes-rel-caixas {

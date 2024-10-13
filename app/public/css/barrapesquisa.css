@@ -1,3 +1,4 @@
+
 .search {
  
     --padding: 7px;
@@ -97,17 +98,46 @@
     justify-content: center;
     font-size: "Josefin Sans";
 }
- 
 
-  @media (max-width: 999px){
+
+  
+@media (max-width:800px) {
 
     .search {
-        max-width: 300px;
+
+        width: 500px;
+       
+    
     }
 
-    .search-input{
-        font-size: 14px;
+}
+
      
+@media (max-width:640px) {
+
+    .search {
+
+        width: 400px;
+       
+    
     }
 
-  } 
+}
+
+ 
+@media (max-width: 460px) {
+
+    .search {
+
+        width: 80%;
+    
+    }
+
+        
+    .search-input{
+        font-size: 70%;
+    
+    }
+
+}
+

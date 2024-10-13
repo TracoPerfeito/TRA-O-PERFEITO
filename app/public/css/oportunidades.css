@@ -1,82 +1,298 @@
-* {
 
-    margin: 0px;
-    padding: 0;
-    box-sizing: border-box;
-
+main {
+    margin: 10px 80px;
+    
 }
 
-.conteudo {
-    margin: 0px 100px 0px 100px;
+.container-oportunidades {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
 }
 
-h1 {
-    font-family: "Montserrat";
-    margin: 20px 0px;
+.proposta-oportunidades {
+
+    padding: 15px;
+    background-color:#acdabf7a;
+    border-radius: 5px;
+ 
 }
 
-.fora {
-    margin: 0px;
+.proposta-oportunidades:hover {
+    cursor: pointer;
+    border: 2px solid #165040;
+    transform: translateY(-3px) ;
+    transition: transform 0.4s ;
+    
+}
+
+
+.info-oportunidade {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.info-oportunidade img {
+    width: 30px;
+    border-radius: 50%;
+}
+
+.info-oportunidade h2 {
+    margin-left: 10px;
+    font-family: "Josefin Sans";
+    font-size: 20px;
+}
+
+.proposta-oportunidades p {
+    margin-top: 15px;    
+    overflow: hidden;         
+    text-overflow: ellipsis;   
+    max-height: 100px;  
     font-family: "Josefin Sans";
 }
 
-.blocos {
-    
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-bottom: 150px;
-    margin-top: 20px;
 
+
+.proposta-oportunidades p {
+    margin-top: 15px;    
+    overflow: hidden;         
+    text-overflow: ellipsis;   
+    max-height: 100px;  
+    font-family: "Josefin Sans";
+}
+
+.especificacao{
+    font-family: "Josefin Sans";
+    font-weight: bold;
+}
+
+.resposta-especificacao {
+    font-family: "Josefin Sans";
 }
 
 
 
-.pedido {
-    background-color: rgb(255, 255, 255);
-    border-radius: 15px;
-    overflow: hidden;
-    max-height: 300px;
+
+
+
+#nome-pag-oportunidades{
+    font-family: "Montserrat";
+}
+
+.msg-oportunidades {
+    font-family: "Josefin Sans";
+}
+
+
+
+#botao-filtro {
+    background-color: #acdabf7a;
+    color:  #165040;
+    border-radius: 5px;
+    border: none;
     padding: 10px;
-    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
-    border: #91a79a7a 2px solid;
-    
+    font-size: 16px;
+    font-family: "Montserrat";
+    display: flex;
+    align-items: center;
+    margin: 15px 0px;
 
 }
 
-.pedido:hover {
-    border: #25382d7a 2px solid;
+#botao-filtro:hover{
     cursor: pointer;
-    transform: translateY(-5px);
+    border: 2px solid #165040;
    
 }
 
-.pedido p{
-    color: black;
-    margin: 15px;
+#icon-filtro {
+    margin-left: 10px;
+}
+
+
+.secao-filtro {
+    position: fixed;
+    right: -300px;
+    top: 70px;
+    width: 300px;
+    /* height: calc(100% - 100px);   */
+    height: fit-content; 
+    background-color: #ffffff;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    transition: right 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
     font-family: "Josefin Sans";
+    z-index: 2;
+  }
+  
+  .secao-filtro h2 {
+    font-family: "Montserrat";
+
+  }
+  .secao-filtro.open {
+    right: 0; 
+    opacity: 1;
+  }
+  
+  .secao-filtro #fechar-aba {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+/* 
+  #fechar-aba {
+    color: #132d46;
+    border: 1px solid #132d46;
+  } */
+
+  #aplicar-filtros{
+        background-color:  #132d46;
+        color: #FFF;
+        font-family: "Josefin Sans";
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        margin-top: 20px;
+  }
+  
+/* 
+  Configurações expansão filtro */
+
+
+  .linha {
+     color:#132d462c;
+  }
+
+  .categoria-filtro {
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    margin: 5px 0;
+    
 }
 
-.pedido h2 {
-    margin: 10px 0px 0px 5px;
-    font-family: "Josefin Sans";
-    font-size: 18px;
+.caret {
+    margin-right: 10px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.caret.open {
+    transform: rotate(90deg); 
+}
+
+.opcoes-categoria {
+    display: none;
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.opcoes-categoria input {
+    margin-right: 10px;
+}
+
+.filtro-p{
+
+    padding: 10px 0px;
+}
+
+
+
+/* ----------------------------- RESPONSIVIDADE ------------------------------------- */
+
+@media (max-width: 1100px){ /*  RESPON. TRÊS COLUNAS */
+
+    
+    main {
+        margin: 10px 30px;
+        
+    }
+
+    
+    .container-oportunidades {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+    }
+
+
+
+
 
 }
 
-.pedido h2:hover{
-    text-decoration: underline;
+
+
+
+@media (max-width: 760px){  /*  RESPON. DUAS COLUNAS */
+
+    
+    main {
+        margin: 10px 30px;
+        
+    }
+
+    
+    .container-oportunidades {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+
 }
 
-.pedido img {
-    border-radius: 50%;
-    width: 30px;
-    height: auto;
-    margin: 10px;
 
-}
 
-.info {
-    display: grid;
-    grid-template-columns: 1fr 6fr;
+
+
+@media (max-width:500px){  /*  RESPON. UMA COLUNA */
+
+    *{
+        box-sizing: border-box;
+    }
+
+    body{
+        overflow-x: hidden;
+    }
+
+    main {
+        margin: 10px 15px;
+        
+    }
+
+    .container-oportunidades {
+        display: block;
+    }
+
+    .proposta-oportunidades {
+
+        padding: 15px;
+        background-color:#acdabf7a;
+        border-radius: 5px;
+        margin: 10px 0px;
+        
+       
+        
+    }
+
+    .info-oportunidade {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+
+
+  
+
 }

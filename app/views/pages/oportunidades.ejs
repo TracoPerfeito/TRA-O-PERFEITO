@@ -1,46 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/oportunidades.css">
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="css/oportunidades.css">
+
  
     <title>Oportunidades </title>
 </head>
 <body>
-<header>
-    
-           <%- include('../partials/menu-logado.ejs') -%>
-</header>
-    
+
+    <%- include('../partials/menu-logado'); %>
+
+   
+
     <main>
 
+            <h1 id="nome-pag-oportunidades"> Oportunidades</h1> <br>
+            <p class="msg-oportunidades"> Confira as oportunidades recentes que podem te interessar!</p>
+
+        <button id="botao-filtro"> Filtros <ion-icon name="filter-outline" id="icon-filtro"></ion-icon></button>
+
+    </section>
+
+
+    <!------------------------------------ SEÇÃO DO FILTRO QUANDO ELE É ABERTO --------------------------------------------->
+
+
+        <section class="secao-filtro" id="secao-filtro">
+
+            <button id="fechar-aba"> X </button>
+            <h2>Filtros</h2>
+
+            <section class="categoria-filtro">
+
+        <p>Mostrar:</p>
+        <label><input type="radio" name="opcoes-mostrar" value="todos"> Todos </label> 
+        <label><input type="radio" name="opcoes-mostrar" value="recomendados" checked > Meus recomendados</label> <br>
+
+            </section>
+
+            <hr class="linha">
+
+            <section class="categoria-filtro">
+                <span class="caret">▶</span> Tipo
+            </section>
+            
+            <section class="opcoes-categoria">
+                <label><input type="checkbox" > Branding e Identidade Visual</label><br>
+                <label><input type="checkbox"> Design Gráfico</label><br>
+                <label><input type="checkbox"> Ilustração </label> <br>
+                <label><input type="checkbox"> Arte Conceitual</label> <br>
+                <label><input type="checkbox"> Design de Interface (UI/UX)</label> <br>
+                <label><input type="checkbox"> Design de Produtos</label> <br>
+                <label><input type="checkbox"> Logotipos</label> <br>
+                <label><input type="checkbox"> Edição de Fotos e Vídeos</label> 
+                
+            </section>
+
+            <hr>
+
+            <section class="categoria-filtro">
+                <span class="caret">▶</span> Por data de publicação:
+            </section>
+
+            <section class="opcoes-categoria">
+
+                <p>Filtrar por data de publicação:</p>
+                    <label><input type="checkbox" name="periodo" value="hoje"> Hoje </label> <br>
+                    <label><input type="checkbox" name="periodo" value="3dias"> Últimos 3 dias </label> <br>
+                    <label><input type="checkbox" name="periodo" value="semana"> Última semana </label> <br>
+                    <label><input type="checkbox" name="periodo" value="mes"> Último mês </label>
+                
+    
+            </section>
+
+            <hr>
+
+            
+            <section class="categoria-filtro">
+                <span class="caret">▶</span> Tempo previsto de desenvolvimento
+            </section>
+
+           
+
+            <section class="opcoes-categoria">
+                <label><input type="checkbox"> Curto</label><br>
+                <label><input type="checkbox"> Médio</label><br>
+                <label><input type="checkbox"> Longo</label><br>
+              
+                
+            </section>
+            
+
+            <button id="aplicar-filtros">Aplicar</button>
+        </section>
+
+        <!----------------------------------- FIM DA SEÇÃO DE FILTRO QUANO ABERTO ----------------------------------------------->
 
 
 
-        <section class="conteudo">
+            <section class="container-oportunidades">
 
-            <h1> Oportunidades</h1> <br>
-            <p class="fora"> Confira as mais recentes oportunidades</p>
-
-
-            <section class="blocos">
-
-                <section class="pedido" onclick="location.href='/propostadeprojeto'">
+                <section class="proposta-oportunidades" onclick="location.href='/propostadeprojeto'">
                     
-                    <section class="info"><img src="imagens/fotoperfil1.jpeg"> <h2> Amanda Moraes</h2></section>
+                    <section class="info-oportunidade"><img src="imagens/fotoperfil1.jpeg"> <h2> Amanda Moraes</h2></section>
+                    <span class="especificacao">Profissional requerido:</span> <span class="resposta-especificacao"> Designer Gráfico</span> <br>
+                    <span class="especificacao">Tipo de trabalho:</span> <span class="resposta-especificacao"> Identidade Visual</span>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
+                        .Ducimus ullam molestias ab fugit id pariatur doloribus
+                        ipsam dolorem, animi amet suscipit ex magni esse, optio
+                        quibusdam? Eveniet necessitatibus atque officia.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam aperiam aspernatur repudiandae quasi! Quos consequatur velit sunt eveniet adipisci officia deserunt impedit quas, harum aliquam molestiae, laboriosam dolores, laudantium placeat.</p>
+                     </section>
+
+
+                
+                <section class="proposta-oportunidades" onclick="location.href='/propostadeprojeto'">
+                    
+                    <section class="info-oportunidade"><img src="imagens/fotoperfil1.jpeg"> <h2> Amanda Moraes</h2></section>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
                         .Ducimus ullam molestias ab fugit id pariatur doloribus
                         ipsam dolorem, animi amet suscipit ex magni esse, optio
@@ -48,49 +137,55 @@
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam aperiam aspernatur repudiandae quasi! Quos consequatur velit sunt eveniet adipisci officia deserunt impedit quas, harum aliquam molestiae, laboriosam dolores, laudantium placeat.</p>
                 </section>
 
-                <section class="pedido">
-                    <a href="/propostadeprojeto"></a>
-                    <section class="info"><img src="imagens/fotoperfil2.jpg"> <h2> Pedro Henrique</h2></section>
+
+                
+                <section class="proposta-oportunidades" onclick="location.href='/propostadeprojeto'">
+                    
+                    <section class="info-oportunidade"><img src="imagens/fotoperfil1.jpeg"> <h2> Amanda Moraes</h2></section>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
                         .Ducimus ullam molestias ab fugit id pariatur doloribus
                         ipsam dolorem, animi amet suscipit ex magni esse, optio
-                        quibusdam? Eveniet necessitatibus atque officia.</p>
+                        quibusdam? Eveniet necessitatibus atque officia.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam aperiam aspernatur repudiandae quasi! Quos consequatur velit sunt eveniet adipisci officia deserunt impedit quas, harum aliquam molestiae, laboriosam dolores, laudantium placeat.</p>
                 </section>
 
-                <section class="pedido">
-                    <a href="/propostadeprojeto"></a>
-                    <section class="info"><img src="imagens/fotoperfil1.jpeg"> <h2> Luciana Souza</h2></section>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
-                        .Ducimus ullam molestias ab fugit id pariatur doloribus
-                        ipsam dolorem, animi amet suscipit ex magni esse, optio
-                        quibusdam? Eveniet necessitatibus atque officia.</p>
-                </section>
 
-                <section class="pedido">
-                    <a href="/propostadeprojeto"></a>
-                    <section class="info"><img src="imagens/fotoperfil3.jpg"> <h2> Mariana da Cunha</h2></section>
+                
+                <section class="proposta-oportunidades" onclick="location.href='/propostadeprojeto'">
+                    
+                    <section class="info-oportunidade"><img src="imagens/fotoperfil1.jpeg"> <h2> Amanda Moraes</h2></section>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
                         .Ducimus ullam molestias ab fugit id pariatur doloribus
                         ipsam dolorem, animi amet suscipit ex magni esse, optio
-                        quibusdam? Eveniet necessitatibus atque officia.</p>
-                </section>
-
-                <section class="pedido">
-                    <a href="/propostadeprojeto"></a>
-                    <section class="info"><img src="imagens/fotoperfil2.jpg"> <h2> Luís Pedro</h2></section>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
-                        .Ducimus ullam molestias ab fugit id pariatur doloribus
-                        ipsam dolorem, animi amet suscipit ex magni esse, optio
-                        quibusdam? Eveniet necessitatibus atque officia.</p>
+                        quibusdam? Eveniet necessitatibus atque officia.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam aperiam aspernatur repudiandae quasi! Quos consequatur velit sunt eveniet adipisci officia deserunt impedit quas, harum aliquam molestiae, laboriosam dolores, laudantium placeat.</p>
                 </section>
 
 
 
-        </section>
+                
+                <section class="proposta-oportunidades" onclick="location.href='/propostadeprojeto'">
+                    
+                    <section class="info-oportunidade"><img src="imagens/fotoperfil1.jpeg"> <h2> Amanda Moraes</h2></section>
+                    
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
+                        .Ducimus ullam molestias ab fugit id pariatur doloribus
+                        ipsam dolorem, animi amet suscipit ex magni esse, optio
+                        quibusdam? Eveniet necessitatibus atque officia.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam aperiam aspernatur repudiandae quasi! Quos consequatur velit sunt eveniet adipisci officia deserunt impedit quas, harum aliquam molestiae, laboriosam dolores, laudantium placeat.</p>
+                </section>
+
+
+            </section>
+
+     
     </main>
 
-    
     <%- include('../partials/rodape'); %>
+
+    <script src="js/filtro.js"></script>
+
+    
     
 </body>
 </html>
