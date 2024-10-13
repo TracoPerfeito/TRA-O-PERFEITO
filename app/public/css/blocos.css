@@ -76,7 +76,7 @@
 .like-button{
     background-color: transparent;
     border: 0px;
-    font-size: 100%;
+    font-size: 110%;
 }
 
 .like-button.liked{
@@ -93,7 +93,8 @@
 
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 20px;
+        column-gap: 20px;
+        row-gap: 50px;
         margin: 30px 25px;
 
     }
@@ -108,7 +109,8 @@
 
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        column-gap: 20px;
+        row-gap: 50px;
         margin: 30px 25px;
 
     }
@@ -175,6 +177,11 @@
     .descricao-item-explorar {
         font-family: "Josefin Sans";
 
+    }
+
+    .like-button{
+
+        font-size: 130%;
     }
 
 

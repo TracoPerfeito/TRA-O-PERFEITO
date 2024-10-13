@@ -276,6 +276,10 @@
         content: 'Curtir';
     }
 
+    .like-button.liked{
+        color: red;
+    }
+     
 
 
 /* Mantém o estilo de zoom com ajustes */
