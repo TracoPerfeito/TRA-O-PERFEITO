@@ -1,6 +1,43 @@
-@import url(menu.css);
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+.botao-de-voltar{
+  width: 100%;
+  background-color:  rgba(224, 236, 240, 0.37);
+  height: 5.5vh;
+  display: flex;
+  align-items: center;
+  
+}
+
+.btn-voltar{
+  border-radius: 50%;
+  border: none;
+  width: 30px;
+  height: 30px;
+  background-color: #acdabf7a;
+  color: #165040;
+  margin: 0px 0px 0px 60px;
+  font-size: 17px;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-voltar:hover {
+  background-color: #648b747a;
+  cursor: pointer;
+}
+
+.lado-botao {
+  margin: 0px 10px;
+  font-family: "Josefin Sans";
+  font-weight: 400;
+  font-size: 15px;
+  color: #474747;
+}
+
 body {
   width: 100%;
   margin: 0;
@@ -221,39 +258,3 @@ input[type='file'] {
   color: #fff;
 }
 
-
-.botao {
-  padding: 10px 20px 10px 20px;
-  margin: 0px;
-  display: flex;
-  background-color: rgba(224, 236, 240, 0.801);
-  border-bottom: #0610369a solid 1px;
-  
-  }
-  
-  .lado-botao{
-  padding: 5px;
-  margin: 10px 0px 5px 10px;
-  font-family: "Josefin Sans";
-  
-  }
-  
-  
-  .btn-voltar{
-      grid-area: botao;
-      background-color: #acdabf7a;
-      padding: 10px;
-      border-radius: 50%;
-      border: none;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      
-      
-      }
-  
-  #seta {
-  color:#165040;
-  font-size: 20px;
-  }
-  

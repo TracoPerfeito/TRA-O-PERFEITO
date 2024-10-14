@@ -77,6 +77,14 @@
     background-color: transparent;
     border: 0px;
     font-size: 110%;
+    transition: all 0.2s;
+}
+
+.like-button:hover{
+    font-size: 115%;
+    transform: translateY(-3px) ;
+
+   
 }
 
 .like-button.liked{

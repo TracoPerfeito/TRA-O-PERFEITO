@@ -23,6 +23,11 @@
     justify-content: center;
 }
 
+.btn-voltar:hover {
+    background-color: #648b747a;
+    cursor: pointer;
+}
+
 .lado-botao {
     margin: 0px 10px;
     font-family: "Josefin Sans";
