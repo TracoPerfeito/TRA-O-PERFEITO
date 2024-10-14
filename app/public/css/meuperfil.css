@@ -209,6 +209,26 @@ input[type='file'] {
   
 }
 
+.nenhuma-publi {
+  color: #666666;
+}
+
+
+.publi-conta-comum {
+
+  display: block;
+
+}
+
+.ul-conta-comum {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+
 /* Responsiveness */
 
 @media (min-width: 868px) {

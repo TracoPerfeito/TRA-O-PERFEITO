@@ -100,10 +100,13 @@
 }
 
 
+
+
+
   
 @media (max-width:800px) {
 
-    .search {
+    .search, .search1 {
 
         width: 500px;
        
@@ -115,7 +118,7 @@
      
 @media (max-width:640px) {
 
-    .search {
+    .search, .search1 {
 
         width: 400px;
        
@@ -127,14 +130,14 @@
  
 @media (max-width: 460px) {
 
-    .search {
+    .search .search1{
 
         width: 80%;
     
     }
 
         
-    .search-input{
+    .search-input {
         font-size: 70%;
     
     }

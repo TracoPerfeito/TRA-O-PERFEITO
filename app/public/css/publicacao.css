@@ -230,6 +230,8 @@
    width: 90%;
    border-radius: 5px;
    aspect-ratio: 4/3; /* VER SE VAI DEIXAR AS IMAGENS NESSE FORMATO MESMO */
+   box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
+  
 }
 
 .publi-rel-info {

@@ -5,7 +5,6 @@
     padding: 0;
     box-sizing: border-box;
   
-    font-family: "Josefin Sans";
 }
 
 :root {
@@ -27,6 +26,8 @@
     margin-right: 0;
     margin-left: 0;
     padding-bottom: 0;
+    
+    font-family: "Josefin Sans";
 }
 
 .container-quemsomos {

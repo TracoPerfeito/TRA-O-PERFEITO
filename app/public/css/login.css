@@ -24,7 +24,7 @@ body{
  
 form{
     width: 500px;
-    padding: 20px;
+        padding: 20px;
     background: transparent;
     backdrop-filter: blur( 23px );
     border: 2px solid rgb(13, 15, 56);
@@ -125,6 +125,7 @@ button{
     background-color: #132d46;
     color: rgb(255, 255, 255);
     cursor: pointer;
+    top: -100px;
  
 }
  

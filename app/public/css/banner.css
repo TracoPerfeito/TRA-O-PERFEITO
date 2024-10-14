@@ -61,7 +61,7 @@
     z-index: 10;
 }
 
-.button-holder a{
+.button-holder{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     text-decoration: none;
@@ -82,12 +82,15 @@
     width: 300px;
     margin: auto;
     cursor: pointer;
-  
-    
-    
+    grid-column: 2;
+    transition: all 0.4s;
+    font-family: "Montserrat";
+    text-transform: uppercase;
+
+       
 }
 
 .call-to-action:hover{
-    transform: translateY(-35px);
+    transform: translateY(-50px) ;
 }
 

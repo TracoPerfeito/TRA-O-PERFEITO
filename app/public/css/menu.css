@@ -159,6 +159,7 @@ p {
   .nav-list {
     list-style: none;
     display: flex;
+    align-items: center;
   }
   
   .nav-list li {
@@ -271,11 +272,22 @@ CONFIGURAÇÕES RODAPE */
   width: 130px;
   display: flex;
   justify-content: space-between;
+}
  
+
+#icon-config {
+
+  margin-left: 90px;
+
+
+}
+
+
+
 /*  
 CONFIGURAÇÕES RESPONSIVIDADE */
-}
-  @media (max-width: 1050px) {
+
+  @media (max-width: 1080px) {
     body {
       overflow-x: hidden;
     }
@@ -292,7 +304,7 @@ CONFIGURAÇÕES RESPONSIVIDADE */
       transform: translateX(100%);
       transition: transform 0.3s ease-in;
       z-index: 2;
-      display: none;
+
    
     }
 

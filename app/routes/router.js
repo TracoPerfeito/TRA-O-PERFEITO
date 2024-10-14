@@ -137,6 +137,52 @@ router.get("/avaliacoes", function (req, res) { //pagina das avaliações
  
 });
 
+router.get("/explorar-c-c", function (req, res) { //explorar conta comum logada
+    res.render('pages/explorar-c-c')
+ 
+});
+
+
+
+router.get("/contratar-c-c", function (req, res) { // contratar conta comum
+    res.render('pages/contratar-c-c')
+ 
+});
+
+
+
+router.get("/nova-publi-c-c", function (req, res) { //nova publicacao conta comum
+    res.render('pages/nova-publi-c-c')
+ 
+});
+
+
+router.get("/publicacao-c-c", function (req, res) { //publicacao conta comum
+    res.render('pages/publicacao-c-c')
+ 
+});
+
+
+router.get("/perfil-a-c-c", function (req, res) { //perfil alheio conta comum
+    res.render('pages/perfil-a-c-c')
+ 
+});
+
+
+router.get("/meu-perfil-c-c", function (req, res) { //meu perfil conta comum
+    res.render('pages/meu-perfil-c-c')
+ 
+});
+
+
+router.get("/chat-c-c", function (req, res) { //chat conta comum
+    res.render('pages/chat-c-c')
+ 
+});
+
+
+
+
 
 
 
@@ -237,7 +283,7 @@ router.post( //validações login
 
         if (errosLogin.isEmpty()) {
 
-            return res.redirect("/explorar-logado"); 
+            return res.redirect("/explorar-c-c"); 
         } else {
             
             console.log(errosLogin);
