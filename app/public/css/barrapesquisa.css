@@ -130,9 +130,9 @@
  
 @media (max-width: 460px) {
 
-    .search .search1{
+    .search, .search1{
 
-        width: 80%;
+        max-width: 80%;
     
     }
 

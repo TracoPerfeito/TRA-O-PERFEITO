@@ -1,119 +1,6 @@
 
-
-
-/* 
-*{
-    margin: 0;
-
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-nav{
-    background-color: #132d46;
-    padding: 10px 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
- 
- 
-} 
- 
-nav{
-    display: grid;
-    padding: 0px 0px;
-    margin: 0px auto;
-    background-color: #132d46;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 70px;
-    justify-content: center;
-
-}
- 
-nav .logo {
-   position: absolute;
-   left: 5px;
- 
-}
- 
-nav ul{
-    display: flex;
-    align-items: center;
-    list-style: none;
-    padding: 10px;
-}
- 
-.direita02{
-    position: absolute;
-    right: 2.5%;
-   
-   
-}
- 
-.direita01{
-    position: absolute;
-    right: 13%;
- 
-}
- 
- 
-nav li{
-    margin-left: 7px;
-}
- 
-nav li a{
-    position: absolute;
- 
-    text-decoration: none;
-    color: #fff;
-    font-size: 15px;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 300;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: all 0.4s;
-}
- 
-a:hover {
-   transform: translateY(-5px);
-   cursor: pointer;
-}
- 
-p {
-    margin-right: 100px;
-    margin-left: 100px;
-    padding-bottom: 30px;
- 
- 
-}
- 
-#logo{
-    margin-top: 5px;
-    margin-left: 45%;
-    width: 55px;
- 
-}
- 
-#traco{
-    margin: auto;
-    margin-left: 0%;
-    margin-top: 10%;
-    width: 180px;
- 
- 
-}
-
- */
-
-
-
-
- * {
-    margin: 0;
-    padding: 0;
-  }
   
+/*   
   a {
     color: #fff;
     text-decoration: none;
@@ -122,7 +9,7 @@ p {
   
   /* a:hover {
     opacity: 0.7;
-  } */
+  } 
   
   .logo-container {    
    display: flex;
@@ -180,7 +67,7 @@ p {
     height: 5px;
     background: #fff;
     margin: 5px;
-    transition: 0.3s;
+    transition: 0.3s; 
     justify-content: space-between;
   }
 
@@ -191,101 +78,13 @@ p {
   .links-entrar {
     margin-left: 50px;
     display: flex;
-  }
-
-
-
+  } */
 
   
+
+
 /* 
-CONFIGURAÇÕES RODAPE */
-.rodape{
-  background-color: #132d46;
-  color: White;
-  font-family: "Montserrat";
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  row-gap: 5px ;
-  column-gap: 5px;
-  height: 100px;
-  padding: 22px;
-  padding-left: 100px;
- 
- 
-}
 
-
-.img-rodape img{
-  width: 60px;
-  grid-column: 1;
-  margin: auto;
-
-}
-
-.info-rodape h1{
-  margin: 0px;
-  font-weight: 200;
-  font-size:16px;
-}
-
-
-.info-rodape p{
-  margin: 15px 0px 0px 0px;
-  font-weight: 100;
-  font-size: 12px;
- 
-}
-
-.termos h1{
-  margin: 0px 0px 0px 0px;
-  font-weight: 200;
-  font-size:16px;
-
-}
-
-
-.fa-brands{
-  display: inline-block;
-  gap: 10px;
-  
-}
-
-.fa-brands i{
-  font-size: 50px;
-  margin-right: 50px;
-
-  
-}
-
-.link-social {
-  color: #fff;
-}
-#fale-conosco{
-  margin: 0px 0px 15px 0px;
-  font-weight: 200;
-  font-size: 16px;
-  width: fit-content;
- 
-}
-
-.icones{
-  width: 130px;
-  display: flex;
-  justify-content: space-between;
-}
- 
-
-#icon-config {
-
-  margin-left: 90px;
-
-
-}
-
-
-
-/*  
-CONFIGURAÇÕES RESPONSIVIDADE */
 
   @media (max-width: 1080px) {
     body {
@@ -302,7 +101,7 @@ CONFIGURAÇÕES RESPONSIVIDADE */
       align-items: center;
       justify-content: space-around;
       transform: translateX(100%);
-      transition: transform 0.3s ease-in;
+      transition: transform 0.3s ease-in; 
       z-index: 2;
 
    
@@ -319,8 +118,8 @@ CONFIGURAÇÕES RESPONSIVIDADE */
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in;
+      /* transform: translateX(100%);
+      transition: transform 0.3s ease-in; 
       z-index: 2;
     }
     .nav-list li {
@@ -393,4 +192,461 @@ CONFIGURAÇÕES RESPONSIVIDADE */
   .mobile-menu.active #line3 {
     transform: rotate(45deg) translate(-5px, -7px);
   } 
+ */
+
+
+  
+
+
+
+ * {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+  }
+
+
+
+  a {
+    color: #f4f4f4;
+  }
+  
+  /* header */
+
+ #logo-1 {
+    width: 35px;
+    height: 35px;
+    margin: 10px 5px 10px 5%;
+ }
+ #logo-2 {
+    height: 20px;
+    width: auto;
+    margin-bottom: 15px;
+ }
+  .header {
+    background-color:#132d46;
+    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+
+  }
+  
+  .header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color:#132d46;
+  
+  }
+  
+  .header li a, #icon-config{
+    display: block;
+    padding: 15px 20px;
+    /* border-right: 1px solid #f4f4f4; */
+    text-decoration: none;
+    color: White;
+    transition: all 0.2s;
+    font-family: "Montserrat";
+    text-transform: uppercase;
+    font-size: 90%;
+  }
+  
+  .header li a:hover,
+  .header .menu-btn:hover, #icon-config:hover {
+    transform: translateY(-3px);
+    
+  }
+  
+  .header .logo {
+    display: block;
+    float: left;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  
+  /* menu */
+  
+  .header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+  }
+  
+  /* menu icon */
+  
+  .header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 25px 20px;
+    position: relative;
+    user-select: none;
+  }
+  
+  .header .menu-icon .navicon {
+    background: White;
+    display: block;
+    height: 2px;
+    border-radius: 10px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 18px;
+    
+  }
+
+  .navicon{
+    margin-bottom: 7px;
+  }
+  
+  .header .menu-icon .navicon:before,
+  .header .menu-icon .navicon:after {
+    background: White;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .header .menu-icon .navicon:before {
+    top: 5px;
+  }
+  
+  .header .menu-icon .navicon:after {
+    top: -5px;
+  }
+  
+  /* menu btn */
+  
+  .header .menu-btn {
+    display: none;
+  }
+  
+  .header .menu-btn:checked ~ .menu {
+    max-height: 360px;
+  }
+
+  
+  .header .menu-btn:checked ~ .menu li {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.7s;
+
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+  }
+  
+
+  
+  @media (min-width: 1020px) {
+    .header li {
+      float: left;
+     
+    }
+    .header li a {
+      padding: 20px 30px;
+      
+    }
+    .header .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+    }
+    .header .menu-icon {
+      display: none;
+    }
+  }
+
+
+
+  
+/* 
+CONFIGURAÇÕES RODAPE */
+ .rodape{
+  background-color: #132d46;
+  color: White;
+  font-family: "Montserrat";
+  height: 25vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "sobre-nos termos suporte"
+                        "redes logo-nome final";
+  padding: 5% 5% 5% 5%
+ 
+}
+
+
+h2 {
+  font-family: "Montserrat";
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+
+}
+
+
+.footer-toggle {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+.img-rodape {
+  grid-area: logo-nome;
+
+  display: grid;
+  place-items: center;
+  align-items: end;
+
+}
+
+.img-rodape img {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  bottom:0px;
+ 
+}
+
+.sobre-nos {
+  grid-area: sobre-nos;
+ 
+}
+
+.termos {
+  grid-area: termos;
+  padding: 0px 15% 0px 15%;
+ 
+  
+}
+
+.suporte-footer {
+  grid-area: suporte;
+  align-content: right;
+  padding: 0px 0px 0px 50%;
+ 
+}
+
+
+
+
+
+.final {
+  grid-area: final;
+  position: relative;
+  text-align:  right;
+  align-self: flex-end;
+ 
+  
+}
+
+
+
+.redes-sociais {
+  grid-area: redes;
+  border: none;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; 
+}
+
+.redes-sociais i {
+  font-size: 18px;
+  opacity: 75%;
+  transition: all 0.2s;
+ 
+  
+}
+
+.redes-sociais i:hover{
+  opacity: 100%;
+  cursor: pointer;
+  transform: translateY(-3px) ;
+}
+
+
+
+
+
+
+
+/* Rodapé */
+@media (max-width: 750px) {
+  .rodape {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, auto);
+    grid-template-areas:
+      "sobre-nos"
+      "termos"
+      "suporte"
+      "redes"
+      "logo-nome"
+      "final";
+    row-gap: 50px;
+    height: fit-content;
+    padding: 20px;
+    text-align: left;
+   
+  }
+
+  .img-rodape {
+    grid-area: logo-nome;
+  }
+
+  .img-rodape img {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    bottom: -10px;
+  }
+
+  .sobre-nos {
+    grid-area: sobre-nos;
+    padding: 0;
+  }
+
+  .termos {
+    grid-area: termos;
+    padding: 0;
+  }
+
+  .suporte-footer {
+    grid-area: suporte;
+    padding: 0;
+  }
+
+  .redes-sociais {
+    grid-area: redes;
+    border-top: 1px solid #fff;
+    padding: 20px 20% 0px 20%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+
+  footer a {
+    opacity: 75%;
+    transition: all 0.2s;
+  }
+
+  footer a:hover{
+
+    opacity: 100%;
+    cursor: pointer;
+    
+
+  }
+
+  
+
+
+  .final {
+    grid-area: final;
+    position: relative;
+    top: -30px;
+    text-align: center;
+   
+    
+  }
+
+  .img-rodape{
+    display: grid;
+    place-items: center;
+  }
+
+ 
+
+
+  .footer-toggle {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-toggle svg {
+    width: 15px;  
+    height: 15px;
+    fill: #fff;
+    opacity: 80%;  
+    transition: transform 0.3s ease; 
+  }
+
+  
+
+  .footer-toggle svg.arrow-down {
+    transform: rotate(0deg); 
+  }
+
+  .footer-toggle svg.arrow-up {
+    transform: rotate(180deg); 
+  }
+
+  .footer-links {
+    margin-top: 10px;
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.3s ease; 
+    display: block; 
+  }
+
+  .footer-links.active {
+    display: block;
+    max-height: 500px;
+  }
+
+  .footer-links a {
+    display: block; 
+    margin: 10px 0 0 0; 
+}
+
+
+}
+
+
+@media (min-width: 501px) {
+  .footer-toggle svg {
+    display: none; 
+  }
+}
+
+
+
+
 
