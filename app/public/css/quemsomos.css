@@ -120,6 +120,11 @@
     }
     .cards {
         grid-template-columns: repeat(1,1fr);
+        margin-bottom: 50px;
+    }
+
+    .cards .card{
+        margin-top: 30px;
     }
     #servico-secao #paragrafo {
         width: 80%;
@@ -130,6 +135,6 @@
     .cards .card {
         height: 300px;
         width: 400px;
-        margin: 20px 0;
+        margin-bottom: 50px;
     }
 }
