@@ -1,203 +1,4 @@
-
-  
-/*   
-  a {
-    color: #fff;
-    text-decoration: none;
-    transition: 0.3s;
-  }
-  
-  /* a:hover {
-    opacity: 0.7;
-  } 
-  
-  .logo-container {    
-   display: flex;
-  justify-content: center;
-  align-items: center; 
-  gap: 10px;
-  margin-left: 20px;
-  }
-
-
-  #logo {
-    width: 40px;
-    margin: 15px;
-  }
-
-  #logo-traco-perfeito {
-    height: 20px;
-    padding-top: 5px;
-  
-    
-  }
-  
-  nav {
-     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 15px;
-    background: #132d46;
-    height: 8vh; 
-  }
- 
-  .nav-list {
-    list-style: none;
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav-list li {
-    letter-spacing: 1px;
-    margin-left: 32px;
-  }
-  
-  .mobile-menu {
-    display: none;
-    cursor: pointer;
-    justify-content: space-between;
-   
-   
-  }
-  
-  .mobile-menu section {
-    width: 32px;
-    height: 5px;
-    background: #fff;
-    margin: 5px;
-    transition: 0.3s; 
-    justify-content: space-between;
-  }
-
-  .bar{
-    height: 2px;
-  }
-  
-  .links-entrar {
-    margin-left: 50px;
-    display: flex;
-  } */
-
-  
-
-
 /* 
-
-
-  @media (max-width: 1080px) {
-    body {
-      overflow-x: hidden;
-    }
-    .nav-list {
-      position: absolute;
-      top: 8vh;
-      right: 0;
-      width: 50vw;
-      height: 92vh;
-      background: #132d46;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in; 
-      z-index: 2;
-
-   
-    }
-
-    .nav-list.active{
-      display: block;
-      position: absolute;
-      top: 8vh;
-      right: 0;
-      width: 50vw;
-      height: 92vh;
-      background: #132d46;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      /* transform: translateX(100%);
-      transition: transform 0.3s ease-in; 
-      z-index: 2;
-    }
-    .nav-list li {
-      margin-left: 0;
-      opacity: 0;
-    }
-    .mobile-menu {
-      display: block;
-      justify-content: space-between;
-      overflow: hidden;
-      
-    }
-
-    .bar{
-        height: 5px;
-        width: 70px;
-        display: block;
-        margin: 10px;
-    
-       
-      }
-
-      
-      .rodape{
-        bottom: 0;
-        
-       
-       
-      }
-
-
-      .info-sob-traco {
-        display: none;
-      }
-
-
-      .rodape h1 {
-        font-size: 15px;
-      }
-
-      #nome-traco {
-        display: none;
-      }
-  
-  }
- 
-  .nav-list.active {
-    transform: translateX(0);
-  } 
-   
-  @keyframes navLinkFade {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  } 
-  
-  .mobile-menu.active #line1 {
-    transform: rotate(-45deg) translate(-8px, 8px);
-  }
-  
-  .mobile-menu.active #line2 {
-    opacity: 0;
-  }
-  
-  .mobile-menu.active #line3 {
-    transform: rotate(45deg) translate(-5px, -7px);
-  } 
- */
-
-
-  
-
-
 
  * {
     margin: 0;
@@ -211,7 +12,7 @@
     color: #f4f4f4;
   }
   
-  /* header */
+  /* header 
 
  #logo-1 {
     width: 35px;
@@ -226,7 +27,6 @@
   .header {
     background-color:#132d46;
     box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
-    position: fixed;
     width: 100%;
     z-index: 3;
 
@@ -244,7 +44,7 @@
   .header li a, #icon-config{
     display: block;
     padding: 15px 20px;
-    /* border-right: 1px solid #f4f4f4; */
+  
     text-decoration: none;
     color: White;
     transition: all 0.2s;
@@ -267,7 +67,6 @@
     text-decoration: none;
   }
   
-  /* menu */
   
   .header .menu {
     clear: both;
@@ -275,7 +74,7 @@
     transition: max-height .2s ease-out;
   }
   
-  /* menu icon */
+
   
   .header .menu-icon {
     cursor: pointer;
@@ -321,7 +120,7 @@
     top: -5px;
   }
   
-  /* menu btn */
+
   
   .header .menu-btn {
     display: none;
@@ -355,6 +154,93 @@
   .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
     top: 0;
   }
+
+
+  
+.config-section {
+  display: none;
+  background-color: var(--azul-menu);
+  padding: 10px;
+  position: absolute;
+  right: 10px;
+  top: 70px;
+  z-index: 2;
+}
+
+
+.config-section.open {
+  display: block;
+  padding-left: 40px;
+  margin: 0;
+}
+
+#config-nome{
+  display: none;
+}
+
+.opcoes-config{
+  display: flex;
+  align-items: center;
+}
+
+.nomes-opcoes-config {
+  margin-left: 10px;
+}
+
+
+
+#theme-switch{
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#theme-switch svg{
+  fill: White;
+}
+
+#theme-switch svg:last-child{
+ display: none;
+}
+
+.darkmode #theme-switch svg:first-child{
+  display: none;
+}
+
+.darkmode #theme-switch svg:last-child{
+  display: block;
+}
+
+
+
+@media (max-width: 1020px) {
+  .config-section {
+      position: static; 
+      padding-left: 20px;
+      margin-top: 10px; 
+     
+  }
+
+  #config-nome{
+      display: block;
+      color: #ffffff;
+      font-family: "Montserrat";
+      font-size: 90%;
+  }
+
+  .icon-nome-config {
+      display: flex;
+      align-items: center;
+  }
+  
+}
   
 
   
@@ -375,15 +261,302 @@
     .header .menu-icon {
       display: none;
     }
+  } */
+
+  @import url(cores.css);
+
+  
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  background-color: var(--cor-fundo);
+}
+
+
+
+a {
+  color: #f4f4f4;
+}
+
+/* header */
+
+#logo-1 {
+  width: 35px;
+  height: 35px;
+  margin: 10px 5px 10px 5%;
+}
+#logo-2 {
+  height: 20px;
+  width: auto;
+  margin-bottom: 15px;
+}
+.header {
+  background-color:var(--azul-menu) ;/*#132d46; */
+  box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+  /* position: fixed; */
+  width: 100%;
+  z-index: 3;
+
+}
+
+.header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background-color: var(--azul-menu)
+
+}
+
+.header li a, #icon-config{
+  display: block;
+  padding: 15px 20px;
+  /* border-right: 1px solid #f4f4f4; */
+  text-decoration: none;
+  color: White;
+  transition: all 0.2s;
+  font-family: "Montserrat";
+  text-transform: uppercase;
+  font-size: 90%;
+}
+
+.header li a:hover,
+.header .menu-btn:hover, #icon-config:hover {
+  transform: translateY(-3px);
+  cursor: pointer;
+  
+}
+
+.header .logo {
+  display: block;
+  float: left;
+  font-size: 2em;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+/* menu */
+
+.header .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height .2s ease-out;
+}
+
+/* menu icon */
+
+.header .menu-icon {
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  padding: 25px 20px;
+  position: relative;
+  user-select: none;
+}
+
+.header .menu-icon .navicon {
+  background: White;
+  display: block;
+  height: 2px;
+  border-radius: 10px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+  
+}
+
+
+.navicon{
+  margin-bottom: 7px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+  background: White;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.header .menu-icon .navicon:before {
+  top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+.header .menu-btn {
+  display: none;
+}
+
+.header .menu-btn:checked ~ .menu {
+  max-height: 400px;
+}
+
+
+.header .menu-btn:checked ~ .menu li {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.7s;
+
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+
+
+.config-section {
+  display: none;
+  background-color: var(--azul-menu);
+  padding: 10px;
+  position: absolute;
+  right: 10px;
+  top: 70px;
+  z-index: 2;
+}
+
+
+.config-section.open {
+  display: block;
+  padding-left: 40px;
+  margin: 0;
+}
+
+#config-nome{
+  display: none;
+}
+
+.opcoes-config{
+  display: flex;
+  align-items: center;
+}
+
+.nomes-opcoes-config {
+  margin-left: 10px;
+  color: #fff;
+  font-family: "Montserrat";
+  font-size: 80%;
+}
+
+
+
+#theme-switch{
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#theme-switch svg{
+  fill: White;
+}
+
+#theme-switch svg:last-child{
+ display: none;
+}
+
+.darkmode #theme-switch svg:first-child{
+  display: none;
+}
+
+.darkmode #theme-switch svg:last-child{
+  display: block;
+}
+
+
+
+
+@media (max-width: 1105px) {
+  .config-section {
+      position: static; 
+      padding-left: 20px;
+      margin-top: 10px; 
+     
   }
 
+  #config-nome{
+      display: block;
+      color: #ffffff;
+      font-family: "Montserrat";
+      font-size: 90%;
+  }
 
+  .icon-nome-config {
+      display: flex;
+      align-items: center;
+  }
+  
+}
+
+ 
+@media (min-width: 1105px) {
+  .header li {
+    float: left;
+   
+  }
+  .header li a {
+    padding: 20px 30px;
+    
+  }
+  .header .menu {
+    clear: none;
+    float: right;
+    max-height: none;
+  }
+  .header .menu-icon {
+    display: none;
+  }
+
+  .config-section {
+    position: static;
+    padding-left: 20px;
+}
+
+}
+
+
+
+
+
+    
 
   
 /* 
 CONFIGURAÇÕES RODAPE */
  .rodape{
-  background-color: #132d46;
+  background-color: var(--azul-menu);
   color: White;
   font-family: "Montserrat";
   height: 25vh;
@@ -473,7 +646,7 @@ h2 {
 .redes-sociais {
   grid-area: redes;
   border: none;
-  width: 50%;
+  width: 55%;
   display: flex;
   justify-content: space-between;
   align-items: flex-end; 
@@ -500,7 +673,7 @@ h2 {
 
 
 /* Rodapé */
-@media (max-width: 750px) {
+@media (max-width: 800px) {
   .rodape {
     display: grid;
     grid-template-columns: 1fr;
@@ -551,6 +724,7 @@ h2 {
     padding: 20px 20% 0px 20%;
     display: flex;
     justify-content: space-between;
+
   }
 
 
@@ -640,7 +814,7 @@ h2 {
 }
 
 
-@media (min-width: 501px) {
+@media (min-width: 801px) {
   .footer-toggle svg {
     display: none; 
   }

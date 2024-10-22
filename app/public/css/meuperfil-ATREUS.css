@@ -1,19 +1,16 @@
+
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
-
-@import url(cores.css);
-
-
-
 body {
   width: 100%;
   margin: 0;
   padding: 0;
- 
+  box-sizing: border-box;
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
 }
 
-.ul-conta-comum{
+ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -25,17 +22,10 @@ a {
   text-decoration: none;
 }
 
-
-#nome-pefil {
-  color: var(--text-color);
- 
-}
-
-
-.base_cabecalho #img-banner {
+.base_cabecalho .img-banner {
   width: 100%;
   background: url("../imagens/bg.png") no-repeat 50% 20% / cover;
-  min-height: calc(60px + 8vw);
+  min-height: calc(10px + 8vw);
 }
 
 .base_cabecalho .coluna_contaneir .coluna-esquerda {
@@ -95,7 +85,7 @@ a {
   font-size: 0.9rem;
 }
 .base_cabecalho .coluna_contaneir .coluna-esquerda .sobre li span {
-  color: var(--text-color);
+  color: #1d1d1d;
   font-weight: 600;
 }
 .base_cabecalho .coluna_contaneir .coluna-esquerda .sobre:after {
@@ -109,7 +99,7 @@ a {
 }
 .base_cabecalho .coluna_contaneir .sobre p {
   font-size: 1rem;
-  color: var(--text-color);
+  color: #1d1d1d;
   line-height: 1.8em;
 }
 .base_cabecalho .coluna_contaneir .sobre ul {
@@ -141,7 +131,7 @@ a {
   color: #818181;
 }
 .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita ul li:nth-child(1) a {
-  color: var(--text-color);
+  color: #1d1d1d;
   font-weight: 600;
 }
 .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita button {
@@ -188,14 +178,6 @@ input[type='file'] {
   cursor: pointer;
 }
 
-.icones-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.icones-container i {
-  color: var(--text-color);
-}
 
 .input-alteracao{
   border-radius: 5px;
@@ -241,11 +223,7 @@ input[type='file'] {
 .ul-conta-comum {
   display: flex;
   justify-content: space-between;
-  
 }
-
-
-
 
 
 .modal {
@@ -267,7 +245,6 @@ input[type='file'] {
   padding: 20px;
   border-radius: 10px;
   width: 70%;
-  height: fit-content;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 

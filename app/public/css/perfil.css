@@ -1,5 +1,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url(cores.css);
 
 .botao-de-voltar{
   width: 100%;
@@ -47,7 +48,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-ul {
+.p-t-c, .redes-sociais-icons, .quan-p-t-c{
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -59,10 +60,20 @@ a {
   text-decoration: none;
 }
 
+#nome-principal-perfil{
+  color: var(--text-color);
+}
+
 #banner-perfil {
-height: 8vw;
+height: 10vw;
 width: 100%;
 }
+
+
+.base_cabecalho {
+  margin-bottom: 50px;
+}
+
 
 .base_cabecalho header {
   width: 100%;
@@ -113,22 +124,22 @@ width: 100%;
   color: #818181;
   margin: 0;
 }
-.base_cabecalho .coluna_contaneir .coluna-esquerda .sobre {
+.base_cabecalho .coluna_contaneir .coluna-esquerda .quan-p-t-c {
   justify-content: space-between;
   position: relative;
   margin: 35px 0;
 }
-.base_cabecalho .coluna_contaneir .coluna-esquerda .sobre li {
+.base_cabecalho .coluna_contaneir .coluna-esquerda .quan-p-t-c li {
   display: flex;
   flex-direction: column;
   color: #818181;
   font-size: 0.9rem;
 }
-.base_cabecalho .coluna_contaneir .coluna-esquerda .sobre li span {
+.base_cabecalho .coluna_contaneir .coluna-esquerda .quan-p-t-c li span {
   color: #1d1d1d;
   font-weight: 600;
 }
-.base_cabecalho .coluna_contaneir .coluna-esquerda .sobre:after {
+.base_cabecalho .coluna_contaneir .coluna-esquerda .quan-p-t-c:after {
   position: absolute;
   content: "";
   bottom: -16px;
@@ -142,16 +153,16 @@ width: 100%;
   color: #1d1d1d;
   line-height: 1.8em;
 }
-.base_cabecalho .coluna_contaneir .sobre ul {
+.base_cabecalho .coluna_contaneir .quan-p-t-c ul {
   gap: 30px;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
 }
-.base_cabecalho .coluna_contaneir .sobre ul li {
+.base_cabecalho .coluna_contaneir .quan-p-t-c ul li {
   display: flex;
 }
-.base_cabecalho .coluna_contaneir .sobre ul i {
+.base_cabecalho .coluna_contaneir .quan-p-t-c ul i {
   font-size: 1.3rem;
 }
 .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita {
@@ -258,3 +269,11 @@ input[type='file'] {
   color: #fff;
 }
 
+@media (max-width: 800px) {
+
+  #banner-perfil {
+    height: 18vw;
+    width: 100%;
+    }
+
+}

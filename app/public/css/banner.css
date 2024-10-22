@@ -7,7 +7,7 @@
     margin-top: 0px;
     margin-bottom: 0px;
     position: relative;
-    padding-top: 60px;
+    /* padding-top: 60px; */
     
   
 
@@ -95,3 +95,15 @@
     transform: translateY(-50px) ;
 }
 
+@media (max-width: 500px) {
+
+    
+.call-to-action {
+
+    width: 180px;
+    font-size: 15px;
+
+  
+}
+
+}

@@ -238,7 +238,7 @@ router.post( //validações cadastrar
 
     body("nome").isLength({ min: 1, max: 20 }).withMessage('O nome deve ter de 10 a 50 caracteres.'),
 
-    body("sobrenome").isLength({ min: 2, max: 50 }).withMessage('O sobrenome deve ter de 10 a 50 caracteres.'),
+    // body("sobrenome").isLength({ min: 2, max: 50 }).withMessage('O sobrenome deve ter de 10 a 50 caracteres.'),
 
     body("email").isEmail().withMessage('Insira um e-mail válido.'),
 

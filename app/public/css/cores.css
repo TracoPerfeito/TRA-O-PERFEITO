@@ -1,0 +1,26 @@
+
+:root {
+    --cor-fundo: White;
+    --azul-menu: #132d46;
+    --text-color: Black;
+    --primary-color: #3a435d;
+    --verdinho-transparente-barra: #acdabf7a;
+    --texto-barra-pesquisa:  #165040;
+    --borda-barra-pesquisa: transparent;
+    --cor-botao: #132d46;
+}
+
+.darkmode {
+
+    --cor-fundo: #1c2936;
+    --azul-menu: #10263B;
+    --text-color: rgb(224, 224, 224);
+    --primary-color: #3a435d;
+    --verdinho-transparente-barra: transparent;
+    --texto-barra-pesquisa:  #fff;
+    --borda-barra-pesquisa: #fff;
+    --cor-botao: transparent;
+
+    
+
+}

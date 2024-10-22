@@ -1,4 +1,4 @@
-@import url(modes.css);
+@import url(cores.css);
 
 *{
     padding: 0;
@@ -15,6 +15,7 @@
     column-gap: 20px;
     row-gap: 50px;
     margin: 30px 50px;
+    color: var(--text-color);
 
 }
 
@@ -62,7 +63,7 @@
 
 .nome-dono-post-ex a{
     font-family: "Josefin Sans";
-    color: Black;
+    color: var(--text-color);
     margin-left: 10px;
 }
 
@@ -78,11 +79,13 @@
     border: 0px;
     font-size: 110%;
     transition: all 0.2s;
+    color: var(--text-color);
 }
 
 .like-button:hover{
     font-size: 115%;
     transform: translateY(-3px) ;
+   
 
    
 }
@@ -178,7 +181,7 @@
 
     .nome-dono-post-ex a{
         font-family: "Josefin Sans";
-        color: Black;
+        color: var(--text-color);
         margin-left: 10px;
     }
 

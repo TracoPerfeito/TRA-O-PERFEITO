@@ -1,24 +1,25 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-
 }
 
 .container-perfis {
     margin: auto;
     width: fit-content;
 
+
 }
 
 
 .card {
-    background-color: #fff;
+    background-color: var(--fundo);
     width: 320px;
     border-radius: 10px;
+    border: 1px solid var( --borda-barra-pesquisa);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     font-family: 'Josefin Sans';
+    color: var(--text-color);
 }
 
 .card-header .background-image {
@@ -30,6 +31,11 @@
 .card-content {
     padding: 15px;
     padding-top: 0px;
+   
+}
+
+.card-content p {
+    color: var(--text-color);
 }
 
 .profile {
@@ -56,9 +62,10 @@
 }
 
 .name {
-    font-size: 18px;
+    font-size: 17px;
     margin: 0;
     font-weight: bold;
+    color: var(--text-color);
 }
 
 .role {
@@ -114,9 +121,9 @@
     width: 300px;
     /* height: calc(100% - 100px);   */
     height: fit-content; 
-    background-color: #ffffff;
+    background-color: var(--cor-fundo);
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
-    color: rgb(0, 0, 0);
+    color: var(--text-color);
     padding: 20px;
     transition: right 0.3s ease, opacity 0.3s ease;
     opacity: 0;
@@ -126,6 +133,7 @@
   
   .secao-filtro h2 {
     font-family: "Montserrat";
+    color: var(--text-color);
 
   }
   .secao-filtro.open {
@@ -150,12 +158,12 @@
   } */
 
   #aplicar-filtros{
-        background-color:  #132d46;
+        background-color: var(--cor-botao);
         color: #FFF;
         font-family: "Josefin Sans";
         padding: 10px;
         border-radius: 10px;
-        border: none;
+        border: 1px solid var(--borda-barra-pesquisa);
         margin-top: 20px;
   }
   

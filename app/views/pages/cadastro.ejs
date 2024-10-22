@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
-<link rel = "stylesheet" href="css/teste.css">
+<link rel = "stylesheet" href="css/cadastro.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
@@ -56,19 +56,21 @@ if(listaErros){
 %>
 <main>
 
+   
+    
+<section class="container">
+
     <script src="js/voltar.js"></script>
-    <section class="botao">   
+    <section class="botao-voltar">   
         <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
         </button>
         <p class="lado-botao">Voltar </p>
     </section>
    
-    
-<section class="container">
 
 
     <section class="secaoimagens">
-        <img src="imagens/logo.png" id="img1">
+        <img src="imagens/logo.png" id="img1"> <br>
         <img src="imagens/tracoperfeitoazul.png" id="img2">
     </section>
     
@@ -86,17 +88,17 @@ if(listaErros){
                 
             <section class="input-box">
             
-            <label for="nome"> Primeiro Nome:</label>
+            <label for="nome"> Nome:</label> <br>
             <input  type=" text"  id="nome" name="nome"   value="<%= valores.nome%>" class="<%= cssErros.nome %>"  placeholder="Digite seu primeiro nome:" required>
             <span class="msg-erro"><%= msgErros.nome %></span> <br>
             </section>
              
-                                <section class="input-box">
+                                <!-- <section class="input-box">
             <label for="sobrenome"> Sobrenome:</label>
             <input type=" text" id="sobrenome"  name="sobrenome" required value="<%= valores.sobrenome%>" class="<%= cssErros.sobrenome %>" placeholder="Digite seu Sobrenome:" >
             <span class="msg-erro"><%= msgErros.sobrenome %></span> <br>
             </section>
-             
+              -->
                                 <section class="input-box">
             <label for="email"> Email:</label>
             <input id="email" type=" email" name="email" placeholder="Digite seu email:" required  value="<%= valores.email %>" class="<%= cssErros.email %>">
@@ -143,4 +145,4 @@ if(listaErros){
  
     
 </body>
-</html> 
+</html>  
