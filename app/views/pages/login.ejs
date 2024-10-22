@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 
 
     <title>Traço Perfeito</title>
@@ -19,9 +20,8 @@
 <body>
 
 
-    
-<% 
-let cssErros = {email: "", password: ""};
+	<% 
+	let cssErros = {email: "", password: ""};
 let msgErros = {email: "", password: ""};
 if(errosLogin){
     errosLogin.errors.forEach(function (elemento){
@@ -37,57 +37,85 @@ if(errosLogin){
 
     });
 }
-
-%>
-
+ %>
 
 
-   <header>
-       
-       <script src="js/voltar.js"></script>
-       <section class="botao">
-           <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
-           </button>
-           <p class="lado-botao">Voltar </p>
-       </section>
-       
-   </header>
-    
-    
-    
-    
-           <form action="/login" method="post">
-    
-    
-        <section class="secaoimagens">
-            <img src="imagens/logo.png" id="img1">
-            <img src="imagens/tracoperfeitoazul.png" id="img2">
+	<img class="wave" src="">
+	<section class="container">
+		<section class="img">
+			<img src="imagens/undraw_online_art_re_f1pk.svg">
+        
         </section>
-    
-    
-    
-                <h1>LOGIN</h1>
-    
-                <label for="email">Digite seu e-mail:</label><br>
-                <input type="email" name="email" id="email"  value="<%= valores.email %>" class="<%= cssErros.email %>" required><br>
-                <span class="msg-erro"><%= msgErros.email %></span> <br>
-    
-                <label for="senha">Digite sua senha:</label><br>
-                <input type="password" name="password" id="password"  value="<%= valores.password %>" class="<%= cssErros.password %>" required><br>
-                <span class="msg-erro"><%= msgErros.password %></span> <br>
-    
-                <p class="p1"><a href="#">Esqueceu sua senha?</a></p>
-    
-                <p class="p2">Não tem uma conta? <a href="/cadastro">Cadastre-se</a></p>
-    
-                <button type="submit">Entrar</button>
-    
-    
-    
+            
+		<section class="login-content">
+			<form action="/login" method="post">
+				<img src="imagens/logo.png">
+				<h2 class="title">Login</h2>
+
+				 <!-- CAMPO DE E-MAIL -->
+
+           		<section class="input-section one">
+           		   <section class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </section>
+           		   <section class="section">
+           		   		<h5>Email</h5>
+           		   		<input type="email" class="input" name="email" id="email"  value="<%= valores.email %>" class="<%= cssErros.email %>">
+						<span class="msg-erro"><%= msgErros.email %></span> <br>
+         		   
+					</section>
+           		</section>
+
+				<!-- FIM DO CAMPO DE E-MAIL -->
+
+
+
+
+				<!-- CAMPO DE SENHA -->
+
+           		<section class="input-section pass">
+           		   <section class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </section>
+           		   <section class="section">
+           		    	<h5>Senha</h5>
+           		    	<input type="password" class="input" name="password" id="password"  value="<%= valores.password %>" class="<%= cssErros.password %>">
+						<span class="msg-erro"><%= msgErros.password %></span> <br>
+
+					</section>
+            	</section>
+
+				<!-- FIM DO CAMPO DE SENHA -->
+
+        
+            	<a href="#" class="senha-esquecida">Esqueceu a senha?</a>
+
+                <p class="cadas">Não tem conta? <a href="/cadastro">Cadastre-se</a></p>
+            	<input type="submit" class="btn" value="Login">
+            
+                <!-- SOCIAL MEDIA LINKS -->
+
+            <h4>Ou logar usando</h4>
+            <section id="social_media">
+                <!-- FACEBOOK -->
+                <a href="#">
+                    <img src="imagens/facebook.png" alt="">
+                </a>
+
+                <!-- GOOGLE -->
+                <a href="#">
+                    <img src="imagens/google.png" alt="Google logo">
+                </a>
+                
+                <!-- GITHUB -->
+                <a href="#">
+                    <img src="imagens/github.png" alt="">
+                </a>
+            </section>
+
             </form>
-
-
-    
-
+        </section>
+    </section>
+    <script src="index.js"></script>
 </body>
 </html>
