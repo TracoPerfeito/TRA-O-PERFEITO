@@ -326,8 +326,9 @@ a {
 
 .header li a:hover,
 .header .menu-btn:hover, #icon-config:hover {
-  transform: translateY(-3px);
-  cursor: pointer;
+   transform: translateY(-3px); 
+   cursor: pointer; 
+ 
   
 }
 
@@ -517,6 +518,18 @@ a {
       display: flex;
       align-items: center;
   }
+
+  
+/* .header li a:hover,
+.header .menu-btn:hover, #icon-config:hover, .icon-nome-config:hover {
+ 
+   cursor: pointer; 
+   background-color: #7193C7;
+   color: #fff;
+   font-weight: 600;
+ 
+  
+} */
   
 }
 
