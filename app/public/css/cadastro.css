@@ -220,6 +220,38 @@ margin-bottom: 15px;}
 	
 }
 
+/* BOTÃO DE VOLTAR */
+
+.botao-de-voltar{
+    width: 100%;
+    background-color:  rgba(224, 236, 240, 0.37);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.btn-voltar{
+    border-radius: 50%;
+    border: none;
+    width: 30px;
+    height: 30px;
+    background-color: #acdabf7a;
+    color: #165040;
+    margin: 0px 0px 0px 60px;
+    font-size: 17px;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-voltar:hover {
+    background-color: #648b747a;
+    cursor: pointer;
+}
+
+/* FIM DO BOTÃO DE VOLTAR */
 
 
 
