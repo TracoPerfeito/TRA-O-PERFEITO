@@ -36,7 +36,7 @@
   font-family: "Josefin Sans";
   font-weight: 400;
   font-size: 15px;
-  color: var(--text-color);
+  color: #474747;
 }
 
 body {
@@ -54,13 +54,6 @@ body {
   padding: 0;
   display: flex;
   align-items: center;
-
-}
-
-
-.publicacao-perfil {
-  border-radius: 5px;
-  box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
 }
 
 a {
@@ -79,11 +72,6 @@ width: 100%;
 
 .base_cabecalho {
   margin-bottom: 50px;
- 
-}
-
-.publi {
-  padding: 0px 10px;
 }
 
 
@@ -106,7 +94,6 @@ width: 100%;
   top: -60px;
   left: 50%;
   transform: translatex(-50%);
-  color: var(--text-color);
 }
 .base_cabecalho .coluna_contaneir .coluna-esquerda .img__container img {
   width: 120px;
@@ -149,7 +136,7 @@ width: 100%;
   font-size: 0.9rem;
 }
 .base_cabecalho .coluna_contaneir .coluna-esquerda .quan-p-t-c li span {
-  color: var(--text-color);
+  color: #1d1d1d;
   font-weight: 600;
 }
 .base_cabecalho .coluna_contaneir .coluna-esquerda .quan-p-t-c:after {
@@ -163,7 +150,7 @@ width: 100%;
 }
 .base_cabecalho .coluna_contaneir .sobre p {
   font-size: 1rem;
-  color: var(--text-color);
+  color: #1d1d1d;
   line-height: 1.8em;
 }
 .base_cabecalho .coluna_contaneir .quan-p-t-c ul {
@@ -173,7 +160,6 @@ width: 100%;
   margin-top: 25px;
 }
 .base_cabecalho .coluna_contaneir .quan-p-t-c ul li {
-
   display: flex;
 }
 .base_cabecalho .coluna_contaneir .quan-p-t-c ul i {
@@ -196,7 +182,7 @@ width: 100%;
   color: #818181;
 }
 .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita ul li:nth-child(1) a {
-  color: var(--text-color);
+  color: #1d1d1d;
   font-weight: 600;
 }
 .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita button {
@@ -207,7 +193,6 @@ width: 100%;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
-  
 }
 .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita button:hover {
   opacity: 0.8;
@@ -276,8 +261,7 @@ input[type='file'] {
 }
 
 #irparachat{
-  background-color: var(--cor-botao);
-  border: 1px solid var(--borda-barra-pesquisa);
+  background-color: #132d46;
   
 }
 
@@ -291,6 +275,26 @@ input[type='file'] {
     height: 18vw;
     width: 100%;
     }
+
+    .botao-de-voltar{
+      width: 100%;
+      background-color:  rgba(224, 236, 240, 0.37);
+      height: 40px;
+      display: flex;
+      
+  }
+
+  .btn-voltar{
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      background-color: #acdabf7a;
+      margin: 0px 0px 0px 35px;
+  }
+
+  .lado-botao {
+      margin: 0px 10px;
+  }
 
 }
 
