@@ -15,8 +15,8 @@
 
 
 <% 
-let cssErros = {nome: "", sobrenome: "", email: "", celular: "", password: "", confirmpassword: ""};
-let msgErros = {nome: "", sobrenome: "", email: "", celular: "", password: "", confirmpassword: ""};
+let cssErros = {nome: "", usuario: "", email: "", celular: "", password: "", confirmpassword: ""};
+let msgErros = {nome: "", usuario: "", email: "", celular: "", password: "", confirmpassword: ""};
 if(listaErros){
     listaErros.errors.forEach(function (elemento){
         if(elemento.path == "nome"){
@@ -24,9 +24,9 @@ if(listaErros){
             msgErros.nome = elemento.msg;
         }
 
-        if(elemento.path == "sobrenome"){
-            cssErros.sobrenome = "erro-form";
-            msgErros.sobrenome = elemento.msg;
+        if(elemento.path == "usuario"){
+            cssErros.usuario = "erro-form";
+            msgErros.usuario = elemento.msg;
         }
 
         if(elemento.path == "email"){
@@ -76,9 +76,9 @@ if(listaErros){
 </section>
  
                     <section class="input-box">
-<label for="sobrenome"> Sobrenome</label>
-<input type=" text" id="sobrenome"  name="sobrenome" required value="<%= valores.sobrenome%>" class="<%= cssErros.sobrenome %>" placeholder="Digite seu Sobrenome:" >
-<span><%= msgErros.sobrenome %></span> <br>
+<label for="usuario"> usuario</label>
+<input type=" text" id="usuario"  name="usuario" required value="<%= valores.usuario%>" class="<%= cssErros.usuario %>" placeholder="Digite seu usuario:" >
+<span><%= msgErros.usuario %></span> <br>
 </section>
  
                     <section class="input-box">

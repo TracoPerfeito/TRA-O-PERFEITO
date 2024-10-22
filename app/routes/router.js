@@ -181,6 +181,10 @@ router.get("/chat-c-c", function (req, res) { //chat conta comum
 });
 
 
+router.get("/tabela-pagamentos", function (req, res) { //Tabela de pagamentos
+    res.render('pages/tabela-pagamentos')
+ 
+});
 
 
 
@@ -227,7 +231,7 @@ router.get("/oportunidades", function (req, res) { //oportunidades logado
 });
 
 router.get("/cadastro", function (req, res) { //cadastrar
-    res.render('pages/cadastro', {retorno: null, valores: {nome: "", sobrenome: "", email: "", celular: "", password: "", confirmpassword: ""}, listaErros: null});
+    res.render('pages/cadastro', {retorno: null, valores: {nome: "", usuario: "", email: "", celular: "", password: "", confirmpassword: ""}, listaErros: null});
  
 });
 
@@ -238,7 +242,7 @@ router.post( //validações cadastrar
 
     body("nome").isLength({ min: 1, max: 20 }).withMessage('O nome deve ter de 10 a 50 caracteres.'),
 
-    // body("sobrenome").isLength({ min: 2, max: 50 }).withMessage('O sobrenome deve ter de 10 a 50 caracteres.'),
+    body("usuario").isLength({ min: 2, max: 50 }).withMessage('O usuario deve ter de 10 a 50 caracteres.'),
 
     body("email").isEmail().withMessage('Insira um e-mail válido.'),
 
@@ -264,7 +268,7 @@ router.post( //validações cadastrar
         } else {
         
             console.log(listaErros);
-            return res.render("pages/cadastro", { retorno: null, valores: {nome: req.body.nome, sobrenome: req.body.sobrenome, email: req.body.email, celular: req.body.celular, password: req.body.password, confirmpassword: req.body.confirmpassword}, listaErros: listaErros });
+            return res.render("pages/cadastro", { retorno: null, valores: {nome: req.body.nome, usuario: req.body.usuario, email: req.body.email, celular: req.body.celular, password: req.body.password, confirmpassword: req.body.confirmpassword}, listaErros: listaErros });
         }
     }
 );
