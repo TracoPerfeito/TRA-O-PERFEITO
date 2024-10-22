@@ -16,129 +16,198 @@
 
 <body>
  
-<% 
-let cssErros = {nome: "", sobrenome: "", email: "", celular: "", password: "", confirmpassword: ""};
-let msgErros = {nome: "", sobrenome: "", email: "", celular: "", password: "", confirmpassword: ""};
-if(listaErros){
-    listaErros.errors.forEach(function (elemento){
-        if(elemento.path == "nome"){
-            cssErros.nome = "erro-form"; 
-            msgErros.nome = elemento.msg;
-        }
-
-        if(elemento.path == "sobrenome"){
-            cssErros.sobrenome = "erro-form";
-            msgErros.sobrenome = elemento.msg;
-        }
-
-        if(elemento.path == "email"){
-            cssErros.email = "erro-form";
-            msgErros.email = elemento.msg;
-        }
-
-        if(elemento.path == "celular"){
-            cssErros.celular = "erro-form";
-            msgErros.celular = elemento.msg;
-        }
-
-        if(elemento.path == "password"){
-            cssErros.password = "erro-form";
-            msgErros.password = elemento.msg;
-        }
-
-        if(elemento.path == "confirmpassword"){
-            cssErros.confirmpassword = "erro-form";
-            msgErros.confirmpassword = elemento.msg;
-        }
-    });
-}
-
-%>
-<main>
-
-   
+    <% 
+    let cssErros = {nome: "", usuario: "", email: "", celular: "", password: "", confirmpassword: ""};
+    let msgErros = {nome: "", usuario: "", email: "", celular: "", password: "", confirmpassword: ""}; 
     
-<section class="container">
-
-    <script src="js/voltar.js"></script>
-    <section class="botao-voltar">   
-        <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
-        </button>
-        <p class="lado-botao">Voltar </p>
+    if(listaErros){
+        listaErros.errors.forEach(function (elemento){
+            if(elemento.path == "nome"){
+                cssErros.nome = "erro-form";
+                msgErros.nome = elemento.msg;
+            }
+     
+            if(elemento.path == "usuario"){
+                cssErros.usuario = "erro-form";
+                msgErros.usuario = elemento.msg;
+            }
+     
+            if(elemento.path == "email"){
+                cssErros.email = "erro-form";
+                msgErros.email = elemento.msg;
+            }
+     
+            if(elemento.path == "celular"){
+                cssErros.celular = "erro-form";
+                msgErros.celular = elemento.msg;
+            }
+     
+            if(elemento.path == "password"){
+                cssErros.password = "erro-form";
+                msgErros.password = elemento.msg;
+            }
+     
+            if(elemento.path == "confirmpassword"){
+                cssErros.confirmpassword = "erro-form";
+                msgErros.confirmpassword = elemento.msg;
+            }
+        });
+    }
+    %>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <main>
+    
+    
+    <!-- dsakdjaskdjskadjas -->
+    
+    <section class="container-progrsso">
+        <section class="progress">
+          <section class="percent"></section>
+        </section>
+        <section class="steps">
+          <section class="step" id="0">		</section>
+          <section class="step" id="1">		</section>
+          <section class="step" id="2">		</section>
+          <section class="step" id="3">		</section>
+        </section>
     </section>
-   
-
-
-    <section class="secaoimagens">
-        <img src="imagens/logo.png" id="img1"> <br>
-        <img src="imagens/tracoperfeitoazul.png" id="img2">
-    </section>
     
-
     
-    <section class="secao-form">
-
-        <form action="/cadastro" method="post">
-            <section class="form-header"></section>
-            <section class="title">
-            <h1 class="titulo">CADASTRE-SE</h1>
+    
+    <!-- ksakskaskskasas -->
+    
+    
+    
+        <img class="wave" src="">
+        <section class="container">
+            <section class="img">
+                <img src="imagens/undraw_online_art_re_f1pk.svg">
+            
             </section>
-            <section class="input-group">
-
                 
-            <section class="input-box">
-            
-            <label for="nome"> Nome:</label> <br>
-            <input  type=" text"  id="nome" name="nome"   value="<%= valores.nome%>" class="<%= cssErros.nome %>"  placeholder="Digite seu primeiro nome:" required>
-            <span class="msg-erro"><%= msgErros.nome %></span> <br>
-            </section>
-             
-                                <!-- <section class="input-box">
-            <label for="sobrenome"> Sobrenome:</label>
-            <input type=" text" id="sobrenome"  name="sobrenome" required value="<%= valores.sobrenome%>" class="<%= cssErros.sobrenome %>" placeholder="Digite seu Sobrenome:" >
-            <span class="msg-erro"><%= msgErros.sobrenome %></span> <br>
-            </section>
-              -->
-                                <section class="input-box">
-            <label for="email"> Email:</label>
-            <input id="email" type=" email" name="email" placeholder="Digite seu email:" required  value="<%= valores.email %>" class="<%= cssErros.email %>">
-            <span class="msg-erro"><%= msgErros.email %></span> <br>
-            </section>
-             
-                                <section class="input-box">
-            <label for="celular"> Celular:</label>
-            <input id="celular" type=" " name="celular" placeholder="(xx) xxxx-xxxx" required  value="<%= valores.celular %>" class="<%= cssErros.celular %>">
-            <span class="msg-erro"><%= msgErros.celular %></span> <br>
-            </section>
-            
-                                <section class="input-box">
-            <label for="password"> Senha:</label>
-            <input id="password" type=" password" name="password" placeholder="Crie senha:" required  value="<%= valores.password %>" class="<%= cssErros.password %>">
-            <span class="msg-erro"><%= msgErros.password %></span> <br>
-            </section>
-             
-                                <section class="input-box">
-            <label for="confirmpassword"> Confirme sua senha:</label>
-            <input id="confirmpassword" type=" password" name="confirmpassword" placeholder="Confirme sua senha:" required  value="<%= valores.confirmpassword %>" class="<%= cssErros.confirmpassword %>">
-            <span class="msg-erro"><%= msgErros.confirmpassword %></span> <br>
-            </section>
-            </section>
+            <section class="login-content">
+                <form action="/cadastro" method="post">
+                    <img src="imagens/logo.png">
+                    <h2 class="title">Cadastro</h2>
+                       <section class="input-section one">
+                          
     
-            <section class="continue-button">
-                <button type="submit">Continuar</button>
-                </section>
-             
-            </form>
-             
+                    <!-- CAMPO DE NOME COMPLETO -->
+                       <section class="input-section name" >
+                            <section class="section" for="nome">
+                                <h5 class="titulos-input">Nome Completo</h5>
+                                <input type="text" id="nome" name="nome" class="input" value="<%= valores.nome%>" class="<%= cssErros.nome %>">
+                                <span class="msg-erro"><%= msgErros.nome %></span>
+                            </section>
+                        </section>
+                    <!-- FIM DO CAMPO DE NOME COMPLETO -->
+    
+                    <!-- CAMPO DE NOME DE USUARIO -->
+                        <section class="input-section user">
+                            <section class="section" for="usuario">
+                                <h5 class="titulos-input">Nome de usuário</h5>
+                                <input type="text" id="usuario"  name="usuario" class="input" value="<%= valores.usuario%>" class="<%= cssErros.usuario %>">
+                                <span class="msg-erro"><%= msgErros.usuario %></span>
+                            </section>
+                        </section>
+                    <!-- FIM DO CAMPO DE NOME DE USUARIO -->
+    
+                       
+                    <!-- CAMPO DE EMAIL -->
+                          <section class="section" for="email">
+                                  <h5 class="titulos-input">Email</h5>
+                                  <input type="email" id="email" name="email" class="input"  value="<%= valores.email %>" class="<%= cssErros.email %>">
+                            <span class="msg-erro"><%= msgErros.email %></span>
+                          </section>
+                       </section>
+    
+    
+                    <!-- CAMPO DE CELULAR -->
+    
+                       <section class="input-section celular">
+                        <section class="section" for="celular">
+                            <h5 class="titulos-input">Celular</h5>
+                            <input type="" class="input" id="celular" name="celular" value="<%= valores.celular %>" class="<%= cssErros.celular %>">
+                            <span class="msg-erro"><%= msgErros.celular %></span>
+                        </section>
+                    </section>
+    
+                    <!-- FIM DO CAMPO DE CELULAR -->
+    
+    
+                    <!-- CAMPO DE SENHA -->
+    
+                       <section class="input-section pass">
+                          <!-- <section class="i">  
+                               <i class="fas fa-lock"></i>
+                          </section> -->
+                          <section class="section" for="password">
+                               <h5 class="titulos-input">Senha</h5>
+                               <input type="password" id="password" class="input" name="password" value="<%= valores.password %>" class="<%= cssErros.password %>">
+                               <span class="msg-erro"><%= msgErros.password %></span>
+                           </section>
+                    </section>
+    
+                    <!-- FIM DO CAMPO DE SENHA -->
+    
+    
+                    <!-- CAMPO DE CONFIRME SUA SENHA -->
+    
+                    <section class="input-section confirmpass">
+                        <section class="section" for="confirmpassword">
+                             <h5 class="titulos-input">Confirme sua senha</h5>
+                             <input type="password" id="confirmpassword" name="confirmpassword" class="input" value="<%= valores.confirmpassword %>" class="<%= cssErros.confirmpassword %>">
+                             <span class="msg-erro"><%= msgErros.confirmpassword %></span>
+                            </section>
+                    </section>
+                    <!-- FIM DO CAMPO DE CONFIRME SUA SENHA -->
+    
+    
+                    <!-- CHECKBOX DO TERMOS DE CONDIÇÕES -->
+    
+                    <section class="checkbox-wrapper-4">
+                        <input class="inp-cbx" id="morning" type="checkbox"/>
+                        <label class="cbx" for="morning"><span>
+                        <svg width="12px" height="10px">
+                          <use xlink:href="#check-4"></use>
+                        </svg></span><span>Aceito os <a href=""> Termos de Condições</a></span></label>
+                        <svg class="inline-svg">
+                          <symbol id="check-4" viewbox="0 0 12 10">
+                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                          </symbol>
+                        </svg>
+                      </section>
+                    
+                      <!-- FIM DO CHECKBOX DO TERMOS DE CONDIÇÕES -->
+    
+                      <input type="submit" class="btn" value="Continuar" onclick="location.href='/tabela-pagamentos'">
+                    
+            
+    
+                
+    
+                </form>
             </section>
-            </section>
-
-
-    </section>
-   
-
-</section>
-
+        </section>
+        <script src="js/barradeprogresso.js"></script>
 </main>
 
  
