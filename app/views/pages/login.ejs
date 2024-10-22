@@ -40,6 +40,18 @@ if(errosLogin){
  %>
 
 
+
+ <section class="botao-de-voltar">   
+    <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+   
+       
+    </button>
+
+    <p class="lado-botao">Voltar à página inicial</p>
+</section>
+
+
+
 	<img class="wave" src="">
 	<section class="container">
 		<section class="img">
@@ -116,6 +128,31 @@ if(errosLogin){
             </form>
         </section>
     </section>
-    <script src="index.js"></script>
+    <script src="js/voltar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pega os inputs
+            const inputs = document.querySelectorAll('.input-section > section > input');
+            
+            // Vai olhat cada campo
+            inputs.forEach(input => {
+                // Verifica se o campo já tem algum valor preenchido
+                if (input.value.trim() !== '') {
+                    // se o campo tiver sido preenchido, a classe focus será adicionada
+                    input.parentNode.parentNode.classList.add('focus');
+                }
+    
+        
+                input.addEventListener('focus', () => {
+                    input.parentNode.parentNode.classList.add('focus');
+                });
+                input.addEventListener('blur', () => {
+                    if (input.value.trim() === '') {
+                        input.parentNode.parentNode.classList.remove('focus');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

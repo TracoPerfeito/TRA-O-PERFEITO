@@ -138,7 +138,7 @@ form{
 	border: none;
 	outline: none;
 	background: none;
-	padding: 0.5rem 0.7rem;
+	padding: 0.5rem 0.7rem 0 0.7rem;
 	font-size: 1.2rem;
 	color: #555;
 	font-family: 'poppins', sans-serif;
@@ -156,6 +156,7 @@ form{
 	font-size: 0.9rem;
 	transition: .3s;
 	justify-content: space-between;
+	margin: 2px 0px 2px 0px;
 }
 
 .senha-esquecida:hover{
@@ -326,8 +327,7 @@ margin-bottom: 15px;}
 }
   */
 
-
-.erro-form {
+  .erro-form {
     
     color: red;
     border: 1px solid red;
@@ -336,43 +336,48 @@ margin-bottom: 15px;}
     background-color: lightpink
 }
 
+
 .msg-erro{
-    margin-left: 6.5%;
+
     color: firebrick;
+	font-size: 14px;
 }
 
 
-.botao {
-    margin: 30px 0px 30px 30px;
+.botao-de-voltar{
+    width: 100%;
+    background-color:  rgba(224, 236, 240, 0.37);
+    height: 40px;
     display: flex;
+    align-items: center;
     
-}
-
-.lado-botao {
-    padding: 5px 7px;
-    font-family: "Josefin Sans";
-    margin: 6px 5px;
-    font-size: 20px;
 }
 
 .btn-voltar{
-    grid-area: botao;
-    background-color: #132d46;
-    padding: 10px;
     border-radius: 50%;
     border: none;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    margin: 0px;
-    
-    }
-
-    
-#seta{
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-   
-    
+    width: 30px;
+    height: 30px;
+    background-color: #acdabf7a;
+    color: #165040;
+    margin: 0px 0px 0px 60px;
+    font-size: 17px;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.btn-voltar:hover {
+    background-color: #648b747a;
+    cursor: pointer;
+}
+
+
+.lado-botao {
+    margin: 0px 10px;
+    font-family: "Josefin Sans";
+    font-weight: 400;
+    font-size: 15px;
+    color: #474747;
+}
