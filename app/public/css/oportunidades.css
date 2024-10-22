@@ -1,4 +1,4 @@
-
+@import url(cores.css);
 main {
     margin: 10px 80px;
     
@@ -15,6 +15,7 @@ main {
     padding: 15px;
     background-color:#acdabf7a;
     border-radius: 5px;
+    
  
 }
 
@@ -42,25 +43,17 @@ main {
     margin-left: 10px;
     font-family: "Josefin Sans";
     font-size: 20px;
+    color: var(--text-color);
 }
 
 .proposta-oportunidades p {
     margin-top: 15px;    
     overflow: hidden;         
     text-overflow: ellipsis;   
-    max-height: 100px;  
+   
     font-family: "Josefin Sans";
 }
 
-
-
-.proposta-oportunidades p {
-    margin-top: 15px;    
-    overflow: hidden;         
-    text-overflow: ellipsis;   
-    max-height: 100px;  
-    font-family: "Josefin Sans";
-}
 
 .especificacao{
     font-family: "Josefin Sans";
@@ -167,6 +160,9 @@ main {
   Configurações expansão filtro */
 
 
+  
+
+
   .linha {
      color:#132d462c;
   }
@@ -233,7 +229,7 @@ main {
 
 
 
-@media (max-width: 760px){  /*  RESPON. DUAS COLUNAS */
+@media (max-width: 800px){  /*  RESPON. DUAS COLUNAS */
 
     
     main {

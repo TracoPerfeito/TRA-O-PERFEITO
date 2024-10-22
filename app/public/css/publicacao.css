@@ -63,6 +63,7 @@
     display: flex;
     align-items: center;
     margin: 10px 20px;
+    color: var(--text-color);
 }
 
 .foto-de-perfil{
@@ -74,7 +75,7 @@
 
 .nome-dono-post {
     font-family: "Josefin Sans";
-    color: black;
+    color: var(--text-color);
     margin: 10px;
 }
 
@@ -97,6 +98,7 @@
     margin: 10px 20px;
     width: 90%;
     font-family: "Josefin Sans";
+    color: var(--text-color);
    
 }
 
@@ -119,11 +121,13 @@
     width: 90%;
     margin: 20px;
     font-family: "Josefin Sans";
+    color: var(--text-color);
 
 }
 
 #comentarios-nome-secao {
     font-family: "Montserrat";
+    color: var(--text-color);
 }
 
 .adiionar-comentario {
@@ -165,7 +169,7 @@
 }
 
 .comentario-info p {
-    color: black;
+    color: var(--text-color);
     margin-left: 10px;
 }
 
@@ -218,6 +222,7 @@
 
 #publi-rel-nome-secao{
     font-family: "Montserrat";
+    color: var(--text-color);
 }
 
 .publicacoes-rel-caixas {
@@ -253,7 +258,7 @@
 }
 
 .foto-nome-p-rel p {
-    color: #000000;
+    color: var(--text-color);
     margin-left: 10px;
 }
 
@@ -275,6 +280,7 @@
     background-color: transparent;
     font-size: 20px;
     border: none;
+    color: var(--text-color);
     
 
     }
@@ -340,7 +346,7 @@
 
 
 
- @media screen and (max-width:890px){
+ @media(max-width:890px){
 
 
         .principal-pag-publi {
@@ -401,7 +407,7 @@
     
 
 
-@media screen and (max-width: 650px) {
+@media(max-width: 650px) {
 
     .botao-de-voltar{
         width: 100%;
