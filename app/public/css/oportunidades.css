@@ -123,6 +123,7 @@ main {
   
   .secao-filtro h2 {
     font-family: "Montserrat";
+    color: var(--text-color);
 
   }
   .secao-filtro.open {

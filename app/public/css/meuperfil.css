@@ -34,6 +34,14 @@ body {
   
 }
 
+.redes-sociais-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 20px 0px;
+  padding: 20px 5% 20px 5%;
+  border-top: 1px solid #cccccc;
+}
 
 a {
   text-decoration: none;
@@ -54,7 +62,11 @@ a {
     border-radius: 5px;
     box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
   }
-
+ 
+  .publi {
+    padding: 0px 10px;
+  }
+  
 .base_cabecalho header {
   width: 100%;
   background: url("../imagens/bg.png") no-repeat 50% 20% / cover;
@@ -84,7 +96,7 @@ a {
   display: block;
   box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
 }
-/* .base_cabecalho .coluna_contaneir .coluna-esquerda .img__container span {
+ .base_cabecalho .coluna_contaneir .coluna-esquerda .img__container span {
   position: absolute;
   background: #2afa6a;
   width: 16px;
@@ -93,7 +105,7 @@ a {
   bottom: 3px;
   right: 11px;
   border: 2px solid #fff;
-} */
+} 
 .base_cabecalho .coluna_contaneir .coluna-esquerda h2 {
   margin-top: 60px;
   font-weight: 600;
@@ -130,6 +142,20 @@ a {
   height: 1px;
   width: 100%;
 }
+/* 
+.paragrafo-descricao:after {
+  position: absolute;
+  content: "";
+  bottom: -5px;
+  display: block;
+  background: #cccccc;
+  height: 1px;
+  width: 100%;
+}
+ */
+
+
+
 .base_cabecalho .coluna_contaneir .quan-p-t-c p {
   font-size: 1rem;
   color: var(--text-color);
@@ -193,8 +219,10 @@ a {
 
 .embaixo {
     margin-right: 100px;
-    margin-left: 100px;
+    margin-left: 85px;
     padding-bottom: 30px;
+    align-items: center;
+    display: flex;
 }
 
 input[type='file'] {
@@ -235,11 +263,12 @@ input[type='file'] {
   margin-top: 5px;
 }
 
-.nova-publi-perfil {
-  background-color: #01c38d;
+.nova-publi-perfil, .nova-publ {
+  background-color: #132d46;
+  color: White;
 }
 
-.base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita ul li .nova-publ {
+.base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita ul li .nova-publi {
   color: #fff;
   text-transform: uppercase;
   

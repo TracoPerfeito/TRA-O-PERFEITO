@@ -1,3 +1,4 @@
+@import url(cores.css);
 
 .botao-de-voltar{
     width: 100%;
@@ -91,7 +92,7 @@
     
 .lista-conversas-anteriores li {
 
-    display: flex;
+    display: flex;  
     align-items: center;
     height: 50px;
     font-family: "Josefin Sans";
@@ -197,7 +198,7 @@
     
 .area-digitar input {
     background-color: #acdabf7a;
-    width: 90%;
+    width: 95%;
     height: 100%;
     border-radius: 5px;
     border: none;
@@ -215,7 +216,7 @@
 
 #enviar-msg{
     background-color:  #acdabf7a;
-    width: 10%;
+    width: 5%;
     height: 130%;
     border: none;
     border-radius: 5px;
@@ -225,10 +226,18 @@
     padding: 5px 0px;
 }
 
+#enviar-msg:hover{
+    border: solid 1px #103b2b;
+}
+
 .input-area {
     margin: 5px;
     padding-bottom: 0px; 
     height: 50px;
+}
+
+#chat-with, .h2-cont{
+    color: var(--text-color);
 }
 
 @media (max-width: 700px){
@@ -246,8 +255,8 @@
 
     .chat-list {
         padding: 10px;
-        position: fixed; /* Para que a aba de conversas seja fixa */
-        top: 13.5vh; /* Altura do menu de navegação */
+        position: fixed; 
+        top: 13.5vh; 
         bottom: 0;
         left: 0;
         width: 250px; 

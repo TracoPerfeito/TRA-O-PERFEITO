@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="css/menu.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +20,7 @@
     
   <%- include('../partials/menu-logado'); %>
 
-  
+
   <section class="botao-de-voltar">   
     <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon></button>
     <p class="lado-botao"> Perfil de Jaqueline Maria</p>
@@ -27,31 +28,26 @@
 
 
     <section class="base_cabecalho">
-      <header>
+      <section id="banner-perfil">
         <img src="imagens/bg.png" id="banner-perfil">
-      </header>
+      </section>
       <section class="coluna_contaneir">
         <section class="coluna-esquerda">
 
           <section class="img__container">
-            <img src="imagens/img.png" alt="Perfil" id="imgFoto">
+            <img src="imagens/fotoperfil1.jpeg" alt="Perfil" id="imgFoto">
             <span></span>
           </section>
 
-          <input type="file" name="fImage" id="fImage" accept="image/*">
-
-          <script src="js/meuperfil.js"></script>
-
-
         <section class="embaixo">
-          <h2>Jaqueline Maria </h2>
+          <h2 id="nome-principal-perfil">Jaqueline Maria </h2>
           <p>UX/UI Designer</p>
           <p>meunome@outlook.com</p>
         </section>
         
-          <ul class="sobre">
+          <ul class="quan-p-t-c">
             <li><span>50</span>Projetos</li>
-            <li><span>187</span>Trabalhos</li>
+            <li><span>18</span>Trabalhos</li>
             <li><span>6</span>Colaborações</li>
           </ul>
 
@@ -62,7 +58,7 @@
               ligula egestas nulla.
             </p>
 
-            <ul>
+            <ul class="redes-sociais-icons">
               <li><i class="fab fa-linkedin"></i></li>
               <i class="fab fa-pinterest"></i>
               <i class="fab fa-facebook"></i>
@@ -72,7 +68,7 @@
         </section>
         <section class="coluna-direta">
           <section class="coluna-da-direita">
-            <ul>
+            <ul class="p-t-c">
               <li><a href="">Publicações</a></li>
               <li><a href="">Trabalhos</a></li>
               <li><a href="">Colaborações</a></li>
@@ -81,12 +77,12 @@
           </section>
 
           <section class="publi">
-            <img src="imagens/arte1.jpg" alt="Publicações" />
-            <img src="imagens/arte2.jpg" alt="Publicações" />
-            <img src="imagens/arte3.jpg" alt="Publicações" />
-            <img src="imagens/arte4.jpg" alt="Publicações" />
-            <img src="imagens/arte5.jpg" alt="Publicações" />
-            <img src="imagens/arte6.jpg" alt="Publicações" />
+            <img src="imagens/arte1.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacaologado'" />
+            <img src="imagens/arte2.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacaologado'"  />
+            <img src="imagens/arte3.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacaologado'" />
+            <img src="imagens/arte4.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacaologado'" />
+            <img src="imagens/arte5.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacaologado'"  />
+            <img src="imagens/arte6.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacaologado'"  />
           </section>
         </section>
       </section>
