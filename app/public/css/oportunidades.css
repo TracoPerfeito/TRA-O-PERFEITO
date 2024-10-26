@@ -119,6 +119,7 @@ main {
     opacity: 0;
     font-family: "Josefin Sans";
     z-index: 2;
+    overflow-y: auto;
   }
   
   .secao-filtro h2 {

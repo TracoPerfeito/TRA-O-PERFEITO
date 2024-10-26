@@ -160,7 +160,7 @@ width: 100%;
   bottom: -16px;
   display: block;
   background: #cccccc;
-  height: 1px;
+  height: 1.5px;
   width: 100%;
 }
 .base_cabecalho .coluna_contaneir .sobre p {
@@ -182,16 +182,16 @@ width: 100%;
   font-size: 1.3rem;
 }
 .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita {
-  display: flex;
+  /* display: flex; */
   align-items: center;
-  padding: 30px 0;
-  justify-content: space-between;
+  /* padding: 30px 0; */
+  /* justify-content: space-between; */
   flex-direction: column;
 }
 .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita ul {
   display: flex;
   gap: 20px;
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita ul li a {
   text-transform: uppercase;
@@ -217,7 +217,7 @@ width: 100%;
 .base_cabecalho .coluna_contaneir .coluna-direta .publi {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 20px;
+  gap: 40px 20px;
 }
 
 .base_cabecalho .coluna_contaneir .coluna-direta .publi img {
@@ -226,6 +226,9 @@ width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
+
+ 
 
 .embaixo {
     margin-right: 100px;
@@ -237,10 +240,119 @@ input[type='file'] {
   display: none;
 }
 
+.redes-sociais-icons{
+  margin: 15px 0px 0px 0px;
+  padding: 10px 0px;
+  border-top: 1.5px solid #cccccc;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color:  #8b8b8b;
+  font-size: 20px;
+ 
+}
+
+.redes-sociais-icons li {
+  transition: all .3s;
+}
+
+.fa-pinterest:hover {
+  color: #E60023;
+}
+
+.fa-facebook:hover {
+  color: #4267B2;
+}
+
+
+.fa-linkedin:hover {
+  color:#0A66C2;
+}
+
+
+.fa-twitter:hover {
+  color: #1DA1F2;
+}
+
+
+.redes-sociais-icons li:hover {
+
+  transform: translateY(-3px);
+  cursor: pointer;
+}
+
+
+
+.like-button{
+  background-color: transparent;
+  border: 0px;
+  font-size: 110%;
+  transition: all 0.2s;
+  color: var(--text-color);
+}
+
+.like-button:hover{
+  font-size: 115%;
+  transform: translateY(-3px) ;
+ 
+
+ 
+}
+
+.like-button.liked{
+  color: red;
+}
+
+.nome-btn-like {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 /* Responsiveness */
 
-@media (min-width: 868px) {
+
+
+@media (max-width:500px){
+
+  #irparachat{
+    width: 70%;
+   
+  }
+
+}
+
+
+@media (max-width:1000px){
+  .coluna-da-direita {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "btn-conversar "
+                          "outro";
+                          margin: 0px auto;
+                          width: 100%;
+
+    
+  }
+
+  .p-t-c {
+    grid-area: outro;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0px 10px;
+  }
+
+  #irparachat{
+    grid-area: btn-conversar;
+    width: 40%;
+    margin: 0 auto 20px auto;
+  }
+}
+
+
+@media (min-width: 1000px) {
   .base_cabecalho .coluna_contaneir {
     max-width: 1200px;
     margin: 0 auto;
@@ -262,6 +374,16 @@ input[type='file'] {
     overflow: auto;
     padding: 0 0 30px;
   }
+
+  .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita {
+    display: flex; 
+    align-items: center;
+    padding: 30px 0;
+    justify-content: space-between; 
+    flex-direction: row;
+  
+  }
+
 }
 
 @media (min-width: 1017px) {
@@ -275,12 +397,66 @@ input[type='file'] {
   .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita button {
     margin-top: 0;
   }
+  .base_cabecalho .coluna_contaneir .coluna-direta .coluna-da-direita {
+    display: flex; 
+    align-items: center;
+    padding: 30px 0;
+    justify-content: space-between; 
+    flex-direction: row;
+  
+  }
+
+
+}
+#irparachat {
+  position: relative;
+  cursor: pointer;
+  font-family: sans-serif;
+  background-color: var(--cor-botao); 
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  display: inline-block;
 }
 
-#irparachat{
-  background-color: var(--cor-botao);
-  border: 1px solid var(--borda-barra-pesquisa);
-  
+#irparachat:hover{
+  opacity: 100%;
+}
+
+#irparachat .tooltip {
+  visibility: hidden;
+  width: 220px; 
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 8px;
+  position: absolute;
+  bottom: 130%; 
+  left: 50%;
+  transform: translateX(-50%);
+
+  transition: opacity 0.3s;
+  font-size: 14px;
+  z-index: 1;
+  pointer-events: none; 
+}
+
+#irparachat .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+#irparachat:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 #irparachat a {
@@ -295,4 +471,5 @@ input[type='file'] {
     }
 
 }
+
 

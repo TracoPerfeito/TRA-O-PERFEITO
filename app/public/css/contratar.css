@@ -4,10 +4,8 @@
 }
 
 .container-perfis {
-    margin: auto;
+    margin:auto;
     width: fit-content;
-
-
 }
 
 
@@ -74,7 +72,7 @@
     font-size: 13px;
 }
 
-.estrela {
+.estrela-perfil {
     color: #f5b301;
     font-size: 18px;
     margin-left: 45px;
@@ -116,11 +114,13 @@
 
 .secao-filtro {
     position: fixed;
-    right: -300px;
+    right: -350px;
     top: 70px;
     width: 300px;
     /* height: calc(100% - 100px);   */
     height: fit-content; 
+    max-height: 700px;
+    overflow-y: auto;
     background-color: var(--cor-fundo);
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
     color: var(--text-color);
@@ -212,21 +212,40 @@
 .mostrar-ranking{
     font-family: "Josefin Sans";
     font-size: medium;
-    background-color: transparent;
-    border: 2px solid #132d46;
+    color: #fff;
+    background: rgb(113,147,199);
+    background: linear-gradient(90deg, rgba(113,147,199,1) 0%, rgba(148,166,205,1) 16%, rgba(166,191,224,1) 35%, rgba(139,195,225,1) 56%, rgba(142,208,208,1) 73%, rgba(172,218,191,1) 96%);
+    border: none;
     border-radius: 10px ;
     padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    -webkit-box-shadow: -1px 5px 20px -5px rgba(184,184,184,0.61);
+    -moz-box-shadow: -1px 5px 20px -5px rgba(184,184,184,0.61);
+    box-shadow: -1px 5px 20px -5px rgba(184,184,184,0.61);
+    transition: all .4s;
 }
 
-#mostrar-ranking:hover{
+.mostrar-ranking:hover{
     cursor: pointer;
-}
+    transform: translateY(-3px);
+    background: rgb(113,147,199);
+background: linear-gradient(120deg, rgba(113,147,199,1) 0%, rgba(148,166,205,1) 23%, rgba(166,191,224,1) 44%, rgba(139,195,225,1) 60%, rgba(142,208,208,1) 82%, rgba(172,218,191,1) 100%);
+
+ }
 
 #coroa {
     width: 20px;
     height: auto;
 }
 
+.estrelinhas {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
 .estrela{
     background-color: transparent;
@@ -234,6 +253,7 @@
     font-size: 20px;
     grid-column: 3;
     justify-self: end; 
+    
 }
 
 .estrela:hover {

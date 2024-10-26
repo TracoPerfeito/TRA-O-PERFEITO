@@ -10,6 +10,11 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
 
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
@@ -60,9 +65,9 @@
 
             <ul class="redes-sociais-icons">
               <li><i class="fab fa-linkedin"></i></li>
-              <i class="fab fa-pinterest"></i>
-              <i class="fab fa-facebook"></i>
-              <i class="fab fa-whatsapp"></i>
+              <li><i class="fab fa-pinterest"></i> </li>
+              <li><i class="fab fa-facebook"></i></li>
+              <li><i class="fab fa-twitter"></i></li>
             </ul>
           </section>
         </section>
@@ -73,16 +78,68 @@
               <li><a href="">Trabalhos</a></li>
               <li><a href="">Colaborações</a></li>
             </ul>
-            <button id="irparachat"><a href=/cadastro>Conversar</a></button>
+            <button id="irparachat">
+              <a href="/cadastro">Conversar</a>
+              <span class="tooltip">Crie uma conta para entrar em contato com outros usuários</span>
+            </button>
           </section>
 
           <section class="publi">
-            <img src="imagens/arte1.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
-            <img src="imagens/arte2.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'"  />
-            <img src="imagens/arte3.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
-            <img src="imagens/arte4.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
-            <img src="imagens/arte5.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'"  />
-            <img src="imagens/arte6.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'"  />
+            <section class="publi-perfil">
+              <img src="imagens/arte1.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section>
+            <section class="publi-perfil">
+              <img src="imagens/arte2.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section>
+            <section class="publi-perfil">
+              <img src="imagens/arte3.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section>
+            <section class="publi-perfil">
+              <img src="imagens/arte4.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section>
+            <section class="publi-perfil">
+              <img src="imagens/arte5.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section>
+            <section class="publi-perfil">
+              <img src="imagens/arte6.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section>
+            
           </section>
         </section>
       </section>
@@ -92,6 +149,7 @@
 
 
     <script src="js/voltar.js"></script>
+    <script src="js/like.js"></script>
     
  
 

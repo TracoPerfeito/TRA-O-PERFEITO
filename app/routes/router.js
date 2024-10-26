@@ -209,6 +209,13 @@ router.get("/quemcadastra", function (req, res) { //quem cadastra
     res.render('pages/quemcadastra');
 })
 
+router.get("/pagamento", function (req, res) { //pagamentos
+    res.render('pages/pagamento');
+
+ 
+});
+
+
 
 router.get("/contacomum", function (req, res) {
     res.render('pages/contacomum');
@@ -264,7 +271,7 @@ router.post( //validações cadastrar
 
         if (listaErros.isEmpty()) {
 
-            return res.redirect("/explorar-logado");
+            return res.redirect("/pagamento");
         } else {
         
             console.log(listaErros);

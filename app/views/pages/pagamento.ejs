@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pagamentos.css">
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+    <title>Pagamentos</title>
+
+</head>
+<body>
+
+
+
+        
+    
+    <main>
+    
+    
+        
+    
+        <section class="botao-de-voltar">   
+            <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+           
+               
+            </button>
+    
+            <p class="lado-botao">Voltar à página inicial</p>
+        </section>
+        
+        
+           
+            <section class="container-principal">
+
+                <section class="img-container">
+                    <img src="imagens/logo.png" alt="Logotipo"> 
+                   
+                </section>
+                <h1>Pagamento</h1>
+
+                <p class="escolher-msg">Selecione uma forma de pagamento para continuar:</p>
+
+                <section class="botoes-plataformas">
+
+                    <button class="botao-plataforma" id="btn-mercado-pago"  onclick="window.open('https://www.mercadopago.com.br/', '_blank')" > <img src="imagens/mercado-pago-logo.png" alt="Mercado Pago"></button>
+                    <button class="botao-plataforma" id="btn-pic-pay"   onclick="window.open('https://picpay.com/', '_blank')"> <img src="imagens/picpay.png" alt="Pic Pay"></button>
+                    <button class="botao-plataforma" id="btn-paypal"  onclick="window.open('https://www.paypal.com/br/home', '_blank')"> <img src="imagens/paypal.webp" alt="PayPal"></button>
+                </section>
+
+                <p id="msg-link">Após a confirmação do pagamento, enviaremos um código de confirmação em seu e-mail.</p>
+
+                  <form action="/explorar-logado">
+    
+                    <section class="input-section name" >
+    
+                            <label for="codigo" class="label-codigo"> Digite o código de confirmação:</label>
+                            <input type="text" id="codigo" name="codigo" class="input"  required>
+    
+                    </section>
+    
+                    <button type="submit" class="concluir-cadastro">Verificar Código</button>
+                  </form>
+
+
+                
+                <body>
+                
+                
+               
+                
+                
+                
+            </section>
+            <script src="js/barradeprogresso.js"></script>
+            <script src="js/voltar.js"></script>
+    
+    </main>
+    
+    
+
+
+    
+</body>
+</html>

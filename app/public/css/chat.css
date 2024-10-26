@@ -261,8 +261,8 @@
         left: 0;
         width: 250px; 
         max-height: 80vh;
-        background-color:#e0f2e7; /* Cor de fundo */
-        overflow-y: auto; /* Para rolagem se necessário */
+        background-color:#e0f2e7;
+        overflow-y: auto; /* Para rolagem  */
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
         border-top: 1px solid #165040;

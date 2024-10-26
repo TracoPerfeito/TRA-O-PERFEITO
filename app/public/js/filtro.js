@@ -16,7 +16,7 @@ closeButton.addEventListener('click', () => {
 // Fecha a barra de filtros ao clicar no botão "Aplicar"
 applyButton.addEventListener('click', () => {
   filterSidebar.classList.remove('open');
-  // Aqui você pode adicionar a lógica para aplicar o filtro
+
 });
 
 
