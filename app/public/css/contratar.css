@@ -294,3 +294,15 @@ background: linear-gradient(120deg, rgba(113,147,199,1) 0%, rgba(148,166,205,1) 
     }
 
 }
+
+@media (max-width: 1400px) {
+    .container-perfis {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 724px) {
+    .container-perfis {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
