@@ -1,15 +1,13 @@
-
+/* 
 .slider{
     display: block;
     height: 250px;
     width: 100%;
     margin: auto;
+    margin-bottom: 20px;
     margin-top: 0px;
     margin-bottom: 0px;
     position: relative;
-    /* padding-top: 60px; */
-    
-  
 
 }
  .slider li{
@@ -20,24 +18,17 @@
  .slider img{
     margin-bottom: auto;
      margin: auto;
-     height: auto;
+     height: 250px;
      width: 100%;
      vertical-align: top;
+    
  
  }
   .slider input{
     display: none;
  
   }
- /* .slider label{
-    background-color: rgb(245, 238, 238);
-    bottom: 10px;
-    cursor: pointer;
-    display: block;
-    height: 10px;
-    position: absolute;
-    width: 10px;
-    z-index: 10 ;}*/
+
  
  
   .slider li:nth-child(1) label{
@@ -62,6 +53,48 @@
     z-index: 10;
 }
 
+
+} */
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.slider {
+display: block;
+height: auto; 
+width: 100%;
+margin: auto;
+margin-bottom: 20px;
+overflow: hidden; 
+position: relative;
+}
+
+.slider li {
+list-style: none;
+display: none; 
+}
+
+.slider li input:checked ~ img {
+display: block;
+}
+
+.slider img {
+margin: 0;
+height: auto;
+width: 100%;
+display: block;
+vertical-align: top;
+}
+
+.slider input {
+display: none;
+}
+
+
 .button-holder{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -75,7 +108,7 @@
     padding: 20px;
     font-size: 20px;
     border-radius: 15px;
-    transform: translateY(-35px);
+    transform: translateY(-50px);
     align-content: center;
     top: -80px;
     border: none;
@@ -92,18 +125,21 @@
 }
 
 .call-to-action:hover{
-    transform: translateY(-50px) ;
+    transform: translateY(-60px) ;
 }
+
+
+
 
 @media (max-width: 500px) {
 
     
-.call-to-action {
+    .call-to-action {
+    
+        width: 180px;
+        font-size: 15px;
+    
+      
+    }
+    }
 
-    width: 180px;
-    font-size: 15px;
-
-  
-}
-
-}

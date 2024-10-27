@@ -234,6 +234,7 @@
 .publi-re {
     margin: 10px 0px;
     font-family: "Josefin Sans";
+
 }
 
 .publi-re img{
@@ -338,6 +339,63 @@
     color: #999;
 }
 
+.button-container-submit {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-items: right;
+    width: 100%;
+}
+
+.enviar-comentario {
+    cursor: pointer;
+    background-color: var(--cor-botao); 
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-family: sans-serif;
+    width: 25%;
+    margin-left: 75%;
+    font-family: "Josefin Sans";
+   
+}
+
+.button-container-submit .tooltip {
+    visibility: hidden;
+    width: 220px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 8px;
+    position: absolute;
+    top: -50px;
+    left: 10%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 14px;
+    z-index: 1;
+    pointer-events: none; 
+}
+
+.button-container-submit .tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 10%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.button-container-submit:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
 
 
 
@@ -361,6 +419,13 @@
             width: 90%;
             margin: 20px;
     
+        }
+
+        .enviar-comentario {
+            
+            width: 40%;
+            margin-left: 60%;
+           
         }
 
                 
@@ -400,6 +465,8 @@
             border-radius: 50% 
             
         }
+
+
 
 
     
@@ -496,7 +563,7 @@
 
     }
 
-    .adiionar-comentario {
+    .adicionar-comentario {
         width: 100%;
     }
 
@@ -507,7 +574,7 @@
     }
 
     .button-container-submit {
-        width: 90%;
+      
         justify-content: flex-end;
         display: flex;
       
@@ -597,6 +664,13 @@
     .publi-rel-info button {
        justify-self: flex-end;
     }
+
+    
+.button-container-submit .tooltip {
+  
+    left: 50%;
+   
+}
 
 
 }

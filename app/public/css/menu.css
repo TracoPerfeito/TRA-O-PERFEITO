@@ -340,6 +340,10 @@ a {
   text-decoration: none;
 }
 
+#logo-1:hover, #logo-2:hover {
+  cursor: pointer;;
+}
+
 /* menu */
 
 .header .menu {
@@ -499,7 +503,7 @@ a {
 
 
 
-@media (max-width: 1105px) {
+@media (max-width: 1230px) {
   .config-section {
       position: static; 
       padding-left: 20px;
@@ -534,7 +538,7 @@ a {
 }
 
  
-@media (min-width: 1105px) {
+@media (min-width: 1230px) {
   .header li {
     float: left;
    
@@ -559,6 +563,7 @@ a {
 
 }
 
+ 
 
 
 

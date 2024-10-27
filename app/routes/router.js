@@ -230,6 +230,12 @@ router.get("/cadastroArtista", function (req, res) {
  
 });
 
+router.get("/escolher-assinatura", function (req, res) {
+    res.render('pages/escolher-assinatura');
+
+ 
+});
+
 
 router.get("/oportunidades", function (req, res) { //oportunidades logado
     res.render('pages/oportunidades');
@@ -249,7 +255,7 @@ router.post( //validações cadastrar
 
     body("nome").isLength({ min: 2, max: 50 }).withMessage('O nome deve ter de 3 a 50 caracteres.'),
 
-    body("usuario").isLength({ min: 10, max: 20 }).withMessage('O usuario deve ter de 10 a 20 caracteres.'),
+    body("usuario").isLength({ min: 6, max: 20 }).withMessage('O usuario deve ter de 6 a 20 caracteres.'),
 
     body("email").isEmail().withMessage('Insira um e-mail válido.'),
 
@@ -271,7 +277,7 @@ router.post( //validações cadastrar
 
         if (listaErros.isEmpty()) {
 
-            return res.redirect("/pagamento");
+            return res.redirect("/quemcadastra");
         } else {
         
             console.log(listaErros);
