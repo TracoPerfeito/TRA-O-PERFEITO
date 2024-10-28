@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
  
-  min-height: 100vh;
+  min-height: 100vh; 
   font-family: "Poppins", sans-serif;
 }
 
@@ -239,6 +239,10 @@ input[type='file'] {
   cursor: pointer;
 }
 
+#editarperfilbotao {
+  margin-top: 20px;
+}
+
 .icones-container {
   display: flex;
   align-items: center;
@@ -277,6 +281,12 @@ input[type='file'] {
 #irparachat{
   background-color: #132d46;
   
+}
+
+#nova-publi-perfil {
+  background-color: #132d46;
+  font-family: "Montserrat";
+  color: #ffffff;
 }
 
 .nenhuma-publi {

@@ -20,6 +20,10 @@
     color: var(--text-color);
 }
 
+.card:hover {
+    cursor:pointer;
+}
+
 .card-header .background-image {
     width: 100%;
     height: 90px;
