@@ -82,10 +82,12 @@ display: none;
 display: block;
 }
 
-.slider img {
+
+
+picture img {
 margin: 0;
 height: auto;
-width: 100%;
+max-width: 100%;
 display: block;
 vertical-align: top;
 }

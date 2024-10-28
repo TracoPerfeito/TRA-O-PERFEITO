@@ -41,4 +41,7 @@ function iniciarCarrossel() {
 }
 
 
+
 window.onload = iniciarCarrossel;
+
+

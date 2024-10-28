@@ -40,16 +40,27 @@
                     <li>
                         <input type="radio" id="slide1" name="slider" checked>
                         <label for="slide1" ></label>
-                        <img src="imagens/banner1n.jpg" class="banner-1">
+                        <picture>
+                            <source media="(min-width:650px)" srcset="imagens/banner1maior.jpg" class="img-banner">
+                           
+                            <img src="imagens/banner1menor.jpg"  >
+                          </picture> 
                         
                
                     </li>
                     <li>
                         <input type="radio" id="slide2" name="slider" >
                         <label for="slide2" ></label>
-                        <img src="imagens/banner2n.jpg">
+                        <picture>
+                            <source media="(min-width:650px)" srcset="imagens/banner2maior.png" class="img-banner">
+                           
+                            <img src="imagens/banner2menor.png"   >
+                          </picture> 
                
                     </li>
+
+                   
+                 
                  
        
                 </ul>
