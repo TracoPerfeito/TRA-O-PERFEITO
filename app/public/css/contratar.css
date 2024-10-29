@@ -6,6 +6,7 @@
 .container-perfis {
     margin:auto;
     width: fit-content;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 
@@ -274,14 +275,14 @@ background: linear-gradient(120deg, rgba(113,147,199,1) 0%, rgba(148,166,205,1) 
 
 
 
-@media (max-width: 1240px) {
+@media (max-width: 1400px) {
  
     .container-perfis {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1070px) {
  
   
 
@@ -290,7 +291,7 @@ background: linear-gradient(120deg, rgba(113,147,199,1) 0%, rgba(148,166,205,1) 
     }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 740px) {
 
    
     .container-perfis {
@@ -298,7 +299,7 @@ background: linear-gradient(120deg, rgba(113,147,199,1) 0%, rgba(148,166,205,1) 
     }
 
 }
-
+/* 
 @media (max-width: 1400px) {
     .container-perfis {
         grid-template-columns: repeat(2, 1fr);
@@ -309,4 +310,4 @@ background: linear-gradient(120deg, rgba(113,147,199,1) 0%, rgba(148,166,205,1) 
     .container-perfis {
         grid-template-columns: repeat(1, 1fr);
     }
-}
+} */
