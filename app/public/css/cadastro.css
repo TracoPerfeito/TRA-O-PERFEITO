@@ -532,3 +532,20 @@ margin-bottom: 15px;}
 
 
 
+.tooltip {
+	display: none;
+	position: absolute;
+	top: -30px; /* Posiciona acima do input */
+	left: 0;
+	background-color: #333;
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 0.9em;
+	white-space: nowrap;
+	z-index: 10;
+  }
+  
+  .input-container input:focus + .tooltip {
+	display: block;
+  }

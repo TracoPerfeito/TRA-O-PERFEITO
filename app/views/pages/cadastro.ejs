@@ -17,8 +17,8 @@
 <body>
  
     <% 
-    let cssErros = {nome: "", usuario: "", email: "", celular: "", password: "", confirmpassword: ""};
-    let msgErros = {nome: "", usuario: "", email: "", celular: "", password: "", confirmpassword: ""}; 
+    let cssErros = {nome: "", usuario: "", email: "", celular: "", cpf: "", password: "", confirmpassword: ""};
+    let msgErros = {nome: "", usuario: "", email: "", celular: "", cpf: "", password: "", confirmpassword: ""}; 
     
     if(listaErros){
         listaErros.errors.forEach(function (elemento){
@@ -41,6 +41,12 @@
                 cssErros.celular = "erro-form";
                 msgErros.celular = elemento.msg;
             }
+
+            if(elemento.path == "cpf"){
+                cssErros.cpf = "erro-form";
+                msgErros.cpf = elemento.msg;
+            }
+     
      
             if(elemento.path == "password"){
                 cssErros.password = "erro-form";
@@ -161,6 +167,13 @@
     
                     <!-- FIM DO CAMPO DE CELULAR -->
     
+                    <section class="input-section cpf">
+                        <section class="section" for="cpf">
+                            <h5 class="titulos-input">CPF</h5>
+                            <input type="" class="input" id="cpf" name="cpf" value="<%= valores.cpf %>" class="<%= cssErros.cpf %>" required>
+                            <span class="msg-erro"><%= msgErros.cpf %></span>
+                        </section>
+                    </section>
     
                     <!-- CAMPO DE SENHA -->
     
@@ -251,6 +264,10 @@
             });
         });
     });
+    
+
+
+    
 </script>
 
 

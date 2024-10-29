@@ -2,7 +2,7 @@
 var express = require("express");
 var router = express.Router();
 const { body, validationResult } = require("express-validator");
-const { verificadorCelular } = require("../helpers/validacoes");
+const { verificadorCelular, validarCPF } = require("../helpers/validacoes");
 
 
 
@@ -259,9 +259,19 @@ router.post( //validações cadastrar
 
     body("email").isEmail().withMessage('Insira um e-mail válido.'),
 
-    body('celular').isLength({ min: 10, max: 11 }).withMessage('Número de celular inválido.')
+    body('celular').isLength({ min: 10, max: 14 } ).withMessage('Número de celular inválido.')
 
        .custom(celular => verificadorCelular(celular)).withMessage('Número de celular inválido.'),
+
+    body('cpf').isLength({ min: 11, max: 14 }).withMessage('CPF inválido.')
+
+    .custom((cpf) => {
+        if (validarCPF(cpf)) {
+          return true;
+        } else {
+          throw new Error('CPF inválido!');
+        }
+    }),
 
     body('password').isLength({ min: 8 }).withMessage('A senha deve ter no mínimo 8 caracteres.'),
     body('confirmpassword').custom((value, { req }) => {
