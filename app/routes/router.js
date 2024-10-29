@@ -274,7 +274,7 @@ router.post( //validações cadastrar
         if (validarCPF(cpf)) {
           return true;
         } else {
-          throw new Error('CPF inválido!');
+          throw new Error('CPF inválido.');
         }
     }),
 
@@ -296,7 +296,7 @@ router.post( //validações cadastrar
         } else {
         
             console.log(listaErros);
-            return res.render("pages/cadastro", { retorno: null, valores: {nome: req.body.nome, usuario: req.body.usuario, email: req.body.email, celular: req.body.celular, password: req.body.password, confirmpassword: req.body.confirmpassword}, listaErros: listaErros });
+            return res.render("pages/cadastro", { retorno: null, valores: {nome: req.body.nome, usuario: req.body.usuario, email: req.body.email, celular: req.body.celular, cpf: req.body.cpf, password: req.body.password, confirmpassword: req.body.confirmpassword}, listaErros: listaErros });
         }
     }
 );
