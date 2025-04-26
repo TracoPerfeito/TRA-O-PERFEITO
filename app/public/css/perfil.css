@@ -4,8 +4,8 @@
 
 .botao-de-voltar{
   width: 100%;
-  background-color:  rgba(224, 236, 240, 0.37);
-  height: 5.5vh;
+  background-color: var(--cor-btn-voltar-section);
+  height: 40px;
   display: flex;
   align-items: center;
   
@@ -13,11 +13,11 @@
 
 .btn-voltar{
   border-radius: 50%;
-  border: none;
+  border: 1px solid var(--cor-btn-voltar-borda);
   width: 30px;
   height: 30px;
-  background-color: #acdabf7a;
-  color: #165040;
+  background-color: var(--cor-btn-voltar);
+  color: var(--cor-btn-voltar-seta);
   margin: 0px 0px 0px 60px;
   font-size: 17px;
   align-items: center;
@@ -27,8 +27,9 @@
 }
 
 .btn-voltar:hover {
-  background-color: #648b747a;
+  background-color: var(--cor-btn-voltar-hover);
   cursor: pointer;
+  
 }
 
 .lado-botao {
@@ -36,8 +37,9 @@
   font-family: "Josefin Sans";
   font-weight: 400;
   font-size: 15px;
-  color: var(--text-color);
+  color: var( --cor-btn-voltar-texto);
 }
+
 
 body {
   width: 100%;
@@ -56,8 +58,6 @@ body {
   align-items: center;
 
 }
-
-
 
 
 .publicacao-perfil {
@@ -127,6 +127,7 @@ width: 100%;
   bottom: 3px;
   right: 11px;
   border: 2px solid #fff;
+  
 }
 .base_cabecalho .coluna_contaneir .coluna-esquerda h2 {
   margin-top: 60px;
@@ -227,6 +228,9 @@ width: 100%;
   object-fit: cover;
 }
 
+span {
+  color: var(--text-color);
+}
 
  
 
@@ -314,14 +318,7 @@ input[type='file'] {
 
 
 
-@media (max-width:500px){
 
-  #irparachat{
-    width: 70%;
-   
-  }
-
-}
 
 
 @media (max-width:1000px){
@@ -335,6 +332,11 @@ input[type='file'] {
 
     
   }
+
+  .publi{
+    margin: 0px 70px;
+  }
+
 
   .p-t-c {
     grid-area: outro;
@@ -412,7 +414,7 @@ input[type='file'] {
   position: relative;
   cursor: pointer;
   font-family: sans-serif;
-  background-color: var(--cor-botao); 
+  background-color: var(--cor-btn-azul); 
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -463,12 +465,160 @@ input[type='file'] {
   color: #fff;
 }
 
+/* novas alterações */
+
+
+
+ .foto-de-perfil {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+#secao-avaliacoes-h2 {
+    font-size: 18px;
+    margin: 0px 60px 15px 70px;
+    color: var(--text-color);
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+
+#secao-avaliacoes {
+   
+    margin: 0px 60px 40px 60px;
+    
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    will-change: transform;
+}
+
+.avaliacao {
+    min-width: 25%;
+    box-sizing: border-box;
+    background-color: var(--cor-fundo-comentario);
+    color: var(--text-color);
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: "Josefin Sans";
+    height: fit-content;
+}
+
+.info-criador-ava {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.nome-criador-ava {
+    margin-left: 10px;
+    color: var(--text-color);
+}
+
+.estrelinhas-avaliacao {
+    color:  rgb(255, 208, 0);
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color:  rgba(37, 39, 47, 0.642);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10;
+    font-size: 18px;
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+.carousel-button:hover {
+    background-color:  rgba(37, 39, 47, 0.697);
+}
+
+.carousel-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px; 
+    height: 100%;
+    background: var(--gradiente-carrossel-perfil);
+    pointer-events: none; 
+}
+
+
+
+
+
+
+
+
 @media (max-width: 800px) {
 
   #banner-perfil {
     height: 18vw;
     width: 100%;
     }
+
+    .avaliacao {
+      min-width: 50%;
+     
+    }
+  
+
+ 
+}
+
+
+@media (max-width:500px){
+
+  #irparachat{
+    width: 70%;
+   
+  }
+
+  .publi{
+    margin: 0px 5%;
+  }
+
+    
+  #secao-avaliacoes-h2 {
+    font-size: 18px;
+    margin: 0px 5% 15px 5%;
+    padding: 0px 0px 0px 10px;
+  }
+
+
+  #secao-avaliacoes {
+    
+    margin: 0px 5%;
+    
+  }
+
+
+  .avaliacao {
+    min-width: 95%;
+   
+  }
+
 
 }
 

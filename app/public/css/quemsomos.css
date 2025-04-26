@@ -10,7 +10,7 @@
 }
 
 :root {
-    --primery-color: #01c38d;
+    --primery-color: #72A69C;
     --secondary-color: #646464;
 }
 
@@ -20,8 +20,9 @@
     background-color: var(--cor-fundo);
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
+    padding-top: 5%;
 }
 
 .meio {
@@ -73,7 +74,7 @@
     justify-content: flex-start;
     flex-direction: column;
     padding: 0 8%;
-    background: #132d46;
+    background: var(--card-quem-somos);
     position: relative;
     color: white;
     border-radius: 10px;
@@ -88,7 +89,7 @@
     top: 0;
     left: 0;
     border-radius: 10px;
-    background: #01c38d;
+    background: #72A69C;
     transition: .6s;
     transform: rotate(0deg);
     z-index: -1;

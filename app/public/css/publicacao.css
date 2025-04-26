@@ -6,7 +6,7 @@
 
 .botao-de-voltar{
     width: 100%;
-    background-color:  rgba(224, 236, 240, 0.37);
+    background-color: var(--cor-btn-voltar-section);
     height: 40px;
     display: flex;
     align-items: center;
@@ -15,11 +15,11 @@
 
 .btn-voltar{
     border-radius: 50%;
-    border: none;
+    border: 1px solid var(--cor-btn-voltar-borda);
     width: 30px;
     height: 30px;
-    background-color: #acdabf7a;
-    color: #165040;
+    background-color: var(--cor-btn-voltar);
+    color: var(--cor-btn-voltar-seta);
     margin: 0px 0px 0px 60px;
     font-size: 17px;
     align-items: center;
@@ -29,8 +29,9 @@
 }
 
 .btn-voltar:hover {
-    background-color: #648b747a;
+    background-color: var(--cor-btn-voltar-hover);
     cursor: pointer;
+    
 }
 
 .lado-botao {
@@ -38,7 +39,7 @@
     font-family: "Josefin Sans";
     font-weight: 400;
     font-size: 15px;
-    color: #474747;
+    color: var( --cor-btn-voltar-texto);
 }
 
 
@@ -154,7 +155,7 @@
 
 .comentario {
     width: 95%;
-    background-color: #acdabf7a;
+    background-color: var(--cor-fundo-comentario);
     margin: 10px 0px;
     border-radius: 5px;
     padding: 10px;
@@ -181,7 +182,8 @@
 #ad-comentario {
     width: 95%;
     border-radius: 5px;
-    border: #165040 solid 1px;
+    border: var(--texto-barra-pesquisa) solid 1px;
+    background-color: transparent;
     padding: 10px;
     resize: vertical;
     max-height: 300px; 
@@ -201,7 +203,7 @@
 }
 
 .enviar-comentario{
-    background-color: #132d46;
+    background-color: var(--cor-btn-env-comentario);
     border-radius: 8px;
     border: none;
     color: white;
@@ -349,7 +351,7 @@
 
 .enviar-comentario {
     cursor: pointer;
-    background-color: var(--cor-botao); 
+    background-color: var(--cor-btn-azul); 
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -478,7 +480,6 @@
 
     .botao-de-voltar{
         width: 100%;
-        background-color:  rgba(224, 236, 240, 0.37);
         height: 40px;
         display: flex;
         
@@ -488,7 +489,6 @@
         border-radius: 50%;
         width: 30px;
         height: 30px;
-        background-color: #acdabf7a;
         margin: 0px 0px 0px 35px;
     }
 
@@ -521,7 +521,6 @@
 
     .nome-dono-post {
         font-family: "Josefin Sans";
-        color: black;
         margin: 10px;
     }
 
@@ -593,7 +592,6 @@
 
     .comentario {
         width: 95%;
-        background-color: #acdabf7a;
         margin: 10px 0px;
         border-radius: 5px;
         padding: 10px;
@@ -608,7 +606,6 @@
     }
 
     .comentario-info p {
-        color: black;
         margin-left: 10px;
     }
 
@@ -650,7 +647,6 @@
     }
 
     .foto-nome-p-rel p {
-        color: #000000;
         margin-left: 10px;
     }
 

@@ -3,6 +3,7 @@
 main{
     margin: 30px;
     font-family: "Josefin Sans";
+    color: var(--text-color)
  }
 
  
@@ -28,8 +29,8 @@ main{
 
 .ativo {
    
-    background-color:rgba(172, 218, 191, 0.4784);
-    color:  #1B6F57;
+    background-color: var(--cor-fundo-ativo-n-pub);
+    color: var( --cor-btn-voltar-seta);
     border-radius: 5px;
     border: none;
     padding: 5px;
@@ -40,7 +41,7 @@ main{
 .nao-ativo{
     border-radius: 5px;
     padding: 5px;
-    border: 1px solid #1B6F57;
+    border: 1px solid var( --cor-btn-voltar-seta);
     background-color: transparent;
     font-family: "Josefin Sans";
 
@@ -48,12 +49,12 @@ main{
 
 .ativo a {
     text-decoration: none;
-    color: #1B6F57;
+    color: var( --cor-btn-voltar-seta);
 }
 
 .nao-ativo a {
     text-decoration: none;
-    color: #1B6F57;
+    color: var( --cor-btn-voltar-seta);
 
 }
 
@@ -102,7 +103,7 @@ main{
 }
 
 .form-grupo-1 input {
-    background-color: rgba(172, 218, 191, 0.4784);
+    background-color: var(--cor-fundo-comentario);
     border-radius: 5px;
     border: none;
     width: 80%; 
@@ -111,11 +112,11 @@ main{
 }
 
 .form-grupo-1 input:hover {
-    border: 1px solid #1B6F57;
+    border: 1px solid var(--cor-av-borda-n-pub);
 }
 
 .form-grupo-1 textarea {
-    background-color:rgba(172, 218, 191, 0.4784);
+    background-color:var(--cor-fundo-comentario);
     border-radius: 5px;
     border: none;
     resize: none; 
@@ -128,7 +129,7 @@ main{
 }
 
 .form-grupo-1 textarea:hover {
-    border: 1px solid #1B6F57;
+    border: 1px solid var(--cor-av-borda-n-pub);
 }
 
 .lugar-botar-img {
@@ -144,12 +145,12 @@ main{
     
     width: 80%;
     aspect-ratio: 16/9;
-    background: rgba(172, 218, 191, 0.4784);
+    background: var(--cor-fundo-comentario);
     display: flex;
     align-items: center;
     justify-self: flex-end;
     justify-content: center;
-    color: #1B6F57;
+    color: var(--cor-av-borda-n-pub);
     border: 2px dashed currentcolor;
     cursor: pointer;
     font-family: sans-serif;
@@ -161,18 +162,18 @@ main{
 }
 
 .picture:hover {
-    color: #1B6F57;
-    background: #ccc;
+    color: var(--cor-av-borda-n-pub);
+    background: var(--cor-fundo-ativo-img);
 }
 
 .picture:active {
     border-color: turquoise;
     color: turquoise;
-    background: #eee;
+    background: var(--cor-fundo-ativo-img);
 }
 
 .picture:focus {
-    color: #1B6F57;
+    color:  var(--cor-av-borda-n-pub);
  
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -183,7 +184,7 @@ main{
 
 .btn-publicar {
     justify-self: flex-end;
-    background-color:#1B6F57;
+    background-color:var(--cor-av-borda-n-pub);
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -238,7 +239,6 @@ main{
 
 
     .form-grupo-1 input {
-        background-color:rgba(172, 218, 191, 0.4784);
         border-radius: 5px;
         border: none;
         width: 100%;
@@ -247,12 +247,8 @@ main{
 
     }
 
-    .form-grupo-1 input:hover{
-        border: 1px solid #1B6F57;
-    }
-
+  
     .form-grupo-1 textarea{
-        background-color: rgba(172, 218, 191, 0.4784);
         border-radius: 5px;
         border: none;
         resize: none; 
@@ -279,11 +275,10 @@ main{
       .picture {
         width: 100%;
         aspect-ratio: 16/9;
-        background:rgba(172, 218, 191, 0.4784);
+   
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #105654;
         border: 2px dashed currentcolor;
         cursor: pointer;
         font-family: sans-serif;
@@ -294,30 +289,13 @@ main{
         margin: 10px 0px;
       }
       
-      .picture:hover {
-        color: #1B6F57;
-        background: rgba(125, 160, 139, 0.478);
-      }
-      
-      .picture:active {
-        border-color: #1B6F57;
-        color: #1B6F57;
-        background: #eee;
-      }
-      
-      .picture:focus {
-        color: #1B6F57;
-        background: rgba(154, 195, 171, 0.478);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      }
+    
       
       .picture__img {
         max-width: 100%;
       }
 
       .btn-publicar{
-        background-color: #1B6F57;
-        color: #ffffff;
         border: none;
         border-radius: 5px;
         width: 100%;

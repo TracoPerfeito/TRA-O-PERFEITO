@@ -11,10 +11,10 @@
 
 
 .card {
-    background-color: var(--fundo);
+    background-color: var(--cor-fundo-card-perfis);
     width: 320px;
     border-radius: 10px;
-    border: 1px solid var( --borda-barra-pesquisa);
+   
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     font-family: 'Josefin Sans';

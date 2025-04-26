@@ -36,6 +36,11 @@ router.get("/perfil", function (req, res) { //perfil-alheio
  
 });
 
+router.get("/publicacoes-perfil", function (req, res) { //publicações de um perfil
+    res.render('pages/publicacoes-perfil')
+ 
+});
+
 
 router.get("/publicacao", function (req, res) { //publicacao
     res.render('pages/publicacao')
@@ -293,6 +298,7 @@ router.post( //validações cadastrar
         if (listaErros.isEmpty()) {
 
             return res.redirect("/quemcadastra");
+
         } else {
         
             console.log(listaErros);
