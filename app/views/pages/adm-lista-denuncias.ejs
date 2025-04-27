@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pag-adm.css">
+    <title>Página do Administrador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+   
+</head>
+<body>
+    
+  <%- include('../partials/menu-adm'); %>
+
+    <main class="content">
+       
+        <h1>Denúncias</h1>
+
+        <!-- Filtros -->
+        <div class="filter-bar">
+            <form>
+
+                <select name="tipo" id="tipo-filter">
+                    <option value="">Tipo</option>
+                    <option value="usuario">Usúários</option>
+                    <option value="publicacao" >Publicações</option>
+                    <option value="comentario" >Comentários</option>
+                </select>
+
+                <!-- Filtro de status -->
+                <select name="status" id="status-filter">
+                    <option value="">Status</option>
+                    <option value="ativo">Ativo</option>
+                    <option value="inativo" >Inativo</option>
+                </select>
+
+                <!-- Botão para aplicar o filtro -->
+                <button type="submit" class="btn-filter">Filtrar</button>
+            </form>
+        </div>
+  
+  
+    
+</body>
+</html>

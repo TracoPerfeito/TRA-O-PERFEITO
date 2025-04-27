@@ -248,6 +248,33 @@ router.get("/oportunidades", function (req, res) { //oportunidades logado
  
 });
 
+
+router.get("/adm-inicial", function (req, res) { //index adm teste
+    res.render('pages/adm-inicial');
+
+ 
+});
+
+router.get("/adm-lista-usuarios", function (req, res) { // adm teste
+    res.render('pages/adm-lista-usuarios');
+
+ 
+});
+
+router.get("/adm-lista-denuncias", function (req, res) { //adm teste
+    res.render('pages/adm-lista-denuncias');
+
+ 
+});
+
+router.get("/adm-login", function (req, res) { //adm teste
+    res.render('pages/adm-login');
+
+ 
+});
+
+
+
 router.get("/cadastro", function (req, res) { //cadastrar
     res.render('pages/cadastro', {retorno: null, valores: {nome: "", usuario: "", email: "", celular: "", password: "", confirmpassword: ""}, listaErros: null});
  
