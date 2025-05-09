@@ -74,7 +74,7 @@ li a:hover{
 
 .secao-filtro {
     position: fixed;
-    right: -800px;
+    right: -300px;
     top: 70px;
     width: 300px;
     /* height: calc(100% - 100px);   */
