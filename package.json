@@ -19,16 +19,9 @@
   },
   "dependencies": {
     "dotenv": "^16.5.0",
-    "ejs": "^3.1.10",
-<<<<<<< HEAD
-    "express": "^4.21.2",
-    "express-validator": "^7.1.0"
-  }
-=======
-    "express": "^4.19.2",
-    "express-validator": "^7.1.0",
-    "mysql2": "^3.14.1"
-  },
-  "description": ""
->>>>>>> 7539ea171ecefb52cc67f7602bca927368c0a13e
-}
+      "ejs": "^3.1.10",
+      "express": "^4.21.2",
+      "express-validator": "^7.1.0",
+      "mysql2": "^3.14.1"
+    },
+    "description": ""}
