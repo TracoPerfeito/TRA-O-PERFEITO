@@ -273,6 +273,19 @@ router.get("/adm-login", function (req, res) { //adm teste
  
 });
 
+router.get("/portfolios", function (req, res) { //portfolios
+    res.render('pages/portfolios');
+
+ 
+});
+
+
+router.get("/portfolio", function (req, res) { //portfolios
+    res.render('pages/portfolio');
+
+ 
+});
+
 
 
 router.get("/cadastro", function (req, res) { //cadastrar

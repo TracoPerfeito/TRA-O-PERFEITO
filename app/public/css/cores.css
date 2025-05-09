@@ -31,7 +31,7 @@
 
 .darkmode {
 
-    --cor-fundo: rgb(37, 39, 47);
+     --cor-fundo: rgb(37, 39, 47);  /*#131f24 cor do duolingo (bem dahorinha, testar pra ver) */
     --azul-menu: rgb(30, 36, 48);
     --text-color: rgb(224, 224, 224);
     --primary-color: #3a435d;

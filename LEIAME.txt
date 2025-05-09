@@ -4,3 +4,6 @@ e digite:
 **** (npm config set strict-ssl false) para liberar o proxy
 
 **** npm install
+
+fhxdufxdhyfxdydx
+fgfktfdyryth
