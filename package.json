@@ -1,17 +1,25 @@
 {
   "name": "modelo-app-node",
   "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/TracoPerfeito/TRA-O-PERFEITO#readme",
+  "bugs": {
+    "url": "https://github.com/TracoPerfeito/TRA-O-PERFEITO/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TracoPerfeito/TRA-O-PERFEITO.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.10",
-    "express": "^4.19.2",
+    "express": "^4.21.2",
     "express-validator": "^7.1.0"
-  },
-  "devDependencies": {},
-  "description": ""
+  }
 }
