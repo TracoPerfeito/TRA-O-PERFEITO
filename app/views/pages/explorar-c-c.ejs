@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/barrapesquisa.css">
     <link rel="stylesheet" href="css/blocos.css">
     <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/explorar-c-c.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="../js/banner.js"></script>
@@ -42,6 +43,83 @@
                             <input class="search-input" type="search" placeholder="O que você está procurando hoje?">
                         
                         </section> 
+
+                        <button id="botao-filtro"> <ion-icon name="filter-outline" id="icon-filtro"></ion-icon></button>
+                     </section>
+                
+                        <section class="secao-filtro" id="secao-filtro">
+                
+                            <button id="fechar-aba"> X </button>
+                            <h2 id="filtros-nome-h2">Filtros</h2>
+
+                            <section class="categoria-filtro">
+                            
+                            </section>
+                            <section class="opcoes-categoria">
+
+                
+                            
+                            </section>
+                
+
+                
+                
+                            <section class="categoria-filtro">
+                                <span class="caret">▶</span> Data de Publicação
+                            </section>
+                            
+                            <section class="opcoes-categoria">
+                                <label><input type="checkbox" > Mais Recente</label><br>
+                                <label><input type="checkbox"> Há um mês</label><br>
+                                <label><input type="checkbox"> Há um ano </label> <br>
+                            </section>
+                
+                            <hr>
+                
+                            <section class="categoria-filtro">
+                                <span class="caret">▶</span> Tipo
+                            </section>
+                
+                            <section class="opcoes-categoria">
+                                <label><input type="checkbox"> Ilustração</label><br>
+                                <label><input type="checkbox"> Edição de Vídeo</label><br>
+                                <label><input type="checkbox"> Design Gráfico</label> <br>
+                                
+                            </section>
+                
+                            <hr>
+                
+                            
+                            <section class="categoria-filtro">
+                                <span class="caret">▶</span> Traços
+                            </section>
+                
+                           
+                
+                            <section class="opcoes-categoria">
+                                <label><input type="checkbox"> Linha Cheia </label><br>
+                                <label><input type="checkbox"> Linha tracejada</label><br>
+                                <label><input type="checkbox"> Linha traço-ponto</label><br>
+                              
+                                
+                            </section>
+                
+                            
+                
+                            
+                
+                            <button id="aplicar-filtros">Aplicar</button>
+                        </section>
+                
+                   
+                 
+                 
+                           
+                 <section class="container-perfis">
+                
+                
+                
+                    
  
                     
 <!--                         
@@ -73,6 +151,10 @@
                             </button> -->
                         
                     </section>
+
+                    <script src="js/filtro.js"></script>
+                    <script src="js/like.js"></script>
+                 
 
                     
                     
@@ -273,7 +355,8 @@
     <%- include('../partials/rodape'); %>
 
  
-    <script src="js/like.js"></script>
+   
+    <script src="js/filtro.js"></script>
     <script src="js/mobile-navbar.js"></script>
     
  
