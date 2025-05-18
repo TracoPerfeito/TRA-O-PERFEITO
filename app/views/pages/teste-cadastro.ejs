@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - Traço Perfeito</title>
+  <link rel="stylesheet" href="css/cadastro-novo.css">
+  
+
+</head>
+<body>
+
+
+
+
+    <!-- coisas novas -->
+
+
+
+
+    <% 
+    let cssErros = {nome: "", usuario: "", email: "", celular: "", cpf: "", password: "", confirmpassword: ""};
+    let msgErros = {nome: "", usuario: "", email: "", celular: "", cpf: "", password: "", confirmpassword: ""}; 
+    
+    if(listaErros){
+        listaErros.errors.forEach(function (elemento){
+            if(elemento.path == "nome"){
+                cssErros.nome = "erro-form";
+                msgErros.nome = elemento.msg;
+            }
+     
+            if(elemento.path == "usuario"){
+                cssErros.usuario = "erro-form";
+                msgErros.usuario = elemento.msg;
+            }
+     
+            if(elemento.path == "email"){
+                cssErros.email = "erro-form";
+                msgErros.email = elemento.msg;
+            }
+     
+            if(elemento.path == "celular"){
+                cssErros.celular = "erro-form";
+                msgErros.celular = elemento.msg;
+            }
+
+            if(elemento.path == "cpf"){
+                cssErros.cpf = "erro-form";
+                msgErros.cpf = elemento.msg;
+            }
+     
+     
+            if(elemento.path == "password"){
+                cssErros.password = "erro-form";
+                msgErros.password = elemento.msg;
+            }
+     
+            if(elemento.path == "confirmpassword"){
+                cssErros.confirmpassword = "erro-form";
+                msgErros.confirmpassword = elemento.msg;
+            }
+        });
+    }
+    %>
+
+
+
+
+
+
+
+
+        <!-- .... -->
+
+  <div class="form-wizard">
+
+    <!-- <img src="tracoperfeitoazul.png" alt="Traço Perfeito" id="logo-nome"> -->
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <h1> CADASTRE-SE</h1>
+    
+
+    <form id="signupForm" method="POST" action="/teste-cadastro">
+
+      <!-- Step 1 -->
+      <div class="form-step active">
+        <h3>Olá! Como você gostaria de usar o Traço Perfeito?</h3>
+        <div class="card-options tipo-conta-container">
+          <input type="hidden" name="tipo" id="tipo-usuario">
+
+          <div class="card" onclick="selectAccountType('comum')" id="card-comum" valu> 
+
+            <img src="imagens/comum.png" alt="Lupa" class="icone">
+            
+            <h3> Procurar profissionais</h3>
+
+            <p> Quero encontrar designers e artistas para meus projetos.</p>
+
+
+        </div>
+          <div class="card" onclick="selectAccountType('profissional')" id="card-artista">
+
+            <img src="imagens/profissional.png" alt="Designer" class="icone">
+            
+            <h3> Divulgar meus trabalhos</h3>
+
+            <p> Quero divulgar meus trabalhos e receber oportunidades.</p>
+          </div>
+            <input type="hidden" name="tipo_conta" id="tipo_conta">
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-step">
+        <h3>Dados Básicos</h3>
+        <input type="text" placeholder="Nome completo" name="nome" value="<%= valores.nome %>" class=" dados-basicos    <%= cssErros.nome %>" required><br>
+          <span class="msg-erro"><%= msgErros.nome %></span>
+          <span class="msg-erro" for="nome"></span>
+
+
+
+        <input type="text" placeholder="Username"  name="usuario" value="<%= valores.usuario %>" class="  dados-basicos    <%= cssErros.usuario %>" required><br>
+        <span class="msg-erro"><%= msgErros.usuario %></span>
+        <span class="msg-erro" for="usuario"></span>
+                     
+
+
+
+        <input type="text" placeholder="CPF"  name="cpf"   value="<%= valores.cpf %>" class=" dados-basicos     <%= cssErros.cpf %>"  required><br>
+         <span class="msg-erro"><%= msgErros.cpf %></span>
+         <span class="msg-erro" for="cpf"></span>
+        
+        
+        
+        <input type="email" placeholder="E-mail"  name="email" value="<%= valores.email %>" class=" dados-basicos     <%= cssErros.email %>" required><br>
+         <span class="msg-erro"><%= msgErros.email %></span>
+         <span class="msg-erro" for="email"></span>
+        
+
+
+        <input type="text" placeholder="Celular"  name="celular"  value="<%= valores.celular %>" class="dados-basicos   <%= cssErros.celular %>" required><br>
+         <span class="msg-erro"><%= msgErros.celular %></span>
+         <span class="msg-erro" for="celular"></span>
+        
+        
+        
+        <div class="button-group">
+          <button type="button" onclick="prevStep()">Voltar</button>
+          <button type="button" onclick="analisarEtapaDadosBasicos()" >Prosseguir</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-step">
+        <h3>Informações Pessoais</h3>
+        <section class="nasc-genero">
+    
+            <section>
+                <p> Insira sua data de nascimento: </p>
+                <input type="date" class="data-nasc"  name="data_nasc" required> <br>
+
+                <span class="msg-erro" for="dataNasc"></span>
+            </section>
+
+            
+
+            <section class="genero">
+                <p> Selecione o seu gênero: </p>
+                <select class="data-nasc genero" name="genero" required >
+                  <option value="">Gênero</option>
+                  <option value="feminino">Feminino</option>
+                  <option value="masculino">Masculino</option>
+                   <option value="prefiro não dizer">Prefiro não dizer</option>
+                  <option value="outro">Outro</option>
+                </select>
+
+                <span class="msg-erro" for="genero"></span>
+            </section>
+             
+        </section>
+        <div class="button-group">
+          <button type="button" onclick="prevStep()">Voltar</button>
+          <button type="button" onclick="analisarEtapaData()">Prosseguir</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="form-step">
+        <h3>Crie sua senha</h3>
+
+        <p> Sua senha deve ter no mínimo 8 caracteres, com números, letras maiúsculas e minúsculas, e ao menos um caractere especial. </p>
+        <input type="password" placeholder="Senha"  name="password" value="<%= valores.password %>" class="<%= cssErros.password %>" required><br>
+        <span class="msg-erro"> <%= msgErros.password %></span>
+         <span class="msg-erro" for="password"></span>                 
+
+
+
+        <p>Confirme sua senha:</p>
+        <input type="password" placeholder="Confirmar senha" name="confirmpassword" value="<%= valores.confirmpassword %>" class="<%= cssErros.confirmpassword %>"  required ><br>
+        <span class="msg-erro"> <%= msgErros.confirmpassword %></span>
+        <span class="msg-erro" for="confirmpassword"></span>
+
+
+        <div class="button-group">
+          <button type="button" onclick="prevStep()">Voltar</button>
+          <button type="button" id="senhaBtn" onclick="analisarEtapaSenha()">Prosseguir</button>
+        </div>
+      </div>
+    </form>
+  </div>
+ <script src="js/cadastro.js"></script>
+</body>
+</html>

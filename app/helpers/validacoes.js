@@ -74,3 +74,5 @@ function validarCPF(cpf){
 }
 
 module.exports = { verificadorCelular, validarCPF };
+
+
