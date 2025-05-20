@@ -22,8 +22,8 @@
 
 	<% 
 	let cssErros = {email: "", password: ""};
-let msgErros = {email: "", password: ""};
-if(errosLogin){
+    let msgErros = {email: "", password: ""};
+    if(errosLogin  && errosLogin.length > 0){
     errosLogin.errors.forEach(function (elemento){
         if(elemento.path == "email"){
             cssErros.email = "erro-form";
@@ -60,7 +60,7 @@ if(errosLogin){
         </section>
             
 		<section class="login-content">
-			<form action="/login" method="post">
+			<form action="/login" method="POST">
 				<img src="imagens/logo.png">
 				<h2 class="title">Login</h2>
 

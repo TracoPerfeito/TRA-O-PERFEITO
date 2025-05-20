@@ -2,9 +2,8 @@ var pool = require("../../config/pool_conexoes");
 
 const usuariosModel = {
 
-   //metodo para retornar todo os registros da entidade usuario
-   findAll: async () => {
-        
+ 
+   findAll: async () => {     
     try {
         const [linhas] = await
             pool.query("SELECT * FROM USUARIOS WHERE STATUS_USUARIO = 'ativo'");
@@ -13,7 +12,7 @@ const usuariosModel = {
         return linhas;
     } catch (error) {
         console.log(error);
-        return null;
+        return error;
     }
 
 },
@@ -93,6 +92,36 @@ const usuariosModel = {
             return error;
         }  
     },
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    findUserEmail: async (camposForm) => {
+            try {
+                const [resultados] = await pool.query(
+                    "SELECT * FROM USUARIOS WHERE EMAIL_USUARIO = ?",
+                    [camposForm.email]
+                )
+                return resultados;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+        },
+
+
+        
 
 
 

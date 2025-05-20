@@ -1,6 +1,8 @@
 const usuariosModel = require("../models/usuariosModel");
 const { body, validationResult } = require("express-validator");
 const moment = require("moment");
+const bcrypt = require("bcryptjs");
+var salt = bcrypt.genSaltSync(10);
 
 const { verificadorCelular, validarCPF } = require("../helpers/validacoes");
 
@@ -59,6 +61,16 @@ body("nome").isLength({ min: 3, max: 50 }).withMessage('O nome deve ter de 3 a 5
 
 ],
 
+regrasValidacaoLogin: [
+        body("email")
+            .isEmail()
+            .withMessage("Insira um email válido"),
+        body("password")
+            .isStrongPassword()
+            .withMessage("A senha deve ter no mínimo 8 caracteres (mínimo 1 letra maiúscula, 1 caractere especial e 1 número)")
+    ],
+
+
 cadastrarUsuario: async (req, res) => {
         
         const errors = validationResult(req);
@@ -77,7 +89,7 @@ cadastrarUsuario: async (req, res) => {
             nome_usuario: req.body.nome,
             email_usuario: req.body.email,
             celular_usuario: req.body.celular,
-            senha_usuario: req.body.password,
+            senha_usuario: bcrypt.hashSync(req.body.password, salt),
             cpf_usuario: req.body.cpf.replace(/[^\d]/g, ''),
             data_nasc_usuario: req.body.data_nasc,
             genero_usuario: req.body.genero,
@@ -111,11 +123,35 @@ cadastrarUsuario: async (req, res) => {
 
     },
 
+
+
+
+ logar: (req, res) => {
+    const autenticado = req.session.autenticado;
+
+    if (autenticado && autenticado.autenticado !== null) {
+        // Redireciona com base no tipo do usuário
+        if (autenticado.tipo === "comum") {
+            console.log("🔄 Redirecionando para página comum.");
+            return res.redirect("/explorar-c-c");
+        } else if (autenticado.tipo === "profissional") {
+            console.log("🔄 Redirecionando para página profissional.");
+            return res.redirect("/explorar-logado");
+        } else {
+            console.log("⚠️ Tipo de usuário desconhecido.");
+            return res.redirect("/");
+        }
+    } else {
+        console.log("❌ Usuário não autenticado. Erro no login.");
+        return res.render("pages/login", {
+            valores: req.body,
+            errosLogin: [],
+            retorno: "E-mail ou senha inválidos."
+        });
+    }
+}
+
    
-
-
-
-
 
 
 
@@ -126,4 +162,3 @@ cadastrarUsuario: async (req, res) => {
 module.exports = usuariosController;
            
 
-    

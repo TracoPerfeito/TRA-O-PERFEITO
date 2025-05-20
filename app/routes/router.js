@@ -7,6 +7,12 @@ const usuariosController = require("../controllers/usuariosController");
 const { verificadorCelular, validarCPF } = require("../helpers/validacoes");
 
 
+const {
+  verificarUsuAutenticado,
+  limparSessao,
+  gravarUsuAutenticado,
+  verificarUsuAutorizado,
+} = require("../models/autenticador_middleware");
 
 
 
@@ -90,10 +96,12 @@ router.get("/meu-perfil-artista", function (req, res) { //perfil pessoal logado
 
 
 
-router.get("/explorar-logado", function (req, res) { //inicial logado
-    res.render('pages/explorar-logado')
+router.get("/explorar-logado", verificarUsuAutorizado(["profissional"], "pages/acesso-negado"), function (req, res) { //inicial logado
+    res.render('pages/explorar-logado', req.session.autenticado)
  
 });
+
+
 
 
 router.get("/contratar-logado", function (req, res) {  //contratar logado
@@ -194,15 +202,6 @@ router.get("/tabela-pagamentos", function (req, res) { //Tabela de pagamentos
 });
 
 
-
-
-
-
-router.get("/login", function (req, res) { //login
-    res.render('pages/login',  {retorno: null, valores: {email: "", password: ""}, errosLogin: null});
-
- 
-});
 
 
 
@@ -314,27 +313,29 @@ router.post( "/teste-cadastro", usuariosController.regrasValidacaoCadastro, func
 );
 
 
+router.get("/login", function (req, res) { //login
+    res.render('pages/login',  {retorno: null, valores: {email: "", password: ""}, errosLogin: null});
+
+ 
+});
+
+
+
 router.post( //validações login
     "/login",
 
-    body("email").isEmail().withMessage('Insira um e-mail válido.'),
-
-    body('password').isLength({ min: 8 }).withMessage('Senha incorreta.'), //Vai estar como senha incorreta mas ná vdd é só pq não oito dígitos mesmo.
-   
-    function (req, res) {
-
-        const errosLogin = validationResult(req);
-
-        if (errosLogin.isEmpty()) {
-
-            return res.redirect("/explorar-c-c"); 
-        } else {
-            
-            console.log(errosLogin);
-            return res.render("pages/login", { retorno: null, valores: {email: req.body.email, password: req.body.password}, errosLogin: errosLogin});
-        }
-    }
+   usuariosController.regrasValidacaoLogin, 
+   gravarUsuAutenticado,
+   function (req, res) {
+     usuariosController.logar(req, res);
+   }
 );
+
+
+
+
+
+
 
 module.exports = router;
 
