@@ -112,7 +112,19 @@ cadastrarUsuario: async (req, res) => {
             console.log("Usuário profissional inserido na tabela USUARIO_PROFISSIONAL.");
         }
 
-        res.redirect("/");
+        req.session.autenticado = {
+        autenticado: true,
+        id: idUsuario,
+        tipo: dadosForm.tipo_usuario
+    };
+
+
+    
+   if (dadosForm.tipo_usuario === "profissional") {
+            return res.redirect("/explorar-logado");
+        } else {
+            return res.redirect("/explorar-c-c");
+        }
 
         } catch (error) {
             console.log(error);

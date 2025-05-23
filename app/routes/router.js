@@ -268,11 +268,11 @@ router.get("/adm-lista-denuncias", function (req, res) { //adm teste
  
 });
 
-router.get("/adm-login", function (req, res) { //adm teste
-    res.render('pages/adm-login');
+// router.get("/adm-login", function (req, res) { //adm teste
+//     res.render('pages/adm-login');
 
  
-});
+// });
 
 router.get("/portfolios", function (req, res) { //portfolios
     res.render('pages/portfolios');
