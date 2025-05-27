@@ -19,25 +19,23 @@
 </head>
 <body>
 
-
-	<% 
-	let cssErros = {email: "", password: ""};
-    let msgErros = {email: "", password: ""};
-    if(errosLogin){
-    errosLogin.errors.forEach(function (elemento){
-        if(elemento.path == "email"){
+<% 
+let cssErros = {email: "", password: ""};
+let msgErros = {email: "", password: ""};
+if (errosLogin && errosLogin.length > 0) {
+    errosLogin.forEach(function (elemento){
+        if (elemento.path == "email") {
             cssErros.email = "erro-form";
             msgErros.email = elemento.msg;
         }
 
-        if(elemento.path == "password"){
+        if (elemento.path == "password") {
             cssErros.password = "erro-form";
             msgErros.password = elemento.msg;
         }
-
     });
 }
- %>
+%>
 
 
 
@@ -60,23 +58,38 @@
         </section>
             
 		<section class="login-content">
-			<form action="/login" method="POST">
-				<img src="imagens/logo.png">
-				<h2 class="title">Login</h2>
+			<form action="/login" method="POST" autocomplete="off">
+
+
+                
+
+
+                
+                                <img src="imagens/logo.png">
+                                <h2 class="title">Login</h2>
+
+
+                                <% if (retorno) { %>
+                                <section class="mensagem-erro">
+                                    <p><%= retorno %></p>
+                                </section>
+                                <% } %>
+
+            
 
 				 <!-- CAMPO DE E-MAIL -->
 
-           		<section class="input-section one">
+           		<section  class="<%= cssErros.email %> input-section one">
            		   <section class="i">
            		   		<i class="fas fa-user"></i>
            		   </section>
            		   <section class="section">
            		   		<h5>Email</h5>
-           		   		<input type="email" class="input" name="email" id="email"  value="<%= valores.email %>" class="<%= cssErros.email %>">
+           		   		<input type="email" name="email" id="email"  value="<%= valores.email %>"  autocomplete="off" required>
 						<span class="msg-erro"><%= msgErros.email %></span> <br>
          		   
 					</section>
-           		</section>
+           		</section>  
 
 				<!-- FIM DO CAMPO DE E-MAIL -->
 
@@ -91,7 +104,7 @@
            		   </section>
            		   <section class="section">
            		    	<h5>Senha</h5>
-           		    	<input type="password" class="input" name="password" id="password"  value="<%= valores.password %>" class="<%= cssErros.password %>">
+           		    	<input type="password" name="password" id="password"  value="<%= valores.password %>" class="<%= cssErros.password %>" autocomplete="new-password" required>
 						<span class="msg-erro"><%= msgErros.password %></span> <br>
 
 					</section>
@@ -102,12 +115,11 @@
         
             	<a href="#" class="senha-esquecida">Esqueceu a senha?</a>
 
-                <p class="cadas">Não tem conta? <a href="/cadastro">Cadastre-se</a></p>
-            	<input type="submit" class="btn" value="Login">
+              <input type="submit" class="btn" value="Login">
             
                 <!-- SOCIAL MEDIA LINKS -->
 
-            <h4>Ou logar usando</h4>
+            <h4>Entrar usando</h4>
             <section id="social_media">
                 <!-- FACEBOOK -->
                 <a href="#">
@@ -124,6 +136,11 @@
                     <img src="imagens/github.png" alt="">
                 </a>
             </section>
+
+            <hr class="linha-divisoria">
+
+              <p class="cadas">Não tem conta? <a href="/cadastro">Cadastre-se</a></p>
+            	
 
             </form>
         </section>

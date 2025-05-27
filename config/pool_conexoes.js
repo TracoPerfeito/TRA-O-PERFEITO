@@ -13,8 +13,10 @@ const pool = mysql.createPool({
 });
 
 pool.getConnection((err, conn) => {
-    if(err) 
+    if(err) {
         console.log(err)
+     conn.release()
+}
     else
         console.log("Conectado ao SGBD!")
 })

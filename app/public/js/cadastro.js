@@ -141,24 +141,17 @@ function selectAccountType(tipo) {
 
 
 
-
-
-
-
-
-
-
   
 
 
 
-
+   
 
   function buttonSituation() {
 
     if(currentStep === 4 ){
 
-        let senhaBtn = docuement.getElementById("senhaBtn");
+        let senhaBtn = document.getElementById("senhaBtn");
         senhaBtn.textContent = "Finalizar Cadastro";
         senhaBtn.onclick = () => document.getElementById("signupForm").submit();
     }
@@ -244,9 +237,28 @@ function validarCPF(cpf){
 
 
 
+async function verificarDuplicidade(campo, valor) {
+  if (!valor) return false; // Se vazio, não faz sentido verificar
+
+  try {
+    const response = await fetch(`/verificar?campo=${campo}&valor=${encodeURIComponent(valor)}`);
+    const data = await response.json();
+    return data.existe; // true se já existir, false se não
+  } catch (error) {
+    console.error("Erro na verificação:", error);
+    return false;
+  }
+}
 
 
-function analisarEtapaDadosBasicos() {
+
+
+
+
+
+
+
+async function analisarEtapaDadosBasicos() {
   const campos = {
     nome: document.querySelector('input[name="nome"]'),
     usuario: document.querySelector('input[name="usuario"]'),
@@ -263,18 +275,21 @@ function analisarEtapaDadosBasicos() {
     celular: document.querySelector('span.msg-erro[for="celular"]')
   };
 
-  let valido = true;
-
-  // Limpa erros anteriores
-  Object.values(spansErro).forEach(span => {
-    if (span) span.textContent = '';
-  });
+  // Limpa erros anteriores e remove classes de erro
+  Object.values(spansErro).forEach(span => { if(span) span.textContent = ''; });
   Object.values(campos).forEach(input => input.classList.remove('input-erro'));
 
-  // Validações
+  let valido = true; // flag para controlar se o formulário está válido
 
+  // Faz as verificações assíncronas (duplicidade)
+  const [emailExiste, usuarioExiste, cpfExiste, celularExiste] = await Promise.all([
+    verificarDuplicidade("email", campos.email.value.trim()),
+    verificarDuplicidade("username", campos.usuario.value.trim()),
+    verificarDuplicidade("cpf", campos.cpf.value.trim()),
+    verificarDuplicidade("celular", campos.celular.value.trim())
+  ]);
 
-  //validação do campo nome
+  // Validação do campo nome
   const nome = campos.nome.value.trim();
   if (nome.length < 3 || nome.length > 50) {
     spansErro.nome.textContent = 'O nome deve ter de 3 a 50 caracteres.';
@@ -286,51 +301,60 @@ function analisarEtapaDadosBasicos() {
     valido = false;
   }
 
-//validação do campo usuario (user)
-   const usuario = campos.usuario.value.trim();
+  // Validação do usuário
+  const usuario = campos.usuario.value.trim();
   if (usuario.length < 6 || usuario.length > 20) {
     spansErro.usuario.textContent = 'O usuário deve ter de 6 a 20 caracteres.';
     campos.usuario.classList.add('input-erro');
     valido = false;
+  } else if (usuarioExiste) {
+    spansErro.usuario.textContent = 'Este usuário já está em uso.';
+    campos.usuario.classList.add('input-erro');
+    valido = false;
   }
 
-
-  // validação do campo cpf
+  // Validação do CPF (assumindo que validarCPF é função que retorna true/false)
   const cpfValor = campos.cpf.value.trim();
-  if (!validarCPF || !validarCPF(cpfValor)) {
+  if (typeof validarCPF !== 'function' || !validarCPF(cpfValor)) {
     spansErro.cpf.textContent = 'CPF inválido.';
+    campos.cpf.classList.add('input-erro');
+    valido = false;
+  } else if (cpfExiste) {
+    spansErro.cpf.textContent = 'Este CPF já está cadastrado.';
     campos.cpf.classList.add('input-erro');
     valido = false;
   }
 
-
-  //validação do campo email
+  // Validação do e-mail
   const emailValor = campos.email.value.trim();
   const emailRegex = /^(?!.*\.\.)[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}$/;
-
-
-
-
   if (!emailRegex.test(emailValor)) {
     spansErro.email.textContent = 'E-mail inválido.';
     campos.email.classList.add('input-erro');
     valido = false;
+  } else if (emailExiste) {
+    spansErro.email.textContent = 'Este e-mail já está cadastrado.';
+    campos.email.classList.add('input-erro');
+    valido = false;
   }
 
-//validação docampo celular
-   const celularValor = campos.celular.value.trim();
-  if (!verificadorCelular || !verificadorCelular(celularValor)) {
+  // Validação do celular (assumindo verificadorCelular é função que retorna true/false)
+  const celularValor = campos.celular.value.trim();
+  if (typeof verificadorCelular !== 'function' || !verificadorCelular(celularValor)) {
     spansErro.celular.textContent = 'Número de celular inválido.';
+    campos.celular.classList.add('input-erro');
+    valido = false;
+  } else if (celularExiste) {
+    spansErro.celular.textContent = 'Este celular já está cadastrado.';
     campos.celular.classList.add('input-erro');
     valido = false;
   }
 
-  // Se tudo ok, prossegue
   if (valido) {
-    nextStep();
+    nextStep(); // se tudo válido, chama a função para avançar a etapa
   }
-}
 
+}
 
 
 
@@ -421,47 +445,110 @@ function analisarEtapaSenha() {
 
 
 
-
-
 function analisarEtapaData() {
- const campos = {
+  const campos = {
     dataNasc: document.querySelector('input[type="date"]'),
     genero: document.querySelector('select.genero')
-   
   };
   const spansErro = {
     dataNasc: document.querySelector('span.msg-erro[for="dataNasc"]'),
-    genero: document.querySelector('span.msg-erro[for="genero"]') 
+    genero: document.querySelector('span.msg-erro[for="genero"]')
   };
-
-
 
   let valido = true;
 
-   // Limpa erros anteriores
+  // Limpa erros anteriores
   Object.values(spansErro).forEach(span => {
     if (span) span.textContent = '';
   });
   Object.values(campos).forEach(input => input.classList.remove('input-erro'));
 
-
-
   const dataNasc = campos.dataNasc.value;
+  const hoje = new Date();
+  const nascimento = new Date(dataNasc);
+
   if (dataNasc === '') {
     spansErro.dataNasc.textContent = 'Insira sua data de nascimento!';
     campos.dataNasc.classList.add('input-erro');
     valido = false;
-  } 
+  } else if (isNaN(nascimento.getTime()) || nascimento > hoje) {
+    spansErro.dataNasc.textContent = 'Insira uma data de nascimento válida!';
+    campos.dataNasc.classList.add('input-erro');
+    valido = false;
+  } else {
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+    const m = hoje.getMonth() - nascimento.getMonth();
+    if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
+      idade--;
+    }
+
+    if (idade < 18) {
+      spansErro.dataNasc.textContent = 'Você precisa ter no mínimo 18 anos!';
+      campos.dataNasc.classList.add('input-erro');
+      valido = false;
+    } else if (idade > 100) {
+      spansErro.dataNasc.textContent = 'Insira uma idade válida (máximo 100 anos)!';
+      campos.dataNasc.classList.add('input-erro');
+      valido = false;
+    }
+  }
 
   const genero = campos.genero.value;
-  if (genero === ''){
+  if (genero === '') {
     spansErro.genero.textContent = 'Insira seu gênero!';
     campos.genero.classList.add('input-erro');
     valido = false;
-  } 
+  }
 
-
-    if (valido) {
+  if (valido) {
     nextStep();
   }
-  }
+}
+
+
+
+
+
+
+
+
+  // validação senha
+
+
+  
+    function validarSenha() {
+      const senha = document.getElementById('senha').value;
+
+      const validacoes = {
+        maiuscula: /[A-Z]/.test(senha),
+        minuscula: /[a-z]/.test(senha),
+        numero: /\d/.test(senha),
+        especial: /[\W_]/.test(senha),
+        unicos: new Set(senha).size >= 3,
+        tamanho: senha.length >= 8
+      };
+
+      atualizarItem("val-maiuscula", validacoes.maiuscula);
+      atualizarItem("val-minuscula", validacoes.minuscula);
+      atualizarItem("val-numero", validacoes.numero);
+      atualizarItem("val-especial", validacoes.especial);
+      atualizarItem("val-unicos", validacoes.unicos);
+      atualizarItem("val-tamanho", validacoes.tamanho);
+    }
+
+    function atualizarItem(id, valido) {
+      const item = document.getElementById(id);
+      item.classList.remove("valido", "invalido");
+      item.classList.add(valido ? "valido" : "invalido");
+    }
+
+    function mostrarValidacoes() {
+      document.getElementById("box-validacoes").classList.add("ativa");
+    }
+
+    function ocultarValidacoes() {
+      const senha = document.getElementById('senha').value;
+      if (!senha) {
+        document.getElementById("box-validacoes").classList.remove("ativa");
+      }
+    }

@@ -13,6 +13,7 @@ const {
   gravarUsuAutenticado,
   verificarUsuAutorizado,
 } = require("../models/autenticador_middleware");
+const { listenerCount } = require("../../config/pool_conexoes");
 
 
 
@@ -331,6 +332,41 @@ router.post( //validações login
    }
 );
 
+const db = require('../../config/pool_conexoes');
+
+
+
+router.get('/verificar', async (req, res) => {
+  const { campo, valor } = req.query;
+  let query;
+
+  switch (campo) {
+    case 'email':
+      query = 'SELECT * FROM USUARIOS WHERE EMAIL_USUARIO = ?';
+      break;
+    case 'cpf':
+      query = 'SELECT * FROM USUARIOS WHERE CPF_USUARIO = ?';
+      break;
+    case 'celular':
+      query = 'SELECT * FROM USUARIOS WHERE CELULAR_USUARIO = ?';
+      break;
+    case 'username':
+      query = 'SELECT * FROM USUARIOS WHERE USER_USUARIO = ?';
+      break;
+    default:
+      return res.status(400).json({ existe: false });
+  }
+
+  try {
+    const [resultado] = await db.execute(query, [valor]);
+    res.json({ existe: resultado.length > 0 });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: 'Erro ao verificar dados' });
+  }
+});
+
+
 
 
 
@@ -338,27 +374,6 @@ router.post( //validações login
 
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

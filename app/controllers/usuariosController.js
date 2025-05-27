@@ -4,6 +4,7 @@ const moment = require("moment");
 const bcrypt = require("bcryptjs");
 var salt = bcrypt.genSaltSync(10);
 
+
 const { verificadorCelular, validarCPF } = require("../helpers/validacoes");
 
 const usuariosController = {
@@ -63,11 +64,9 @@ body("nome").isLength({ min: 3, max: 50 }).withMessage('O nome deve ter de 3 a 5
 
 regrasValidacaoLogin: [
         body("email")
-            .isEmail()
-            .withMessage("Insira um email válido"),
+            .isEmail().withMessage('Insira um email válido.'),
         body("password")
-            .isStrongPassword()
-            .withMessage("A senha deve ter no mínimo 8 caracteres (mínimo 1 letra maiúscula, 1 caractere especial e 1 número)")
+             .notEmpty().withMessage('Insira sua senha.')
     ],
 
 
@@ -161,13 +160,30 @@ cadastrarUsuario: async (req, res) => {
             retorno: "E-mail ou senha inválidos."
         });
     }
-}
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
 
    
 
 
 
-
+  
 }
 
 

@@ -27,10 +27,12 @@ body{
     /* margin-left: 10%; */
 }
 
+
 .img{
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+	
 }
 
 .login-content{
@@ -43,20 +45,20 @@ body{
 .img img{
 	width: 500px;
 }
-
+    
 form{
 	width: 360px;
 }
 
 .login-content img{
-    height: 100px;
+    height: 55px;
 }
 
 .login-content h2{
-	margin: 15px 0;
+	margin: 15px 0 15px 0;
 	color: #333;
 	text-transform: uppercase;
-	font-size: 2.9rem;
+	font-size: 200%;
 }
 
 .login-content .input-section{
@@ -151,9 +153,9 @@ form{
 .senha-esquecida{
 	display: block;
 	text-align: right;
-	text-decoration: none;
+	text-decoration: underline;
 	color: #999;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	transition: .3s;
 	justify-content: space-between;
 	margin: 2px 0px 2px 0px;
@@ -185,9 +187,10 @@ a:hover {
 	color: #fff;
 	font-family: 'Poppins', sans-serif;
 	text-transform: uppercase;
-	margin: 1rem 0;
+	margin: 20px 0;
 	cursor: pointer;
 	transition: .5s;
+
 }
 .btn:hover{
 	background-position: right;
@@ -200,8 +203,8 @@ a:hover {
 }
 
 #social_media img {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
 }
 
 #social_media img:hover {
@@ -211,7 +214,7 @@ a:hover {
 
 h4 {
     color: #999;
-margin-bottom: 15px;}
+margin-bottom: 10px;}
 
 
 .cadas {
@@ -327,22 +330,35 @@ margin-bottom: 15px;}
 }
   */
 
-  .erro-form {
+  
+
+section.erro-form {
+    background-color: rgba(249, 223, 227, 0.396) !important;
     
-    color: red;
-    border: 1px solid red;
-    border-radius: 5px;
-    padding-left: 5px;
-    background-color: lightpink
+    color: darkred;
+	width: 100%;
 }
 
 
-.msg-erro{
-
-    color: firebrick;
-	font-size: 14px;
+section.erro-form::after, .erro-form::before {
+	background-color: darkred;
 }
 
+
+.msg-erro {
+  display: block;
+  color: firebrick;
+  font-size: 14px;
+  font-weight: 500;
+ 
+  transform: translateY(55px); /* empurra para baixo */
+  position: relative;
+}
+
+.campo-form {
+  display: flex;
+  flex-direction: column;
+}
 
 .botao-de-voltar{
     width: 100%;
@@ -380,4 +396,22 @@ margin-bottom: 15px;}
     font-weight: 400;
     font-size: 15px;
     color: #474747;
+}
+
+
+.mensagem-erro {
+  background-color: #ffe5e5;
+  color: #cc0000;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.linha-divisoria {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0 20px 0;
+  opacity: 0.5; 
 }

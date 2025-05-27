@@ -25,7 +25,7 @@ gravarUsuAutenticado = async (req, res, next) => {
         console.log("⚠️ Erros de validação:", erros.array());
         return res.render("pages/login", {
             valores: req.body,
-            errosLogin: erros,
+            errosLogin: erros.array(),
             retorno: "Erro de validação nos dados informados."
         });
     }

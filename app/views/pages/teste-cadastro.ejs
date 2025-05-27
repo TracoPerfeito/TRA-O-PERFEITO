@@ -115,35 +115,89 @@
       <!-- Step 2 -->
       <div class="form-step">
         <h3>Dados Básicos</h3>
-        <input type="text" placeholder="Nome completo" name="nome" value="<%= valores.nome %>" class=" dados-basicos    <%= cssErros.nome %>" required><br>
-          <span class="msg-erro"><%= msgErros.nome %></span>
-          <span class="msg-erro" for="nome"></span>
+
+
+        <section class="input-section one">
+          <section class="i">
+              <i class="fas fa-user"></i>
+          </section>
+
+          <section class="section">
+            <h5>Nome</h5>
+            <input type="text"  name="nome" value="<%= valores.nome %>" class=" dados-basicos    <%= cssErros.nome %>" required><br>
+              <span class="msg-erro"><%= msgErros.nome %></span>
+              <span class="msg-erro" for="nome">
+
+                 <% if (msgErros.nome) { %>
+    <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#e53935">
+      <path d="m40-120 440-760 440 760H40Zm440-120q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm-40-120h80v-200h-80v200Z"/>
+    </svg>
+    <%= msgErros.nome %>
+  <% } %>
+              </span>
+          </section>
+
+        </section>
 
 
 
-        <input type="text" placeholder="Username"  name="usuario" value="<%= valores.usuario %>" class="  dados-basicos    <%= cssErros.usuario %>" required><br>
-        <span class="msg-erro"><%= msgErros.usuario %></span>
-        <span class="msg-erro" for="usuario"></span>
-                     
 
+        <section class="input-section one">
+          <section class="i">
+            <i class="fas fa-user"></i>
+          </section>
+       <section class="section">
+        <h5>Username</h5>
+         
+          <input type="text" name="usuario" value="<%= valores.usuario %>" class="  dados-basicos    <%= cssErros.usuario %>" required><br>
+          <span class="msg-erro"><%= msgErros.usuario %></span>
+          <span class="msg-erro" for="usuario"></span>
+       </section>
 
+        </section>           
 
-        <input type="text" placeholder="CPF"  name="cpf"   value="<%= valores.cpf %>" class=" dados-basicos     <%= cssErros.cpf %>"  required><br>
-         <span class="msg-erro"><%= msgErros.cpf %></span>
-         <span class="msg-erro" for="cpf"></span>
+           		
+
+      <section class="input-section one">
+         <section class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </section>
+        <section class="section">
+          <h5>CPF</h5>
+          
+          <input type="text"  name="cpf"   value="<%= valores.cpf %>" class=" dados-basicos     <%= cssErros.cpf %>"  required><br>
+           <span class="msg-erro"><%= msgErros.cpf %></span>
+           <span class="msg-erro" for="cpf"></span>
+        </section>
+      </section>
         
         
-        
-        <input type="email" placeholder="E-mail"  name="email" value="<%= valores.email %>" class=" dados-basicos     <%= cssErros.email %>" required><br>
-         <span class="msg-erro"><%= msgErros.email %></span>
-         <span class="msg-erro" for="email"></span>
-        
+        <section class="input-section one">
+           <section class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </section>
+          <section class="section">
+            <h5>Email</h5>
+            <input type="email"  name="email" value="<%= valores.email %>" class=" dados-basicos     <%= cssErros.email %>" required><br>
+             <span class="msg-erro"><%= msgErros.email %></span>
+             <span class="msg-erro" for="email"></span>
+          </section>
+          
+        </section>
 
 
-        <input type="text" placeholder="Celular"  name="celular"  value="<%= valores.celular %>" class="dados-basicos   <%= cssErros.celular %>" required><br>
-         <span class="msg-erro"><%= msgErros.celular %></span>
-         <span class="msg-erro" for="celular"></span>
-        
+        <section class="input-section one">
+           <section class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </section>
+          <section class="section">
+            <h5>Celular</h5>
+            <input type="text"  name="celular"  value="<%= valores.celular %>" class="dados-basicos   <%= cssErros.celular %>" required><br>
+             <span class="msg-erro"><%= msgErros.celular %></span>
+             <span class="msg-erro" for="celular"></span>
+          </section>
+          
+        </section>
         
         
         <div class="button-group">
@@ -189,18 +243,52 @@
       <!-- Step 4 -->
       <div class="form-step">
         <h3>Crie sua senha</h3>
-
+<!-- 
         <p> Sua senha deve ter no mínimo 8 caracteres, com números, letras maiúsculas e minúsculas, e ao menos um caractere especial. </p>
-        <input type="password" placeholder="Senha"  name="password" value="<%= valores.password %>" class="<%= cssErros.password %>" required><br>
-        <span class="msg-erro"> <%= msgErros.password %></span>
-         <span class="msg-erro" for="password"></span>                 
+         -->
+
+           <div id="box-validacoes" class="validacoes">
+            <p>Sua senha deve conter:</p>
+      <div id="val-maiuscula" class="valida-item">✔ Pelo menos 1 letra maiúscula</div>
+      <div id="val-minuscula" class="valida-item">✔ Pelo menos 1 letra minúscula</div>
+      <div id="val-numero" class="valida-item">✔ Pelo menos 1 número</div>
+      <div id="val-especial" class="valida-item">✔ Pelo menos 1 caractere especial</div>
+      <div id="val-unicos" class="valida-item">✔ Pelo menos 3 caracteres exclusivos</div>
+      <div id="val-tamanho" class="valida-item">✔ Pelo menos 8 caracteres</div>
+    </div>
+        <section class="input-section pass">
+           <section class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </section>
+          
+          <section class="section">
+            <h5>Senha</h5>
+            <input type="password" id="senha"  name="password" value="<%= valores.password %>" class="<%= cssErros.password %>" required oninput="validarSenha()" onfocus="mostrarValidacoes()" onblur="ocultarValidacoes()"><br>
+            
+  
+            <span class="msg-erro"> <%= msgErros.password %></span>
+             <span class="msg-erro" for="password"></span>
+          </section>
+        </section>
 
 
+<!-- 
+        <p>Confirme sua senha:</p> -->
 
-        <p>Confirme sua senha:</p>
-        <input type="password" placeholder="Confirmar senha" name="confirmpassword" value="<%= valores.confirmpassword %>" class="<%= cssErros.confirmpassword %>"  required ><br>
-        <span class="msg-erro"> <%= msgErros.confirmpassword %></span>
-        <span class="msg-erro" for="confirmpassword"></span>
+
+        <section class="input-section pass">
+                  <section class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </section>
+          
+
+          <section class="section">
+            <h5>Confirmação de senha</h5>
+            <input type="password" name="confirmpassword" value="<%= valores.confirmpassword %>" class="<%= cssErros.confirmpassword %>"  required ><br>
+            <span class="msg-erro"> <%= msgErros.confirmpassword %></span>
+            <span class="msg-erro" for="confirmpassword"></span>
+          </section>
+        </section>
 
 
         <div class="button-group">
@@ -211,5 +299,30 @@
     </form>
   </div>
  <script src="js/cadastro.js"></script>
+ <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pega os inputs
+            const inputs = document.querySelectorAll('.input-section > section > input');
+            
+            // Vai olhat cada campo
+            inputs.forEach(input => {
+                // Verifica se o campo já tem algum valor preenchido
+                if (input.value.trim() !== '') {
+                    // se o campo tiver sido preenchido, a classe focus será adicionada
+                    input.parentNode.parentNode.classList.add('focus');
+                }
+    
+        
+                input.addEventListener('focus', () => {
+                    input.parentNode.parentNode.classList.add('focus');
+                });
+                input.addEventListener('blur', () => {
+                    if (input.value.trim() === '') {
+                        input.parentNode.parentNode.classList.remove('focus');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
