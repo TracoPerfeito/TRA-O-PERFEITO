@@ -1,4 +1,0 @@
-function voltarPagina() {
-    history.back();
-
-}
