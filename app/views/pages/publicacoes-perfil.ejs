@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/publicacoes-perfil.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+   
+    <title>Publiações de ....</title>
+</head>
+<body>
+
+    
+  <%- include('../partials/menu'); %>
+
+
+  <section class="botao-de-voltar">   
+    <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon></button>
+    <p class="lado-botao"> Publicações de Jaqueline Maria</p>
+  </section>
+
+  <section id="button-publi-port">
+
+    <ul class="p-t-c">
+        <li><a href=/publicacoes-perfil >Publicações</a></li>
+        <li><a href=portfolios-perfil >Portfólios</a></li>
+      </ul>
+
+
+  </section>
+
+
+       
+          <section id="container-publicacoes">
+             
+            <section class="publi-perfil">
+              <img src="imagens/arte1.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section
+            
+            
+            >
+            <section class="publi-perfil">
+              <img src="imagens/arte2.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section>
+            <section class="publi-perfil">
+              <img src="imagens/arte3.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section>
+            <section class="publi-perfil">
+              <img src="imagens/arte4.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section>
+            <section class="publi-perfil">
+              <img src="imagens/arte5.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section>
+            <section class="publi-perfil">
+              <img src="imagens/arte6.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <section class="nome-btn-like">
+                <span>Nome da publicação</span>
+                <button class="like-button">
+                    <i class="far fa-heart"></i>
+                </button>
+              </section>
+            </section>
+            
+          </section>
+        </section>
+      </section>
+    </section>
+
+
+
+
+
+         
+    
+    <%- include('../partials/rodape'); %>
+    
+
+    <script src="js/voltar.js"></script>
+    <script src="js/like.js"></script>
+ 
+    
+</body>
+</html>

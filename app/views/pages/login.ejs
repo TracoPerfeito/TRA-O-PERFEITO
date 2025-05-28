@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/login.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+
+
+    <title>Traço Perfeito</title>
+</head>
+<body>
+
+
+	<% 
+	let cssErros = {email: "", password: ""};
+    let msgErros = {email: "", password: ""};
+    if(errosLogin){
+    errosLogin.errors.forEach(function (elemento){
+        if(elemento.path == "email"){
+            cssErros.email = "erro-form";
+            msgErros.email = elemento.msg;
+        }
+
+        if(elemento.path == "password"){
+            cssErros.password = "erro-form";
+            msgErros.password = elemento.msg;
+        }
+
+    });
+}
+ %>
+
+
+
+ <section class="botao-de-voltar">   
+    <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+   
+       
+    </button>
+
+    <p class="lado-botao">Voltar à página inicial</p>
+</section>
+
+
+
+	<img class="wave" src="">
+	<section class="container">
+		<section class="img">
+			<img src="imagens/undraw_online_art_re_f1pk.svg">
+        
+        </section>
+            
+		<section class="login-content">
+			<form action="/login" method="POST">
+				<img src="imagens/logo.png">
+				<h2 class="title">Login</h2>
+
+				 <!-- CAMPO DE E-MAIL -->
+
+           		<section class="input-section one">
+           		   <section class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </section>
+           		   <section class="section">
+           		   		<h5>Email</h5>
+           		   		<input type="email" class="input" name="email" id="email"  value="<%= valores.email %>" class="<%= cssErros.email %>">
+						<span class="msg-erro"><%= msgErros.email %></span> <br>
+         		   
+					</section>
+           		</section>
+
+				<!-- FIM DO CAMPO DE E-MAIL -->
+
+
+
+
+				<!-- CAMPO DE SENHA -->
+
+           		<section class="input-section pass">
+           		   <section class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </section>
+           		   <section class="section">
+           		    	<h5>Senha</h5>
+           		    	<input type="password" class="input" name="password" id="password"  value="<%= valores.password %>" class="<%= cssErros.password %>">
+						<span class="msg-erro"><%= msgErros.password %></span> <br>
+
+					</section>
+            	</section>
+
+				<!-- FIM DO CAMPO DE SENHA -->
+
+        
+            	<a href="#" class="senha-esquecida">Esqueceu a senha?</a>
+
+                <p class="cadas">Não tem conta? <a href="/cadastro">Cadastre-se</a></p>
+            	<input type="submit" class="btn" value="Login">
+            
+                <!-- SOCIAL MEDIA LINKS -->
+
+            <h4>Ou logar usando</h4>
+            <section id="social_media">
+                <!-- FACEBOOK -->
+                <a href="#">
+                    <img src="imagens/facebook.png" alt="">
+                </a>
+
+                <!-- GOOGLE -->
+                <a href="#">
+                    <img src="imagens/google.png" alt="Google logo">
+                </a>
+                
+                <!-- GITHUB -->
+                <a href="#">
+                    <img src="imagens/github.png" alt="">
+                </a>
+            </section>
+
+            </form>
+        </section>
+    </section>
+    <script src="js/voltar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pega os inputs
+            const inputs = document.querySelectorAll('.input-section > section > input');
+            
+            // Vai olhat cada campo
+            inputs.forEach(input => {
+                // Verifica se o campo já tem algum valor preenchido
+                if (input.value.trim() !== '') {
+                    // se o campo tiver sido preenchido, a classe focus será adicionada
+                    input.parentNode.parentNode.classList.add('focus');
+                }
+    
+        
+                input.addEventListener('focus', () => {
+                    input.parentNode.parentNode.classList.add('focus');
+                });
+                input.addEventListener('blur', () => {
+                    if (input.value.trim() === '') {
+                        input.parentNode.parentNode.classList.remove('focus');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

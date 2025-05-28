@@ -1,0 +1,63 @@
+
+:root {
+    --cor-fundo: White;
+    --azul-menu: #132d46;
+    --azul-mais-escuro: #122b42;
+    --text-color: Black;
+    --primary-color: #3a435d;
+    --verdinho-transparente-barra: #acdabf7a;
+    --texto-barra-pesquisa:  #165040;  /* Usado no texto da barra de pesquisa e da caixa de adicionar comentario */
+    --borda-barra-pesquisa: transparent;
+    --cor-botao: #132d46;
+    --cor-btn-voltar: #acdabf7a;
+    --cor-btn-voltar-seta: #165040;
+    --cor-btn-voltar-section: rgba(224, 236, 240, 0.37);
+    --cor-btn-voltar-texto: rgb(37, 39, 47);
+    --cor-btn-voltar-borda: transparent;
+    --cor-btn-voltar-hover: #648b747a;
+    --cor-fundo-comentario: #acdabf7a;
+    --cor-btn-azul: #132d46;
+    --gradiente-carrossel-perfil: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.337), rgba(255, 255, 255, 0));
+    --cor-fundo-card-perfis: transparent;
+    --card-quem-somos: #132d46;
+    --fundo-hover-filtro: transparent;
+    --borda-hover-filtro:  #165040;
+    --cor-fundo-ativo-n-pub: #acdabf7a;
+    --cor-av-borda-n-pub:  #165040;
+    --cor-fundo-ativo-img:  #7e9e8b7a;
+}
+
+/* #264869 */ 
+
+.darkmode {
+
+     --cor-fundo: rgb(37, 39, 47);  /*#131f24 cor do duolingo (bem dahorinha, testar pra ver) */
+    --azul-menu: rgb(30, 36, 48);
+    --text-color: rgb(224, 224, 224);
+    --primary-color: #3a435d;
+    --verdinho-transparente-barra: transparent;
+    --texto-barra-pesquisa:  #fff;
+    --borda-barra-pesquisa: #fff;
+    --cor-botao: transparent;
+    --cor-btn-voltar:  transparent;
+    --cor-btn-voltar-seta: #e9faffbe;
+    --cor-btn-voltar-section:  rgb(55, 58, 70);
+    --cor-btn-voltar-texto: #e9faffbe;
+    --cor-btn-voltar-borda: #e9faffbe;
+    --cor-btn-voltar-hover:  #e9faff2e;
+    --cor-fundo-comentario: rgb(55, 58, 70);
+    --cor-btn-azul: #316886;
+    --gradiente-carrossel-perfil: linear-gradient(to left, rgb(37, 39, 47), rgba(37, 39, 47, 0.697) , rgba(37, 39, 47, 0.056));
+    --cor-fundo-card-perfis:  rgb(55, 58, 70);
+    --card-quem-somos:  rgb(55, 58, 70);
+    --fundo-hover-filtro: #316886;
+    --borda-hover-filtro: White;
+    --cor-fundo-ativo-n-pub: #316886bb;
+    --cor-av-borda-n-pub: #316886bb;
+    --cor-fundo-ativo-img: #598eab4d;
+
+    
+
+}
+
+

@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/* BOTÃO DE VOLTAR */
+
+.botao-de-voltar{
+    width: 100%;
+    background-color:  rgba(224, 236, 240, 0.37);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.btn-voltar{
+    border-radius: 50%;
+    border: none;
+    width: 30px;
+    height: 30px;
+    background-color: #acdabf7a;
+    color: #165040;
+    margin: 0px 0px 0px 60px;
+    font-size: 17px;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-voltar:hover {
+    background-color: #648b747a;
+    cursor: pointer;
+}
+
+
+.lado-botao {
+
+    margin: 0px 10px;
+    font-family: "Josefin Sans";
+    font-weight: 400;
+    font-size: 15px;
+    color: #474747;
+}
+
+/* FIM DO BOTÃO DE VOLTAR */
+
+.container-principal {
+    width: 40%;
+    border-radius: 15px;
+    border: 2px solid #ADD9BD;
+    margin: 5% auto;
+    padding: 10px;
+    display: flex;               
+    flex-direction: column;  
+    align-items: center;      
+    justify-content: center;  
+}
+
+p {
+    font-size: 120%;
+    font-family: "Josefin Sans";
+}
+
+h1 {
+    font-family: "Montserrat";
+    margin-bottom: 10px;
+}
+
+.img-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px 0px 15px 0px;
+}
+
+.img-container img {
+    width: 70px;
+}
+.botoes-plataformas{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin: 20px 5%;
+}
+
+.escolher-msg {
+    margin: 0px 5%;
+}
+
+.botao-plataforma {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 1px 11px 18px -4px rgba(122,122,122,0.33);
+-webkit-box-shadow: 1px 11px 18px -4px rgba(122,122,122,0.33);
+-moz-box-shadow: 1px 11px 18px -4px rgba(122,122,122,0.33);
+    border-radius: 5px;
+    border: none;
+    padding: 5px 15px;
+    transition: transform 0.3s;
+   
+}
+
+.botao-plataforma:hover {
+    transform: translateY(-4px);
+
+}
+
+#btn-mercado-pago:hover {
+    border: 1.5px solid #50B4E9;
+}
+
+#btn-pic-pay:hover {
+    border: 1.5px solid #33A645;
+}
+
+
+#btn-paypal:hover {
+    border: 1.5px solid #113984;
+}
+
+
+.botao-plataforma img {
+    width: 80%;
+    height: auto;
+}
+
+
+#msg-link {
+    margin: 20px 5% 20px 5%;
+    text-align: left;
+}
+
+form {
+    width: 100%;
+   
+}
+
+.label-codigo{
+    width: 100%;
+    font-family: "Josefin Sans";
+    font-size: 110%;
+    margin: 20px 5% 20px 5%;
+
+}
+
+#codigo {
+    width: 90%;
+    border-radius: 5px;
+    border: 1.5px solid #687AA5;
+    padding: 2px 2px;
+    box-sizing: border-box;
+    margin: 10px 5% 20px 5%;
+}
+
+#codigo:focus {
+  
+    outline: 0.5px solid #424e6a;
+}
+
+.concluir-cadastro {
+    
+    width: 50%;
+    padding: 10px 7px;
+    font-family: "Montserrat";
+    text-transform: uppercase;
+    font-weight: 500;
+    background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+    background-size: 200%;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    margin: 20px auto;
+    
+    transition: .5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.concluir-cadastro:hover{
+
+    background-position: right;
+}
+
+
+
+@media (max-width:900px){
+
+    
+    .container-principal {
+        width: 60%;
+       
+    }
+    
+    .botoes-plataformas{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 10px;
+        margin: 20px 5%;
+    }
+    
+    
+    .botao-plataforma {
+        width: 100%;
+       
+       
+    }
+    
+    
+    .botao-plataforma img {
+        width: 35%;
+        height: auto;
+    }
+    
+    
+    .concluir-cadastro {
+        
+        width: 90%;
+    
+        
+    }
+    
+    
+    
+    
+    }
+
+@media (max-width:600px){
+
+    
+.container-principal {
+    width: 90%;
+   
+}
+
+.botoes-plataformas{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 20px 5%;
+}
+
+
+.botao-plataforma {
+    width: 100%;
+   
+   
+}
+
+
+.botao-plataforma img {
+    width: 35%;
+    height: auto;
+}
+
+
+.concluir-cadastro {
+    
+    width: 90%;
+
+    
+}
+
+
+
+
+}

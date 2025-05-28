@@ -1,0 +1,87 @@
+
+@import url(cores.css);
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    height: 100vh;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .login-container {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  h1 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #122b42;
+    font-family: "Montserrat";
+  }
+  
+  .login-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .login-form label {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  input:focus {
+    border-color: #316886;
+    outline: none;
+    box-shadow: 0 0 5px rgba(63, 87, 110, 0.5);
+  }
+  
+  .btn-login {
+    width: 100%;
+    padding: 12px;
+    background: var(--cor-botao);
+    color: white;
+    font-weight: 600;
+    font-family: "Montserrat";
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+  }
+  
+  .btn-login:hover {
+    background: #316886;
+  }
+  
+  
+  #logo{
+    width: 50px;
+    height: auto;
+    margin: 0px 0px 20px 0px;
+   
+    
+  }
