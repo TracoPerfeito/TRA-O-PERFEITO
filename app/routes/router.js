@@ -360,11 +360,11 @@ router.post( //validações login
    }
 );
 
-const db = require('../../config/pool_conexoes');
+// const db = require('../../config/pool_conexoes');
 
 
 
-router.get('/verificar', async (req, res) => {
+router.get('/verificar', async (req, res) => { //jogar essa validação para o usuariosController
   const { campo, valor } = req.query;
   let query;
 

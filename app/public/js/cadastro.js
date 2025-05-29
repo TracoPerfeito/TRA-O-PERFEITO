@@ -34,7 +34,7 @@ function showStep(step) {
 function selectAccountType(tipo) {
    document.getElementById('tipo_conta').value = tipo;
 
-    // Você pode também adicionar algum destaque visual à seleção:
+
     document.getElementById('card-comum').classList.remove('selected');
     document.getElementById('card-artista').classList.remove('selected');
 
@@ -62,7 +62,7 @@ function selectAccountType(tipo) {
 
 
   function nextStep() {
-    // Step 4: After creating password
+ 
     if (currentStep === 3) {
       buttonSituation();
       document.getElementById("signupForm").submit();
@@ -70,8 +70,7 @@ function selectAccountType(tipo) {
     } else {
 
 
-  
-    // default: go to next
+
     showStep(currentStep + 1);
 
   }
