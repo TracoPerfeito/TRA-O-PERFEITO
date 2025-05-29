@@ -68,6 +68,12 @@ if (listaErros) {
 }
 %>
 
+<script>
+  window.onload = function() {
+    console.log('Data received:', valores);
+  };
+</script>
+
 
     <%- include('../partials/menu-logado'); %>
 
@@ -166,7 +172,7 @@ if (listaErros) {
     <button class="close">&times;</button>
 
     <h1 class="h1-editar-perfil">Editar Perfil</h1>
-    <form action="/alterar-dados-perfil" method="post" class="editar-perfil" enctype="multipart/form-data">
+    <form action=/meu-perfil-artista method="POST" class="editar-perfil" enctype="multipart/form-data">
 
       <!-- Nome completo -->
       <section class="label-input" id="section-nome">
@@ -253,7 +259,7 @@ if (listaErros) {
       </section>
 
       <!-- Botão de envio -->
-      <button type="submit" class="salvar">Salvar</button>
+      <input type="submit" class="salvar" value="Salvar Alterações">
     </form>
   </section>
 </section>
@@ -261,27 +267,7 @@ if (listaErros) {
 
           
   <script>
-    // Elements
-let editarBtn = document.getElementById('editarperfilbotao');
-let modal = document.getElementById('editarPerfilModal');
-let closeBtn = document.querySelector('.close');
-
-// Open modal
-editarBtn.addEventListener('click', () => {
-    modal.style.display = 'block';
-});
-
-// Close modal
-closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-});
-
-// Optional: close when clicking outside the modal content
-window.addEventListener('click', (event) => {
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-});
+ 
 
   </script>
    <script src="js/editar-perfil.js"> </script>

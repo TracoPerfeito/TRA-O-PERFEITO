@@ -85,8 +85,8 @@ regrasValidacaoLogin: [
         .isEmail()
         .withMessage("Digite um e-mail válido."),
 
-    body("fone_usu")
-        .isLength({ min: 11, max: 15 })
+    body("celular_usu")
+        .isLength({ min: 11, max: 11 })
         .withMessage("Digite um número de telefone válido."),
 
     body("especialidade")
@@ -198,12 +198,12 @@ cadastrarUsuario: async (req, res) => {
 
     mostrarPerfil: async (req, res) => {
     try {
-        let results = await usuario.findId(req.session.autenticado.id);
+        let results = await usuariosModel.findId(req.session.autenticado.id);
 
         let campos = {
             nome_usu: results[0].NOME_USUARIO,
             email_usu: results[0].EMAIL_USUARIO,
-            celular_usu: results[0].CELULAR_USUARIO, // ou celular_usu, dependendo do seu form
+            celular_usu: results[0].CELULAR_USUARIO, 
             img_perfil_pasta: results[0].FOTO_PERFIL_PASTA_USUARIO,
             img_perfil_banco: results[0].FOTO_PERFIL_BANCO_USUARIO != null
                 ? `data:image/jpeg;base64,${results[0].FOTO_PERFIL_BANCO_USUARIO.toString('base64')}`
@@ -212,7 +212,7 @@ cadastrarUsuario: async (req, res) => {
             senha_usu: ""
         };
 
-        res.render("pages/meu-perfil-artista", { listaErros: null, valores: campos });
+        res.render("pages/meu-perfil-artista", { listaErros: null, dadosNotificacao: null,  valores: campos });
     } catch (e) {
         console.log(e);
         res.render("pages/meu-perfil-artista", {
@@ -227,92 +227,94 @@ cadastrarUsuario: async (req, res) => {
 },
 
 gravarPerfil: async (req, res) => {
+    console.log("Arquivo recebido:", req.file);
+    console.log("Chegou no gravarPerfil");
+    console.log("Body:", req.body);
+
     const erros = validationResult(req);
     const erroMulter = req.session.erroMulter;
 
     if (!erros.isEmpty() || erroMulter != null) {
         let lista = !erros.isEmpty() ? erros : { formatter: null, errors: [] };
         if (erroMulter != null) lista.errors.push(erroMulter);
-        return res.render("pages/meu-perfil-artista", { listaErros: lista, valores: req.body });
+        console.log("Deu erro!");
+        console.log("Erros de validação:", erros.array());
+        console.log("Erro do multer:", erroMulter);
+
+        return res.render("pages/meu-perfil-artista", { listaErros: lista, dadosNotificacao: null, valores: req.body });
+        
     }
 
     try {
-        let dadosForm = {
-            user_usuario: req.body.nomeusu_usu,
-            nome_usuario: req.body.nome_usu,
-            email_usuario: req.body.email_usu,
-            celular_usuario: req.body.fone_usu,
-            img_perfil_banco: req.session.autenticado.img_perfil_banco,
-            img_perfil_pasta: req.session.autenticado.img_perfil_pasta,
-        };
+        let dadosForm = 
+        
+        {};
+//para aqui
+       
+        if (req.body.nomeusu_usu) dadosForm.USER_USUARIO = req.body.nomeusu_usu;
+        if (req.body.nome_usu) dadosForm.NOME_USUARIO = req.body.nome_usu;
+        if (req.body.email_usu) dadosForm.EMAIL_USUARIO = req.body.email_usu;
+        if (req.body.celular_usu) dadosForm.CELULAR_USUARIO = req.body.celular_usu;
+        if (req.body.senha_usu) dadosForm.SENHA_USUARIO= bcrypt.hashSync(req.body.senha_usu, salt);
 
-        if (req.body.senha_usu !== "") {
-            dadosForm.senha_usuario = bcrypt.hashSync(req.body.senha_usu, salt);
-        }
-        if (!req.file) {
-                console.log("Falha no carregamento");
-            } else {
+        
+        if (req.body['desc-perfil']) dadosForm.desc_perfil = req.body['desc-perfil'];
+        if (req.body.especialidade) dadosForm.especialidade = req.body.especialidade;
+        if (req.body['link-instagram']) dadosForm.link_instagram = req.body['link-instagram'];
+        if (req.body['link-twitter']) dadosForm.link_twitter = req.body['link-twitter'];
+        if (req.body['link-linkedin']) dadosForm.link_linkedin = req.body['link-linkedin'];
+
+        // Imagem de perfil
+        if (req.file) {
             const caminhoArquivo = "imagem/perfil/" + req.file.filename;
-
-            if (dadosForm.img_perfil_pasta !== caminhoArquivo) {
-                removeImg(dadosForm.img_perfil_pasta);
-            }
-
             dadosForm.img_perfil_pasta = caminhoArquivo;
             dadosForm.img_perfil_banco = null;
         }
 
-        const resultUpdate = await usuario.update(dadosForm, req.session.autenticado.id);
+        
+        if (Object.keys(dadosForm).length === 0) {
+            return res.render("pages/meu-perfil-artista", {
+                listaErros: [{ msg: "Nenhum dado para atualizar." }],
+                valores: req.body,
+                console: console.log("Nenhum dado para atualizar.")
+            });
+        }
+
+        console.log("Campos para update:", dadosForm);
+      console.log("ID do usuário:", req.session.autenticado.id);
+        const resultUpdate = await usuariosModel.update(dadosForm, req.session.autenticado.id);
+
+
+      
+        req.session.autenticado.nome = req.body.nome_usu;
+        req.session.autenticado.user = req.body.nomeusu_usu;
+        req.session.autenticado.email = req.body.email_usu;
+        req.session.autenticado.celular = req.body.celular_usu;
+
 
         if (resultUpdate.changedRows === 1) {
-            const result = await usuario.findId(req.session.autenticado.id);
-            req.session.autenticado = {
-                autenticado: result[0].NOME_USUARIO,
-                id: result[0].ID_USUARIO,
-                tipo: result[0].ID_TIPO_USUARIO,
-                img_perfil_banco: result[0].FOTO_PERFIL_BANCO_USUARIO != null
-                    ? `data:image/jpeg;base64,${result[0].FOTO_PERFIL_BANCO_USUARIO.toString('base64')}`
-                    : null,
-                img_perfil_pasta: result[0].FOTO_PERFIL_PASTA_USUARIO
-            };
+            if (dadosForm.nome_usu) req.session.autenticado.nome = dadosForm.nome_usu;
+  if (dadosForm.nomeusu_usu) req.session.autenticado.user = dadosForm.nomeusu_usu;
+  if (dadosForm.email_usu) req.session.autenticado.email = dadosForm.email_usu;
+  if (dadosForm.celular_usu) req.session.autenticado.celular = dadosForm.celular_usu;
 
-            const campos = {
-                nome_usu: result[0].NOME_USUARIO,
-                email_usu: result[0].EMAIL_USUARIO,
-                nomeusu_usu: result[0].USER_USUARIO,
-                fone_usu: result[0].CELULAR_USUARIO,
-                img_perfil_pasta: result[0].FOTO_PERFIL_PASTA_USUARIO,
-                img_perfil_banco: result[0].FOTO_PERFIL_BANCO_USUARIO,
-                senha_usu: ""
-            };
-
-            res.render("pages/meu-perfil-artista", { listaErros: null, valores: campos });
-        } else {
-            res.render("pages/meu-perfil-artista", { listaErros: null, valores: dadosForm });
-        }
+  
+  req.session.save(() => {
+    res.redirect("/meu-perfil-artista"); // Recarrega a página com os dados atualizados
+  });
+} else {
+  res.render("pages/meu-perfil-artista", {
+    listaErros: [{ msg: "Nada foi alterado." }],
+    valores: req.body
+  });
+}
     } catch (e) {
         console.log(e);
         res.render("pages/meu-perfil-artista", { listaErros: erros, valores: req.body });
     }
 }
 
-
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
+}
 
 
    

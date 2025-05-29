@@ -20,8 +20,9 @@
    
     <img src="imagens/fotoperfil1.jpeg" alt="Foto de perfil" class="user-avatar">
    
-<% 
-  const primeiroNome = nome_usuario.split(' ')[0];
+<%
+  const nome = nome_usuario || 'Usuário'; // evita erro se for undefined
+  const primeiroNome = nome.split(' ')[0];
   const nomeCurto = primeiroNome.length > 18 
     ? primeiroNome.substring(0, 18) + '...' 
     : primeiroNome;

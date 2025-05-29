@@ -92,30 +92,20 @@ router.get("/menu-artista-logado", function (req, res) { //menu-logado
  
 });
 
+router.get(
+  "/meu-perfil-artista",
+  verificarUsuAutorizado(["profissional"], "pages/acesso-negado"),
+  async function (req, res) {
+    usuariosController.mostrarPerfil(req, res);
+  }
+);
 
-router.get("/meu-perfil-artista", function (req, res) {
-  
-    res.render('pages/meu-perfil-artista', {
-        listaErros: null,
-       
-        valores: {
-            img_perfil_pasta: null, 
-            nome_usu: '',
-            email_usu: '',
-            nomeusu_usu: '',
-            celular_usu: '',
-            senha_usu: '',
-           
-        }
-    });
-});
 
 
 router.post(
-  "/alterar-dados-perfil",
+  "/meu-perfil-artista",
   uploadFile("img_perfil"),
   usuariosController.regrasValidacaoPerfil,
-  verificarUsuAutorizado(["profissional"], "pages/acesso-negado"), 
   async function (req, res) {
     usuariosController.gravarPerfil(req, res);
   }

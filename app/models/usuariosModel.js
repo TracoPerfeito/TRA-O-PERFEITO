@@ -71,19 +71,6 @@ const usuariosModel = {
         }  
     },
 
-    findUserEmail: async (camposForm) => {
-            try {
-                const [resultados] = await pool.query(
-                    "SELECT * FROM usuario WHERE user_usuario = ? or email_usuario = ?",
-                    [camposForm.user_usuario, camposForm.user_usuario]
-                )
-                return resultados;
-            } catch (error) {
-                console.log(error);
-                return error;
-            }
-        },
-
         findCampoCustom: async (criterioWhere) => {
             try {
                 const [resultados] = await pool.query(
@@ -98,29 +85,23 @@ const usuariosModel = {
         },
 
         findId: async (id) => {
-            try {
-                const [resultados] = await pool.query(
-                    "SELECT u.id_usuario, u.nome_usuario, u.user_usuario, " +
-                    "u.senha_usuario, u.email_usuario, u.fone_usuario, u.tipo_usuario, " +
-                    "u.status_usuario,u.numero_usuario, u.cep_usuario,u.img_perfil_banco, u.img_perfil_pasta," +
-                    "t.id_tipo_usuario, t.descricao_usuario " +
-                    "FROM usuario u, tipo_usuario t where u.status_usuario = 1 and " +
-                    "u.tipo_usuario = t.id_tipo_usuario and u.id_usuario = ? ", [id]
-                )
-                return resultados;
-            } catch (error) {
-                console.log(error);
-                return error;
-            }
-        },
+        try {
+            const [linhas,campos] = await pool.query('SELECT * FROM USUARIOS WHERE STATUS_USUARIO = 1 and ID_USUARIO = ?',[id] )
+            return linhas;
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
+    },
+
 
 
    
         update: async (camposForm, id) => {
             try {
                 const [resultados] = await pool.query(
-                    "UPDATE usuario SET ? " +
-                    " WHERE id_usuario = ?",
+                    "UPDATE USUARIOS SET ? " +
+                    " WHERE ID_USUARIO = ?",
                     [camposForm, id]
                 )
                 return resultados;
