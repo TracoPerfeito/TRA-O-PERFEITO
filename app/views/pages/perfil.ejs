@@ -23,7 +23,17 @@
 <body>
 
     
-  <%- include('../partials/menu'); %>
+  
+
+   <% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+ <p>tipo_usuario: <%= tipo_usuario %></p>
 
 
   <section class="botao-de-voltar">   

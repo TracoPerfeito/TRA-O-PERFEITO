@@ -23,8 +23,8 @@
 	<% 
 	let cssErros = {email: "", password: ""};
     let msgErros = {email: "", password: ""};
-    if(errosLogin){
-    errosLogin.errors.forEach(function (elemento){
+    if (errosLogin && Array.isArray(errosLogin)) {
+    errosLogin.forEach(function (elemento) {
         if(elemento.path == "email"){
             cssErros.email = "erro-form";
             msgErros.email = elemento.msg;
@@ -63,6 +63,14 @@
 			<form action="/login" method="POST">
 				<img src="imagens/logo.png">
 				<h2 class="title">Login</h2>
+
+
+
+                <% if (retorno) { %>
+                    <section class="mensagem-erro-global">
+                        <p><%= retorno %></p>
+                    </section>
+                <% } %>
 
 				 <!-- CAMPO DE E-MAIL -->
 

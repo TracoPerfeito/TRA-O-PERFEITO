@@ -20,6 +20,44 @@
 </head>
   <body>
 
+
+      <%
+        let arquivo = {"imagem":"imagem/img-perfil.png"}
+        if(valores.img_perfil_pasta != null){
+            arquivo.imagem = valores.img_perfil_pasta
+        }else if(valores.img_perfil_banco != null){ 
+            arquivo.imagem = valores.img_perfil_banco;
+        }
+        let msgErro = ""
+        let avisoErro = {"nome_usu":"", "email_usu":"",nomeusu_usu:"", fone_usu:"", cep:"", imagem:""}
+        if(listaErros){
+            listaErros.errors.forEach(function(itemErro){
+                if(itemErro.path == "nome_usu"){
+                    avisoErro.nome_usu = "erro";
+                    msgErro += `* ${itemErro.msg} <br>`;
+                }
+                if(itemErro.path == "celular_usu"){
+                    avisoErro.fone_usu = "erro";
+                    msgErro += `* ${itemErro.msg} <br>`;
+                }
+                if(itemErro.path == "nomeusu_usu"){
+                    avisoErro.nomeusu_usu = "erro";
+                    msgErro += `* ${itemErro.msg} <br>`;
+                }
+                if(itemErro.path == "email_usu"){
+                    avisoErro.email_usu = "erro";
+                    msgErro += `* ${itemErro.msg} <br>`;
+                }
+               
+                if(itemErro.path == "imagem-perfil_usu"){
+                    avisoErro.imagem = "erro";
+                    msgErro += `* ${itemErro.msg} <br>`;
+                }
+              }
+            )}
+           
+                %>
+
     <%- include('../partials/menu-logado'); %>
 
    
@@ -115,18 +153,21 @@
         <span class="close">&times;</span>
 
         <h1 class="h1-editar-perfil">Editar Perfil</h1>
-        <form class="editar-perfil">
+        <form action="/alterar-dados-perfil" class="editar-perfil" enctype="multipart/form-data" method="post">
 
           
 
           <section class="label-input" id="section-nome">
               <label for="name">Nome:</label>
-              <input type="text" id="name" name="name" placeholder="Seu Nome" class="input-alteracao">
+              <input type="text" id="name" name="nome_usu" placeholder="Seu Nome" class="input-alteracao"  value="<%= valores.nome_usu %>" class="<%= avisoErro.nome_usu %>">
           </section>
+
+                <input type="text" name="fone_usu" id="celular_usu" placeholder="Telefone" value="<%= valores.fone_usu %>" class="<%= avisoErro.fone_usu %>"/> 
+              
 
           <section class="label-input"  id="section-email">
               <label for="email">Email:</label>
-              <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" class="input-alteracao">
+              <input type="email" id="email" name="email_usu" placeholder="seuemail@exemplo.com" class="input-alteracao"  value="<%= valores.email_usu %>" class="<%= avisoErro.email_usu %>">
           </section>
 
           <section class="img-holder"  id="section-img">
@@ -140,7 +181,12 @@
                       <p>Carregar imagem</p>
                     </label>
   
-                    <input type="file" name="picture__input" id="picture__input" accept="image/*">
+                    <!-- <input type="file" name="picture__input" id="picture__input" accept="image/*"> -->
+
+                        <input type="file" class="<%= avisoErro.imagem %>" name="img_perfil" id="imagem-perfil_usu" onchange="loadImg(event)">
+                    <img class="img-perfil"  id="img-preview" src="<%= arquivo.imagem %>">
+                
+
                   </section>
               </section>
 
@@ -182,14 +228,42 @@
   
 
           <button type="submit" class="salvar">Salvar</button>
-        </form>
-      </section>
-    </section>
 
- 
+          </form>
 
-    <%- include('../partials/rodape'); %>
+          </section>
 
-    <script src="js/editar-perfil.js"> </script>
+          </section>
+
+          
+  <script>
+    // Elements
+let editarBtn = document.getElementById('editarperfilbotao');
+let modal = document.getElementById('editarPerfilModal');
+let closeBtn = document.querySelector('.close');
+
+// Open modal
+editarBtn.addEventListener('click', () => {
+    modal.style.display = 'block';
+});
+
+// Close modal
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Optional: close when clicking outside the modal content
+window.addEventListener('click', (event) => {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+});
+
+  </script>
+   <script src="js/editar-perfil.js"> </script>
+
+
   </body>
-</html>
+
+  </html>
+        

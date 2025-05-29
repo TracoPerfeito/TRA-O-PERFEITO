@@ -12,6 +12,11 @@ app.use(
     cookie: { secure: false }
 }));
 
+const injetarLocais = require("./app/middlewares/injetarLocais");
+app.use(injetarLocais);
+
+
+
 app.use(express.static("./app/public"));
 
 app.set("view engine", "ejs");

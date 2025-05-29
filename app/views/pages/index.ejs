@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="theme-color" content="#191E29">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
     <title>Traço Perfeito</title>
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -14,6 +15,11 @@
     <link rel="stylesheet" href="css/banner.css">
     <link rel="stylesheet" href="css/blocos.css">
     <link rel="stylesheet" href="css/menu.css">
+   
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="js/simple-notify.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="js/banner.js"></script>
@@ -26,13 +32,30 @@
  
 <!-------------------------------BODY------------------------------------------------>
 <body onload="iniciarCarrossel()">
+ <% if(autenticado.autenticado != null){
+        if(login == 1){%>
+       <script>
+           notify("Login efetuado com sucesso", 
+           "Olá <%= autenticado.autenticado %>", "success", "center")                        
+       </script>
+       <% } } %>
 
-    <%- include('../partials/menu'); %>
 
- 
+
+   <% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+ <p>tipo_usuario: <%= tipo_usuario %></p>
+
     <!----------------------------------BANNER--------------------------------------------------------->
-  
-    <section class="banner">
+  <% if (!tipo_usuario) { %>
+ 
+   <section class="banner">
       
  
             <section class="branco">
@@ -74,6 +97,9 @@
     </section>
  
   
+<% } %>
+
+   
  
                 <main>
  

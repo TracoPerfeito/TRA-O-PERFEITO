@@ -18,3 +18,42 @@ document.getElementById("menu-btn").addEventListener("change", function() {
     }
 });
 
+
+
+  function toggleUserMenu() {
+    if(window.innerWidth > 1230){
+
+    const menu = document.getElementById("userMenu");
+    menu.classList.toggle("open");
+    if (menu.classList.contains("open")) {
+      menu.style.display = "block";
+    } else {
+      menu.style.display = "none";
+    }
+  }
+}
+
+document.addEventListener('click', () => {
+  const menu = document.getElementById("userMenu");
+  if (menu.classList.contains('open')) {
+    menu.classList.remove('open');
+  }
+});
+
+ 
+
+function toggleSection(sectionId, arrowId) {
+  const section = document.getElementById(sectionId);
+  const arrow = document.getElementById(arrowId);
+
+  if (section.classList.contains('active')) {
+    section.classList.remove('active'); // Esconde a seção
+    arrow.classList.remove('arrow-up');
+    arrow.classList.add('arrow-down'); // Mostra seta para baixo
+  } else {
+    section.classList.add('active'); // Mostra a seção
+    arrow.classList.remove('arrow-down');
+    arrow.classList.add('arrow-up'); // Mostra seta para cima
+  }
+}
+

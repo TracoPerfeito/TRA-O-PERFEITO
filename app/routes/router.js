@@ -15,13 +15,16 @@ const {
 } = require("../models/autenticador_middleware");
 const { listenerCount } = require("../../config/pool_conexoes");
 
+const uploadFile = require("../util/uploader")("./app/public/imagem/perfil/");
 
 
-router.get("/", function (req, res) { //index
-    res.render('pages/index')
+router.get("/",  verificarUsuAutenticado, function (req, res) { //quemsomos
+    res.render('pages/index', {
+        autenticado: req.session.autenticado,
+        login: req.session.logado,
+    });
  
 });
-
 
 router.get("/contratar", function (req, res) { //contratar 
     res.render('pages/contratar')
@@ -90,10 +93,33 @@ router.get("/menu-artista-logado", function (req, res) { //menu-logado
 });
 
 
-router.get("/meu-perfil-artista", function (req, res) { //perfil pessoal logado
-    res.render('pages/meu-perfil-artista')
- 
+router.get("/meu-perfil-artista", function (req, res) {
+  
+    res.render('pages/meu-perfil-artista', {
+        listaErros: null,
+       
+        valores: {
+            img_perfil_pasta: null, 
+            nome_usu: '',
+            email_usu: '',
+            nomeusu_usu: '',
+            celular_usu: '',
+            senha_usu: '',
+           
+        }
+    });
 });
+
+
+router.post(
+  "/alterar-dados-perfil",
+  uploadFile("img_perfil"),
+  usuariosController.regrasValidacaoPerfil,
+  verificarUsuAutorizado(["profissional"], "pages/acesso-negado"), 
+  async function (req, res) {
+    usuariosController.gravarPerfil(req, res);
+  }
+);
 
 
 
@@ -101,6 +127,8 @@ router.get("/explorar-logado", verificarUsuAutorizado(["profissional"], "pages/a
     res.render('pages/explorar-logado', req.session.autenticado)
  
 });
+
+
 
 
 

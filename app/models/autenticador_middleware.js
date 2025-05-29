@@ -5,8 +5,10 @@ const bcrypt = require("bcryptjs");
 verificarUsuAutenticado = (req, res, next) => {
     if (req.session.autenticado) {
         var autenticado = req.session.autenticado;
+        req.session.logado = req.session.logado + 1;
     } else {
         var autenticado = { autenticado: null, id: null, tipo: null };
+        req.session.logado = 0;
     }
     req.session.autenticado = autenticado;
     next();
@@ -67,12 +69,13 @@ gravarUsuAutenticado = async (req, res, next) => {
     // Se chegou aqui, está tudo certo
     req.session.autenticado = {
         autenticado: usuarioEncontrado.NOME_USUARIO,
+        nome: usuarioEncontrado.NOME_USUARIO,
         id: usuarioEncontrado.ID_USUARIO,
         tipo: usuarioEncontrado.TIPO_USUARIO
     };
 
     console.log("✅ Login realizado com sucesso:", req.session.autenticado);
-
+    req.session.logado = 0;
     next();
 };
 

@@ -399,14 +399,7 @@ section.erro-form::after, .erro-form::before {
 }
 
 
-.mensagem-erro {
-  background-color: #ffe5e5;
-  color: #cc0000;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  text-align: center;
-}
+
 
 .linha-divisoria {
   border: none;
@@ -414,4 +407,14 @@ section.erro-form::after, .erro-form::before {
   background-color: #ccc;
   margin: 10px 0 20px 0;
   opacity: 0.5; 
+}
+
+.mensagem-erro-global{
+	
+  background-color: #ffe5e5;
+  color: #cc0000;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
 }

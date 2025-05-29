@@ -3,6 +3,9 @@ const { body, validationResult } = require("express-validator");
 const moment = require("moment");
 const bcrypt = require("bcryptjs");
 var salt = bcrypt.genSaltSync(10);
+const {removeImg} = require("../util/removeImg");
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const https = require('https');
 
 
 const { verificadorCelular, validarCPF } = require("../helpers/validacoes");
@@ -69,6 +72,20 @@ regrasValidacaoLogin: [
              .notEmpty().withMessage('Insira sua senha.')
     ],
 
+    
+    regrasValidacaoPerfil: [
+        body("nome_usu")
+            .isLength({ min: 3, max: 45 }).withMessage("Nome deve ter de 3 a 45 caracteres!"),
+        body("nomeusu_usu")
+            .isLength({ min: 8, max: 45 }).withMessage("Nome de usuário deve ter de 8 a 45 caracteres!"),
+        body("email_usu")
+            .isEmail().withMessage("Digite um e-mail válido!"),
+        body("fone_usu")
+            .isLength({ min: 12, max: 15 }).withMessage("Digite um telefone válido!"),
+       
+        verificarUsuAutorizado(["profissional"], "pages/acesso-negado"),
+    ],
+
 
 cadastrarUsuario: async (req, res) => {
         
@@ -111,19 +128,19 @@ cadastrarUsuario: async (req, res) => {
             console.log("Usuário profissional inserido na tabela USUARIO_PROFISSIONAL.");
         }
 
-        req.session.autenticado = {
-        autenticado: true,
-        id: idUsuario,
-        tipo: dadosForm.tipo_usuario
-    };
+     
+            req.session.autenticado = {
+            autenticado: true,
+            id: idUsuario,
+            tipo: dadosForm.tipo_usuario,
+            nome: dadosForm.nome_usuario
+        };
 
+        // E redireciona
+        return res.redirect("/index");
 
     
-   if (dadosForm.tipo_usuario === "profissional") {
-            return res.redirect("/explorar-logado");
-        } else {
-            return res.redirect("/explorar-c-c");
-        }
+
 
         } catch (error) {
             console.log(error);
@@ -144,10 +161,10 @@ cadastrarUsuario: async (req, res) => {
         // Redireciona com base no tipo do usuário
         if (autenticado.tipo === "comum") {
             console.log("🔄 Redirecionando para página comum.");
-            return res.redirect("/explorar-c-c");
+            return res.redirect("/");
         } else if (autenticado.tipo === "profissional") {
             console.log("🔄 Redirecionando para página profissional.");
-            return res.redirect("/explorar-logado");
+            return res.redirect("/");
         } else {
             console.log("⚠️ Tipo de usuário desconhecido.");
             return res.redirect("/");
@@ -161,6 +178,106 @@ cadastrarUsuario: async (req, res) => {
         });
     }
 },
+
+
+    mostrarPerfil: async (req, res) => {
+        try {
+            let results = await usuario.findId(req.session.autenticado.id);
+
+            let campos = {
+                nome_usu: results[0].NOME_USUARIO, email_usu: results[0].EMAIL_USUARIO,
+            
+                celular: results[0].CELULAR_USUARIO,
+                img_perfil_pasta: results[0].FOTO_PERFIL_PASTA_USUARIO,
+                img_perfil_banco: results[0].FOTO_PERFIL_BANCO_USUARIO != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
+                nomeusu_usu: results[0].USER_USUARIO, 
+                senha_usu: ""
+            }
+
+            res.render("pages/perfil", { listaErros: null, valores: campos })
+        } catch (e) {
+            console.log(e);
+            res.render("pages/perfil", {
+                listaErros: null, valores: {
+                    img_perfil_banco: "", img_perfil_pasta: "", nome_usu: "", email_usu: "",
+                    nomeusu_usu: "",  senha_usu: "",
+                }
+            })
+        }
+    },
+
+    gravarPerfil: async (req, res) => {
+
+        const erros = validationResult(req);
+        const erroMulter = req.session.erroMulter;
+        if (!erros.isEmpty() || erroMulter != null ) {
+            lista =  !erros.isEmpty() ? erros : {formatter:null, errors:[]};
+            if(erroMulter != null ){
+                lista.errors.push(erroMulter);
+            } 
+            return res.render("pages/meu-perfil-artista", { listaErros: lista, valores: req.body })
+        }
+        try {
+            var dadosForm = {
+                user_usuario: req.body.nomeusu_usu,
+                nome_usuario: req.body.nome_usu,
+                email_usuario: req.body.email_usu,
+                celular_usuario: req.body.celular_usu,
+                img_perfil_banco: req.session.autenticado.img_perfil_banco,
+                img_perfil_pasta: req.session.autenticado.img_perfil_pasta,
+            };
+            if (req.body.senha_usu != "") {
+                dadosForm.senha_usuario = bcrypt.hashSync(req.body.senha_usu, salt);
+            }
+            if (!req.file) {
+                console.log("Falha no carregamento");
+            } else {
+                //Armazenando o caminho do arquivo salvo na pasta do projeto 
+                caminhoArquivo = "imagem/perfil/" + req.file.filename;
+                //Se houve alteração de imagem de perfil apaga a imagem anterior
+                if(dadosForm.img_perfil_pasta != caminhoArquivo ){
+                    removeImg(dadosForm.img_perfil_pasta);
+                }
+                dadosForm.img_perfil_pasta = caminhoArquivo;
+                dadosForm.img_perfil_banco = null;
+
+                // //Armazenando o buffer de dados binários do arquivo 
+                // dadosForm.img_perfil_banco = req.file.buffer;                
+                // //Apagando a imagem armazenada na pasta
+                // if(dadosForm.img_perfil_pasta != null ){
+                //     removeImg(dadosForm.img_perfil_pasta);
+                // }
+                // dadosForm.img_perfil_pasta = null; 
+            }
+            let resultUpdate = await usuario.update(dadosForm, req.session.autenticado.id);
+            if (!resultUpdate.isEmpty) {
+                if (resultUpdate.changedRows == 1) {
+                    var result = await usuario.findId(req.session.autenticado.id);
+                    var autenticado = {
+                        autenticado: result[0].nome_usuario,
+                        id: result[0].id_usuario,
+                        tipo: result[0].id_tipo_usuario,
+                        img_perfil_banco: result[0].img_perfil_banco != null ? `data:image/jpeg;base64,${result[0].img_perfil_banco.toString('base64')}` : null,
+                        img_perfil_pasta: result[0].img_perfil_pasta
+                    };
+                    req.session.autenticado = autenticado;
+                    var campos = {
+                        nome_usu: result[0].NOME_USUARIO, email_usu: result[0].EMAIL_USUARIO,
+                        img_perfil_pasta: result[0].FOTO_PERFIL_PASTA_USUARIO, img_perfil_banco: result[0].FOTO_PERFIL_BANCO_USUARIO,
+                        nomeusu_usu: result[0].USER_USUARIO, celular_usu: result[0].CELULAR_USUARIO, senha_usu: ""
+                    }
+                    res.render("pages/meu-perfil-artista", { listaErros: null, valores: campos });
+                }else{
+                    res.render("pages/meu-perfil-artista", { listaErros: null, valores: dadosForm });
+                }
+            }
+        } catch (e) {
+            console.log(e)
+            res.render("pages/meu-perfil-artista", { listaErros: erros, valores: req.body })
+        }
+    }
+}
+
 
 
 
@@ -184,7 +301,7 @@ cadastrarUsuario: async (req, res) => {
 
 
   
-}
+
 
 
 module.exports = usuariosController;
