@@ -72,19 +72,35 @@ regrasValidacaoLogin: [
              .notEmpty().withMessage('Insira sua senha.')
     ],
 
-    
     regrasValidacaoPerfil: [
-        body("nome_usu")
-            .isLength({ min: 3, max: 45 }).withMessage("Nome deve ter de 3 a 45 caracteres!"),
-        body("nomeusu_usu")
-            .isLength({ min: 8, max: 45 }).withMessage("Nome de usuário deve ter de 8 a 45 caracteres!"),
-        body("email_usu")
-            .isEmail().withMessage("Digite um e-mail válido!"),
-        body("fone_usu")
-            .isLength({ min: 12, max: 15 }).withMessage("Digite um telefone válido!"),
-       
-        verificarUsuAutorizado(["profissional"], "pages/acesso-negado"),
-    ],
+    body("nome_usu")
+        .isLength({ min: 3, max: 45 })
+        .withMessage("O nome deve ter entre 3 e 45 caracteres."),
+
+    body("nomeusu_usu")
+        .isLength({ min: 4, max: 30 })
+        .withMessage("O nome de usuário deve ter entre 4 e 30 caracteres."),
+
+    body("email_usu")
+        .isEmail()
+        .withMessage("Digite um e-mail válido."),
+
+    body("fone_usu")
+        .isLength({ min: 11, max: 15 })
+        .withMessage("Digite um número de telefone válido."),
+
+    body("especialidade")
+        .optional({ checkFalsy: true })
+        .isLength({ max: 100 })
+        .withMessage("A especialidade deve ter no máximo 100 caracteres."),
+
+    body("desc-perfil")
+        .optional({ checkFalsy: true })
+        .isLength({ max: 500 })
+        .withMessage("A descrição deve ter no máximo 500 caracteres."),
+
+    verificarUsuAutorizado(["profissional", "comum"], "pages/acesso-negado"),
+],
 
 
 cadastrarUsuario: async (req, res) => {
@@ -181,104 +197,107 @@ cadastrarUsuario: async (req, res) => {
 
 
     mostrarPerfil: async (req, res) => {
-        try {
-            let results = await usuario.findId(req.session.autenticado.id);
+    try {
+        let results = await usuario.findId(req.session.autenticado.id);
 
-            let campos = {
-                nome_usu: results[0].NOME_USUARIO, email_usu: results[0].EMAIL_USUARIO,
-            
-                celular: results[0].CELULAR_USUARIO,
-                img_perfil_pasta: results[0].FOTO_PERFIL_PASTA_USUARIO,
-                img_perfil_banco: results[0].FOTO_PERFIL_BANCO_USUARIO != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
-                nomeusu_usu: results[0].USER_USUARIO, 
-                senha_usu: ""
+        let campos = {
+            nome_usu: results[0].NOME_USUARIO,
+            email_usu: results[0].EMAIL_USUARIO,
+            celular_usu: results[0].CELULAR_USUARIO, // ou celular_usu, dependendo do seu form
+            img_perfil_pasta: results[0].FOTO_PERFIL_PASTA_USUARIO,
+            img_perfil_banco: results[0].FOTO_PERFIL_BANCO_USUARIO != null
+                ? `data:image/jpeg;base64,${results[0].FOTO_PERFIL_BANCO_USUARIO.toString('base64')}`
+                : null,
+            nomeusu_usu: results[0].USER_USUARIO,
+            senha_usu: ""
+        };
+
+        res.render("pages/meu-perfil-artista", { listaErros: null, valores: campos });
+    } catch (e) {
+        console.log(e);
+        res.render("pages/meu-perfil-artista", {
+            listaErros: null,
+            valores: {
+                nome_usu: "", email_usu: "", fone_usu: "",
+                img_perfil_pasta: "", img_perfil_banco: "",
+                nomeusu_usu: "", senha_usu: ""
             }
+        });
+    }
+},
 
-            res.render("pages/perfil", { listaErros: null, valores: campos })
-        } catch (e) {
-            console.log(e);
-            res.render("pages/perfil", {
-                listaErros: null, valores: {
-                    img_perfil_banco: "", img_perfil_pasta: "", nome_usu: "", email_usu: "",
-                    nomeusu_usu: "",  senha_usu: "",
-                }
-            })
+gravarPerfil: async (req, res) => {
+    const erros = validationResult(req);
+    const erroMulter = req.session.erroMulter;
+
+    if (!erros.isEmpty() || erroMulter != null) {
+        let lista = !erros.isEmpty() ? erros : { formatter: null, errors: [] };
+        if (erroMulter != null) lista.errors.push(erroMulter);
+        return res.render("pages/meu-perfil-artista", { listaErros: lista, valores: req.body });
+    }
+
+    try {
+        let dadosForm = {
+            user_usuario: req.body.nomeusu_usu,
+            nome_usuario: req.body.nome_usu,
+            email_usuario: req.body.email_usu,
+            celular_usuario: req.body.fone_usu,
+            img_perfil_banco: req.session.autenticado.img_perfil_banco,
+            img_perfil_pasta: req.session.autenticado.img_perfil_pasta,
+        };
+
+        if (req.body.senha_usu !== "") {
+            dadosForm.senha_usuario = bcrypt.hashSync(req.body.senha_usu, salt);
         }
-    },
-
-    gravarPerfil: async (req, res) => {
-
-        const erros = validationResult(req);
-        const erroMulter = req.session.erroMulter;
-        if (!erros.isEmpty() || erroMulter != null ) {
-            lista =  !erros.isEmpty() ? erros : {formatter:null, errors:[]};
-            if(erroMulter != null ){
-                lista.errors.push(erroMulter);
-            } 
-            return res.render("pages/meu-perfil-artista", { listaErros: lista, valores: req.body })
-        }
-        try {
-            var dadosForm = {
-                user_usuario: req.body.nomeusu_usu,
-                nome_usuario: req.body.nome_usu,
-                email_usuario: req.body.email_usu,
-                celular_usuario: req.body.celular_usu,
-                img_perfil_banco: req.session.autenticado.img_perfil_banco,
-                img_perfil_pasta: req.session.autenticado.img_perfil_pasta,
-            };
-            if (req.body.senha_usu != "") {
-                dadosForm.senha_usuario = bcrypt.hashSync(req.body.senha_usu, salt);
-            }
-            if (!req.file) {
+        if (!req.file) {
                 console.log("Falha no carregamento");
             } else {
-                //Armazenando o caminho do arquivo salvo na pasta do projeto 
-                caminhoArquivo = "imagem/perfil/" + req.file.filename;
-                //Se houve alteração de imagem de perfil apaga a imagem anterior
-                if(dadosForm.img_perfil_pasta != caminhoArquivo ){
-                    removeImg(dadosForm.img_perfil_pasta);
-                }
-                dadosForm.img_perfil_pasta = caminhoArquivo;
-                dadosForm.img_perfil_banco = null;
+            const caminhoArquivo = "imagem/perfil/" + req.file.filename;
 
-                // //Armazenando o buffer de dados binários do arquivo 
-                // dadosForm.img_perfil_banco = req.file.buffer;                
-                // //Apagando a imagem armazenada na pasta
-                // if(dadosForm.img_perfil_pasta != null ){
-                //     removeImg(dadosForm.img_perfil_pasta);
-                // }
-                // dadosForm.img_perfil_pasta = null; 
+            if (dadosForm.img_perfil_pasta !== caminhoArquivo) {
+                removeImg(dadosForm.img_perfil_pasta);
             }
-            let resultUpdate = await usuario.update(dadosForm, req.session.autenticado.id);
-            if (!resultUpdate.isEmpty) {
-                if (resultUpdate.changedRows == 1) {
-                    var result = await usuario.findId(req.session.autenticado.id);
-                    var autenticado = {
-                        autenticado: result[0].nome_usuario,
-                        id: result[0].id_usuario,
-                        tipo: result[0].id_tipo_usuario,
-                        img_perfil_banco: result[0].img_perfil_banco != null ? `data:image/jpeg;base64,${result[0].img_perfil_banco.toString('base64')}` : null,
-                        img_perfil_pasta: result[0].img_perfil_pasta
-                    };
-                    req.session.autenticado = autenticado;
-                    var campos = {
-                        nome_usu: result[0].NOME_USUARIO, email_usu: result[0].EMAIL_USUARIO,
-                        img_perfil_pasta: result[0].FOTO_PERFIL_PASTA_USUARIO, img_perfil_banco: result[0].FOTO_PERFIL_BANCO_USUARIO,
-                        nomeusu_usu: result[0].USER_USUARIO, celular_usu: result[0].CELULAR_USUARIO, senha_usu: ""
-                    }
-                    res.render("pages/meu-perfil-artista", { listaErros: null, valores: campos });
-                }else{
-                    res.render("pages/meu-perfil-artista", { listaErros: null, valores: dadosForm });
-                }
-            }
-        } catch (e) {
-            console.log(e)
-            res.render("pages/meu-perfil-artista", { listaErros: erros, valores: req.body })
+
+            dadosForm.img_perfil_pasta = caminhoArquivo;
+            dadosForm.img_perfil_banco = null;
         }
+
+        const resultUpdate = await usuario.update(dadosForm, req.session.autenticado.id);
+
+        if (resultUpdate.changedRows === 1) {
+            const result = await usuario.findId(req.session.autenticado.id);
+            req.session.autenticado = {
+                autenticado: result[0].NOME_USUARIO,
+                id: result[0].ID_USUARIO,
+                tipo: result[0].ID_TIPO_USUARIO,
+                img_perfil_banco: result[0].FOTO_PERFIL_BANCO_USUARIO != null
+                    ? `data:image/jpeg;base64,${result[0].FOTO_PERFIL_BANCO_USUARIO.toString('base64')}`
+                    : null,
+                img_perfil_pasta: result[0].FOTO_PERFIL_PASTA_USUARIO
+            };
+
+            const campos = {
+                nome_usu: result[0].NOME_USUARIO,
+                email_usu: result[0].EMAIL_USUARIO,
+                nomeusu_usu: result[0].USER_USUARIO,
+                fone_usu: result[0].CELULAR_USUARIO,
+                img_perfil_pasta: result[0].FOTO_PERFIL_PASTA_USUARIO,
+                img_perfil_banco: result[0].FOTO_PERFIL_BANCO_USUARIO,
+                senha_usu: ""
+            };
+
+            res.render("pages/meu-perfil-artista", { listaErros: null, valores: campos });
+        } else {
+            res.render("pages/meu-perfil-artista", { listaErros: null, valores: dadosForm });
+        }
+    } catch (e) {
+        console.log(e);
+        res.render("pages/meu-perfil-artista", { listaErros: erros, valores: req.body });
     }
 }
 
 
+};
 
 
 

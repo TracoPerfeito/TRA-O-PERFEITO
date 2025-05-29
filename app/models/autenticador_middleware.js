@@ -70,6 +70,7 @@ gravarUsuAutenticado = async (req, res, next) => {
     req.session.autenticado = {
         autenticado: usuarioEncontrado.NOME_USUARIO,
         nome: usuarioEncontrado.NOME_USUARIO,
+        user: usuarioEncontrado.USER_USUARIO,
         id: usuarioEncontrado.ID_USUARIO,
         tipo: usuarioEncontrado.TIPO_USUARIO
     };

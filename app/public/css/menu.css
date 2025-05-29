@@ -1,4 +1,5 @@
   @import url(cores.css);
+  @import url(notify.css);
 
   
 * {
@@ -323,6 +324,7 @@ a {
   font-size: 80%;
   order: 1;
   transition: all 0.2s;
+  text-transform: capitalize;
 }
 .user-name:hover {
   transform: translateY(-3px); 
@@ -944,6 +946,15 @@ h2 {
     display: none; 
   }
 }
+
+
+
+
+
+
+
+
+
 
 
 

@@ -266,6 +266,7 @@ async function analisarEtapaDadosBasicos() {
     celular: document.querySelector('input[name="celular"]')
   };
 
+ 
   const spansErro = {
     nome: document.querySelector('span.msg-erro[for="nome"]'),
     usuario: document.querySelector('span.msg-erro[for="usuario"]'),
@@ -306,7 +307,11 @@ async function analisarEtapaDadosBasicos() {
     spansErro.usuario.textContent = 'O usuário deve ter de 6 a 20 caracteres.';
     campos.usuario.classList.add('input-erro');
     valido = false;
-  } else if (usuarioExiste) {
+  }  else if (!/^[a-zA-Z0-9._]+$/.test(usuario)) {
+  spansErro.usuario.textContent = 'O usuário só pode conter letras, números, pontos e underlines.';
+  campos.usuario.classList.add('input-erro');
+  valido = false;
+} else if (usuarioExiste) {
     spansErro.usuario.textContent = 'Este usuário já está em uso.';
     campos.usuario.classList.add('input-erro');
     valido = false;

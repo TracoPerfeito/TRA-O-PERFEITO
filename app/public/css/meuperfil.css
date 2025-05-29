@@ -29,8 +29,9 @@ body {
   align-items: center;
 }
 
-#nome-principal-perfil{
+#dados-principais-perfil{
   color: var(--text-color);
+ 
   
 }
 
@@ -48,10 +49,13 @@ a {
 }
 
 
-#nome-principal-perfil{
+#dados-principais-perfil{
   color: var(--text-color);
 }
 
+#nome-perfil{
+  text-transform: capitalize;
+}
 
 #banner-perfil {
   height: 10vw;
@@ -218,11 +222,11 @@ a {
 }
 
 .embaixo {
-    margin-right: 100px;
-    margin-left: 85px;
+    margin-right: auto;
+    margin-left: auto;
     padding-bottom: 30px;
-    align-items: center;
-    display: flex;
+   
+
 }
 
 input[type='file'] {
@@ -346,6 +350,8 @@ input[type='file'] {
 
 .close {
   color: #aaa;
+  background-color: transparent;
+  border: none;
   float: right;
   font-size: 28px;
   font-weight: bold;

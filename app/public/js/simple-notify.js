@@ -8,7 +8,7 @@ function notify(titulo, texto, tipo, posicao,duracao=3000) {
         showIcon: true,
         showCloseButton: true,
         autoclose: true,
-        autotimeout: duracao,
+        autotimeout: 4000,
         gap: 20,
         distance: 20,
         type: 1,

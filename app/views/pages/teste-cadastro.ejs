@@ -149,7 +149,8 @@
        <section class="section">
         <h5>Username</h5>
          
-          <input type="text" name="usuario" value="<%= valores.usuario %>" class="  dados-basicos    <%= cssErros.usuario %>" required><br>
+          <input type="text" name="usuario"  pattern="^[a-zA-Z0-9._]{6,20}$"  title="O nome de usuário deve ter de 6 a 20 caracteres, apenas letras, números, pontos e underlines." 
+    value="<%= valores.usuario %>" class="  dados-basicos    <%= cssErros.usuario %>" required><br>
           <span class="msg-erro"><%= msgErros.usuario %></span>
           <span class="msg-erro" for="usuario"></span>
        </section>

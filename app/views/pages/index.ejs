@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="theme-color" content="#191E29">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+    <meta name="description" content="Encontre artistas e designers para transformar suas ideias em realidade.">
+    <meta name="keywords" content="design, arte, ilustrador, portfólio, artistas, contratar, freelancer, traço perfeito">
+    
+
+
+
+
     <title>Traço Perfeito</title>
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -33,10 +39,10 @@
 <!-------------------------------BODY------------------------------------------------>
 <body onload="iniciarCarrossel()">
  <% if(autenticado.autenticado != null){
-        if(login == 1){%>
+        if(logado == 2){%>
        <script>
            notify("Login efetuado com sucesso", 
-           "Olá <%= autenticado.autenticado %>", "success", "center")                        
+           "Olá, <%= autenticado.autenticado %>!", "success", "right top")                        
        </script>
        <% } } %>
 

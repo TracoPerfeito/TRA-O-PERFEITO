@@ -21,7 +21,7 @@ const uploadFile = require("../util/uploader")("./app/public/imagem/perfil/");
 router.get("/",  verificarUsuAutenticado, function (req, res) { //quemsomos
     res.render('pages/index', {
         autenticado: req.session.autenticado,
-        login: req.session.logado,
+        logado: req.session.logado,
     });
  
 });

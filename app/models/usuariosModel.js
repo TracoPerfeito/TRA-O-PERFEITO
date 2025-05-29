@@ -115,17 +115,20 @@ const usuariosModel = {
         },
 
 
-    update: async (dadosForm, id) => {
-        try {
-            const [linhas] = await pool.query('UPDATE USUARIOS SET ? WHERE ID_USUARIO = ?', [dadosForm, id])
-            return linhas;
-        } catch (error) {
-            console.log(error)
-            return error;
-        }  
-    },
-
-
+   
+        update: async (camposForm, id) => {
+            try {
+                const [resultados] = await pool.query(
+                    "UPDATE usuario SET ? " +
+                    " WHERE id_usuario = ?",
+                    [camposForm, id]
+                )
+                return resultados;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+        },
 
 
 
