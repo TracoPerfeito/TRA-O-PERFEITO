@@ -149,7 +149,8 @@ cadastrarUsuario: async (req, res) => {
             autenticado: true,
             id: idUsuario,
             tipo: dadosForm.tipo_usuario,
-            nome: dadosForm.nome_usuario
+            nome: dadosForm.nome_usuario,
+            user: dadosForm.user_usuario
         };
 
         // E redireciona
@@ -173,6 +174,9 @@ cadastrarUsuario: async (req, res) => {
  logar: (req, res) => {
     const autenticado = req.session.autenticado;
 
+    
+    
+
     if (autenticado && autenticado.autenticado !== null) {
         // Redireciona com base no tipo do usuário
         if (autenticado.tipo === "comum") {
@@ -194,6 +198,7 @@ cadastrarUsuario: async (req, res) => {
         });
     }
 },
+
 
 
     mostrarPerfil: async (req, res) => {
@@ -268,18 +273,25 @@ gravarPerfil: async (req, res) => {
         // Imagem de perfil
         if (req.file) {
             const caminhoArquivo = "imagens/perfil/" + req.file.filename;
-            dadosForm.img_perfil_pasta = caminhoArquivo;
-            dadosForm.img_perfil_banco = null;
+            dadosForm.FOTO_PERFIL_PASTA_USUARIO = caminhoArquivo;
+            dadosForm.FOTO_PERFIL_BANCO_USUARIO = null;
+
+
+             req.session.autenticado.img_perfil_pasta = caminhoArquivo;
+    req.session.autenticado.img_perfil_banco = null;
         }
+
+      
 
         
         if (Object.keys(dadosForm).length === 0) {
             return res.render("pages/meu-perfil-artista", {
-                listaErros: [{ msg: "Nenhum dado para atualizar." }],
+                 listaErros: { errors: [{ msg: "Nenhum dado para atualizar." }] },
                 valores: req.body,
                 console: console.log("Nenhum dado para atualizar.")
             });
         }
+
 
         console.log("Campos para update:", dadosForm);
       console.log("ID do usuário:", req.session.autenticado.id);
@@ -311,7 +323,7 @@ gravarPerfil: async (req, res) => {
 }
     } catch (e) {
         console.log(e);
-        res.render("pages/meu-perfil-artista", { listaErros: erros, valores: req.body });
+        res.render("pages/meu-perfil-artista", { listaErros:  [{ msg: "Ocorreu um erro ao salvar as alterações." }], valores: req.body });
     }
 }
 

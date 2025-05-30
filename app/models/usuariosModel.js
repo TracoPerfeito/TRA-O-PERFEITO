@@ -74,7 +74,7 @@ const usuariosModel = {
         findCampoCustom: async (criterioWhere) => {
             try {
                 const [resultados] = await pool.query(
-                    "SELECT count(*) totalReg FROM usuario WHERE ?",
+                    "SELECT count(*) totalReg FROM USUARIOS WHERE ?",
                     [criterioWhere]
                 )
                 return resultados[0].totalReg;

@@ -21,25 +21,30 @@
   <body>
 
 <%
-let arquivo = { imagem: "imagens/img-perfil.png" };
-if (valores.img_perfil_pasta) {
-  arquivo.imagem = valores.img_perfil_pasta;
-} else if (valores.img_perfil_banco) {
-  arquivo.imagem = valores.img_perfil_banco;
-}
+
 
 let msgErro = "";
 let avisoErro = {
   nome_usu: "",
-  nomeusu_usu: "",
+  nomeusu_usu: "",  
   fone_usu: "",
   email_usu: "",
   imagem: "",
   "imagem-capa_usu": ""
 };
 
+let errosArray = [];
+
 if (listaErros) {
-  listaErros.errors.forEach((itemErro) => {
+  if (Array.isArray(listaErros)) {
+    errosArray = listaErros;
+  } else if (Array.isArray(listaErros.errors)) {
+    errosArray = listaErros.errors;
+  }
+}
+
+
+errosArray.forEach((itemErro) => {
     if (itemErro.path === "nome_usu") {
       avisoErro.nome_usu = "erro";
       msgErro += `* ${itemErro.msg} <br>`;
@@ -65,8 +70,19 @@ if (listaErros) {
       msgErro += `* ${itemErro.msg} <br>`;
     }
   });
-}
-%>
+
+
+   
+          let arquivo = { imagem: "imagens/fotoperfil.jpg" }; 
+    
+         if (autenticado.img_perfil_pasta) {
+          arquivo.imagem = autenticado.img_perfil_pasta;
+        } else if (autenticado.img_perfil_banco) {
+          arquivo.imagem = autenticado.img_perfil_banco;
+        }
+
+   %>
+
 
 <script>
   window.onload = function() {
@@ -76,7 +92,7 @@ if (listaErros) {
 
 
     <%- include('../partials/menu-logado'); %>
-
+  
    
     <section class="base_cabecalho">
       <section id="banner-perfil">
@@ -87,8 +103,9 @@ if (listaErros) {
         <section class="coluna-esquerda">
 
           <section class="img__container">
-            <img src="imagens/img.png" alt="Perfil" id="imgFoto">
-      
+
+            <img src="/<%= arquivo.imagem %>" alt="Perfil" id="imgFoto">
+           
           </section>
 
 
@@ -245,7 +262,7 @@ if (listaErros) {
       </section>
 
       <!-- Redes sociais -->
-      <section class="link-social" id="links-redes">
+      <!-- <section class="link-social" id="links-redes">
         <p>Links das redes sociais:</p>
         <label for="instagram">Instagram:</label>
         <input type="text" id="instagram" name="link-instagram" class="input-alteracao"
@@ -256,7 +273,7 @@ if (listaErros) {
         <label for="linkedin">LinkedIn:</label>
         <input type="text" id="linkedin" name="link-linkedin" class="input-alteracao"
           value="<%= valores['link-linkedin'] || '' %>"><br>
-      </section>
+      </section> -->
 
       <!-- Botão de envio -->
       <input type="submit" class="salvar" value="Salvar Alterações">

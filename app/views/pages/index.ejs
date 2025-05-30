@@ -38,14 +38,13 @@
  
 <!-------------------------------BODY------------------------------------------------>
 <body onload="iniciarCarrossel()">
- <% if(autenticado.autenticado != null){
-        if(logado == 2){%>
-       <script>
-           notify("Login efetuado com sucesso", 
-           "Olá, <%= autenticado.autenticado %>!", "success", "right top")                        
-       </script>
-       <% } } %>
-
+ <% if (typeof logado !== 'undefined' && logado != null) { %>
+    <% if (logado == 2) { %>
+        <script>
+            notify("Login efetuado com sucesso", "success");
+        </script>
+    <% } %>
+<% } %>
 
 
    <% if (tipo_usuario === 'profissional') { %>

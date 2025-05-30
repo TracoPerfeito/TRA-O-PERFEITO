@@ -72,7 +72,8 @@ gravarUsuAutenticado = async (req, res, next) => {
         nome: usuarioEncontrado.NOME_USUARIO,
         user: usuarioEncontrado.USER_USUARIO,
         id: usuarioEncontrado.ID_USUARIO,
-        tipo: usuarioEncontrado.TIPO_USUARIO
+        tipo: usuarioEncontrado.TIPO_USUARIO,
+        img_perfil_pasta: usuarioEncontrado.FOTO_PERFIL_PASTA_USUARIO
     };
 
     console.log("✅ Login realizado com sucesso:", req.session.autenticado);

@@ -17,18 +17,30 @@
 
 <li class="user-dropdown" onclick="toggleUserMenu(); event.stopPropagation();">
  <section class="nome-img">
-   
-    <img src="imagens/fotoperfil1.jpeg" alt="Foto de perfil" class="user-avatar">
-   
-<%
+
+  <%
   const nome = nome_usuario || 'Usuário'; // evita erro se for undefined
   const primeiroNome = nome.split(' ')[0];
   const nomeCurto = primeiroNome.length > 18 
     ? primeiroNome.substring(0, 18) + '...' 
     : primeiroNome;
+
+
+
+    
+          let arquivo = { imagem: "imagens/fotoperfil.jpg" }; 
+    
+         if (autenticado.img_perfil_pasta) {
+          arquivo.imagem = autenticado.img_perfil_pasta;
+        } else if (autenticado.img_perfil_banco) {
+          arquivo.imagem = autenticado.img_perfil_banco;
+        }
+
 %>
 
 
+   
+    <img src="/<%= arquivo.imagem %>"  alt="Foto de perfil" class="user-avatar">
     
     <p class="user-name">Olá, <%= nomeCurto %>!</p>
  </section>

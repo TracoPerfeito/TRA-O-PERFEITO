@@ -13,15 +13,16 @@ const {
   gravarUsuAutenticado,
   verificarUsuAutorizado,
 } = require("../models/autenticador_middleware");
-const { listenerCount } = require("../../config/pool_conexoes");
+// const { listenerCount } = require("../../config/pool_conexoes");
 
 const uploadFile = require("../util/uploader")("./app/public/imagens/perfil/");
 
 
 router.get("/",  verificarUsuAutenticado, function (req, res) { //quemsomos
     res.render('pages/index', {
-        autenticado: req.session.autenticado,
+         autenticado: req.session.autenticado || {},
         logado: req.session.logado,
+        
     });
  
 });
@@ -350,7 +351,7 @@ router.post( //validações login
    }
 );
 
-// const db = require('../../config/pool_conexoes');
+ const db = require('../../config/pool_conexoes');
 
 
 

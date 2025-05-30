@@ -660,3 +660,9 @@ input[type='file'] {
 
 }
 
+
+
+#img-preview{
+  width: 50px;
+  height: auto;
+}
