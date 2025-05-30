@@ -15,7 +15,7 @@ const {
 } = require("../models/autenticador_middleware");
 const { listenerCount } = require("../../config/pool_conexoes");
 
-const uploadFile = require("../util/uploader")("./app/public/imagem/perfil/");
+const uploadFile = require("../util/uploader")("./app/public/imagens/perfil/");
 
 
 router.get("/",  verificarUsuAutenticado, function (req, res) { //quemsomos

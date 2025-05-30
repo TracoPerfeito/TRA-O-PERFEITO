@@ -216,9 +216,9 @@ cadastrarUsuario: async (req, res) => {
     } catch (e) {
         console.log(e);
         res.render("pages/meu-perfil-artista", {
-            listaErros: null,
+           listaErros:  [],
             valores: {
-                nome_usu: "", email_usu: "", fone_usu: "",
+                nome_usu: "", email_usu: "", celular_usu: "",
                 img_perfil_pasta: "", img_perfil_banco: "",
                 nomeusu_usu: "", senha_usu: ""
             }
@@ -266,7 +266,7 @@ gravarPerfil: async (req, res) => {
 
         // Imagem de perfil
         if (req.file) {
-            const caminhoArquivo = "imagem/perfil/" + req.file.filename;
+            const caminhoArquivo = "imagens/perfil/" + req.file.filename;
             dadosForm.img_perfil_pasta = caminhoArquivo;
             dadosForm.img_perfil_banco = null;
         }
