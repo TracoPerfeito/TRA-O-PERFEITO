@@ -256,6 +256,7 @@ gravarPerfil: async (req, res) => {
         if (req.body.email_usu) dadosForm.EMAIL_USUARIO = req.body.email_usu;
         if (req.body.celular_usu) dadosForm.CELULAR_USUARIO = req.body.celular_usu;
         if (req.body.senha_usu) dadosForm.SENHA_USUARIO= bcrypt.hashSync(req.body.senha_usu, salt);
+         if (req.body.img_perfil_pasta) dadosForm.FOTO_PERFIL_PASTA_USUARIO = req.body.img_perfil_pasta;
 
         
         if (req.body['desc-perfil']) dadosForm.desc_perfil = req.body['desc-perfil'];
