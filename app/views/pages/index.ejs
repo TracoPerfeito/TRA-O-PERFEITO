@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="theme-color" content="#191E29">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <meta name="description" content="Encontre artistas e designers para transformar suas ideias em realidade.">
     <meta name="keywords" content="design, arte, ilustrador, portfólio, artistas, contratar, freelancer, traço perfeito">
     
@@ -41,7 +43,8 @@
  <% if (typeof logado !== 'undefined' && logado != null) { %>
     <% if (logado == 2) { %>
         <script>
-            notify("Login efetuado com sucesso", "success");
+            notify("Login efetuado com sucesso", 
+              "Olá <%= autenticado.autenticado %>","success");
         </script>
     <% } %>
 <% } %>
@@ -154,8 +157,6 @@
                     
  
  
- 
- 
                     <!--------------------------------------CAIXAS--------------------------------------------------------->
                     
                     <section class="container-pag-explorar">
@@ -163,6 +164,20 @@
                         <section class="item-explorar item-1">
 
                             <a href=/publicacao> <img src="imagens/2.jpg" class="publicacao-img"></a>
+                             <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
+
+                                <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
+                                    
+                                        <section class="opcoes-menu">
+                                            <button class="btn-compartilhar" title="Compartilhar">
+                                                <ion-icon name="share-social-outline"></ion-icon>
+                                                
+                                                Compartilhar</button>
+                                            <button class="btn-denunciar" title="Denunciar">  
+                                                   <ion-icon name="flag-outline"></ion-icon>
+                                                   Denunciar</button>
+                                        </section>
+                                    </section>
                             
                                 <section class="nome-e-btn-like">
 
@@ -174,6 +189,7 @@
                                     <button class="like-button">
                                         <i class="far fa-heart"></i>
                                     </button>
+                                    
 
                                 </section>
     
@@ -185,6 +201,20 @@
                         <section class="item-explorar item-1">
 
                             <a href=/publicacao> <img src="imagens/3.jpg" class="publicacao-img"></a>
+                             <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
+
+                                <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
+                                    
+                                        <section class="opcoes-menu">
+                                            <button class="btn-compartilhar" title="Compartilhar">
+                                                <ion-icon name="share-social-outline"></ion-icon>
+                                                
+                                                Compartilhar</button>
+                                            <button class="btn-denunciar" title="Denunciar">  
+                                                   <ion-icon name="flag-outline"></ion-icon>
+                                                   Denunciar</button>
+                                        </section>
+                                    </section>
                             
                                 <section class="nome-e-btn-like">
 
@@ -207,6 +237,20 @@
                         <section class="item-explorar item-1">
 
                             <a href=/publicacao> <img src="imagens/5.jpg" class="publicacao-img"></a>
+                            <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
+
+                                <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
+                                    
+                                        <section class="opcoes-menu">
+                                            <button class="btn-compartilhar" title="Compartilhar">
+                                                <ion-icon name="share-social-outline"></ion-icon>
+                                                
+                                                Compartilhar</button>
+                                            <button class="btn-denunciar" title="Denunciar">  
+                                                   <ion-icon name="flag-outline"></ion-icon>
+                                                   Denunciar</button>
+                                        </section>
+                                    </section>
                             
                                 <section class="nome-e-btn-like">
 
@@ -229,6 +273,20 @@
                         <section class="item-explorar item-1">
 
                             <a href=/publicacao> <img src="imagens/8.jpg" class="publicacao-img"></a>
+                           <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
+
+                                <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
+                                    
+                                        <section class="opcoes-menu">
+                                            <button class="btn-compartilhar" title="Compartilhar">
+                                                <ion-icon name="share-social-outline"></ion-icon>
+                                                
+                                                Compartilhar</button>
+                                            <button class="btn-denunciar" title="Denunciar">  
+                                                   <ion-icon name="flag-outline"></ion-icon>
+                                                   Denunciar</button>
+                                        </section>
+                                    </section>
                             
                                 <section class="nome-e-btn-like">
 
@@ -251,6 +309,20 @@
                         <section class="item-explorar item-1">
 
                             <a href=/publicacao> <img src="imagens/7.jpg" class="publicacao-img"></a>
+                              <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
+
+                                <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
+                                    
+                                        <section class="opcoes-menu">
+                                            <button class="btn-compartilhar" title="Compartilhar">
+                                                <ion-icon name="share-social-outline"></ion-icon>
+                                                
+                                                Compartilhar</button>
+                                            <button class="btn-denunciar" title="Denunciar">  
+                                                   <ion-icon name="flag-outline"></ion-icon>
+                                                   Denunciar</button>
+                                        </section>
+                                    </section>
                             
                                 <section class="nome-e-btn-like">
 
@@ -273,6 +345,20 @@
                         <section class="item-explorar item-1">
 
                             <a href=/publicacao> <img src="imagens/10.jpg" class="publicacao-img"></a>
+                             <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
+
+                                <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
+                                    
+                                        <section class="opcoes-menu">
+                                            <button class="btn-compartilhar" title="Compartilhar">
+                                                <ion-icon name="share-social-outline"></ion-icon>
+                                                
+                                                Compartilhar</button>
+                                            <button class="btn-denunciar" title="Denunciar">  
+                                                   <ion-icon name="flag-outline"></ion-icon>
+                                                   Denunciar</button>
+                                        </section>
+                                    </section>
                             
                                 <section class="nome-e-btn-like">
 
@@ -295,7 +381,20 @@
                         <section class="item-explorar item-1">
 
                             <a href=/publicacao> <img src="imagens/11.jpg" class="publicacao-img"></a>
-                            
+                             <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
+
+                                <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
+                                    
+                                        <section class="opcoes-menu">
+                                            <button class="btn-compartilhar" title="Compartilhar">
+                                                <ion-icon name="share-social-outline"></ion-icon>
+                                                
+                                                Compartilhar</button>
+                                            <button class="btn-denunciar" title="Denunciar">  
+                                                   <ion-icon name="flag-outline"></ion-icon>
+                                                   Denunciar</button>
+                                        </section>
+                                    </section>
                                 <section class="nome-e-btn-like">
 
                                     <section class="foto-nome-dono-publi">
@@ -317,6 +416,20 @@
                         <section class="item-explorar item-1">
 
                             <a href=/publicacao> <img src="imagens/12.jpg" class="publicacao-img"></a>
+                            <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
+
+                                <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
+                                    
+                                        <section class="opcoes-menu">
+                                            <button class="btn-compartilhar" title="Compartilhar">
+                                                <ion-icon name="share-social-outline"></ion-icon>
+                                                
+                                                Compartilhar</button>
+                                            <button class="btn-denunciar" title="Denunciar">  
+                                                   <ion-icon name="flag-outline"></ion-icon>
+                                                   Denunciar</button>
+                                        </section>
+                                    </section>
                             
                                 <section class="nome-e-btn-like">
 
@@ -339,6 +452,26 @@
                        
                         </section>
 
+
+
+                                                <!-- Modal de denúncia -->
+                        <section id="modalDenuncia" class="modal">
+                            <section class="modal-content">
+                            <h3>Qual o motivo da denúncia?</h3>
+                            <form id="formDenuncia">
+                                <label><input type="radio" name="motivo" value="Conteúdo ofensivo"> Conteúdo ofensivo</label><br>
+                                <label><input type="radio" name="motivo" value="Spam"> Spam</label><br>
+                                <label><input type="radio" name="motivo" value="Informação falsa ou enganosa"> Informação falsa ou enganosa</label><br>
+                                <label><input type="radio" name="motivo" value="Nudez ou conteúdo sexual"> Nudez ou conteúdo sexual</label><br>
+                                <label><input type="radio" name="motivo" value="Plágio ou cópia não autorizada"> Plágio ou cópia não autorizada</label><br>
+                                <label><input type="radio" name="motivo" value="Outro"> Outro</label><br><br>
+                                <button type="submit">Enviar denúncia</button>
+                                <button type="button" id="fecharModal">Cancelar</button>
+                            </form>
+                            </section>
+                        </section>
+ 
+
                
                 </main>
 
@@ -349,9 +482,10 @@
     <%- include('../partials/rodape'); %>
 
 
-  
+
     <script src="js/like.js"></script>
     <script src="js/mobile-navbar.js"></script>
+    <script src="js/denuncia.js"></script>
 
 </body>
 </html>

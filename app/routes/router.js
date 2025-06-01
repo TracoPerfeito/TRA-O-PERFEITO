@@ -114,7 +114,7 @@ router.post(
 
 
 
-router.get("/explorar-logado", verificarUsuAutorizado(["profissional"], "pages/acesso-negado"), function (req, res) { //inicial logado
+router.get("/explorar-logado", function (req, res) { //inicial logado
     res.render('pages/explorar-logado', req.session.autenticado)
  
 });

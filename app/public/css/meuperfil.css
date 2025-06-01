@@ -491,7 +491,7 @@ input[type='file'] {
 
 /* Responsiveness */
 
-@media (min-width: 868px) {
+@media (min-width: 940px) {
   .base_cabecalho .coluna_contaneir {
     max-width: 1200px;
     margin: 0 auto;
@@ -515,7 +515,7 @@ input[type='file'] {
   }
 }
 
-@media (min-width: 1017px) {
+@media (min-width: 1123px) {
   .base_cabecalho .coluna_contaneir .coluna-esquerda {
     margin: 0;
     margin-right: auto;
@@ -665,4 +665,8 @@ input[type='file'] {
 #img-preview{
   width: 50px;
   height: auto;
+}
+
+.descricao-meu-perfil {
+  min-width: 300px;
 }

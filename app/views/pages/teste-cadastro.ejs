@@ -72,12 +72,12 @@
 
         <!-- .... -->
 
-  <div class="form-wizard">
+  <section class="form-wizard">
 
     <!-- <img src="tracoperfeitoazul.png" alt="Traço Perfeito" id="logo-nome"> -->
-    <div class="progress">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
+    <section class="progress">
+      <section class="progress-bar" id="progressBar"></section>
+    </section>
 
     <h1> CADASTRE-SE</h1>
     
@@ -85,12 +85,12 @@
     <form id="signupForm" method="POST" action="/teste-cadastro">
 
       <!-- Step 1 -->
-      <div class="form-step active">
+      <section class="form-step active">
         <h3>Olá! Como você gostaria de usar o Traço Perfeito?</h3>
-        <div class="card-options tipo-conta-container">
+        <section class="card-options tipo-conta-container">
           <input type="hidden" name="tipo" id="tipo-usuario">
 
-          <div class="card" onclick="selectAccountType('comum')" id="card-comum" valu> 
+          <section class="card" onclick="selectAccountType('comum')" id="card-comum" valu> 
 
             <img src="imagens/comum.png" alt="Lupa" class="icone">
             
@@ -99,21 +99,21 @@
             <p> Quero encontrar designers e artistas para meus projetos.</p>
 
 
-        </div>
-          <div class="card" onclick="selectAccountType('profissional')" id="card-artista">
+        </section>
+          <section class="card" onclick="selectAccountType('profissional')" id="card-artista">
 
             <img src="imagens/profissional.png" alt="Designer" class="icone">
             
             <h3> Divulgar meus trabalhos</h3>
 
             <p> Quero divulgar meus trabalhos e receber oportunidades.</p>
-          </div>
+          </section>
             <input type="hidden" name="tipo_conta" id="tipo_conta">
-        </div>
-      </div>
+        </section>
+      </section>
 
       <!-- Step 2 -->
-      <div class="form-step">
+      <section class="form-step">
         <h3>Dados Básicos</h3>
 
 
@@ -201,14 +201,14 @@
         </section>
         
         
-        <div class="button-group">
+        <section class="button-group">
           <button type="button" onclick="prevStep()">Voltar</button>
           <button type="button" onclick="analisarEtapaDadosBasicos()" >Prosseguir</button>
-        </div>
-      </div>
+        </section>
+      </section>
 
       <!-- Step 3 -->
-      <div class="form-step">
+      <section class="form-step">
         <h3>Informações Pessoais</h3>
         <section class="nasc-genero">
     
@@ -235,28 +235,28 @@
             </section>
              
         </section>
-        <div class="button-group">
+        <section class="button-group">
           <button type="button" onclick="prevStep()">Voltar</button>
           <button type="button" onclick="analisarEtapaData()">Prosseguir</button>
-        </div>
-      </div>
+        </section>
+      </section>
 
       <!-- Step 4 -->
-      <div class="form-step">
+      <section class="form-step">
         <h3>Crie sua senha</h3>
 <!-- 
         <p> Sua senha deve ter no mínimo 8 caracteres, com números, letras maiúsculas e minúsculas, e ao menos um caractere especial. </p>
          -->
 
-           <div id="box-validacoes" class="validacoes">
+           <section id="box-validacoes" class="validacoes">
             <p>Sua senha deve conter:</p>
-      <div id="val-maiuscula" class="valida-item">✔ Pelo menos 1 letra maiúscula</div>
-      <div id="val-minuscula" class="valida-item">✔ Pelo menos 1 letra minúscula</div>
-      <div id="val-numero" class="valida-item">✔ Pelo menos 1 número</div>
-      <div id="val-especial" class="valida-item">✔ Pelo menos 1 caractere especial</div>
-      <div id="val-unicos" class="valida-item">✔ Pelo menos 3 caracteres exclusivos</div>
-      <div id="val-tamanho" class="valida-item">✔ Pelo menos 8 caracteres</div>
-    </div>
+      <section id="val-maiuscula" class="valida-item">✔ Pelo menos 1 letra maiúscula</section>
+      <section id="val-minuscula" class="valida-item">✔ Pelo menos 1 letra minúscula</section>
+      <section id="val-numero" class="valida-item">✔ Pelo menos 1 número</section>
+      <section id="val-especial" class="valida-item">✔ Pelo menos 1 caractere especial</section>
+      <section id="val-unicos" class="valida-item">✔ Pelo menos 3 caracteres exclusivos</section>
+      <section id="val-tamanho" class="valida-item">✔ Pelo menos 8 caracteres</section>
+    </section>
         <section class="input-section pass">
            <section class="i"> 
            		    	<i class="fas fa-lock"></i>
@@ -292,13 +292,13 @@
         </section>
 
 
-        <div class="button-group">
+        <section class="button-group">
           <button type="button" onclick="prevStep()">Voltar</button>
           <button type="button" id="senhaBtn" onclick="analisarEtapaSenha()">Prosseguir</button>
-        </div>
-      </div>
+        </section>
+      </section>
     </form>
-  </div>
+  </section>
  <script src="js/cadastro.js"></script>
  <script>
         document.addEventListener('DOMContentLoaded', () => {

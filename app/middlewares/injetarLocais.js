@@ -20,8 +20,8 @@ function injetarLocais(req, res, next) {
     res.locals.tipo_usuario = null;
     res.locals.nome_usuario = null;
     res.locals.user_usuario = null;
-       res.locals.foto_perfil_pasta = null;
-        res.locals.descricao_perfil = null;
+    res.locals.foto_perfil_pasta = null;
+    res.locals.descricao_perfil = null;
   }
   next();
 }

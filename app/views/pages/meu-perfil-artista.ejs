@@ -2,7 +2,8 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" sobre="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
@@ -11,7 +12,7 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,7 +82,7 @@ errosArray.forEach((itemErro) => {
           arquivo.imagem = autenticado.img_perfil_banco;
         }
 
-        let arquivobanner = {imagem_banner: "imagens/banner-default.jpg" };
+        let arquivobanner = {imagem_banner: "imagens/bg.png" };
 
         if (autenticado.img_banner_pasta) {
           arquivobanner.imagem_banner = autenticado.img_banner_pasta;
@@ -105,7 +106,7 @@ errosArray.forEach((itemErro) => {
    
     <section class="base_cabecalho">
       <section id="banner-perfil">
-        <img src="/<%= arquivobanner.imagem %>" id="banner-perfil">
+        <img src="/<%= arquivobanner.imagem_banner %>" id="banner-perfil">
 
       </section>
       <section class="coluna_contaneir">
@@ -128,17 +129,7 @@ errosArray.forEach((itemErro) => {
           <p>@<%= user_usuario %></p>
 
           <p><span id="editarperfilbotao" class="editar-botao">Editar Perfil </span></p>
-        <!-- <div id="editarperfil-suspenso" class="suspenso-conteudo">
-            <form>
-                <label for="name">Nome:</label>
-                <input type="text" id="name" name="name" placeholder="Seu Nome" class="input-alteracao">
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" class="input-alteracao">
-
-                <button type="submit" class="salvar">Salvar</button>
-            </form>
-        </div> -->
+       
 
           
 
@@ -257,8 +248,11 @@ errosArray.forEach((itemErro) => {
       <!-- Descrição -->
       <section class="label-input" id="section-desc">
         <label for="desc-perfil">Descrição do perfil:</label>
-        <textarea name="descricao_perfil" id="desc-perfil"  class=" <%= avisoErro.descricao_perfil %>" placeholder="Digite aqui uma breve descrição para seu perfil."
-          value="<%= valores.descricao_perfil %>"></textarea>
+      <textarea name="descricao_perfil" id="desc-perfil" class="<%= avisoErro.descricao_perfil %>">
+  <%= valores.descricao_perfil %>
+</textarea>
+
+
       </section>
 
 
