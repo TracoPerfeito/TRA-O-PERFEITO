@@ -73,12 +73,21 @@ errosArray.forEach((itemErro) => {
 
 
    
-          let arquivo = { imagem: "imagens/fotoperfil.jpg" }; 
+          let arquivo = { imagem: "imagens/foto-perfil.png" }; 
     
          if (autenticado.img_perfil_pasta) {
           arquivo.imagem = autenticado.img_perfil_pasta;
         } else if (autenticado.img_perfil_banco) {
           arquivo.imagem = autenticado.img_perfil_banco;
+        }
+
+        let arquivobanner = {imagem_banner: "imagens/banner-default.jpg" };
+
+        if (autenticado.img_banner_pasta) {
+          arquivobanner.imagem_banner = autenticado.img_banner_pasta;
+        }
+        if (autenticado.img_banner_banco) {
+          arquivobanner.imagem_banner = autenticado.img_banner_banco;
         }
 
    %>
@@ -96,7 +105,7 @@ errosArray.forEach((itemErro) => {
    
     <section class="base_cabecalho">
       <section id="banner-perfil">
-        <img src="imagens/bg.png" id="banner-perfil">
+        <img src="/<%= arquivobanner.imagem %>" id="banner-perfil">
 
       </section>
       <section class="coluna_contaneir">
@@ -143,9 +152,7 @@ errosArray.forEach((itemErro) => {
           <section class="sobre">
             <section class="paragrafo-descricao">
               <p class="descricao-meu-perfil">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam
-                erat volutpat. Morbi imperdiet, mauris ac auctor dictum, nisl
-                ligula egestas nulla.
+                <%= descricao_perfil %>
               </p>
             </section>
             <ul class="redes-sociais-icons">
@@ -155,8 +162,7 @@ errosArray.forEach((itemErro) => {
               <i class="fab fa-whatsapp"></i>
             </ul>
           </section>
-          <a href=/index ><button class="sair-da-conta">Sair da conta</button></a>
-
+   
         </section> 
         <section class="coluna-direta">
           <section class="coluna-da-direita">
@@ -242,7 +248,7 @@ errosArray.forEach((itemErro) => {
             <span class="picture__image"></span>
             <p>Carregar imagem</p>
           </label>
-          <input type="file" class="<%= avisoErro.imagem %>" name="img_capa" id="imagem-capa_usu"
+          <input type="file" class="<%= avisoErro.imagem %>" name="img_banner" id="imagem-banner_usu"
             onchange="loadImg(event)">
           <img class="img-capa" id="img-preview" src="<%= arquivo['imagem-capa'] %>">
         </section>
@@ -251,8 +257,10 @@ errosArray.forEach((itemErro) => {
       <!-- Descrição -->
       <section class="label-input" id="section-desc">
         <label for="desc-perfil">Descrição do perfil:</label>
-        <textarea name="desc-perfil" id="desc-perfil"><%= valores['desc-perfil'] || '' %></textarea>
+        <textarea name="descricao_perfil" id="desc-perfil"  class=" <%= avisoErro.descricao_perfil %>" placeholder="Digite aqui uma breve descrição para seu perfil."
+          value="<%= valores.descricao_perfil %>"></textarea>
       </section>
+
 
       <!-- Especialidade -->
       <section class="label-input" id="section-espec">

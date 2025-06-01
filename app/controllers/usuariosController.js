@@ -94,9 +94,9 @@ regrasValidacaoLogin: [
         .isLength({ max: 100 })
         .withMessage("A especialidade deve ter no máximo 100 caracteres."),
 
-    body("desc-perfil")
+    body("descricao-perfil")
         .optional({ checkFalsy: true })
-        .isLength({ max: 500 })
+        .isLength({ max: 200 })
         .withMessage("A descrição deve ter no máximo 500 caracteres."),
 
     verificarUsuAutorizado(["profissional", "comum"], "pages/acesso-negado"),
@@ -264,7 +264,7 @@ gravarPerfil: async (req, res) => {
          if (req.body.img_perfil_pasta) dadosForm.FOTO_PERFIL_PASTA_USUARIO = req.body.img_perfil_pasta;
 
         
-        if (req.body['desc-perfil']) dadosForm.desc_perfil = req.body['desc-perfil'];
+        if (req.body.descricao_perfil) dadosForm.DESCRICAO_PERFIL_USUARIO = req.body.descricao_perfil;
         if (req.body.especialidade) dadosForm.especialidade = req.body.especialidade;
         if (req.body['link-instagram']) dadosForm.link_instagram = req.body['link-instagram'];
         if (req.body['link-twitter']) dadosForm.link_twitter = req.body['link-twitter'];
@@ -278,7 +278,7 @@ gravarPerfil: async (req, res) => {
 
 
              req.session.autenticado.img_perfil_pasta = caminhoArquivo;
-    req.session.autenticado.img_perfil_banco = null;
+         req.session.autenticado.img_perfil_banco = null;
         }
 
       
@@ -303,13 +303,15 @@ gravarPerfil: async (req, res) => {
         req.session.autenticado.user = req.body.nomeusu_usu;
         req.session.autenticado.email = req.body.email_usu;
         req.session.autenticado.celular = req.body.celular_usu;
+        req.session.autenticado.descricao_perfil = req.body.descricao_perfil;
 
 
         if (resultUpdate.changedRows === 1) {
-            if (dadosForm.nome_usu) req.session.autenticado.nome = dadosForm.nome_usu;
+  if (dadosForm.nome_usu) req.session.autenticado.nome = dadosForm.nome_usu;
   if (dadosForm.nomeusu_usu) req.session.autenticado.user = dadosForm.nomeusu_usu;
   if (dadosForm.email_usu) req.session.autenticado.email = dadosForm.email_usu;
   if (dadosForm.celular_usu) req.session.autenticado.celular = dadosForm.celular_usu;
+   if (dadosForm.descricao_perfil) req.session.autenticado.descricao_perfil = dadosForm.descricao_perfil;
 
   
   req.session.save(() => {

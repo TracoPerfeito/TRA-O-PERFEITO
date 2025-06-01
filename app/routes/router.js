@@ -351,6 +351,10 @@ router.post( //validações login
    }
 );
 
+router.get("/logout", limparSessao, function (req, res) {
+  res.redirect("/");
+});
+
  const db = require('../../config/pool_conexoes');
 
 
