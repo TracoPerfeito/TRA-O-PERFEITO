@@ -6,8 +6,8 @@ let accountType = null; // 'comum' or 'artista'
 const formSteps = document.querySelectorAll(".form-step");
 
 function showStep(step) {
-  formSteps.forEach((stepDiv, index) => {
-    stepDiv.classList.toggle("active", index === step);
+  formSteps.forEach((stepSection, index) => {
+    stepSection.classList.toggle("active", index === step);
   });
 
   currentStep = step;
@@ -514,9 +514,24 @@ function analisarEtapaData() {
 
 
 
-
+  
 
   // validação senha
+
+
+  const campoSenha = document.getElementById("senha");
+  const campoConfirmar = document.getElementById("confirmarSenha");
+
+  const bloquearCopiarColar = (input) => {
+    input.addEventListener("copy", (e) => e.preventDefault());
+    input.addEventListener("paste", (e) => e.preventDefault());
+    input.addEventListener("cut", (e) => e.preventDefault());
+    input.addEventListener("contextmenu", (e) => e.preventDefault()); // bloqueia botão direito
+  };
+
+  bloquearCopiarColar(campoSenha);
+  bloquearCopiarColar(campoConfirmar);
+
 
 
   

@@ -49,7 +49,7 @@
       <section class="coluna_contaneir">
         <section class="coluna-esquerda">
 
-          <section class="img__container">
+          <section class="img__container"> 
             <img src="imagens/fotoperfil1.jpeg" alt="Perfil" id="imgFoto">
             <span></span>
           </section>
@@ -88,10 +88,19 @@
               <li><a href=/portfolios >Portfólios</a></li>
           
             </ul>
-            <button id="irparachat">
-              <a href="/cadastro">Conversar</a>
-              <span class="tooltip">Crie uma conta para entrar em contato com outros usuários</span>
-            </button>
+            <section class="button-holder">
+              <% if (!tipo_usuario) { %>
+                <button id="irparachat" onclick="location.href='/cadastro'">
+                  Conversar
+                  <span class="tooltip">Crie uma conta para entrar em contato com outros usuários</span>
+                </button>
+              <% } else { %>
+                <button id="irparachat" onclick="location.href='/chat-logado'">
+                  Conversar
+                </button>
+              <% } %>
+            </section>
+
           </section>
 
           <section class="publi">

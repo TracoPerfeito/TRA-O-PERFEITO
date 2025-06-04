@@ -94,7 +94,7 @@ regrasValidacaoLogin: [
         .isLength({ max: 100 })
         .withMessage("A especialidade deve ter no máximo 100 caracteres."),
 
-    body("descricao-perfil")
+    body("descricao_perfil")
         .optional({ checkFalsy: true })
         .isLength({ max: 200 })
         .withMessage("A descrição deve ter no máximo 500 caracteres."),

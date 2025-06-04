@@ -8,7 +8,7 @@
     <title>Meu Perfil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
     <link rel="stylesheet" href="css/meuperfil.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -91,7 +91,34 @@ errosArray.forEach((itemErro) => {
           arquivobanner.imagem_banner = autenticado.img_banner_banco;
         }
 
+
+        
+
    %>
+
+<% if (msgErro != "") { %>
+
+                    <script>
+                        let msgErro ="<%= msgErro %>"
+                        notify("Erro no preenchimento",
+                        "Verifique o(s) campo(s): <br>" + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"), 
+                        "error", "center",5000)                        
+                    </script>
+                    <%
+
+            }
+        
+        if (dadosNotificacao) { 
+            %>
+            <script>
+                    notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
+                    if("<%= dadosNotificacao.tipo %>" == "success"){
+                        setTimeout(function(){
+                            window.location="/"
+                        }, 3000)
+                    }                        
+            </script>
+        <% } %>
 
 
 <script>
@@ -124,21 +151,21 @@ errosArray.forEach((itemErro) => {
           <script src="js/meuperfil.js"></script>
         <section class="embaixo">
           <h2 id="dados-principais-perfil">
-          <p id="nome-perfil"> <%= nome_usuario %></p>
+          <h3 id="nome-perfil"> <%= nome_usuario %></h3>
           <p>UX/UI Designer</p>
           <p>@<%= user_usuario %></p>
 
-          <p><span id="editarperfilbotao" class="editar-botao">Editar Perfil </span></p>
-       
+          <p><button id="editarperfilbotao" class="editar-botao">Editar Perfil </button></p>
+         
 
           
 
         </section>
 
           <ul class="quan-p-t-c">
-            <li><span>50</span>Projetos</li>
-            <li><span>18</span>Trabalhos</li>
-            <li><span>6</span>Colaborações</li>
+            <li><span>6</span>Projetos</li>
+            <li><span>0</span>Trabalhos</li>
+            <li><span>0</span>Portfólios</li>
           </ul>
           <section class="sobre">
             <section class="paragrafo-descricao">
@@ -159,13 +186,16 @@ errosArray.forEach((itemErro) => {
           <section class="coluna-da-direita">
             <ul class="p-t-c">
               <li><a href="">Publicações</a></li>
-              <li><a href="">Trabalhos</a></li>
-              <li><a href="">Colaborações</a></li>
-              <li><button class="nova-publi-perfil"><a id="nova-publi-perfil" href="/nova-publicacao">Nova Publicação</a></button></li>
-            </ul>
-           
-           
+              <li><a href="">Portfólios</a></li>
+              
+                </ul>
+
+                 <a href="/nova-publicacao" class="btn-link">Nova Publicação</a>
+
+          
           </section>
+
+          
 
           <section class="publi">
             <img src="imagens/arte1.jpg" alt="Publicações" class="publicacao-perfil"/>
@@ -177,6 +207,53 @@ errosArray.forEach((itemErro) => {
           </section>
         </section>
       </section>
+    </section>
+
+    
+
+    <h2 id="secao-avaliacoes-h2">
+        Avaliações de seus clientes
+    </h2>
+    
+    <section class="carousel-container">
+     <!--   <button class="carousel-button prev">&#10094;</button>
+        
+         <section id="secao-avaliacoes" class="carousel-track">
+
+
+            
+          
+
+
+
+            <section class="avaliacao">
+                <section class="info-criador-ava">
+                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <a href="/perfil">
+                        <p class="nome-criador-ava"> Mariana Sanchez</p>
+                    </a>
+                </section>
+                <section class="estrelinhas-avaliacao">
+                    <ion-icon name="star-outline" class="far estrela"></ion-icon>
+                    <ion-icon name="star-outline" class="far estrela"></ion-icon>
+                    <ion-icon name="star-outline" class="far estrela"></ion-icon>
+                    <ion-icon name="star-outline" class="far estrela"></ion-icon>
+                    <ion-icon name="star-outline" class="far estrela"></ion-icon> <br>
+                </section>
+                <section class="conteudo-avaliacao">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipis
+                        is ea expedita modi atque magn
+                        am tenetur obcaecati labore!</p>
+                </section>
+            </section>
+           
+        </section> 
+
+        
+        
+        <button class="carousel-button next">&#10095;</button> -->
+
+        <p class="aviso-avaliacoes">Você ainda não possui nenhuma avaliação.</p>
     </section>
 
     
@@ -232,7 +309,7 @@ errosArray.forEach((itemErro) => {
       </section>
 
       <!-- Imagem de capa -->
-      <section class="img-holder" id="section-capa">
+      <!-- <section class="img-holder" id="section-capa">
         <label for="imagem-capa_usu">Imagem de capa:</label>
         <section class="lugar-botar-img">
           <label class="picture-banner" for="imagem-capa_usu">
@@ -243,25 +320,25 @@ errosArray.forEach((itemErro) => {
             onchange="loadImg(event)">
           <img class="img-capa" id="img-preview" src="<%= arquivo['imagem-capa'] %>">
         </section>
-      </section>
+      </section> -->
 
       <!-- Descrição -->
       <section class="label-input" id="section-desc">
         <label for="desc-perfil">Descrição do perfil:</label>
       <textarea name="descricao_perfil" id="desc-perfil" class="<%= avisoErro.descricao_perfil %>">
-  <%= valores.descricao_perfil %>
-</textarea>
+<%=descricao_perfil %>
+      </textarea>
 
 
       </section>
 
 
       <!-- Especialidade -->
-      <section class="label-input" id="section-espec">
+      <!-- <section class="label-input" id="section-espec">
         <label for="especialidade">Área de atuação:</label>
         <input type="text" id="especialidade" name="especialidade" class="input-alteracao"
           value="<%= valores.especialidade || '' %>">
-      </section>
+      </section> -->
 
       <!-- Redes sociais -->
       <!-- <section class="link-social" id="links-redes">
@@ -284,13 +361,11 @@ errosArray.forEach((itemErro) => {
 </section>
 
 
+<%- include('../partials/rodape'); %>
           
-  <script>
  
-
-  </script>
    <script src="js/editar-perfil.js"> </script>
-
+ 
 
   </body>
 

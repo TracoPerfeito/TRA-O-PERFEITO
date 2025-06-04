@@ -105,8 +105,8 @@ router.get(
 
 router.post(
   "/meu-perfil-artista",
-  uploadFile("img_perfil"),
-  usuariosController.regrasValidacaoPerfil,
+  uploadFile("img_perfil"),                  
+  usuariosController.regrasValidacaoPerfil,  
   async function (req, res) {
     usuariosController.gravarPerfil(req, res);
   }
@@ -118,6 +118,20 @@ router.get("/explorar-logado", function (req, res) { //inicial logado
     res.render('pages/explorar-logado', req.session.autenticado)
  
 });
+
+
+router.get(
+  "/notificacoes",function (req, res) {
+    res.render('pages/notificacoes', { autenticado: req.session.autenticado });
+  }
+);
+
+
+router.get(
+  "/notificacao",function (req, res) {
+    res.render('pages/notificacao', { autenticado: req.session.autenticado });
+  }
+);
 
 
 

@@ -68,7 +68,7 @@ a {
   }
  
   .publi {
-    padding: 0px 10px;
+    padding: 0px 10px 20px 10px;
   }
   
 .base_cabecalho header {
@@ -484,6 +484,10 @@ input[type='file'] {
 
 
 
+.publi {
+  padding: 0px 10px 20px 10px;
+}
+
 
 
 
@@ -538,7 +542,11 @@ input[type='file'] {
   #banner-perfil {
     height: 18vw;
     width: 100%;
-    }
+    
+  }
+ .publi{
+    margin: 20px 5%;
+  }
 
   
   .modal-content {
@@ -670,3 +678,194 @@ input[type='file'] {
 .descricao-meu-perfil {
   min-width: 300px;
 }
+
+#editarperfilbotao{
+  background-color: #132d46;
+  color: #fff;
+  font-family: "Josefin Sans";
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+}
+
+.btn-link{
+  background-color: #132d46;
+  color: #fff;
+  font-family: "Josefin Sans";
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+
+}
+
+
+
+
+ .foto-de-perfil {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+#secao-avaliacoes-h2 {
+    font-size: 18px;
+    margin: 35px 60px 15px 70px;
+    color: var(--text-color);
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+
+#secao-avaliacoes {
+   
+    margin: 0px 60px 40px 60px;
+    
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    will-change: transform;
+}
+
+.avaliacao {
+    min-width: 25%;
+    box-sizing: border-box;
+    background-color: var(--cor-fundo-comentario);
+    color: var(--text-color);
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: "Josefin Sans";
+    height: fit-content;
+}
+
+.info-criador-ava {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.nome-criador-ava {
+    margin-left: 10px;
+    color: var(--text-color);
+}
+
+.estrelinhas-avaliacao {
+    color:  rgb(255, 208, 0);
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color:  rgba(37, 39, 47, 0.642);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10;
+    font-size: 18px;
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+.carousel-button:hover {
+    background-color:  rgba(37, 39, 47, 0.697);
+}
+
+.carousel-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px; 
+    height: 100%;
+    background: var(--gradiente-carrossel-perfil);
+    pointer-events: none; 
+}
+
+
+.aviso-avaliacoes{
+  margin: 20px auto 20px 10%;
+}
+
+
+
+
+
+@media (max-width: 800px) {
+
+  #banner-perfil {
+    height: 18vw;
+    width: 100%;
+    }
+
+    .avaliacao {
+      min-width: 50%;
+     
+    }
+  
+
+ 
+}
+
+
+@media (max-width:500px){
+
+  #irparachat{
+    width: 70%;
+   
+  }
+
+  .publi{
+    margin: 20px 5%;
+  }
+
+    
+  #secao-avaliacoes-h2 {
+    font-size: 18px;
+    margin: 0px 5% 15px 5%;
+    padding: 0px 0px 0px 10px;
+  }
+
+
+  #secao-avaliacoes {
+    
+    margin: 0px 5%;
+    
+  }
+
+
+  .avaliacao {
+    min-width: 95%;
+   
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

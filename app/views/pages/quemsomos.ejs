@@ -29,60 +29,272 @@
   <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
 <% } %>
 
+
+
+
+<section class="secundary">
+  <nav class="segunda-navbar">
+    <a href="#home">Home</a>
+    <a href="#about">Sobre nós</a>
+    <a href="#services">Serviços</a>
+    <a href="#team">Time</a>
+    <!-- <a href="#planos">Planos</a> -->
+    <a href="#contact">Contato</a>
+  </nav>
+
+ 
+</section>
+
  <p>tipo_usuario: <%= tipo_usuario %></p>
 
-
-    <section class="meio">
-
-
-    <section class="container-quemsomos">
-        <section id="servico-secao">
-            <h2>Quem Somos</h2>
-            <p id="paragrafo">O mundo da arte e do design está bem diante de seus olhos,
-            vamos conhecer melhor nosso objetivo?
-            </p>
-            <section class="cards">
-                <section class="card">
-                    <i class="fa-solid fa-address-card"></i>
-                    <section class="conteudo">
-                        <h3>Quem Somos?</h3>
-                        <p class="meio">O Traço Perfeito é uma plataforma que conecta 
-                            artistas, clientes e interessados em arte e design digital.
-                            Em nosso site, você pode expor suas obras, procurar por serviços e</p>
-                        <p class="meio">se inspirar, é claro, e ter contato com outros artistas. Também somos uma
-                            opção para a busca pela pessoa certa para aquele trabalho!</p>
-                    </section>
-                </section>
-
-                <section class="card">
-                    <i class="fa-solid fa-bullseye"></i>
-                    <section class="conteudo">
-                        <h3>Nosso Objetivo</h3>
-                        <p class="meio">Nosso objetivo é criar uma ponte entre o
-                            artista/designer com os usuários, facilitando
-                            ambos os lados.</p>
-                        <p class="meio">Também encorajar as pessoas que entrarem 
-                            no ramo do design.</p>
-                    </section>
-                </section>
-                
-                <section class="card">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <section class="conteudo">
-                        <h3>Ajuda?</h3>
-                        <p class="meio">Precisa de ajuda com sua navegação no 
-                            nosso site? Não consegue entrar em contato
-                            com seu cliente ou artista?</p>
-                        <p class="meio">Entre em contato com a gente para conseguirmos
-                            resolver o seu problema!</p>
-                        <p class="meio">E-mail: tracoperfeito2024@outlook.com</p>
-                    </section>
-                </section>
-            </section>
-        </section>
+<main>
+     
+    <!-- COMEÇO DO HOME SECTION -->
+    
+    <section class="home" id="home">
+     <section class="content">
+       <h3>Design Digital</h3>
+       <p>Construímos soluções com foco em pessoas</p>
+       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia rem
+       perspiciatis aliquid rerum dolor eligendi suscipit sit ab distinctio id?</p>
+       <a href="#" class="btn">Seja Artista</a>
+     </section>
+     <!-- <img src="imagem-hero.png" class="imagem-hero"> -->
+    
     </section>
+    
+    <!-- FIM DO HOME SECTION -->
+    
+    
+    <!--  INICIO DO COMEÇO -->
+     <section class="about" id="about">
+       <h1 class="heading"> <strong>Sobre</strong> nós</h1>
+       <section class="row">
+         <section class="video-container">
+           <video src="imagens/14af9c818a354db30d336c89c39f7456.mp4" loop autoplay muted></video>
+           <h3>Traço Perfeito feito para você!</h3>
+         </section>
+         <section class="content">
+           <h3>Por que nos escolher?</h3>
+           <p>Aqui, acreditamos que toda ideia criativa merece ser vista, valorizada e transformada em realidade.
+           Criamos esta plataforma com um propósito claro: aproximar artistas e designers digitais dos clientes
+           certos, facilitando conexões que inspiram, transformam e geram valor.</p>
+           <p>Sabemos que o talento precisa de visibilidade. E que bons projetos nascem da colaboração certa, no momento certo.
+           Por isso, tornamos simples o que antes era difícil: sectionulgar seu trabalho, encontrar clientes e crescer
+           na carreira criativa!</p>
+           <a href="#" class="btn">Ver mais</a>
+         </section>
+       </section>
+     </section>
+    
+    <!--  FIM DO COMEÇO -->
+    
+    
+    <!-- SECTION DE ICONS -->
+       <h1 class="heading">Nossos <strong>Serviços</strong></h1>
+     <section class="icons-container" id="services">
+       <section class="icons">
+         <img src="imagens/chat-arrow-grow-removebg-preview.png" alt="">
+         <section class="info">
+           <h3>Visibilidade</h3>
+           <p>Para seus incríveis trabalhos</p>
+         </section>
+       </section>
+       <section class="icons">
+         <img src="imagens/layout-fluid-removebg-preview.png" alt="">
+         <section class="info">
+           <h3>Portfólio</h3>
+           <p>Organize seus projetos</p>
+         </section>
+       </section>
+       <section class="icons">
+         <img src="imagens/shield-check-removebg-preview.png" alt="">
+         <section class="info">
+           <h3>Segurança</h3>
+           <p>Mantenha sua segurança em primeiro lugar</p>
+         </section>
+       </section>
+       <section class="icons">
+         <img src="imagens/trophy-removebg-preview.png" alt="">
+         <section class="info">
+           <h3>Ranking</h3>
+           <p>Quem será o melhor designer por aqui?</p>
+         </section>
+       </section>
+     </section>
+    
+    <!-- FIM DA SECTION DE ICONS -->
+    
+    
+    <!-- AVALIAÇÕES DO SITE -->
+     <section class="review" id="review">
+       <h1 class="heading">Avaliações dos <strong>usuários</strong></h1>
+       <section class="box-container">
+         <section class="box">
+           <section class="stars">
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+           </section>
+           <p class="text-ava">Finalmente encontrei um lugar onde posso mostrar meu portfólio com orgulho e, mais importante, onde as
+           pessoas certas conseguem me encontrar! Em menos de um mês consegui dois novos clientes através da plataforma.
+           A visibilidade que o site dá é incrível!</p>
+           <section class="user">
+             <img src="imagens/user1.jpg" alt="">
+             <section class="user-info">
+               <h3>Mariana Lopes</h3>
+               <p >Ilustradora Digital</p>
+             </section>
+           </section>
+           <i class="fa fa-quote-right"></i>
+         </section>
+         <section class="box">
+           <section class="stars">
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+           </section>
+           <p class="text-ava">A organização da plataforma e a facilidade de contato com os clientes tornaram
+           tudo muito mais profissional. Não é só uma vitrine, é um ambiente real de oportunidades.
+           Senti minha carreira dar um salto desde que entrei</p>
+           <section class="user">
+             <img src="imagens/user3.webp" alt="">
+             <section class="user-info">
+               <h3>Rafael Tavares</h3>
+               <p>Designer Gráfico</p>
+             </section>
+           </section>
+           <i class="fa fa-quote-right"></i>
+         </section>
+         <section class="box">
+           <section class="stars">
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-star"></i>
+           </section>
+           <p class="text-ava">Eu estava procurando alguém para criar a identidade visual da minha marca e
+           encontrei profissionais talentosos em poucos minutos. O melhor: consegui ver os trabalhos,
+           comparar estilos e conversar direto com os artistas. Foi rápido, fácil e o resultado
+           superou minhas expectativas!</p>
+           <section class="user">
+             <img src="imagens/user2.jpg.crdownload" alt="">
+             <section class="user-info">
+               <h3>Carla Mendes</h3>
+               <p>Empreendedora</p>
+             </section>
+           </section>
+           <i class="fa fa-quote-right"></i>
+         </section>
+       </section>
+     </section>
+    
+    <!-- FIM DAS AVALIAÇÕES DO SITE -->
+    
+    <!-- NOSSA EQUIPE -->
+    
+    <section class="team-section" id="team">
+       <h1 class="heading">Nossa <strong>Equipe</strong></h1>
+       <section class="team-container">
+         <section class="team-member">
 
-</section>
+    <img src="imagens/ana julia.png" alt="Ana Júlia"/>
+           <h2>Ana Júlia</h2>
+           <p class="role">Gerente de Projeto, Desenvolvedora Front-end e Back-end</p>
+           <section class="socials">
+           </section>
+         </section>
+    
+         <section class="team-member">
+           <img src="imagens/sther.png" alt="Sthefany"/>
+           <h2>Sthefany Rocha</h2>
+           <p class="role">Desenvolvedora Front-end e Analista de Banco de Dados</p>
+           <section class="socials">
+           </section>
+         </section>
+               <section class="team-member">
+           <img src="imagens/duda.png" alt="Maria Eduarda"/>
+           <h2>Maria Eduarda</h2>
+           <p class="role">Desenvolvedora Front-End e Back-End</p>
+
+           <section class="socials">
+           </section>
+         </section>
+         <section class="team-member">
+           <img src="imagens/leticia.png" alt="Letícia Silva"/>
+           <h2>Letícia Silva</h2>
+           <p class="role">Desenvolvedora Front-End</p>
+           <section class="socials">
+           </section>
+         </section>
+               <section class="team-member">
+           <img src="imagens/vii.png" alt="Vitória Ocanã"/>
+           <h2>Vitória Ocanã</h2>
+           <p class="role">Desenvolvedora Front-End</p>
+            <section class="socials">
+           </section>
+         </section>
+               <section class="team-member">
+           <img src="imagens/murilo.png" alt="Murilo Fernando"/>
+           <h2>Murilo Fernando</h2>
+           <p class="role">Desenvolvedor Front-End</p>
+           <section class="socials">
+           </section>
+         </section>
+               <section class="team-member">
+           <img src="imagens/julia.png" alt="Julia Carvalho"/>
+           <h2>Julia Carvalho</h2>
+           <p class="role">Documentadora e Designer</p>
+           <section class="socials">
+           </section>
+         </section>
+               
+       </section>
+     </section>
+    
+    <!-- FIM DA NOSSA EQUIPE -->
+    
+    <!-- COMEÇO DO CONTATO -->
+    
+    <section class="contact" id="contact">
+     <h1 class="heading"><strong>Entre em </strong>Contato</h1>
+     <section class="row">
+       <form action="">
+         <input type="text" placeholder="name" class="box">
+         <input type="email" placeholder="email" class="box">
+         <input type="number" placeholder="number" class="box">
+         <textarea name="" id="" class="box" placeholder="message" cols="30" rows="10"></textarea>
+         <input type="submit" value="send message" class="btn">
+       </form>
+       <section class="image">
+         <img src="imagens/Contact us-amico.png" alt="">
+       </section>
+    
+     </section>
+    
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    <!-- FIM DO CONTATO -->
+    
+    
+    
+    
+    
+    
+    
+    <!-- FIM DO CÓDIGO DO QUEM SOMOS -->
+</main>
 
 
 

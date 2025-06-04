@@ -102,16 +102,20 @@
 
                 <section class="adicionar-comentario">
 
-                    <form>
-                        <label for="adicionar-comentario" >Adicionar comentário:</label>
-                        <textarea id="ad-comentario" name="ad-comentario" rows="4" cols="50" placeholder="Digite seu comentário aqui..."></textarea>
-                        <br>
-                        <section class="button-container-submit">
-                            <input type="submit" value="Enviar" class="enviar-comentario">
-                            <span class="tooltip">Crie uma conta para publicar um comentário.</span>
-                        </section>
-                        
-                      </form>
+                   <form >
+                    <label for="adicionar-comentario">Adicionar comentário:</label>
+                    <textarea id="ad-comentario" name="ad-comentario" rows="4" cols="50" placeholder="Digite seu comentário aqui..."></textarea>
+                    <br>
+                    <section class="button-container-submit">
+                        <% if (!tipo_usuario) { %>
+                        <input type="submit" value="Enviar" class="enviar-comentario" disabled>
+                        <span class="tooltip">Crie uma conta para publicar um comentário.</span>
+                        <% } else { %>
+                        <input type="submit" value="Enviar" class="enviar-comentario">
+                        <% } %>
+                    </section>
+                    </form>
+
 
                 </section>
 

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Minhas Notificações</title>
+  <link rel="stylesheet" href="css/notificacoes.css">
+  <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+  
+</head>
+<body>
+
+  
+
+   <% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+ <p>tipo_usuario: <%= tipo_usuario %></p>
+  
+
+  <div class="container">
+    <h2>Notificações</h2>
+
+    <!-- Bloco resumo -->
+    <div class="summary-box">
+      <div class="left">
+       15 notificações não visualizadas
+      </div>
+      <div class="right">
+        12.05.2025 às 18:18
+        <span class="icon-user" style="margin-left: 10px;"></span>
+      </div>
+    </div>
+
+    <!-- Notificação 1 -->
+     <a href="/notificacao" class="notification-link">
+    <div class="notification-box highlight">
+      <div class="left">
+        <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+        <div class="text">
+          <div class="title">Novas publicações venha conferir</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="not-viewed">Não Visualizada</div>
+        <div>10.05.2025</div>
+      </div>
+    </div>
+    </a>
+
+    <!-- Notificação 2 -->
+     <a href="leitura2.html?id=1" class="notification-link">
+    <div class="notification-box">
+      <div class="left">
+        <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+        <div class="text">
+          <div class="title">Melhores Profissionais </div>
+        </div>
+      </div>
+      <div class="right">
+        <div>03.05.2025</div>
+      </div>
+    </div>
+
+    <!-- Notificação 3 -->
+     <a href="leitura3.html" class="notification-link">
+    <div class="notification-box">
+      <div class="left">
+        <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+        <div class="text">
+          <div class="title">Divulgue sua arte</div>
+        </div>
+      </div>
+      <div class="right">
+        <div>30.04.2025</div>
+      </div>
+    </div>
+
+    <!-- Notificação 4 -->
+     <a href="leitura4.html" class="notification-link">
+    <div class="notification-box highlight">
+      <div class="left">
+        <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+        <div class="text">
+          <div class="title">Como achar a arte que você procura</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="not-viewed">Não Visualizada</div>
+        <div>22.04.2025</div>
+      </div>
+    </div>
+
+    <!-- Notificação 5 -->
+     <a href="leitura5.html" class="notification-link">
+    <div class="notification-box highlight">
+      <div class="left">
+        <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+        <div class="text">
+          <div class="title">Venha conferir as novas novidades</div>
+
+        </div>
+      </div>
+      <div class="right">
+        <div class="not-viewed">Não Visualizada</div>
+        <div>18.04.2025</div>
+      </div>
+    </div>
+
+   
+<!-- Notificação 6 -->
+<a href="leitura6.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Tenha boas vizualizações em suas artes</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>15.04.2025</div>
+    </div>
+  </div>
+
+  <!-- Notificação 7 -->
+<a href="leitura7.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Edite seu perfil</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>12.04.2025</div>
+    </div>
+  </div>
+
+  <!-- Notificação 8 -->
+<a href="leitura8.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Qual arte combina mais com o que você procura?</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>09.04.2025</div>
+    </div>
+  </div>
+
+<!-- Notificação 9 -->
+<a href="leitura9.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Toques de inspiração chegaram!</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>09.04.2025</div>
+    </div>
+  </div>
+
+
+  <!-- Notificação 10 -->
+<a href="leitura10.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Novidades que brilham na tela</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>09.04.2025</div>
+    </div>
+  </div>
+
+
+  <!-- Notificação 11 -->
+<a href="leitura11.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Novas publicações e alertas</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>09.04.2025</div>
+    </div>
+  </div>
+
+
+   <!-- Notificação 12 -->
+<a href="leitura12.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Atualizações com traços de arte</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>09.04.2025</div>
+    </div>
+  </div>
+
+
+
+<!-- Notificação 13 -->
+<a href="leitura13.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Inspirações Digitais</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>09.04.2025</div>
+    </div>
+  </div>
+
+
+  <!-- Notificação 14 -->
+<a href="leitura14.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Alerta de que novas Artes Digitais chegaram</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>09.04.2025</div>
+    </div>
+  </div>
+
+
+  <!-- Notificação 15 -->
+<a href="leitura15.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Algo perfeito acaba de surgir</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>09.04.2025</div>
+    </div>
+  </div>
+
+  <!-- Notificação 16 -->
+<a href="leitura16.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Inspiração que se desenha</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>09.04.2025</div>
+    </div>
+  </div>
+
+  <!-- Notificação 17 -->
+<a href="leitura17.html" class="notification-link">
+  <div class="notification-box highlight">
+    <div class="left">
+      <img src="img/logo-traco.png" alt="Logo" width="24" height="24">
+      <div class="text">
+        <div class="title">Cada Traço conta. Confira o novo</div>
+
+      </div>
+    </div>
+    <div class="right">
+      <div class="not-viewed">Não Visualizada</div>
+      <div>09.04.2025</div>
+    </div>
+  </div>
+
+  </div>
+
+
+
+
+</body>
+</html>
