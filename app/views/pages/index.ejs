@@ -42,10 +42,20 @@
     <% if (logado == 2) { %>
         <script>
             notify("Login efetuado com sucesso", 
-              "Olá <%= autenticado.autenticado %>","success");
+              "Olá, <%= autenticado.autenticado%>!","success");
         </script>
     <% } %>
 <% } %>
+
+ 
+ <%  if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "top right");
+                                   
+        </script>
+    <% } %>
+
+
 
 
    <% if (tipo_usuario === 'profissional') { %>

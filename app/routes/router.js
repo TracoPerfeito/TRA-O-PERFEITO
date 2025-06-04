@@ -17,12 +17,16 @@ const {
 
 const uploadFile = require("../util/uploader")("./app/public/imagens/perfil/");
 
+router.get("/",  verificarUsuAutenticado, function (req, res) { //index
+   const dadosNotificacao = req.session.dadosNotificacao || null;
+req.session.dadosNotificacao = null;
 
-router.get("/",  verificarUsuAutenticado, function (req, res) { //quemsomos
+   
     res.render('pages/index', {
-         autenticado: req.session.autenticado || {},
+        autenticado: req.session.autenticado,
         logado: req.session.logado,
-        
+        listaErros:null,
+        dadosNotificacao
     });
  
 });

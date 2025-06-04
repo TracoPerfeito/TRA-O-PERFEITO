@@ -153,10 +153,14 @@ cadastrarUsuario: async (req, res) => {
             user: dadosForm.user_usuario
         };
 
-        // E redireciona
-        return res.redirect("/index");
+        const nome = dadosForm.nome_usuario;
 
-    
+        req.session.dadosNotificacao = {
+            titulo: "Sucesso!",
+             mensagem: `Cadastro realizado com sucesso. Bem-vindo(a), ${nome}!`,
+            tipo: "success"
+            };
+            res.redirect("/");
 
 
         } catch (error) {
