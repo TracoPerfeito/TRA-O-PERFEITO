@@ -92,6 +92,10 @@ display: block;
 vertical-align: top;
 }
 
+picture img:hover{
+    cursor: pointer;
+}
+
 .slider input {
 display: none;
 }

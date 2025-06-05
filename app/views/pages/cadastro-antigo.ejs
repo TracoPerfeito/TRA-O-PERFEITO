@@ -1,0 +1,280 @@
+ <!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+<link rel = "stylesheet" href="css/cadastro.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<title>Cadastro</title>
+</head>
+
+<body>
+ 
+    <% 
+    let cssErros = {nome: "", usuario: "", email: "", celular: "", cpf: "", password: "", confirmpassword: ""};
+    let msgErros = {nome: "", usuario: "", email: "", celular: "", cpf: "", password: "", confirmpassword: ""}; 
+    
+    if(listaErros){
+        listaErros.errors.forEach(function (elemento){
+            if(elemento.path == "nome"){
+                cssErros.nome = "erro-form";
+                msgErros.nome = elemento.msg;
+            }
+     
+            if(elemento.path == "usuario"){
+                cssErros.usuario = "erro-form";
+                msgErros.usuario = elemento.msg;
+            }
+     
+            if(elemento.path == "email"){
+                cssErros.email = "erro-form";
+                msgErros.email = elemento.msg;
+            }
+     
+            if(elemento.path == "celular"){
+                cssErros.celular = "erro-form";
+                msgErros.celular = elemento.msg;
+            }
+
+            if(elemento.path == "cpf"){
+                cssErros.cpf = "erro-form";
+                msgErros.cpf = elemento.msg;
+            }
+     
+     
+            if(elemento.path == "password"){
+                cssErros.password = "erro-form";
+                msgErros.password = elemento.msg;
+            }
+     
+            if(elemento.path == "confirmpassword"){
+                cssErros.confirmpassword = "erro-form";
+                msgErros.confirmpassword = elemento.msg;
+            }
+        });
+    }
+    %>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <main>
+    
+    
+    <!-- dsakdjaskdjskadjas -->
+<!--     
+    <section class="container-progrsso">
+        <section class="progress">
+          <section class="percent"></section>
+        </section>
+        <section class="steps">
+          <section class="step" id="0">		</section>
+          <section class="step" id="1">		</section>
+          <section class="step" id="2">		</section>
+          <section class="step" id="3">		</section>
+        </section>
+    </section>  VAMOS DEIXAR COMENTADO POR ENQUANTO E ARRUMAR BONITINHO MAIS PRA FRENTE-->
+    
+
+    <section class="botao-de-voltar">   
+        <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+       
+           
+        </button>
+
+        <p class="lado-botao">Voltar à página inicial</p>
+    </section>
+    
+    
+    <!-- ksakskaskskasas -->
+
+    <p> CADASTRO DESATIVADO PARA MANUTENÇÃO. Use a rota teste-cadastro na url.</p>
+    
+    
+    
+        <img class="wave" src="">
+        <section class="container">
+            <section class="img">
+                <img src="imagens/undraw_online_art_re_f1pk.svg">
+            
+            </section>
+                
+            <section class="login-content">
+                <form action="/cadastro" method="post">
+                    <img src="imagens/logo.png">
+                    <h2 class="title">Cadastre-se</h2>
+                       <section class="input-section one">
+                          
+    
+                    <!-- CAMPO DE NOME COMPLETO -->
+                       <section class="input-section name" >
+                            <section class="section" for="nome">
+                                <h5 class="titulos-input">Nome Completo</h5>
+                                <input type="text" id="nome" name="nome" class="input" value="<%= valores.nome%>" class="<%= cssErros.nome %>" required>
+                                <span class="msg-erro"><%= msgErros.nome %></span>
+                            </section>
+                        </section>
+                    <!-- FIM DO CAMPO DE NOME COMPLETO -->
+    
+                    <!-- CAMPO DE NOME DE USUARIO -->
+                        <section class="input-section user">
+                            <section class="section" for="usuario">
+                                <h5 class="titulos-input">Nome de usuário</h5>
+                                <input type="text" id="usuario"  name="usuario" class="input" value="<%= valores.usuario %>" class="<%= cssErros.usuario %>" required>
+                                <span class="msg-erro"><%= msgErros.usuario %></span>
+                            </section>
+                        </section>
+                    <!-- FIM DO CAMPO DE NOME DE USUARIO -->
+    
+                       
+                    <!-- CAMPO DE EMAIL -->
+                          <section class="section" for="email">
+                                  <h5 class="titulos-input">Email</h5>
+                                  <input type="email" id="email" name="email" class="input"  value="<%= valores.email %>" class="<%= cssErros.email %>" required>
+                            <span class="msg-erro"><%= msgErros.email %></span>
+                          </section>
+                       </section>
+    
+    
+                    <!-- CAMPO DE CELULAR -->
+    
+                       <section class="input-section celular">
+                        <section class="section" for="celular">
+                            <h5 class="titulos-input">Celular</h5>
+                            <input type="" class="input" id="celular" name="celular" value="<%= valores.celular %>" class="<%= cssErros.celular %>" required>
+                            <span class="msg-erro"><%= msgErros.celular %></span>
+                        </section>
+                    </section>
+    
+                    <!-- FIM DO CAMPO DE CELULAR -->
+    
+                    <section class="input-section cpf">
+                        <section class="section" for="cpf">
+                            <h5 class="titulos-input">CPF</h5>
+                            <input type="" class="input" id="cpf" name="cpf" value="<%= valores.cpf %>" class="<%= cssErros.cpf %>" required>
+                            <span class="msg-erro"><%= msgErros.cpf %></span>
+                        </section>
+                    </section>
+    
+                    <!-- CAMPO DE SENHA -->
+    
+                       <section class="input-section pass">
+                          <!-- <section class="i">  
+                               <i class="fas fa-lock"></i>
+                          </section> -->
+                          <section class="section" for="password">
+                               <h5 class="titulos-input">Crie sua senha</h5>
+                               <input type="password" id="password" class="input" name="password" value="<%= valores.password %>" class="<%= cssErros.password %>" required>
+                               <span class="msg-erro"><%= msgErros.password %></span>
+                           </section>
+                    </section>
+    
+                    <!-- FIM DO CAMPO DE SENHA -->
+    
+    
+                    <!-- CAMPO DE CONFIRME SUA SENHA -->
+    
+                    <section class="input-section confirmpass">
+                        <section class="section" for="confirmpassword">
+                             <h5 class="titulos-input">Confirme sua senha</h5>
+                             <input type="password" id="confirmpassword" name="confirmpassword" class="input" value="<%= valores.confirmpassword %>" class="<%= cssErros.confirmpassword %>" required>
+                             <span class="msg-erro"><%= msgErros.confirmpassword %></span>
+                            </section>
+                    </section>
+                    <!-- FIM DO CAMPO DE CONFIRME SUA SENHA -->
+    
+    
+                    <!-- CHECKBOX DO TERMOS DE CONDIÇÕES -->
+    
+                    <section class="checkbox-wrapper-4">
+                        <input class="inp-cbx" id="morning" type="checkbox"/>
+                        <label class="cbx" for="morning"><span>
+                        <svg width="12px" height="10px">
+                          <use xlink:href="#check-4"></use>
+                        </svg></span><span>Aceito os <a href=""> Termos de Condições</a></span></label>
+                        <svg class="inline-svg">
+                          <symbol id="check-4" viewbox="0 0 12 10">
+                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                          </symbol>
+                        </svg>
+                      </section>
+                    
+                      <!-- FIM DO CHECKBOX DO TERMOS DE CONDIÇÕES -->
+    
+                      <!-- <input type="submit" class="btn" value="Continuar" onclick="location.href='/tabela-pagamentos'"> -->
+
+                                                            
+                        <section class="continue-button">
+                            <button type="submit" class="btn">Continuar</button>
+                            </section>
+                                            
+            
+    
+                
+    
+                </form>
+            </section>
+        </section>
+        <script src="js/barradeprogresso.js"></script>
+        <script src="js/voltar.js"></script>
+
+</main>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Pega os inputs
+        const inputs = document.querySelectorAll('.input-section > section > input');
+        
+        // Vai olhat cada campo
+        inputs.forEach(input => {
+            // Verifica se o campo já tem algum valor preenchido
+            if (input.value.trim() !== '') {
+                // se o campo tiver sido preenchido, a classe focus será adicionada
+                input.parentNode.parentNode.classList.add('focus');
+            }
+
+    
+            input.addEventListener('focus', () => {
+                input.parentNode.parentNode.classList.add('focus');
+            });
+            input.addEventListener('blur', () => {
+                if (input.value.trim() === '') {
+                    input.parentNode.parentNode.classList.remove('focus');
+                }
+            });
+        });
+    });
+    
+
+
+    
+</script>
+
+
+ 
+ 
+    
+</body>
+</html>  

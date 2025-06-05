@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url(cores.css);
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+
+}
+
+.planos-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px auto;
+}
+
+.plano {
+  border-radius: 10px;
+  overflow: hidden;
+  width: 280px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cor-fundo-card-perfis);
+  color:  var(--text-color);
+}
+
+.topo {
+  padding: 20px;
+  background-color: #7193c7;
+  color:  #151a22;
+}
+
+.topo.gratis {
+  background-color: #76aea6;
+}
+
+.base {
+  background-color: var(--cor-fundo-card-perfis);
+  padding: 20px;
+  border-top: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: bold;
+  color: #444;
+  background-color: #eee;
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.titulo {
+  font-size: 22px;
+  margin: 10px 0;
+  color: aliceblue;
+}
+
+.desc {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.preco {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.btn {
+  background-color: #3c5c6a;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  border-radius: 6px;
+  margin-top: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.btn.roxo {
+  background-color: #354b6d;
+}
+
+.btn.roxo:hover {
+  background-color: #1e2c42;
+}
+
+ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.recursos-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.link-desc {
+  font-size: 13px;
+  color: #354b6d;
+  margin-top: 5px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.link-desc:hover {
+  text-decoration: underline;
+}

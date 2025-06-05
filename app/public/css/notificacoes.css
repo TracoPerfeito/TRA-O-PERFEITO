@@ -1,4 +1,4 @@
-
+@import url(cores.css);
 .botao-de-voltar{
   width: 100%;
   background-color: var(--cor-btn-voltar-section);
@@ -64,12 +64,15 @@ a {
 
     .container {
       padding: 30px;
+      width: 80%;
+      margin: 0 auto;
     }
 
-    h2 {
-      color: #000;
-      font-weight: normal;
+    .h2-titulo {
+      color: var(--text-color);
+      font-weight:  600;
       margin-bottom: 20px;
+      font-size: 170%;
     }
 
     .notification-box {
@@ -79,12 +82,12 @@ a {
       padding: 15px 20px;
       margin-bottom: 10px;
       border-radius: 5px;
-      background-color: #c8dee6;
+      background-color: var( --cor2-not);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
 
     .highlight {
-      background-color:  #b3ecff;
+      background-color: var( --cor1-not);
     }
 
     .icon {
@@ -104,29 +107,29 @@ a {
 
     .left .text .title {
       font-size: 15px;
-      color: #000;
+    color: var(--text-color);
       font-weight: 500;
     }
 
     .left .text .tags {
       font-size: 12px;
-      color: #000;
+      color: var(--text-color);
     }
 
     .right {
       text-align: right;
       font-size: 12px;
-      color: #000;
+      color: var(--text-color);
     }
 
     .right .not-viewed {
-      color: #d9534f;
+      color: var(--cor3-not);
       font-weight: bold;
       margin-bottom: 5px;
     }
 
     .summary-box {
-      background-color: #b3ecff;
+      background-color: var( --cor1-not);
       padding: 15px 20px;
       border-radius: 5px;
       margin-bottom: 20px;
@@ -137,7 +140,7 @@ a {
 
     .summary-box .left {
       font-size: 16px;
-      color: #000;
+      color: var(--text-color);
       font-weight: bold;
     }
 

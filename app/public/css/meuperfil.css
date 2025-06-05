@@ -29,6 +29,10 @@ body {
   align-items: center;
 }
 
+.redes-sociais-icons {
+  color: var(--text-color);
+}
+
 #dados-principais-perfil{
   color: var(--text-color);
  
@@ -55,6 +59,7 @@ a {
 
 #nome-perfil{
   text-transform: capitalize;
+  color: var(--text-color);
 }
 
 #banner-perfil {
@@ -245,6 +250,7 @@ input[type='file'] {
 
 #editarperfilbotao {
   margin-top: 20px;
+  background-color: var(  --cor-btn-azul);
 }
 
 .icones-container {
@@ -680,7 +686,7 @@ input[type='file'] {
 }
 
 #editarperfilbotao{
-  background-color: #132d46;
+ 
   color: #fff;
   font-family: "Josefin Sans";
   border-radius: 10px;
@@ -689,7 +695,7 @@ input[type='file'] {
 }
 
 .btn-link{
-  background-color: #132d46;
+  background-color: var(  --cor-btn-azul);
   color: #fff;
   font-family: "Josefin Sans";
   border-radius: 10px;
@@ -799,6 +805,7 @@ input[type='file'] {
 
 .aviso-avaliacoes{
   margin: 20px auto 20px 10%;
+  color: var(--text-color);
 }
 
 

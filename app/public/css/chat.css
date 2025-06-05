@@ -1,9 +1,10 @@
 @import url(cores.css);
 
+
 .botao-de-voltar{
     width: 100%;
-    background-color:  rgba(224, 236, 240, 0.37);
-    height: 5.5vh;
+    background-color: var(--cor-btn-voltar-section);
+    height: 40px;
     display: flex;
     align-items: center;
     
@@ -11,11 +12,11 @@
 
 .btn-voltar{
     border-radius: 50%;
-    border: none;
-    width: 30px; 
+    border: 1px solid var(--cor-btn-voltar-borda);
+    width: 30px;
     height: 30px;
-    background-color: #acdabf7a;
-    color: #165040;
+    background-color: var(--cor-btn-voltar);
+    color: var(--cor-btn-voltar-seta);
     margin: 0px 0px 0px 60px;
     font-size: 17px;
     align-items: center;
@@ -25,8 +26,9 @@
 }
 
 .btn-voltar:hover {
-    background-color: #648b747a;
+    background-color: var(--cor-btn-voltar-hover);
     cursor: pointer;
+    
 }
 
 .lado-botao {
@@ -34,8 +36,10 @@
     font-family: "Josefin Sans";
     font-weight: 400;
     font-size: 15px;
-    color: #474747;
+    color: var( --cor-btn-voltar-texto);
 }
+
+
 
 .foto-perfil-con-ant {
     width: 30px;
@@ -49,16 +53,16 @@
     grid-template-rows: auto;
     grid-template-areas: 
         "aba-minhas-conversas chat-atual";
-    border-top: 1px solid #165040;
+    border-top: 1px solid var(--verde2-chat);
 
 }
 
 .chat-list {
     grid-area: aba-minhas-conversas;
     padding: 10px;
-    background-color:#e0f2e7;  
+    background-color: var(--lado-chat);
    
-    border-right: 1px solid #165040;
+    border-right: 1px solid  var(--verde2-chat);
 
  
 }
@@ -92,17 +96,17 @@
 
     
 .lista-conversas-anteriores li {
-
+color: var(--text-color);
     display: flex;  
     align-items: center;
     height: 50px;
     font-family: "Josefin Sans";
-    border-bottom: 1px solid #165040;
+    border-bottom: 1px solid var( --verde2-chat);
 
 }
 
 .lista-conversas-anteriores li:hover {
-    background-color: #ACDABF;
+    background-color: var(--hover-chat);
     cursor: pointer;
 }
 
@@ -121,7 +125,7 @@
 
     display: flex;
     align-items: center;
-    background-color: #73bda89b;
+    background-color: var(--verde-chat);
     padding: 5px;
 }
 
@@ -161,14 +165,14 @@
 
 
 .mensagem-env .balao-msg {
-    background-color:#7193C7;
+    background-color: var(--balao-msg2);
     color: White;
     float: right;
     text-align: right;
 }
 
 .mensagem-rec .balao-msg-rec {
-    background-color: #b7e3f06e;
+    background-color: var(--balao-msg1);
     color: #3f5b6b;
     width: fit-content;
     text-align: left;
@@ -199,7 +203,7 @@
 
     
 .area-digitar input {
-    background-color: #acdabf7a;
+    background-color: var( --cor-fundo-comentario);
     width: 95%;
     height: 100%;
     border-radius: 5px;
@@ -207,22 +211,23 @@
     padding: 5px;
     margin-bottom: 0px;
     font-family: "Josefin Sans";
+    color: var( --texto-barra-pesquisa);
 
 }
 
 .area-input input::placeholder{
-    color: #165040;
+    color: var( --texto-barra-pesquisa);
     opacity: 0.5;
 
 }
 
 #enviar-msg{
-    background-color:  #acdabf7a;
+    background-color:  var( --cor-fundo-comentario);
     width: 5%;
     height: 130%;
     border: none;
     border-radius: 5px;
-    color: #103b2b;
+    color: var( --texto-barra-pesquisa);
     font-size: 18px;
     margin-left: 5px;
     padding: 5px 0px;
@@ -263,11 +268,11 @@
         left: 0;
         width: 250px; 
         max-height: 80vh;
-        background-color:#e0f2e7;
+        
         overflow-y: auto; /* Para rolagem  */
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
-        border-top: 1px solid #165040;
+       
      
     }
 
@@ -275,7 +280,7 @@
         border: none;
         border-radius: 50%;
         background-color: transparent;
-        color: #165040;
+       
         margin: 0px 20px 0px 15px;
         display: block;
     }
@@ -298,22 +303,17 @@
         position: absolute;
         right: 10px;
         top: 3px;
-        background-color: transparent; /* Fundo transparente */
+       
         border: none; 
         border-radius: 50%;
         width: 35px;
         height: 35px;
-        color: #165040; /* Cor do texto */
-        font-size: 20px; /* Tamanho da fonte */
+       
         cursor: pointer; 
         visibility: visible;
     }
     
-    .close-chat-list:hover {
-        color: #165040;
-        background-color: #1650402e;
-        transition: all 0.2s;
-    }
+   
 
 
     
@@ -323,13 +323,10 @@
         align-items: center;
         height: 50px;
         font-family: "Josefin Sans";
-        border-bottom: 1px solid #165040;
+      
 
     }
 
-    .lista-conversas-anteriores li:hover {
-        background-color: #ACDABF;
-    }
 
     .lista-conversas-anteriores li span {
         margin-left: 10px;
@@ -345,7 +342,7 @@
 
         display: flex;
         align-items: center;
-        background-color: #73bda89b;
+      
         padding: 5px;
     }
 
@@ -367,7 +364,7 @@
 
         
     .area-digitar input {
-        background-color: #acdabf7a;
+        
         width: 90%;
         height: 100%;
         border-radius: 5px;
@@ -378,19 +375,14 @@
     
     }
 
-    .area-input input::placeholder{
-        color: #165040;
-        opacity: 0.5;
-
-    }
 
     #enviar-msg{
-        background-color:  #acdabf7a;
+      
         width: 10%;
         height: 130%;
         border: none;
         border-radius: 5px;
-        color: #103b2b;
+      
         font-size: 18px;
         margin-left: 5px;
         padding: 5px 0px;

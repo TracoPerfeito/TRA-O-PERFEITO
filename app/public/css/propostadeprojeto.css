@@ -10,10 +10,9 @@ body {
 
 }
 
-
 .botao-de-voltar{
     width: 100%;
-    background-color:  rgba(224, 236, 240, 0.37);
+    background-color: var(--cor-btn-voltar-section);
     height: 40px;
     display: flex;
     align-items: center;
@@ -22,11 +21,11 @@ body {
 
 .btn-voltar{
     border-radius: 50%;
-    border: none;
+    border: 1px solid var(--cor-btn-voltar-borda);
     width: 30px;
     height: 30px;
-    background-color: #acdabf7a;
-    color: #165040;
+    background-color: var(--cor-btn-voltar);
+    color: var(--cor-btn-voltar-seta);
     margin: 0px 0px 0px 60px;
     font-size: 17px;
     align-items: center;
@@ -36,8 +35,9 @@ body {
 }
 
 .btn-voltar:hover {
-    background-color: #648b747a;
+    background-color: var(--cor-btn-voltar-hover);
     cursor: pointer;
+    
 }
 
 .lado-botao {
@@ -45,7 +45,7 @@ body {
     font-family: "Josefin Sans";
     font-weight: 400;
     font-size: 15px;
-    color: #474747;
+    color: var( --cor-btn-voltar-texto);
 }
 
 
@@ -55,6 +55,7 @@ body {
     grid-template-areas: "publicacao-texto p-rel";
     gap: 10%;
     margin-bottom: 50px;
+    color: var(--text-color);
 }
 
 
@@ -103,7 +104,7 @@ body {
 
 
 .conversar {
-    background-color: var(--cor-botao);
+    background-color: var(  --cor-btn-azul);
     color: white;
     padding: 8px 16px;
     border: none;
@@ -129,13 +130,13 @@ body {
 .outras-propostas h2, .titulo-maior {
     margin-bottom: 10px;
     font-size: 20px;
-    color: #132d46;
+    color: var(--h2-proposta);
     font-family: "Montserrat";
    
 }
  
 .propostas {
-    background-color:  #acdabf7a;
+    background-color:  var( --cor-fundo-comentario);
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -145,7 +146,7 @@ body {
 .propostas h3 {
     font-size: 16px;
     margin-bottom: 10px;
-    color: #132d46;
+     color: var(--h2-proposta);
 }
 
 .prop-rel-info {
@@ -169,7 +170,7 @@ body {
         border-radius: 50%;
         width: 30px;
         height: 30px;
-        background-color: #acdabf7a;
+      
         margin: 0px 0px 0px 35px;
     }
 

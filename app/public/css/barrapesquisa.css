@@ -11,6 +11,7 @@
     background: var(--verdinho-transparente-barra);
     width: 600px;
     border: 1px solid var(--borda-barra-pesquisa);
+    margin-top: 10px;
    
 
 }

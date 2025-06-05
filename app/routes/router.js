@@ -326,8 +326,15 @@ router.get("/portfolio", function (req, res) { //portfolios
 });
 
 
-router.get("/teste-cadastro", function (req, res) { // TESTE DO NOVO CADASTRO
-    res.render('pages/teste-cadastro', {retorno: null, valores: {nome: "", usuario: "", email: "", celular: "", password: "", confirmpassword: ""}, listaErros: null});
+router.get("/planos-assinaturas", function (req, res) { //planos
+    res.render('pages/planos-assinaturas');
+
+ 
+});
+
+
+router.get("/cadastro-antigo", function (req, res) { 
+    res.render('pages/cadastro-antigo', {retorno: null, valores: {nome: "", usuario: "", email: "", celular: "", password: "", confirmpassword: ""}, listaErros: null});
  
 
  
