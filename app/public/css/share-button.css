@@ -1,5 +1,3 @@
-
-
 #modal-share {
   position: fixed;
   top: 0;
@@ -45,7 +43,7 @@
 #shareLink {
   color: #374151;
   font-size: 14px;
-  margin-right: 10px;
+  margin-right: 15px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
