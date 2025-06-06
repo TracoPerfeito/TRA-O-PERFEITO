@@ -1,0 +1,97 @@
+
+
+#modal-share {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  display: none;
+}
+
+/* Conteúdo do modal */
+#modal-share .modal-content-share {
+  background: white;
+  padding: 24px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Título */
+#modal-share .modal-content-share h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+/* Área de link */
+#modal-share .link-container {
+  display: flex;
+  align-items: center;
+  background-color: #f9fafb;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Texto do link */
+#shareLink {
+  color: #374151;
+  font-size: 14px;
+  margin-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Botão de copiar */
+.copy-button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #6366f1;
+  font-weight: 500;
+  font-size: 14px;
+  position: relative;
+}
+
+/* Ícone de copiar */
+.copy-button svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+/* Tooltip */
+#tooltip {
+  display: none;
+  position: absolute;
+  top: -28px;
+  right: 0;
+  background-color: #4ade80;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Botão de fechar modal */
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #6b7280;
+}
