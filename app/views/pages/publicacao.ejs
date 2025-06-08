@@ -7,13 +7,15 @@
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/publicacao.css">
+     <link rel="stylesheet" href="css/share-button.css">
+   
 
     
     <title>Publicação</title>
@@ -51,11 +53,29 @@
         <section class="container-pag-publi">
 
             <section class="principal-pag-publi">
-                <section class="publi-info">
-                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
-                    <a href=/perfil>
-                        <p class="nome-dono-post">Jaqueline Maria  </p>
-                    </a>
+
+                <section class="publi-person-button">
+                    <section class="publi-info">
+                        <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                        <a href=/perfil>
+                            <p class="nome-dono-post">Jaqueline Maria  </p>
+                        </a>
+                          
+                    </section>
+
+                    <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
+                                    <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
+                    
+                                            <section class="opcoes-menu">
+                                                <button class="btn-compartilhar" title="Compartilhar" id="openShareModal" onclick="openModal()">
+                                                    <ion-icon name="share-social-outline"></ion-icon>
+                    
+                                                    Compartilhar</button>
+                                                <button class="btn-denunciar" title="Denunciar">
+                                                       <ion-icon name="flag-outline"></ion-icon>
+                                                       Denunciar</button>
+                                            </section>
+                                        </section>
                 </section>
 
 
@@ -269,6 +289,60 @@
         </section>
 
 
+
+        
+
+                                                <!-- Modal de denúncia -->
+                        <section id="modalDenuncia" class="modal">
+                            <section class="modal-content">
+                            <h3>Qual o motivo da denúncia?</h3>
+                            <form id="formDenuncia">
+                                <label><input type="radio" name="motivo" value="Conteúdo ofensivo"> Conteúdo ofensivo</label><br>
+                                <label><input type="radio" name="motivo" value="Spam"> Spam</label><br>
+                                <label><input type="radio" name="motivo" value="Informação falsa ou enganosa"> Informação falsa ou enganosa</label><br>
+                                <label><input type="radio" name="motivo" value="Nudez ou conteúdo sexual"> Nudez ou conteúdo sexual</label><br>
+                                <label><input type="radio" name="motivo" value="Plágio ou cópia não autorizada"> Plágio ou cópia não autorizada</label><br>
+                                <label><input type="radio" name="motivo" value="Outro"> Outro</label><br><br>
+                                <button type="submit">Enviar denúncia</button>
+                                <button type="button" id="fecharModal">Cancelar</button>
+                            </form>
+                            </section>
+                        </section>
+
+
+
+                <!-- Modal de compartilhamento -->
+                <section id="modal-share">
+                <section class="modal-content-share">
+                    <h2>Compartilhar link da publicação</h2>
+
+                    <section class="link-container">
+                    <section id="shareLink">
+                      https://tracoperfeito.onrender.com/publicacao
+                    </section>
+
+                    <button class="copy-button" onclick="copyToClipboard()">
+                        <section id="copyIcon">
+                       
+                            <svg xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px; margin-right: 4px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2M16 8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8a2 2 0 01-2-2v-2"/>
+                            </svg>
+      
+                        </section>
+                        <section id="copyText">Copiar link</section>
+                        <section id="tooltip">Copiado!</section>
+                    </button>
+                    </section>
+
+                    <button class="close-modal-btn" onclick="closeModal()">×</button>
+                </section>
+                </section>
+
+
+           
+
+
+
     </main>
 
 
@@ -280,6 +354,7 @@
     <script src="js/voltar.js"></script>
     <script src="js/expan-img.js"></script>
     <script src="js/mobile-navbar.js"></script>
+     <script src="js/denuncia-compartilhamento.js"></script>
     
 </body>
 </html>

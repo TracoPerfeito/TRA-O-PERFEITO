@@ -34,14 +34,19 @@
     --verde2-chat: #165040;
     --hover-chat: #ACDABF;
     --cor1-not: #B7E3F0;
-     --cor2-not: #b7e3f07d;
-     --cor3-not:  #7193C7;
-      --cor-fundo-not: transparent;
-      --cor-fundo-not-hover: #f0f4f8;
+    --cor2-not: #b7e3f07d;
+    --cor3-not:  #7193C7;
+    --cor-fundo-not: transparent;
+    --cor-fundo-not-hover: #f0f4f8;
+    --border-scroll: #fff;
+    --scroll-background:  #132d46;
+    --scroll-thumb: #94a2b5;
+    --scroll-thumb-hover:#7193C7;
+    --linha-pesquisa: rgba(0, 0, 0, 0.1); 
 }
 
 /* #264869 */ 
-
+/* rgb(22, 24, 29); rgb(27, 26, 32); Outra cor legal pro fundo no modo escuro*/
 .darkmode {
 
      --cor-fundo: rgb(37, 39, 47);  /*#131f24 cor do duolingo (bem dahorinha, testar pra ver) */
@@ -69,16 +74,20 @@
     --cor-av-borda-n-pub: #316886bb;
     --cor-fundo-ativo-img: #598eab4d;
     --balao-msg2: rgb(55, 58, 70);
-      --balao-msg1: #ceeeff;
---verde-chat: #3b3e46;
---lado-chat:  rgb(30, 36, 48);
- --verde2-chat: #316886bb;
-  --hover-chat: rgb(49, 58, 77);
-  --cor1-not:  #556e93;
+    --balao-msg1: #ceeeff;
+    --verde-chat: #3b3e46;
+    --lado-chat:  rgb(30, 36, 48);
+    --verde2-chat: #316886bb;
+    --hover-chat: rgb(49, 58, 77);
+    --cor1-not:  #556e93;
     --cor2-not: rgb(55, 58, 70);
-      --cor3-not:  #c3d1e7;
-         --cor-fundo-not:  rgb(42, 44, 51);
-   --cor-fundo-not-hover: #3b3e46;
+    --cor3-not:  #c3d1e7;
+    --cor-fundo-not:  rgb(42, 44, 51);
+    --cor-fundo-not-hover: #3b3e46;
+    --border-scroll: transparent;
+    --scroll-background:   #6a7990;
+    --scroll-thumb: rgb(207, 211, 219);
+    --scroll-thumb-hover: #ffffff;
+    --linha-pesquisa: rgba(255, 255, 255, 0.1); 
 }
-
 

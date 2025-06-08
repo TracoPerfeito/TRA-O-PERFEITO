@@ -63,7 +63,7 @@
 .publi-info {
     display: flex;
     align-items: center;
-    margin: 10px 20px;
+    /* margin: 10px 20px; */
     color: var(--text-color);
 }
 
@@ -510,7 +510,7 @@
     .publi-info {
         display: flex;
         align-items: center;
-        margin: 20px;
+        /* margin: 20px; */
     }
 
     .foto-de-perfil{
@@ -669,6 +669,15 @@
 }
 
 
+
+.publi-person-button{
+    
+    width: 100% !important;
+    
+}
+
+
+
 }
 
 
@@ -684,4 +693,62 @@
     }
 
 
+}
+
+
+
+
+
+
+
+
+.publi-person-button{
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+    width: 80% ;
+     margin: 10px 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.menu-opcoes {
+    display: block !important;
+
+    position: inherit !important;
+}
+
+
+
+.icone-menu {
+    fill: var(--text-color) !important;
+    transform: translateX(10px) !important;
+   
+}
+
+.icone-menu svg{
+    fill: var(--text-color) !important;
+}
+.opcoes-menu {
+    
+    position: absolute !important;
+    transform: translateX(-90px) !important;
+    min-width: 130px !important;
 }

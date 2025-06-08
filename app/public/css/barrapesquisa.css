@@ -11,7 +11,7 @@
     background: var(--verdinho-transparente-barra);
     width: 600px;
     border: 1px solid var(--borda-barra-pesquisa);
-    margin-top: 10px;
+   
    
 
 }
@@ -80,6 +80,21 @@
   .icon {
     color: var(--texto-barra-pesquisa);
   }
+
+  .pesquisas {
+    margin-top: 10px;
+    position: sticky; /* Daqui até o transition estão as configurações para manter a barra de pesquisas sempre visivel conforme rola a página.*/
+    top: 58px;
+    z-index: 3;
+    background-color: var(--cor-fundo);
+    padding: 10px 0;
+   transition: box-shadow 0.3s ease, border-bottom 0.3s ease;
+}
+
+.pesquisas.sombra {
+
+  border-bottom: 1px solid var(--linha-pesquisa);
+}
 
 
 #botao-filtro {

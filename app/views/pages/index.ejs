@@ -121,7 +121,6 @@
                 <main>
  
  
- 
                     <!---------------------BARRA DE PESQUISA---------------->
                      
                      <section class="pesquisas">
@@ -805,12 +804,24 @@
                
                 </main>
 
+                
+
                
 
                
 
     <%- include('../partials/rodape'); %>
 
+<script>
+  window.addEventListener('scroll', function () {
+    const barra = document.querySelector('.pesquisas');
+    if (window.scrollY > 10) {
+      barra.classList.add('sombra');
+    } else {
+      barra.classList.remove('sombra');
+    }
+  });
+</script>
 
 
     <script src="js/like.js"></script>
