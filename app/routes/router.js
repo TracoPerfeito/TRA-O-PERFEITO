@@ -97,6 +97,9 @@ router.get("/menu-artista-logado", function (req, res) { //menu-logado
  
 });
 
+
+
+
 router.get(
   "/meu-perfil-artista",
   verificarUsuAutorizado(["profissional"], "pages/acesso-negado"),
