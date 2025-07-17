@@ -107,6 +107,7 @@
     width: 90%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-weight: 600;
 }
 
@@ -293,7 +294,7 @@
     }
 
     .like-button.liked{
-        color: red;
+        color: #7490C9;
     }
      
 

@@ -4,8 +4,6 @@ var router = express.Router();
 const { body, validationResult } = require("express-validator");
 const usuariosController = require("../controllers/usuariosController");
 
-const { verificadorCelular, validarCPF } = require("../helpers/validacoes");
-
 
 const {
   verificarUsuAutenticado,
@@ -15,7 +13,7 @@ const {
 } = require("../models/autenticador_middleware");
 // const { listenerCount } = require("../../config/pool_conexoes");
 
-const uploadFile = require("../util/uploader")("./app/public/imagens/perfil/");
+const uploadFile = require("../util/uploader");
 
 router.get("/",  verificarUsuAutenticado, function (req, res) { //index
    const dadosNotificacao = req.session.dadosNotificacao || null;
@@ -102,7 +100,7 @@ router.get("/menu-artista-logado", function (req, res) { //menu-logado
 
 router.get(
   "/meu-perfil-artista",
-  verificarUsuAutorizado(["profissional"], "pages/acesso-negado"),
+  verificarUsuAutorizado(["profissional", "comum"], "pages/acesso-negado"),
   async function (req, res) {
     usuariosController.mostrarPerfil(req, res);
   }
@@ -112,12 +110,55 @@ router.get(
 
 router.post(
   "/meu-perfil-artista",
-  uploadFile("img_perfil"),                  
-  usuariosController.regrasValidacaoPerfil,  
+ uploadFile("./app/public/imagens/perfil/").multi([
+  { name: "img_perfil", maxCount: 1 },
+  { name: "img_capa", maxCount: 1 }
+]),
+  usuariosController.regrasValidacaoPerfil,
   async function (req, res) {
     usuariosController.gravarPerfil(req, res);
   }
 );
+
+
+router.post(
+  "/atualizardtg",
+  usuariosController.regrasValidacaoGeneroData,
+  async function (req, res) {
+    usuariosController.gravarGeneroData(req, res);
+  }
+);
+
+
+router.post(
+  "/atualizarsenha",
+  usuariosController.regrasValidacaoSenha,
+  async function (req, res) {
+    usuariosController.gravarNovaSenha(req, res);
+  }
+);
+
+
+
+router.get(
+    "/editar-perfil",
+    verificarUsuAutorizado(["profissional", "comum"], "pages/acesso-negado"),
+    async function (req, res) {
+        usuariosController.mostrarPerfilEditar(req, res);
+    }
+  );
+ 
+ 
+ 
+
+// router.post(
+//   "editar-perfil",
+//   uploadFile("img_perfil"),                  
+//   usuariosController.regrasValidacaoPerfil,  
+//   async function (req, res) {
+//     usuariosController.gravarPerfil(req, res);
+//   }
+// );
 
 
 

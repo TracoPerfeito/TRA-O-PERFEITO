@@ -2,10 +2,10 @@
 
 
 :root {
-    --cor-fundo: White;
+    --cor-fundo: #faf9f6;
     --azul-menu: #132d46;
     --azul-mais-escuro: #122b42;
-    --text-color: Black;
+    --text-color: #5f5c5d;
     --primary-color: #3a435d;
     --verdinho-transparente-barra: #acdabf7a;
     --texto-barra-pesquisa:  #165040;  /* Usado no texto da barra de pesquisa e da caixa de adicionar comentario */

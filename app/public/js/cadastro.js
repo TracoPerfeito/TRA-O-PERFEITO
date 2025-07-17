@@ -303,8 +303,8 @@ async function analisarEtapaDadosBasicos() {
 
   // Validação do usuário
   const usuario = campos.usuario.value.trim();
-  if (usuario.length < 6 || usuario.length > 20) {
-    spansErro.usuario.textContent = 'O usuário deve ter de 6 a 20 caracteres.';
+  if (usuario.length < 4 || usuario.length > 20) {
+    spansErro.usuario.textContent = 'O usuário deve ter de 4 a 20 caracteres.';
     campos.usuario.classList.add('input-erro');
     valido = false;
   }  else if (!/^[a-zA-Z0-9._]+$/.test(usuario)) {

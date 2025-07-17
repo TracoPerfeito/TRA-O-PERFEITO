@@ -41,11 +41,25 @@ body {
 
 .redes-sociais-icons {
   display: flex;
-  justify-content: space-between;
   width: 90%;
-  margin: 20px 0px;
-  padding: 20px 5% 20px 5%;
+  margin: 20px auto;
+  padding: 20px 5%;
   border-top: 1px solid #cccccc;
+  align-items: center;
+}
+
+.redes-sociais-icons.espalhadas {
+  justify-content: space-between;
+}
+
+.redes-sociais-icons.centralizadas {
+  justify-content: center;
+  gap: 30px;
+}
+
+.redes-sociais-icons a{
+  color: var(--text-color);
+  
 }
 
 a {
@@ -82,12 +96,53 @@ a {
   min-height: calc(60px + 8vw);
 }
 
+.base_cabecalho .coluna_contaneir {
+  display: flex; 
+  justify-content: space-between;
+  flex-wrap: wrap; 
+}
+
+.base_cabecalho .coluna-conta-direita {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2; 
+  gap: 10px;
+  min-height: 100%;
+}
+
+
+
+.base_cabecalho .coluna-conta-esquerda .sobre {
+  max-width: 100%;
+  overflow: hidden;
+  flex: 1 1 350px;
+}
+
+
+
+.publi {
+  padding: 0px 10px 20px 10px;
+  flex-grow: 1; 
+}
+
+
 .base_cabecalho .coluna_contaneir .coluna-esquerda {
   padding: 25px 20px;
   text-align: center;
   max-width: 350px;
   position: relative;
   margin: 0 auto;
+  flex: 1 1 350px;
+}
+
+.base_cabecalho .coluna_contaneir .coluna-direta {
+  flex: 2 1 600px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px; 
+  min-height: 100%; 
+  overflow: auto; 
 }
 
 .base_cabecalho .coluna_contaneir .coluna-esquerda .img__container {
@@ -145,12 +200,23 @@ a {
 .base_cabecalho .coluna_contaneir .coluna-esquerda .quan-p-t-c:after {
   position: absolute;
   content: "";
-  bottom: -16px;
+  bottom: -12px;
+  display: block;
+  background: #685d5d00;
+  height: 1px;
+  width: 100%;
+}
+
+.descricao-meu-perfil::before {
+  
+  content: "";
+  transform: translateY(-15px);
   display: block;
   background: #cccccc;
   height: 1px;
   width: 100%;
 }
+
 /* 
 .paragrafo-descricao:after {
   position: absolute;
@@ -683,6 +749,8 @@ input[type='file'] {
 
 .descricao-meu-perfil {
   min-width: 300px;
+   border-radius: 5px;
+  word-wrap: break-word;
 }
 
 #editarperfilbotao{

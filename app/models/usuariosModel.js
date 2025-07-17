@@ -87,12 +87,30 @@ const usuariosModel = {
         findId: async (id) => {
         try {
             const [linhas,campos] = await pool.query('SELECT * FROM USUARIOS WHERE STATUS_USUARIO = 1 and ID_USUARIO = ?',[id] )
+            const usuario = linhas[0];
+            if (!usuario) {
+                throw new Error("Usuário não encontrado");
+            }
+                    
             return linhas;
         } catch (error) {
             console.log(error);
             return error;
         }
     },
+
+    findProfissional: async (id) => {
+    try {
+        const [linhas] = await pool.query(
+            'SELECT * FROM USUARIO_PROFISSIONAL WHERE ID_USUARIO = ?',
+            [id]
+        );
+        return linhas;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+},
 
 
 
@@ -110,6 +128,23 @@ const usuariosModel = {
                 return error;
             }
         },
+
+        
+        updateProfissional: async (camposForm, id) => {
+            try {
+                const [resultados] = await pool.query(
+                    "UPDATE USUARIO_PROFISSIONAL SET ? " +
+                    " WHERE ID_USUARIO = ?",
+                    [camposForm, id]
+                )
+                return resultados;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+        },
+
+
 
 
 
@@ -135,6 +170,28 @@ const usuariosModel = {
                 return error;
             }
         },
+
+
+    verificarDuplicidade: async (email, celular, nomeUsuario, idAtual) => {
+  try {
+    const sql = `
+      SELECT * FROM USUARIOS 
+      WHERE 
+        (EMAIL_USUARIO = ? OR CELULAR_USUARIO = ? OR USER_USUARIO = ?)
+        AND ID_USUARIO != ?
+    `;
+    const [result] = await pool.query(sql, [email, celular, nomeUsuario, idAtual]);
+
+    return result.length > 0 ? result : null;
+  } catch (error) {
+    console.error(error);
+    return error; 
+  }
+}
+
+
+
+
 
 
         
