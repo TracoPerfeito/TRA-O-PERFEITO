@@ -342,8 +342,9 @@ errosArray.forEach((itemErro) => {
   
                                           <option value="Outro" <%= ehOutro ? "selected" : "" %>>Outro</option>
                                           </select>
-  
-                                          <section id="outra-especializacao" style= "<%= ehOutro ? 'display: block;' : 'display: none;' %>">
+
+                                          <section id="outra-especializacao" style{"<%= ehOutro ? 'display: block;' : 'display: none;' %>"}>
+
                                           <label for="customSpecialization">Coloque sua especialização:</label>
                                           <input type="text" name="customSpecialization" id="customSpecialization" value="<%=valores.especializacao %>" />
                                           </section>

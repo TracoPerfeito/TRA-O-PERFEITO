@@ -97,6 +97,15 @@
     color: #333;
 }
 
+.description p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;    /* limita a 3 linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
 
 .container-perfis {
     display: grid;

@@ -130,7 +130,38 @@
  <section class="container-perfis">
 
 
+    <% if (profissionais.length > 0) { %>
+  <% profissionais.forEach(profissional => { %>
+    <section class="card" onclick="location.href='/perfil/<%= profissional.ID_USUARIO %>'">
+        <section class="card-header">
+           <img src="<%= profissional.IMG_BANNER_PASTA_USUARIO || '/imagens/bannerperfil.jpg' %>"  alt="Background Image"  class="background-image">
 
+        </section>
+        <section class="card-content">
+            <section class="profile">
+                <img src="<%= profissional.FOTO_PERFIL_PASTA_USUARIO || '/imagens/fotoperfil2.jpeg' %>" alt="Profile Picture" class="profile-image">
+
+                <section class="informacoes-card">
+                    <h2 class="name"><%= profissional.NOME_USUARIO %></h2>
+                    <p class="role"><%= profissional.ESPECIALIZACAO_DESIGNER|| 'Profissional' %></p>
+                </section>
+                <ion-icon name="star-outline" class="far estrela-perfil" id="f-star"></ion-icon>
+                <span class="rating">5</span>
+            </section>
+            <section class="description">
+                <p><%= profissional.DESCRICAO_PERFIL_USUARIO || 'Profissional criativo e dedicado.' %></p>
+            </section>
+        </section>
+    </section>
+  <% }) %>
+<% } else { %>
+  <p>Nenhum profissional encontrado.</p>
+<% } %>
+
+
+
+
+<!-- 
     <%- include('../partials/perfis-contratar'); %>
     <%- include('../partials/perfis-contratar'); %>
     <%- include('../partials/perfis-contratar'); %>
@@ -140,7 +171,7 @@
     <%- include('../partials/perfis-contratar'); %>
     <%- include('../partials/perfis-contratar'); %>
 
-
+ -->
 
 
  </section>

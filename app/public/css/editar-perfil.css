@@ -214,10 +214,7 @@ body{
   font-size: 95%;
 }
  
-.form-container {
-  /* padding: 50px; */
- 
-}
+
  
 /* .profile-info {
   margin-top: -50px;
@@ -492,10 +489,10 @@ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
  
 /* Responsividade geral */
 @media (max-width: 1024px) {
-  .form-container {
+  /* .form-container { */
     /* padding: 30px;
     margin: 30px 20px; */
-  }
+  /* } */
  
   .banner-overlay {
     height: 220px;

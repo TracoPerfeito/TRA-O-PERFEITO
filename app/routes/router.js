@@ -3,6 +3,7 @@ var express = require("express");
 var router = express.Router();
 const { body, validationResult } = require("express-validator");
 const usuariosController = require("../controllers/usuariosController");
+const listagensController = require("../controllers/listagensController");
 
 
 const {
@@ -29,11 +30,13 @@ req.session.dadosNotificacao = null;
  
 });
 
-router.get("/contratar", function (req, res) { //contratar 
-    res.render('pages/contratar')
- 
-});
 
+router.get(
+  "/contratar", //contratar 
+  async function (req, res) {
+    listagensController.listarProfissionais(req, res);
+  }
+);
 
 router.get("/index", function (req, res) { //index
     res.render('pages/index')
