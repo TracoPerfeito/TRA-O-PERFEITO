@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/perfil.css">
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="shortcut icon" href="/imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/perfil.css">
+    <link rel="stylesheet" href="/css/menu.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,26 +38,26 @@
 
   <section class="botao-de-voltar">   
     <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon></button>
-    <p class="lado-botao"> Perfil de Jaqueline Maria</p>
+    <p class="lado-botao"> Perfil de <%= usuario.NOME_USUARIO %></p>
 </section>
 
 
     <section class="base_cabecalho">
       <section id="banner-perfil">
-        <img src="imagens/bg.png" id="banner-perfil">
+        <img src="/<%= usuario.IMG_BANNER_PASTA_USUARIO %>" id="banner-perfil">
       </section>
       <section class="coluna_contaneir">
         <section class="coluna-esquerda">
 
           <section class="img__container"> 
-            <img src="imagens/fotoperfil1.jpeg" alt="Perfil" id="imgFoto">
+            <img src="/<%= usuario.FOTO_PERFIL_PASTA_USUARIO %>" alt="Perfil" id="imgFoto">
             <span></span>
           </section>
 
         <section class="embaixo">
-          <h2 id="dados-principais-perfil">Jaqueline Maria </h2>
+          <h2 id="dados-principais-perfil"> <%= usuario.NOME_USUARIO %> </h2>
           <p>UX/UI Designer</p>
-          <p>meunome@outlook.com</p>
+          <p><%= usuario.EMAIL_USUARIO %></p>
         </section>
         
           <ul class="quan-p-t-c">
@@ -68,9 +68,7 @@
 
           <section class="sobre">
             <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam
-              erat volutpat. Morbi imperdiet, mauris ac auctor dictum, nisl
-              ligula egestas nulla.
+             <%= usuario.DESCRICAO_PERFIL_USUARIO %>.
             </p>
 
             <ul class="redes-sociais-icons">
@@ -105,7 +103,7 @@
 
           <section class="publi">
             <section class="publi-perfil">
-              <img src="imagens/arte1.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <img src="/imagens/arte1.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
               <section class="nome-btn-like">
                 <span>Nome da publicação</span>
                 <button class="like-button">
@@ -114,7 +112,7 @@
               </section>
             </section>
             <section class="publi-perfil">
-              <img src="imagens/arte2.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <img src="/imagens/arte2.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
               <section class="nome-btn-like">
                 <span>Nome da publicação</span>
                 <button class="like-button">
@@ -123,7 +121,7 @@
               </section>
             </section>
             <section class="publi-perfil">
-              <img src="imagens/aak.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <img src="/imagens/aak.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
               <section class="nome-btn-like">
                 <span>Nome da publicação</span>
                 <button class="like-button">
@@ -132,7 +130,7 @@
               </section>
             </section>
             <section class="publi-perfil">
-              <img src="imagens/aar.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <img src="/imagens/aar.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
               <section class="nome-btn-like">
                 <span>Nome da publicação</span>
                 <button class="like-button">
@@ -141,7 +139,7 @@
               </section>
             </section>
             <section class="publi-perfil">
-              <img src="imagens/aaj.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <img src="/imagens/aaj.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
               <section class="nome-btn-like">
                 <span>Nome da publicação</span>
                 <button class="like-button">
@@ -150,7 +148,7 @@
               </section>
             </section>
             <section class="publi-perfil">
-              <img src="imagens/aaq.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
+              <img src="/imagens/aaq.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
               <section class="nome-btn-like">
                 <span>Nome da publicação</span>
                 <button class="like-button">
@@ -168,7 +166,7 @@
 
 
     <h2 id="secao-avaliacoes-h2">
-        Avaliações de quem contratou Jaqueline Maria
+        Avaliações de quem contratou <%= usuario.NOME_USUARIO %>
     </h2>
     
     <section class="carousel-container">
@@ -180,7 +178,7 @@
             
             <section class="avaliacao">
                 <section class="info-criador-ava">
-                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil">
                     <a href="/perfil">
                         <p class="nome-criador-ava"> Mariana Sanchez</p>
                     </a>
@@ -205,7 +203,7 @@
 
             <section class="avaliacao">
                 <section class="info-criador-ava">
-                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <img src="//imagens/fotoperfil1.jpeg" class="foto-de-perfil">
                     <a href="/perfil">
                         <p class="nome-criador-ava"> Mariana Sanchez</p>
                     </a>
@@ -230,7 +228,7 @@
 
             <section class="avaliacao">
                 <section class="info-criador-ava">
-                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil">
                     <a href="/perfil">
                         <p class="nome-criador-ava"> Mariana Sanchez</p>
                     </a>
@@ -255,7 +253,7 @@
 
             <section class="avaliacao">
                 <section class="info-criador-ava">
-                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <img src="//imagens/fotoperfil1.jpeg" class="foto-de-perfil">
                     <a href="/perfil">
                         <p class="nome-criador-ava"> Mariana Sanchez</p>
                     </a>
@@ -277,7 +275,7 @@
 
             <section class="avaliacao">
                 <section class="info-criador-ava">
-                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil">
                     <a href="/perfil">
                         <p class="nome-criador-ava"> Mariana Sanchez</p>
                     </a>
@@ -301,7 +299,7 @@
 
             <section class="avaliacao">
                 <section class="info-criador-ava">
-                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil">
                     <a href="/perfil">
                         <p class="nome-criador-ava"> Mariana Sanchez</p>
                     </a>
@@ -326,7 +324,7 @@
 
             <section class="avaliacao">
                 <section class="info-criador-ava">
-                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil">
                     <a href="/perfil">
                         <p class="nome-criador-ava"> Mariana Sanchez</p>
                     </a>
@@ -351,7 +349,7 @@
 
             <section class="avaliacao">
                 <section class="info-criador-ava">
-                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil">
                     <a href="/perfil">
                         <p class="nome-criador-ava"> Mariana Sanchez</p>
                     </a>

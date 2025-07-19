@@ -49,8 +49,10 @@ router.get("/quemsomos", function (req, res) { //quemsomos
  
 });
 
-router.get("/perfil", function (req, res) { //perfil-alheio
-    res.render('pages/perfil')
+router.get("/perfil/:id", function (req, res) { //perfil-alheio
+    
+    listagensController.exibirPerfil(req, res);
+  
  
 });
 

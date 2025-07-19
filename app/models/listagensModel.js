@@ -26,8 +26,33 @@ const listagensModel = {
     console.error("Erro ao buscar profissionais:", error);
     return [];
   }
-}
+},
 
+  findId: async (id) => {
+  try {
+    const [rows] = await pool.query('SELECT * FROM USUARIOS WHERE ID_USUARIO = ?', [id]);
+    if (rows.length === 0) {
+      return null; // Retorna null se não encontrou
+    }
+    return rows[0]; // Retorna o usuário (objeto)
+  } catch (error) {
+    console.log(error);
+    throw error; // Lança erro para o controller tratar
+  }
+},
+
+findEspecializacaoByUserId: async (id) => {
+    try {
+      const [linhas] = await pool.query(
+        'SELECT ESPECIALIZACAO_DESIGNER FROM USUARIO_PROFISSIONAL WHERE ID_USUARIO = ? LIMIT 1',
+        [id]
+      );
+      return linhas.length > 0 ? linhas[0].ESPECIALIZACAO_DESIGNER : null;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
 
 
 };

@@ -404,20 +404,7 @@ errosArray.forEach((itemErro) => {
                           </section>
          </section>
                        
-          <script>
-  const select = document.getElementById("especializacao");
-  const otherField = document.getElementById("otherField");
-
-  select.addEventListener("change", function () {
-    if (select.value === "Outro") {
-      otherField.style.display = "block";
-    } else {
-      otherField.style.display = "none";
-    }
-  });
-
-         </script>
-  
+        
   
                        
                       </section>
@@ -727,18 +714,31 @@ window.addEventListener('click', (e) => {
 });
 </script>
  
-
 <script>
-  function handleSpecializationChange(value) {
+  document.addEventListener("DOMContentLoaded", function () {
+    const select = document.getElementById("especializacao");
     const outraEspecializacao = document.getElementById("outra-especializacao");
-    if (value === "Outro") {
-      outraEspecializacao.style.display = "block";
-    } else {
-      outraEspecializacao.style.display = "none";
-      document.getElementById("customSpecialization").value = "";
+    const customInput = document.getElementById("customSpecialization");
+
+    function handleSpecializationChange(value) {
+      if (value === "Outro") {
+        outraEspecializacao.style.display = "block";
+      } else {
+        outraEspecializacao.style.display = "none";
+        customInput.value = "";
+      }
     }
-  }
+
+    // Ao mudar o select
+    select.addEventListener("change", function () {
+      handleSpecializationChange(select.value);
+    });
+
+    // Ao carregar a página, verifica se precisa mostrar
+    handleSpecializationChange(select.value);
+  });
 </script>
+
 
 
 <script>

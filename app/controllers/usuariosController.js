@@ -49,20 +49,7 @@ body("nome").isLength({ min: 3, max: 50 }).withMessage('O nome deve ter de 3 a 5
         return true;
     })
 
-    // function (req, res) {
-
-    //     const listaErros = validationResult(req);
-
-    //     if (listaErros.isEmpty()) {
-
-    //         return res.redirect("/explorar-logado");
-
-    //     } else {
-        
-    //         console.log(listaErros);
-    //         return res.render("pages/teste-cadastro", { retorno: null, valores: {nome: req.body.nome, usuario: req.body.usuario, email: req.body.email, celular: req.body.celular, cpf: req.body.cpf, password: req.body.password, confirmpassword: req.body.confirmpassword}, listaErros: listaErros });
-    //     }
-    // }
+   
 
 ],
 
@@ -88,7 +75,7 @@ regrasValidacaoLogin: [
                 const m = hoje.getMonth() - dataNasc.getMonth();
                 const dia = hoje.getDate() - dataNasc.getDate();
 
-                // Ajusta a idade caso o mês/dia ainda não tenha sido atingido no ano
+                
                 const idadeReal = (m < 0 || (m === 0 && dia < 0)) ? idade - 1 : idade;
 
                 if (idadeReal < 18) {
@@ -559,47 +546,49 @@ console.log("Usuário atualizado:", resultUpdateUsuario);
         req.session.autenticado.whatsapp = req.body.whatsapp;
 
 
+const usuarioSucesso = resultUpdateUsuario.affectedRows > 0;
+const profissionalSucesso = resultUpdateProfissional ? resultUpdateProfissional.affectedRows > 0 : false;
 
+console.log("Resultado updateProfissional:", resultUpdateProfissional);
 
-        if (resultUpdateUsuario.changedRows === 1) {
-            if (dadosForm.nome_usu) req.session.autenticado.nome = dadosForm.nome_usu;
-            if (dadosForm.nomeusu_usu) req.session.autenticado.user = dadosForm.nomeusu_usu;
-            if (dadosForm.email_usu) req.session.autenticado.email = dadosForm.email_usu;
-            if (dadosForm.celular_usu) req.session.autenticado.celular = dadosForm.celular_usu;
-            if (dadosForm.descricao_perfil) req.session.autenticado.descricao_perfil = dadosForm.descricao_perfil;
-            if (dadosForm.especializacao_designer) req.session.autenticado.especializacao_designer = especializacaoFinal;
-            if (dadosForm.linkedin) req.session.autenticado.linkedin = dadosForm.linkedin;
-            if (dadosForm.pinterest) req.session.autenticado.pinterest = dadosForm.pinterest;
-            if (dadosForm.instagram) req.session.autenticado.instagram = dadosForm.instagram;
-            if (dadosForm.whatsapp) req.session.autenticado.whatsapp = dadosForm.whatsapp;
-              if (dadosForm.especializacao) req.session.autenticado.especializacao =especializacaoFinal;
-
-
- console.log(especializacaoFinal)
-
-
- req.session.notificacao = {
-              titulo: "Perfil atualizado!",
-              mensagem: " Seus dados foram salvos e já estão visíveis no seu perfil.",
-              tipo: "success"
-            };
-
+if (usuarioSucesso || profissionalSucesso) {
   
+  if (dadosForm.nome_usu) req.session.autenticado.nome = dadosForm.nome_usu;
+  if (dadosForm.nomeusu_usu) req.session.autenticado.user = dadosForm.nomeusu_usu;
+  if (dadosForm.email_usu) req.session.autenticado.email = dadosForm.email_usu;
+  if (dadosForm.celular_usu) req.session.autenticado.celular = dadosForm.celular_usu;
+  if (dadosForm.descricao_perfil) req.session.autenticado.descricao_perfil = dadosForm.descricao_perfil;
+  
+  if (especializacaoFinal) req.session.autenticado.especializacao = especializacaoFinal;
+  
+  if (dadosForm.linkedin) req.session.autenticado.linkedin = dadosForm.linkedin;
+  if (dadosForm.pinterest) req.session.autenticado.pinterest = dadosForm.pinterest;
+  if (dadosForm.instagram) req.session.autenticado.instagram = dadosForm.instagram;
+  if (dadosForm.whatsapp) req.session.autenticado.whatsapp = dadosForm.whatsapp;
+
+  req.session.notificacao = {
+    titulo: "Perfil atualizado!",
+    mensagem: "Seus dados foram salvos e já estão visíveis no seu perfil.",
+    tipo: "success"
+  };
+
   req.session.save(() => {
-    res.redirect("/meu-perfil-artista"); // Recarrega a página com os dados atualizados
+    res.redirect("/meu-perfil-artista");
   });
 } else {
+  // nenhuma alteração em nenhuma tabela
   res.render("pages/meu-perfil-artista", {
     listaErros: [{ msg: "Nada foi alterado." }],
     dadosNotificacao: {
-              titulo: "Ocorreu um erro.",
-              mensagem: "Não foi possível atualizar seu perfil.",
-              tipo: "error"
-            },
-            valores: req.body,
-            abaAtiva: "dados-pessoais"
+      titulo: "Ocorreu um erro.",
+      mensagem: "Não foi possível atualizar seu perfil.",
+      tipo: "error"
+    },
+    valores: req.body,
+    abaAtiva: "dados-pessoais"
   });
 }
+
     } catch (e) {
         console.log(e);
         res.render("pages/editar-perfil", {
@@ -818,7 +807,7 @@ if (!erros.isEmpty()) {
       });
     }
 
-    // Verifica se a senha atual confere
+    // Verifica se a senha atual bate com a do banco 
     const senhaCorreta = await bcrypt.compare(senhaAtual, senhaHashArmazenada);
    
     console.log(senhaCorreta);
@@ -836,7 +825,7 @@ if (!erros.isEmpty()) {
 });
     }
 
-    // Confirma se nova senha bate com a confirmação
+    // Confirma se nova senha bate com a confirmação 
     if (novaSenha !== confirmarNovaSenha) {
       console.log("Ta errado fi as senhas nao bate")
       return res.render("pages/editar-perfil", {
