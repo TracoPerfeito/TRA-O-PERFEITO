@@ -33,6 +33,36 @@ body {
   color: var(--text-color);
 }
 
+
+.redes-sociais-icons li {
+  transition: all .3s;
+}
+
+.fa-pinterest:hover {
+  color: #E60023;
+}
+
+.fa-whatsapp:hover {
+  color: #25D366;
+}
+
+
+.fa-linkedin:hover {
+  color:#0A66C2;
+}
+
+
+.fa-instagram:hover {
+  color: #C13584;
+}
+
+
+.redes-sociais-icons li:hover {
+
+  transform: translateY(-3px);
+  cursor: pointer;
+}
+
 #dados-principais-perfil{
   color: var(--text-color);
  

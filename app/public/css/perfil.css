@@ -56,6 +56,7 @@ body {
   padding: 0;
   display: flex;
   align-items: center;
+  color: var(--text-color);
 
 }
 
@@ -253,9 +254,13 @@ input[type='file'] {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color:  #8b8b8b;
+  color:  var(--text-color);
   font-size: 20px;
  
+}
+
+.redes-sociais-icons i {
+  color: var(--text-color);
 }
 
 .redes-sociais-icons li {

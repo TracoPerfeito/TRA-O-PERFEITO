@@ -67,18 +67,42 @@
             <li><span>6</span>Portfólios</li>
           </ul>
 
-          <section class="sobre">
-            <p>
-             <%= usuario.DESCRICAO_PERFIL_USUARIO %>.
-            </p>
+         
+            
+         <% const descVazia = !usuario.DESCRICAO_PERFIL_USUARIO || usuario.DESCRICAO_PERFIL_USUARIO.trim() === ''; %>
+<section class="sobre">
+  <% if (!descVazia) { %>
+    <section class="paragrafo-descricao">
+      <p class="descricao-meu-perfil">
+        <%= usuario.DESCRICAO_PERFIL_USUARIO %>
+      </p>
+    </section>
+  <% } %>
 
-            <ul class="redes-sociais-icons">
-              <li><a href="<%= usuario.LINKEDIN_USUARIO %>" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-              <li><a href="<%= usuario.PINTEREST_USUARIO %>" target="_blank"><i class="fab fa-pinterest"></i></a></li>
-              <li><a href="<%= usuario.INSTAGRAM_USUARIO %>" target="_blank"><i class="fab fa-instagram"></i></a></li>
-              <li><a href="<%= usuario.WHATSAPP_USUARIO %>" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
-            </ul>
-          </section>
+  <% if (!descVazia || (usuario.LINKEDIN_USUARIO || usuario.PINTEREST_USUARIO || usuario.INSTAGRAM_USUARIO || usuario.WHATSAPP_USUARIO)) { 
+    let totalRedes = 0;
+    if (usuario.LINKEDIN_USUARIO) totalRedes++;
+    if (usuario.PINTEREST_USUARIO) totalRedes++;
+    if (usuario.INSTAGRAM_USUARIO) totalRedes++;
+    if (usuario.WHATSAPP_USUARIO) totalRedes++;
+    let classeRedes = totalRedes <= 2 ? 'centralizadas' : 'espalhadas';
+  %>
+    <ul class="redes-sociais-icons <%= classeRedes %>">
+      <% if (usuario.LINKEDIN_USUARIO) { %>
+        <li><a href="<%= usuario.LINKEDIN_USUARIO %>" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+      <% } %>
+      <% if (usuario.PINTEREST_USUARIO) { %>
+        <li><a href="<%= usuario.PINTEREST_USUARIO %>" target="_blank"><i class="fab fa-pinterest"></i></a></li>
+      <% } %>
+      <% if (usuario.INSTAGRAM_USUARIO) { %>
+        <li><a href="<%= usuario.INSTAGRAM_USUARIO %>" target="_blank"><i class="fab fa-instagram"></i></a></li>
+      <% } %>
+      <% if (usuario.WHATSAPP_USUARIO) { %>
+        <li><a href="<%= usuario.WHATSAPP_USUARIO %>" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+      <% } %>
+    </ul>
+  <% } %>
+</section>
         </section>
         <section class="coluna-direta">
           <section class="coluna-da-direita">
