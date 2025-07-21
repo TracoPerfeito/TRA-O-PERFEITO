@@ -33,6 +33,7 @@ const listagensController = {
 
     const especializacao = await listagensModel.findEspecializacaoByUserId(id);
 
+    console.log("Ddados do perfil sendo exibido:", usuario, especializacao);
     res.render('pages/perfil', {
       usuario,
       especializacao

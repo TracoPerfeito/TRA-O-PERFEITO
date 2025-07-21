@@ -34,7 +34,7 @@ body{
   }
 
   .menu-config-lateral {
-    width: 100%;
+    
     position: static;
     padding: 10px;
     border-bottom: 1px solid #ccc;
@@ -153,6 +153,13 @@ body{
   border-radius: 10px;
   border: 1px solid transparent;
   margin: 20px 0 ;
+   transition: all 0.3s;
+}
+
+.btn-salvar-conta:hover{
+  transform: translateY(-3px);
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 .h3-conta{
@@ -172,6 +179,13 @@ body{
   border-radius: 10px;
   border: 1px solid #6d7479;
    margin: 20px 0 ;
+   transition: all 0.3s;
+}
+
+.btn-desistir:hover{
+  transform: translateY(-3px);
+  transition: all 0.3s;
+  cursor: pointer;
 }
  
 
@@ -199,7 +213,7 @@ body{
 }
 
 .modal-des form{
-  display: flex;
+  
   gap: 10px;
   width: 100%;
   justify-content: space-between;
@@ -452,6 +466,7 @@ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
  
 .close:hover {
   color: var(--preto);
+  cursor: pointer;
 }
  
 .image-container {
@@ -482,6 +497,7 @@ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
  
 .btn-cancelar:hover {
   background: var(--cinza);
+  cursor: pointer;
 }
  
  
@@ -682,6 +698,14 @@ input:not(:placeholder-shown), #textarea:not(:placeholder-shown) {
   .grid-perfil {
     grid-template-columns: 1fr;
   }
+
+  
+.modal-des {
+  
+  width: 70%;
+ 
+}
+
 }
  
 .coluna-esquerda,
@@ -708,12 +732,7 @@ textarea {
  
  
 #btnChangePassword{
-  background-color: #618ea7;
-  color: #ffffff;
  
-  border: none;
-  border-radius: 10px;
-  padding: 8px;
   margin-bottom: 10px;
   margin-top: 10px;
 }
@@ -734,6 +753,7 @@ textarea {
   background-color: #2c5f7a;
 transform: translateY(-10px);
 transition: all 0.3s;
+cursor: pointer;
 }
  
  
@@ -780,3 +800,14 @@ transition: all 0.3s;
 }
  
  
+
+.modal-logout {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }

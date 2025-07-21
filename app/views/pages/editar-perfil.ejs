@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     <script src="js/simple-notify.js"></script>
- 
+   
 </head>
  
 <body>
@@ -357,23 +357,27 @@ errosArray.forEach((itemErro) => {
                                         </label>
                                         <small id="contador">  500 caracteres restantes</small>
                                         <script>
-           const textarea = document.getElementById('textarea');
-           const contador = document.getElementById('contador');
-           const max = 500;
-  
-           function atualizarContador() {
-          if (textarea.value.length > max) {
-            textarea.value = textarea.value.slice(0, max); // corta o excesso
-          }
-          const restante = max - textarea.value.length;
-          contador.textContent = `${restante} caractere${restante === 1 ? '' : 's'} restante${restante === 1 ? '' : 's'}`;
-           }
-  
-           textarea.addEventListener('input', atualizarContador);
-  
-           // Atualiza ao carregar a página
-           atualizarContador();
-         </script>
+
+
+
+                                        // contador de caracteres para textarea de descricao 
+                                        const textarea = document.getElementById('textarea');
+                                        const contador = document.getElementById('contador');
+                                        const max = 500;
+                                
+                                        function atualizarContador() {
+                                        if (textarea.value.length > max) {
+                                          textarea.value = textarea.value.slice(0, max); // corta o excesso
+                                        }
+                                        const restante = max - textarea.value.length;
+                                        contador.textContent = `${restante} caractere${restante === 1 ? '' : 's'} restante${restante === 1 ? '' : 's'}`;
+                                        }
+                                
+                                        textarea.addEventListener('input', atualizarContador);
+                                
+                                        // Atualiza ao carregar a página
+                                        atualizarContador();
+                                      </script>
           </section>
   
                           <section class="coluna-esquerda">
@@ -453,9 +457,11 @@ errosArray.forEach((itemErro) => {
    <h1 class="g-conta content-conta titulo-content">Configurações Avançadas</h1>
 
   <!-- Alterar tipo de usuário -->
+
+  <% if (autenticado.tipo === "comum") { %>
   <section  class="content-conta">
     <h3 class="h3-conta">Alterar Tipo de Usuário</h3>
-    <form method="POST" action="/alterar-tipo-usuario" class="">
+    <form method="POST" action=/alterar-tipo-usuario id="form-tipo-usuario">
       <label for="tipoUsuario">Selecione o novo tipo de usuário:</label>
       <select id="tipoUsuario" name="tipo_usuario" required>
         <option value="" disabled selected>Escolha uma opção</option>
@@ -468,6 +474,41 @@ errosArray.forEach((itemErro) => {
       <button type="submit" class="btn-salvar-conta">Alterar Tipo</button>
     </form>
   </section>
+
+  <% } %>
+
+
+<script>
+
+
+// Não deixa enviar o formulário de alterar tipo usuário se a pessoa não tiver selecionado "profissional"
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("form-tipo-usuario");
+    if (!form) return;
+
+    const tipoSelect = form.querySelector("#tipoUsuario");
+    const submitButton = form.querySelector("button[type='submit']");
+    const tipoAtual = "<%= tipo_usuario %>";
+
+    // Inicialmente desativa o botão
+    submitButton.disabled = true;
+
+    tipoSelect.addEventListener("change", function () {
+      if (this.value === "" || this.value === tipoAtual) {
+        submitButton.disabled = true;
+      } else {
+        submitButton.disabled = false;
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
 
   <!-- Desativar conta -->
   <section  class="content-conta">
@@ -483,11 +524,17 @@ errosArray.forEach((itemErro) => {
 <section id="modal-desativar" class="modal-overlay-des" style="display: none;">
   <section class="modal-des">
     <h4>Tem certeza que deseja desativar sua conta?</h4>
-    <p>Essa ação não poderá ser desfeita.</p>
-    <form action="/desativar-conta" method="POST">
+    <p>Seu perfil não aparecerá mais para os outros usuários. Você não poderá acessar sua conta. </p>
+    <p><strong>Essa ação não poderá ser desfeita.</strong></p>
+    <form action=/desativar-conta method="POST">
 
-        <button type="button" onclick="FecharModalDesativarConta()" class="btn-desistir">Cancelar</button>
-      <button type="submit" class="btn-salvar-conta danger">Sim, desativar</button>
+        <p>Para confirmar, digite exatamente: <strong>QueroDesativarMinhaConta</strong></p>
+      <input type="text" id="confirmacaoTexto" name="confirmacaoTexto" placeholder="Digite aqui..." autocomplete="off" required style=" padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+
+       <button type="button" onclick="FecharModalDesativarConta()" class="btn-desistir">Cancelar</button>
+      <button type="submit" class="btn-salvar-conta danger" id="btnConfirmar" disabled>Sim, desativar</button>
+    
     
     </form>
   </section>
@@ -495,15 +542,45 @@ errosArray.forEach((itemErro) => {
 
 
 
-<!-- Script -->
 <script>
+
+
+// Para modal de confirmação para a desativação da conta 
+
 function AbrirModalDesativarConta() {
   document.getElementById("modal-desativar").style.display = "flex";
 }
 
 function FecharModalDesativarConta() {
-  document.getElementById("modal-desativar").style.display = "none";
+  const modal = document.getElementById("modal-desativar");
+  modal.style.display = "none";
+
+  const input = document.getElementById("confirmacaoTexto");
+  const botao = document.getElementById("btnConfirmar");
+
+
+  input.value = "";
+  input.style.borderColor = "#ccc"; 
+  botao.disabled = true;
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("confirmacaoTexto");
+  const botao = document.getElementById("btnConfirmar");
+
+  input.addEventListener("input", () => {
+    
+    if (input.value === "QueroDesativarMinhaConta") {
+      botao.disabled = false;
+      input.style.borderColor = "#28a745";
+    } else {
+      botao.disabled = true;
+      input.style.borderColor = "#dc3545"; 
+    }
+  });
+});
+
 </script>
 
   
@@ -535,7 +612,7 @@ function FecharModalDesativarConta() {
                           <p class="msg-erro"><%= avisoErro.confirmarNovaSenha %></p>
                           </section>
 
-                          <button type="submit" id="btnChangePassword">Alterar senha</button>
+                          <button type="submit" id="btnChangePassword" class="btn-salvar-conta">Alterar senha</button>
 
         </form>
       </section>
@@ -603,6 +680,10 @@ function FecharModalDesativarConta() {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
  
 <script>
+  
+
+  // Modal de cropper
+
     let cropper;
 const cropperModal = document.getElementById('cropperModal');
 const cropperImage = document.getElementById('cropperImage');
@@ -715,6 +796,9 @@ window.addEventListener('click', (e) => {
 </script>
  
 <script>
+
+  // Exibição da especialização no select 
+ 
   document.addEventListener("DOMContentLoaded", function () {
     const select = document.getElementById("especializacao");
     const outraEspecializacao = document.getElementById("outra-especializacao");
@@ -729,12 +813,11 @@ window.addEventListener('click', (e) => {
       }
     }
 
-    // Ao mudar o select
+
     select.addEventListener("change", function () {
       handleSpecializationChange(select.value);
     });
 
-    // Ao carregar a página, verifica se precisa mostrar
     handleSpecializationChange(select.value);
   });
 </script>
@@ -758,6 +841,40 @@ window.addEventListener('click', (e) => {
     });
   });
 </script>
+
+
+<% if (typeof mostrarModalLogout !== "undefined" && mostrarModalLogout) { %>
+  <section id="modalLogout" class="modal-logout">
+    <section class="modal-content">
+
+      <p><strong>Tipo de conta alterado com sucesso!</strong><br>Sua sessão será encerrada e você será redirecionado à página inicial. Faça login novamente para continuar.</p>
+
+    
+    </section>
+  </section>
+
+  <script>
+
+      // Logout depois que muda tipo de conta
+
+
+
+    setTimeout(() => {
+      window.location.href = "/logout";
+    }, 3000); // 3 segundos
+
+    window.addEventListener('beforeunload', bloquearSaida);
+
+    function bloquearSaida(e) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+  </script>
+
+  
+<% } %>
+
+
 
 
  

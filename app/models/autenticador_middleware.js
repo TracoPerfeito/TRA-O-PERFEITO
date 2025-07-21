@@ -51,6 +51,14 @@ gravarUsuAutenticado = async (req, res, next) => {
     const usuarioEncontrado = results[0];
     console.log("🧾 usuarioEncontrado:", usuarioEncontrado);
 
+    if (usuarioEncontrado.STATUS_USUARIO === 'inativo') {
+    console.log("🚫 Usuário inativo tentou fazer login:", usuarioEncontrado.EMAIL_USUARIO);
+    return res.render("pages/login", {
+        valores: req.body,
+        errosLogin: [],
+        retorno: "Sua conta está inativa. Entre em contato com o suporte."
+    });
+}
 
     console.log("🔐 senha digitada:", req.body.password);
     console.log("🔐 senha do banco:", usuarioEncontrado.SENHA_USUARIO);

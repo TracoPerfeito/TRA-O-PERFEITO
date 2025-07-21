@@ -1,0 +1,59 @@
+<div class="filtro-container">
+  <button class="filtro-btn left" onclick="scrollFiltro(-1)"><i class="fas fa-arrow-left"></i> </button>
+  <div class="filtro-wrapper" id="filtroWrapper">
+   <section class="filtro-item" id="para-voce"><p>Para você</p></section>
+    <section class="filtro-item" id="seguindo"><p>Seguindo</p></section>
+    <section class="filtro-item" id="mais-curtidos"><p>Mais Curtidos</p></section>
+    <section class="filtro-item" id="design-grafico"><p>Design gráfico</p></section>
+    <section class="filtro-item" id="ilustracao"><p>Ilustração</p></section>
+    <section class="filtro-item" id="modelagem-3d"><p>Modelagem 3D</p></section>
+    <section class="filtro-item" id="logotipos"><p>Logotipos</p></section>
+    <section class="filtro-item" id="ui-ux"><p>UI/UX</p></section>
+    <section class="filtro-item" id="design-de-personagens"><p>Design de Personagens</p></section>
+    <section class="filtro-item" id="arte-para-jogos-digitais"><p>Arte para Jogos Digitais</p></section>
+    <section class="filtro-item" id="arte-conceitual"><p>Arte Conceitual</p></section>
+    <section class="filtro-item" id="storyboard"><p>Storyboard</p></section>
+    <section class="filtro-item" id="branding"><p>Branding</p></section>
+    <section class="filtro-item" id="minimalismo"><p>Minimalismo</p></section>
+    <section class="filtro-item" id="design-de-embalagens"><p>Design de Embalagens</p></section>
+    <section class="filtro-item" id="animacao-2d-3d"><p>Animação 2D/3D</p></section>
+    <section class="filtro-item" id="pixel-art"><p>Pixel Art</p></section>
+    <section class="filtro-item" id="cartoon"><p>Cartoon</p></section>
+    <section class="filtro-item" id="infantil"><p>Infantil</p></section>
+    <section class="filtro-item" id="design-publicitario"><p>Design Publicitário</p></section>
+
+
+</div>
+  <button class="filtro-btn right" onclick="scrollFiltro(1)"><i class="fas fa-arrow-right"></i> </button>
+</div>
+
+<script>
+  const wrapper = document.getElementById("filtroWrapper");
+  const leftBtn = document.querySelector(".filtro-btn.left");
+  const rightBtn = document.querySelector(".filtro-btn.right");
+
+  function scrollFiltro(direcao) {
+    const largura = 200; // valor fixo por clique
+    wrapper.scrollBy({ left: direcao * largura, behavior: 'smooth' });
+  }
+
+    wrapper.addEventListener("scroll", () => {
+    // Mostra/esconde botão da esquerda
+    if (wrapper.scrollLeft > 0) {
+      leftBtn.style.display = "block";
+    } else {
+      leftBtn.style.display = "none";
+    }
+
+    // Mostra/esconde botão da direita
+    if (wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 1) {
+      rightBtn.style.display = "none";
+    } else {
+      rightBtn.style.display = "block";
+    }
+  });
+
+  // Chama uma vez ao carregar para ajustar os botões
+  wrapper.dispatchEvent(new Event('scroll'));
+
+</script>

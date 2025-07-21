@@ -56,7 +56,8 @@
 
         <section class="embaixo">
           <h2 id="dados-principais-perfil"> <%= usuario.NOME_USUARIO %> </h2>
-          <p>UX/UI Designer</p>
+          <p><%= especializacao %></p>
+          <p>@<%= usuario.USER_USUARIO %></p>
           <p><%= usuario.EMAIL_USUARIO %></p>
         </section>
         
@@ -72,10 +73,10 @@
             </p>
 
             <ul class="redes-sociais-icons">
-              <li><i class="fab fa-linkedin"></i></li>
-              <li><i class="fab fa-pinterest"></i> </li>
-              <li><i class="fab fa-facebook"></i></li>
-              <li><i class="fab fa-twitter"></i></li>
+              <li><a href="<%= usuario.LINKEDIN_USUARIO %>" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+              <li><a href="<%= usuario.PINTEREST_USUARIO %>" target="_blank"><i class="fab fa-pinterest"></i></a></li>
+              <li><a href="<%= usuario.INSTAGRAM_USUARIO %>" target="_blank"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="<%= usuario.WHATSAPP_USUARIO %>" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
             </ul>
           </section>
         </section>
@@ -203,7 +204,7 @@
 
             <section class="avaliacao">
                 <section class="info-criador-ava">
-                    <img src="//imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil">
                     <a href="/perfil">
                         <p class="nome-criador-ava"> Mariana Sanchez</p>
                     </a>
@@ -253,7 +254,7 @@
 
             <section class="avaliacao">
                 <section class="info-criador-ava">
-                    <img src="//imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil">
                     <a href="/perfil">
                         <p class="nome-criador-ava"> Mariana Sanchez</p>
                     </a>
@@ -376,9 +377,9 @@
     <%- include('../partials/rodape'); %>
     
 
-    <script src="js/voltar.js"></script>
-    <script src="js/like.js"></script>
-    <script src="js/carrossel-avaliacoes.js"></script>
+    <script src="/js/voltar.js"></script>
+    <script src="/js/like.js"></script>
+    <script src="/js/carrossel-avaliacoes.js"></script>
     
  
     

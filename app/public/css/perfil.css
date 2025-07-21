@@ -71,6 +71,7 @@ a {
 
 #dados-principais-perfil{
   color: var(--text-color);
+  width: 100%;
 }
 
 #banner-perfil {
@@ -265,8 +266,8 @@ input[type='file'] {
   color: #E60023;
 }
 
-.fa-facebook:hover {
-  color: #4267B2;
+.fa-whatsapp:hover {
+  color: #25D366;
 }
 
 
@@ -275,8 +276,8 @@ input[type='file'] {
 }
 
 
-.fa-twitter:hover {
-  color: #1DA1F2;
+.fa-instagram:hover {
+  color: #C13584;
 }
 
 

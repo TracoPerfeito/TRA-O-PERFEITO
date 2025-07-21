@@ -126,6 +126,8 @@ router.post(
 );
 
 
+
+
 router.post(
   "/atualizardtg",
   usuariosController.regrasValidacaoGeneroData,
@@ -142,6 +144,22 @@ router.post(
     usuariosController.gravarNovaSenha(req, res);
   }
 );
+
+router.post(
+  "/alterar-tipo-usuario",
+  async function (req, res) {
+    usuariosController.alterarTipoUsuario(req, res);
+  }
+);
+
+
+router.post(
+  "/desativar-conta",
+  async function (req, res) {
+    usuariosController.desativarConta(req, res);
+  }
+);
+
 
 
 

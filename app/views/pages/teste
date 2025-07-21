@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TesteDOIS</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="styleDOIS.css">
+</head>   <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/barrapesquisa.css">
+    <link rel="stylesheet" href="css/banner.css">
+    <link rel="stylesheet" href="css/blocos.css">
+    <link rel="stylesheet" href="css/menu.css">
+   
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="js/simple-notify.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="js/banner.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+<body>
+    <section class="container-slider">
+
+        <!-- Swiper Wrapper -->
+        <div class="swiper-wrapper">
+
+            <!-- Slide 1 -->
+
+            <section class="swiper-slide slide" id="sl1">
+
+                <section class="img-slide" id="img-1">
+                    <img src="../menina.png" >
+                </section>
+                <section class="texto">
+                    <p>Não sabe por onde começar a vender sua arte profisisonalmente?</p>
+                    
+                    <button class="btn-slide"> Comece por aqui!</button>
+                </section>
+                
+            </section>
+
+            <!-- Slide 2 -->
+            <section class="swiper-slide slide" id="sl2">
+                <section class="texto">
+                    <p>Encontre o designer que mais combina com <strong>VOCÊ</strong>.</p>
+                    <button>Criar uma conta</button>
+                </section>
+                <section class="img-slide">
+                    <img src="../bonequinhos.png" >
+                </section>
+            </section>
+
+          
+
+        </div> <!-- Fim do swiper-wrapper -->
+
+        <!-- Controle de navegação -->
+        <div class="tranding-slider-control">
+            <div class="swiper-button-prev slider-arrow">
+              
+            </div>
+            <div class="swiper-button-next slider-arrow">
+              
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </section>
+
+    
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        var TrandingSlider = new Swiper('.container-slider', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            loop: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 0,
+                modifier: 0,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+                },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
+        });
+    </script>
+</body>
+</html>

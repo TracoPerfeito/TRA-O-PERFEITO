@@ -176,6 +176,8 @@ regrasValidacaoSenha: [
 ],
 
 
+
+
 cadastrarUsuario: async (req, res) => {
         
         const errors = validationResult(req);
@@ -953,6 +955,186 @@ mostrarPerfilEditar: async (req, res) => {
     });
 }
 },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+alterarTipoUsuario: async (req, res) => {
+
+     console.log("Chegou no alterar tipo usuário");
+     console.log("Body:", req.body);
+  
+
+
+
+  try {
+    const { tipo_usuario } = req.body;
+    const idUsuario = req.session.autenticado.id;
+
+  
+    const dadosAtualizar = {};
+    if (tipo_usuario) dadosAtualizar.TIPO_USUARIO = tipo_usuario;
+    
+    const resultado = await usuariosModel.update(dadosAtualizar, idUsuario);
+
+    
+    if (resultado.changedRows === 1) {
+      req.session.autenticado.tipo_usuario = tipo_usuario;
+  
+      console.log("✅ Tipo de perfil atualizado com sucesso!");
+
+      
+      return res.render("pages/editar-perfil", {
+        autenticado: req.session.autenticado,
+        listaErros: null,
+        dadosNotificacao: {
+          titulo: "Tipo de perfil atualizado!",
+          mensagem: "Seu perfil agora é profissional. Você pode publicar seus trabalhos e encontrar Propostas de Projeto.",
+          tipo: "success"
+        },
+        valores: {},
+        abaAtiva: "conta",
+        mostrarModalLogout: true,
+  });
+
+     
+    } else {
+      res.render("pages/editar-perfil", {
+      autenticado: req.session.autenticado,
+           listaErros: [{ msg: "Não foi possível mudar seu tipo de conta." }],
+          dadosNotificacao: {
+            titulo: "Ocorreu um erro.",
+            mensagem: "Não foi possível mudar seu tipo de conta",
+            tipo: "error"
+          },
+          valores: req.body,
+          abaAtiva: "conta"
+      });
+    }
+  } catch (error) {
+    console.error("Erro ao atualizar tipo de conta.", error);
+    res.render("pages/editar-perfil", {
+      autenticado: req.session.autenticado,
+      listaErros: [{ msg: "Não foi possível mudar seu tipo de conta." }],
+      dadosNotificacao: {
+        titulo: "Ocorreu um erro.",
+        mensagem: "Não foi possível alterar seu tipo de conta.",
+        tipo: "error"
+      },
+      valores: req.body,
+      abaAtiva: "conta"
+    });
+  }
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+desativarConta: async (req, res) => {
+  console.log("Chegou no desativarConta");
+
+  try {
+    const { tipo_usuario } = req.body;
+    const idUsuario = req.session.autenticado.id;
+
+      const inativo = {
+    STATUS_USUARIO: 'inativo'
+  };
+
+
+    const resultado = await usuariosModel.update(inativo, idUsuario);
+
+    if (resultado.changedRows === 1) {
+      console.log("✅ Conta marcada como inativa com sucesso!");
+
+      req.session.destroy(() => {
+        res.redirect('/');
+      });
+
+    } else {
+      res.render("pages/editar-perfil", {
+        autenticado: req.session.autenticado,
+        listaErros: [{ msg: "Não foi possível inativar sua conta." }],
+        dadosNotificacao: {
+          titulo: "Ocorreu um erro.",
+          mensagem: "Não foi possível inativar sua conta.",
+          tipo: "error"
+        },
+        valores: [],
+        abaAtiva: "conta"
+      });
+    }
+
+  } catch (error) {
+    console.error("Erro ao inativar conta.", error);
+    res.render("pages/editar-perfil", {
+      autenticado: req.session.autenticado,
+      listaErros: [{ msg: "Não foi possível inativar sua conta." }],
+      dadosNotificacao: {
+        titulo: "Ocorreu um erro.",
+        mensagem: "Não foi possível inativar sua conta.",
+        tipo: "error"
+      },
+       valores: [],
+      abaAtiva: "conta"
+    });
+  }
+}
+
+
+
+
+ 
+ 
+
+
  
  
 
