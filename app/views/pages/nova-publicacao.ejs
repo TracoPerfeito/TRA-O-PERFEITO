@@ -223,6 +223,45 @@
     displayImages();
     updateImageCount();
   });
+
+
+
+
+
+
+
+  let touchStartX = 0;
+let touchEndX = 0;
+
+mainImage.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+mainImage.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleGesture();
+});
+
+function handleGesture() {
+  const swipeThreshold = 50; // Distância mínima para considerar um swipe
+
+  if (touchEndX < touchStartX - swipeThreshold) {
+    // Swipe para a esquerda (próxima imagem)
+    if (currentIndex < imageFiles.length - 1) {
+      currentIndex++;
+      displayImages();
+    }
+  }
+
+  if (touchEndX > touchStartX + swipeThreshold) {
+    // Swipe para a direita (imagem anterior)
+    if (currentIndex > 0) {
+      currentIndex--;
+      displayImages();
+    }
+  }
+}
+
 </script>
 
 <%- include('../partials/rodape'); %>
