@@ -26,6 +26,7 @@
     --borda-hover-filtro:  #165040;
     --cor-fundo-ativo-n-pub: #acdabf7a;
     --cor-av-borda-n-pub:  #165040;
+     --cor-borda-n-pub:  #165040;
     --cor-fundo-ativo-img:  #7e9e8b7a;
     --balao-msg2: #7193C7;
     --balao-msg1: #b7e3f06e;
@@ -72,6 +73,7 @@
     --borda-hover-filtro: White;
     --cor-fundo-ativo-n-pub: #316886bb;
     --cor-av-borda-n-pub: #316886bb;
+     --cor-borda-n-pub:  #fafafa;
     --cor-fundo-ativo-img: #598eab4d;
     --balao-msg2: rgb(55, 58, 70);
     --balao-msg1: #ceeeff;

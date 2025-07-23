@@ -12,14 +12,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
 
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+
+<!-- JS do Tagify -->
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
     
 
     
 
 </head>
 
-    
-  
+     
 <body>
 
     
@@ -42,41 +46,224 @@
             <p class="p-explicativo-np">Publique seu trabalho para compor seu portfólio.</p>
             <form>
     
-    
-                <section class="form-grupo-1" id="titulo-publicacao">
-                    <label for="titulo">Título:</label> <br>
-                    <input type="text" id="titulo" name="titulo" class="caixa-texto" required>
-                </section>
-                <section class="form-grupo-1" id="descricao-publicacao">
-                    <label for="descricao">Descrição:</label> <br>
-                    <input type="text" id="descricao" name="descricao" class="caixa-texto" required>
-                </section>
-                <!-----------------colocar aquele negocio do upload---------------------->
-               <section class="lugar-botar-img">
-                <label class="picture" for="picture__input" >
-                    <span class="picture__image"></span>
-                    <p>Carregar imagens</p>
-                  </label>
-    
-                  <input type="file" name="picture__input" id="picture__input" accept="image/*">
-                </section>
+    <section class="colunas-form">
+        
+                    <section class="coluna-esq">
+                        <section class="form-grupo-1" id="titulo-publicacao">
+                            <label for="titulo">Título:</label> <br>
+                            <input type="text" id="titulo" name="titulo" class="caixa-texto" required>
+                        </section>
+                        <section class="form-grupo-1" id="categoria-publicacao">
+                        <label for="categoria">Categoria:</label> <br>
+                        <select id="categoria" name="categoria" class="caixa-texto" required>
+                            <option value="">-- Selecione a categoria --</option>
+                            <option value="design_grafico">Design Gráfico</option>
+                            <option value="ilustracao">Ilustração</option>
+                            <option value="uiux">UI/UX</option>
+                            <option value="arte_digital">Arte Digital</option>
+                            <option value="arte_3d">Arte 3D</option>
+        
+                            <option value="animacao">Animação</option>
+        
+                            <option value="branding">Branding</option>
+                            <option value="tipografia">Tipografia</option>
+                            <option value="modelagem_3d">Modelagem 3D</option>
+        
+        
+                            <option value="design_de_produto">Design de Produto</option>
+        
+                            <option value="design_editorial">Design Editorial</option>
+                            <option value="design_de_jogos">Design de Jogos</option>
+        
+        
+        
+                            <option value="fotografia">Fotografia</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        </section>
+                         <section class="form-grupo-1" id="descricao-publicacao">
+                            <label for="descricao">Descrição:</label> <br>
+                            <textarea id="descricao" name="descricao" class="caixa-texto grande
+                            " required></textarea>
+                        </section>
+                        <section class="form-grupo-1" id="tags-publicacao">
+                            <label for="descricao">Tags:</label> <br>
+                           <input name='input-custom-dropdown' class='tagify--custom-dropdown caixa-texto' placeholder='Escreva sua' value='css, html, javascript'>
+                        </section>
+                    </section>
+        
+                    <!-----------------colocar aquele negocio do upload---------------------->
+                 <section class="coluna-dir">
+  <section class="previeweinput">
+   <div class="upload-wrapper">
+  <label for="image-input" class="custom-file-label">Selecionar imagens</label>
+  <input type="file" id="image-input" name="images" accept="image/*" multiple />
+  <span class="image-count" id="image-count">Nenhuma imagem selecionada</span>
+</div>
+    <section class="preview-section" id="preview-section" style="display:none;">
+      <div class="main-image-container" id="main-image-container">
+        <img id="main-image" src="" alt="Main preview" />
+      </div>
+      <div id="thumbnail-row"></div>
+    </section>
+  </section>
+</section>
+
+
+                    
+    </section>
              <!-------------------------------------------------------------------------->
-             <section class="form-grupo-1" id="conteudo-publicacao">
-                    <label for="conteudo">Conteúdo:</label> <br>
-                    <textarea id="conteudo" name="conteudo" class="caixa-texto grande
-                    " required></textarea>
-                </section>
+            
                 <section class="btn-publicar-area">
                     <button type="submit" class="btn-publicar">PUBLICAR</button>
                 </section>
             </form>
-        </section>
+        
 </main>
+<script>
+  const inputFile = document.getElementById('image-input');
+  const previewSection = document.getElementById('preview-section');
+  const mainImage = document.getElementById('main-image');
+  const deleteBtn = document.getElementById('delete-btn');
+  const thumbnailRow = document.getElementById('thumbnail-row');
+  const imageCount = document.getElementById('image-count');
 
+  let imageFiles = [];
+  let currentIndex = 0;
+
+  inputFile.addEventListener('change', (e) => {
+    const newFiles = Array.from(e.target.files);
+    imageFiles = [...imageFiles, ...newFiles];
+    if (imageFiles.length > 0) {
+      previewSection.style.display = 'block';
+    }
+    currentIndex = 0;
+    displayImages();
+    updateImageCount();
+  });
+
+  function displayImages() {
+    thumbnailRow.innerHTML = '';
+
+    if (imageFiles[currentIndex]) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        mainImage.src = e.target.result;
+      };
+      reader.readAsDataURL(imageFiles[currentIndex]);
+    }
+
+    imageFiles.forEach((file, index) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const thumbContainer = document.createElement('div');
+        thumbContainer.classList.add('thumbnail-container');
+
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.title = "Clique para visualizar";
+
+        img.addEventListener('click', () => {
+          currentIndex = index;
+          mainImage.src = e.target.result;
+        });
+
+        const delBtn = document.createElement('button');
+        delBtn.classList.add('thumbnail-delete');
+        delBtn.innerHTML = '&times;';
+        delBtn.title = "Remover imagem";
+
+        delBtn.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          imageFiles.splice(index, 1);
+
+          if (currentIndex >= imageFiles.length) {
+            currentIndex = 0;
+          }
+
+          if (imageFiles.length === 0) {
+            previewSection.style.display = 'none';
+            mainImage.src = '';
+          }
+
+          displayImages();
+          updateImageCount();
+        });
+
+        thumbContainer.appendChild(img);
+        thumbContainer.appendChild(delBtn);
+        thumbnailRow.appendChild(thumbContainer);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function updateImageCount() {
+    const count = imageFiles.length;
+    if (count === 0) {
+      imageCount.textContent = 'Nenhuma imagem selecionada';
+    } else if (count === 1) {
+      imageCount.textContent = '1 imagem selecionada';
+    } else {
+      imageCount.textContent = `${count} imagens selecionadas`;
+    }
+  }
+
+  deleteBtn.addEventListener('click', () => {
+    imageFiles.splice(currentIndex, 1);
+    if (currentIndex >= imageFiles.length) {
+      currentIndex = 0;
+    }
+
+    if (imageFiles.length === 0) {
+      previewSection.style.display = 'none';
+      mainImage.src = '';
+    }
+
+    displayImages();
+    updateImageCount();
+  });
+</script>
 
 <%- include('../partials/rodape'); %>
 
 <script src="js/mobile-navbar.js"></script>
+
+<script>
+var input = document.querySelector('input[name="input-custom-dropdown"]');
+
+var colors = [
+  '#7490C9', // vermelho claro
+  '#969ED0',  // verde água
+  '#92C4E2', // laranja suave
+  '#B8D9BD', // rosa antigo
+  '#9BB7CF', // azul petróleo
+  '#C3E3DF', // roxo escuro
+  '#C2E5F0', // laranja forte
+  '#ADBCE2', // vinho
+ 
+];
+
+function transformTag(tagData) {
+  // escolhe uma cor da lista, aleatoriamente
+  var color = colors[Math.floor(Math.random() * colors.length)];
+  tagData.color = color;
+  tagData.style = "--tag-bg:" + color;
+}
+
+var tagify = new Tagify(input, {
+  whitelist: ["A# .NET", "A# (Axiom)", "A-0 System", "A+", "A++", "ABAP", /* ... */ "Mystic Programming L"],
+  maxTags: 10,
+  dropdown: {
+    maxItems: 20,
+    classname: 'tags-look',
+    enabled: 0,
+    closeOnSelect: false
+  },
+  transformTag: transformTag
+});
+
+</script>
 </body>
 </html>
 
