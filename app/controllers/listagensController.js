@@ -42,8 +42,56 @@ const listagensController = {
     console.log(erro);
     res.status(500).send('Erro ao carregar perfil');
   }
-}
+},
 
+
+    listarPublicacoes: async (req, res,  dadosNotificacao) => {
+  try {
+    const publicacoes = await listagensModel.listarPublicacoes();
+
+    console.log("Publicações encontradas:", publicacoes);
+
+    
+    res.render('pages/index', {
+      publicacoes,
+      autenticado: req.session.autenticado,
+        logado: req.session.logado,
+        listaErros:null,
+       dadosNotificacao
+    });
+
+  } catch (error) {
+    console.error("Erro no controller ao listar publicações:", error);
+    res.status(500).send("Erro interno ao buscar publicações");
+     res.render('pages/index', {
+      autenticado: req.session.autenticado,
+      logado: req.session.logado,
+      listaErros: ['Erro ao carregar publicações'],
+      dadosNotificacao,
+      publicacoes: []
+    });
+  }
+},
+
+
+  exibirPublicacao: async (req, res) => {
+  const id = req.params.id;
+  try {
+    const publicacao = await listagensModel.findIdPublicacao(id);
+
+    if (!publicacao) {
+      return res.status(404).send('Publicação não encontrada');
+    }
+
+    console.log("Dados da publicação sendo exibida:", publicacao);
+    res.render('pages/publicacao', {
+      publicacao
+    });
+  } catch (erro) {
+    console.log(erro);
+    res.status(500).send('Erro ao carregar publicação');
+  }
+},
 
 
 

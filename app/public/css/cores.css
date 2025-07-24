@@ -44,6 +44,7 @@
     --scroll-thumb: #94a2b5;
     --scroll-thumb-hover:#7193C7;
     --linha-pesquisa: rgba(0, 0, 0, 0.1); 
+    --cor-text-np:  #165040;
 }
 
 /* #264869 */ 
@@ -91,5 +92,6 @@
     --scroll-thumb: rgb(207, 211, 219);
     --scroll-thumb-hover: #ffffff;
     --linha-pesquisa: rgba(255, 255, 255, 0.1); 
+    --cor-text-np:  #fafafa;
 }
 

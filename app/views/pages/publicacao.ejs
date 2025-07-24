@@ -4,10 +4,10 @@
 <head>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/imagens/favicon.ico" type="image/x-icon">
     
-    <link rel="stylesheet" href="css/publicacao.css">
-     <link rel="stylesheet" href="css/share-button.css">
+    <link rel="stylesheet" href="/css/publicacao.css">
+     <link rel="stylesheet" href="/css/share-button.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -46,7 +46,7 @@
                 
                
             </button>
-            <p class="lado-botao">Publicação de Jaqueline Maria </p>
+            <p class="lado-botao">Publicação de <%= publicacao.NOME_USUARIO %></p>
         </section>
 
       
@@ -55,63 +55,67 @@
 
             <section class="principal-pag-publi">
 
-                <section class="publi-person-button">
-                    <section class="publi-info">
-                        <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
-                        <a href=/perfil>
-                            <p class="nome-dono-post">Jaqueline Maria  </p>
-                        </a>
-                          
-                    </section>
+               <section class="publi-person-button">
+  <section class="publi-info">
+    <!-- Foto do perfil do usuário -->
+    <img src="/<%= publicacao.FOTO_PERFIL_PASTA_USUARIO || '/imagens/default-profile.png' %>" class="foto-de-perfil" alt="Foto do perfil">
 
-                    <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
-                                    <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
-                    
-                                            <section class="opcoes-menu">
-                                                <button class="btn-compartilhar" title="Compartilhar" id="openShareModal" onclick="openModal()">
-                                                    <ion-icon name="share-social-outline"></ion-icon>
-                    
-                                                    Compartilhar</button>
-                                                <button class="btn-denunciar" title="Denunciar">
-                                                       <ion-icon name="flag-outline"></ion-icon>
-                                                       Denunciar</button>
-                                            </section>
-                                        </section>
-                </section>
+    <!-- Link para o perfil do usuário, usando o ID do usuário -->
+    <a href="/perfil/<%= publicacao.ID_USUARIO %>">
+      <p class="nome-dono-post"><%= publicacao.NOME_USUARIO %></p>
+    </a>
+  </section>
 
+  <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
+    <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+      <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/>
+    </svg>
 
-                <section class="container-img">
-    
-                    <img src="imagens/castelo.jpg" id="img-principal">
-    
-                </section>
+    <section class="opcoes-menu">
+      <button class="btn-compartilhar" title="Compartilhar" id="openShareModal" onclick="openModal()">
+        <ion-icon name="share-social-outline"></ion-icon>
+        Compartilhar
+      </button>
+      <button class="btn-denunciar" title="Denunciar">
+        <ion-icon name="flag-outline"></ion-icon>
+        Denunciar
+      </button>
+    </section>
+  </section>
+</section>
 
+<section class="container-img">
+  <!-- Imagem principal da publicação -->
+ <img 
+  src="<%= publicacao.imagens && publicacao.imagens.length > 0 ? 'data:image/jpeg;base64,' + publicacao.imagens[0].toString('base64') : '/imagens/default-image.jpg' %>" 
+  id="img-principal" 
+  alt="Imagem da publicação"
+/>
 
-                <section class="con-img-expandida" id="con-img-expandida">
+</section>
 
-                    <span class="fechar" id="fechar" > &times; </span>
-                    <img src="castelo.jpg" id="imgExpandida">
-    
+<section class="con-img-expandida" id="con-img-expandida">
+  <span class="fechar" id="fechar">&times;</span>
+  <img 
+    src="<%= publicacao.IMG_PUBLICACAO ? 'data:image/jpeg;base64,' + publicacao.IMG_PUBLICACAO.toString('base64') : '//imagens/default-image.jpg' %>" 
+    id="imgExpandida" 
+    alt="Imagem expandida"
+  >
+</section>
 
-                </section> 
+<section class="descricao-like">
+  <section class="nome-like">
+    <!-- Nome da publicação -->
+    <p class="nome-da-publicacao"><%= publicacao.NOME_PUBLICACAO %></p>
 
+    <button class="like-button" title="Curtir">
+      <i class="far fa-heart"></i>
+    </button>
+  </section>
 
-                <section class="descricao-like">
-                    <section class="nome-like">
-                        <p class="nome-da-publicacao">Castelinho</p>
-                        <button class="like-button" title="Curtir">
-                            <i class="far fa-heart"></i>
-                        </button>
-                    </section>
-                    <p class="descricao-publi-prin">Lorem ipsum dolor sit amet consectetur,
-                         adipisicing elit. Aut minima nisi similique numquam velit
-                        , ut quas odit ratione consequuntur repudiandae fuga volupta
-                        tes cumque nostrum magnam, officia commodi eaque dignissimo
-                        s! Mollitia!</p>
-                      
-                </section>
-
-            </section>
+  <!-- Descrição da publicação -->
+  <p class="descricao-publi-prin"><%= publicacao.DESCRICAO_PUBLICACAO %></p>
+</section>
 
 
 
@@ -142,7 +146,7 @@
 
                 <section class="comentario">
                     <section class="comentario-info">
-                        <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                        <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
                         <a href=/perfil>
                             <p class="nome-comentario"> Mariana Sanchez</p>
                         </a>
@@ -158,7 +162,7 @@
 
                 <section class="comentario">
                     <section class="comentario-info">
-                        <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                        <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
                         <a href=/perfil>
                             <p class="nome-comentario"> Fábinho Ilustrações</p>
                         </a>
@@ -175,7 +179,7 @@
 
                 <section class="comentario">
                     <section class="comentario-info">
-                        <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                        <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
                         <a href=/perfil>
                             <p class="nome-comentario"> Creuza Aparecida </p>
                         </a>
@@ -205,12 +209,12 @@
                 <section class="publicacoes-rel-caixas">
     
                     <section class="publi-re">
-                        <img src="imagens/2.jpg" >
+                        <img src="/imagens/2.jpg" >
 
                         <section class="publi-rel-info">
 
                             <section class="foto-nome-p-rel">
-                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
                                 <a href=/perfil>
                                     <p>Joaquina Fernandes</p>
                                 </a>
@@ -224,12 +228,12 @@
 
 
                     <section class="publi-re">
-                        <img src="imagens/aao.jpg" >
+                        <img src="/imagens/aao.jpg" >
 
                         <section class="publi-rel-info">
 
                             <section class="foto-nome-p-rel">
-                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
                                 <a href=/perfil>
                                     <p>Joaquina Fernandes</p>
                                 </a>
@@ -243,12 +247,12 @@
 
 
                     <section class="publi-re">
-                        <img src="imagens/aas.jpg" >
+                        <img src="/imagens/aas.jpg" >
 
                         <section class="publi-rel-info">
 
                             <section class="foto-nome-p-rel">
-                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
                                 <a href=/perfil>
                                     <p>Joaquina Fernandes</p>
                                 </a>
@@ -262,12 +266,12 @@
 
                     
                     <section class="publi-re">
-                        <img src="imagens/aad.jpg" >
+                        <img src="/imagens/aad.jpg" >
 
                         <section class="publi-rel-info">
 
                             <section class="foto-nome-p-rel">
-                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
                                 <a href=/perfil>
                                     <p>Joaquina Fernandes</p>
                                 </a>
@@ -351,11 +355,11 @@
 
 
     <%- include('../partials/rodape'); %>
-    <script src="js/like.js"></script>
-    <script src="js/voltar.js"></script>
-    <script src="js/expan-img.js"></script>
-    <script src="js/mobile-navbar.js"></script>
-     <script src="js/denuncia-compartilhamento.js"></script>
-    
+    <script src="/js/like.js"></script>
+    <script src="/js/voltar.js"></script>
+    <script src="/js/expan-img.js"></script>
+    <script src="/js/mobile-navbar.js"></script>
+    <script src="/js/denuncia-compartilhamento.js"></script>
+
 </body>
 </html>

@@ -32,23 +32,39 @@ main{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
     gap: 8px;
-    margin-bottom: 16px;
+    margin: 0px auto 16px auto;
+
   }
 
   .custom-file-label {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     padding: 10px 16px;
-    background-color: #4CAF50;
+    background-color: var(--cor-av-borda-n-pub);
     color: white;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
     transition: background-color 0.3s ease;
+    margin: 0px auto 20px auto;
+    border: 2px solid transparent;
+  }
+
+  .custom-file-label svg {
+    margin-left: 8px;
+    fill: white;
   }
 
   .custom-file-label:hover {
-    background-color: #45a049;
+    background-color: transparent;
+    border: 2px solid var(--cor-av-borda-n-pub);
+    color: var(--cor-text-np);
+  }
+
+    .custom-file-label:hover svg{
+       fill: var(--cor-text-np);
   }
 
   #image-input {
@@ -57,8 +73,9 @@ main{
 
   .image-count {
     font-size: 14px;
-    color: #555;
+    color: var(--text-color);
     font-style: italic;
+    margin: auto;
   }
 
 
@@ -143,6 +160,27 @@ main{
 }
 
 
+select option {
+  color: var(--text-color);       /* cor da fonte das opções */
+  background-color: var(--cor-fundo);  /* fundo branco para o dropdown */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .tagify--custom-dropdow{
      background-color: transparent !important;
     border-radius: 5px !important;
@@ -186,7 +224,7 @@ main{
     color: #ffffff;
     border: none;
     border-radius: 5px;
-    width: 50%;
+    width: 30%;
     padding: 10px;
     font-family: "Montserrat";
     
@@ -260,6 +298,7 @@ input[type="file"] {
   white-space: nowrap;
   padding-bottom: 10px;
   max-width: 100%;
+  min-height: 80px;
   flex-wrap: nowrap;  /* NÃO deixa quebrar para a próxima linha */
   scroll-behavior: smooth;
 }
@@ -279,7 +318,7 @@ input[type="file"] {
   height: 100%;
   object-fit: cover;
   border-radius: 6px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.3); ;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
 }
 
 /* Botão de apagar miniatura */
@@ -307,6 +346,11 @@ input[type="file"] {
     width: 100%;
 }
 
+
+  .custom-file-label {
+    
+    margin: 20px auto 20px auto;
+  }
 
 .coluna-esq, .coluna-dir{
     display: flex;
@@ -518,4 +562,72 @@ input[type="file"] {
 
 .lugar-botar-img.has-image label {
   display: none;
+}
+
+
+#confirm-modal{
+  display:none; 
+  position:fixed; 
+  top:0; left:0; 
+  width:100%; 
+  height:100%;
+   background:rgba(0,0,0,0.5);
+   z-index: 9;
+}
+
+.dentro-modal{
+  background:#fff;
+   margin:5% auto; 
+   padding:20px;
+    max-width: 450px;
+    border-radius: 10px;
+    z-index: 10;
+    color: rgb(18, 18, 18);
+font-family: "Montserrat";
+}
+
+.dentro-modal p{
+  margin-bottom: 7px;
+}
+
+#confirm-description{
+  overflow-wrap: break-word; /* Alternativa mais moderna */
+word-wrap: break-word;     /* Compatibilidade antiga */
+
+}
+.dentro-modal h2 {
+color: rgb(18, 18, 18);
+font-family: "Montserrat";
+margin-bottom: 10px;
+}
+
+#confirm-images{
+  display:flex; gap:10px; flex-wrap:wrap;
+}
+
+#confirm-images img{
+  border-radius: 5px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+
+.btns-modal {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.btns-modal button{
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+}
+
+#cancel-btn{
+ background-color: red;
+}
+
+#send-btn{
+  background-color: aqua;
 }

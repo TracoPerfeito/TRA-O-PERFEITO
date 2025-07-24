@@ -4,7 +4,7 @@ var router = express.Router();
 const { body, validationResult } = require("express-validator");
 const usuariosController = require("../controllers/usuariosController");
 const listagensController = require("../controllers/listagensController");
-
+const publicacoesController = require("../controllers/publicacoesController");
 
 const {
   verificarUsuAutenticado,
@@ -16,19 +16,14 @@ const {
 
 const uploadFile = require("../util/uploader");
 
-router.get("/",  verificarUsuAutenticado, function (req, res) { //index
-   const dadosNotificacao = req.session.dadosNotificacao || null;
-req.session.dadosNotificacao = null;
+router.get("/", verificarUsuAutenticado, function (req, res) {
+  const dadosNotificacao = req.session.dadosNotificacao || null;
+  req.session.dadosNotificacao = null;
 
-   
-    res.render('pages/index', {
-        autenticado: req.session.autenticado,
-        logado: req.session.logado,
-        listaErros:null,
-        dadosNotificacao
-    });
- 
+  listagensController.listarPublicacoes(req, res, dadosNotificacao);
 });
+
+
 
 
 router.get(
@@ -62,9 +57,12 @@ router.get("/publicacoes-perfil", function (req, res) { //publicações de um pe
 });
 
 
-router.get("/publicacao", function (req, res) { //publicacao
-    res.render('pages/publicacao')
- 
+
+
+router.get("/publicacao/:id", function (req, res) { //publicacao
+
+    listagensController.exibirPublicacao(req, res);
+
 });
 
 
@@ -233,6 +231,20 @@ router.get("/nova-publicacao", function (req, res) { //publicação logado
     res.render('pages/nova-publicacao')
  
 });
+
+
+
+router.post(
+  "/enviar-publicacao",
+ uploadFile().multi([
+   { name: "images", maxCount: 10 }
+]),
+ publicacoesController.regrasValidacaoCriarPublicacao,
+  async function (req, res) {
+    publicacoesController.criarPublicacao(req, res);
+  }
+);
+
 
 
 

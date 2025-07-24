@@ -44,7 +44,7 @@
             </section>
 
             <p class="p-explicativo-np">Publique seu trabalho para compor seu portfólio.</p>
-            <form>
+            <form  id="post-form" enctype="multipart/form-data" method="POST" action=/enviar-publicacao>
     
     <section class="colunas-form">
         
@@ -78,13 +78,35 @@
         
         
                             <option value="fotografia">Fotografia</option>
-                            <option value="outros">Outros</option>
+                            <option value="outro">Outros</option>
                         </select>
+
+                        
+<section id="outra-categoria-container" style="display:none; margin-top:10px;">
+  <label for="outraCategoria">Digite a categoria:</label>
+  <input type="text" id="outraCategoria" name="outraCategoria" placeholder="Ex: Lettering">
+</section>
+
+
+
+<script>
+  const select = document.getElementById('categoria');
+const container = document.getElementById('outra-categoria-container');
+
+select.addEventListener('change', () => {
+  if (select.value === 'outro') {
+    container.style.display = 'block';
+  } else {
+    container.style.display = 'none';
+  }
+});
+
+</script>
                         </section>
                          <section class="form-grupo-1" id="descricao-publicacao">
                             <label for="descricao">Descrição:</label> <br>
                             <textarea id="descricao" name="descricao" class="caixa-texto grande
-                            " required></textarea>
+                            " ></textarea>
                         </section>
                         <section class="form-grupo-1" id="tags-publicacao">
                             <label for="descricao">Tags:</label> <br>
@@ -95,16 +117,16 @@
                     <!-----------------colocar aquele negocio do upload---------------------->
                  <section class="coluna-dir">
   <section class="previeweinput">
-   <div class="upload-wrapper">
-  <label for="image-input" class="custom-file-label">Selecionar imagens</label>
+   <section class="upload-wrapper">
+  <label for="image-input" class="custom-file-label">Selecionar imagens <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" ><path d="M720-330q0 104-73 177T470-80q-104 0-177-73t-73-177v-370q0-75 52.5-127.5T400-880q75 0 127.5 52.5T580-700v350q0 46-32 78t-78 32q-46 0-78-32t-32-78v-370h80v370q0 13 8.5 21.5T470-320q13 0 21.5-8.5T500-350v-350q-1-42-29.5-71T400-800q-42 0-71 29t-29 71v370q-1 71 49 120.5T470-160q70 0 119-49.5T640-330v-390h80v390Z"/></svg></label>
   <input type="file" id="image-input" name="images" accept="image/*" multiple />
   <span class="image-count" id="image-count">Nenhuma imagem selecionada</span>
-</div>
+</section>
     <section class="preview-section" id="preview-section" style="display:none;">
-      <div class="main-image-container" id="main-image-container">
+      <section class="main-image-container" id="main-image-container">
         <img id="main-image" src="" alt="Main preview" />
-      </div>
-      <div id="thumbnail-row"></div>
+      </section>
+      <section id="thumbnail-row"></section>
     </section>
   </section>
 </section>
@@ -115,11 +137,50 @@
              <!-------------------------------------------------------------------------->
             
                 <section class="btn-publicar-area">
-                    <button type="submit" class="btn-publicar">PUBLICAR</button>
+                    <button class="btn-publicar" id="prosseguir">Prosseguir</button>
                 </section>
+
+
+                                
+                <section id="confirm-modal" >
+                  <section class="dentro-modal">
+                    <h2>Confirme sua publicação</h2>
+                    <p><strong>Título:</strong> <span id="confirm-title"></span></p>
+                    <p><strong>Categoria:</strong> <span id="confirm-category"></span></p>
+                    <p><strong>Descrição:</strong> <span id="confirm-description"></span></p>
+                    <p><strong>Tags:</strong> <span id="confirm-tags"></span></p>
+                    
+                     <p><strong>Imagens selecionadas:</strong> </p>
+                    <section id="confirm-images" ></section>
+                    <section class="btns-modal">
+                      <button id="cancel-btn" type="button">Cancelar</button>
+                      <button id="send-btn" type="submit">Enviar</button>
+                    </section>
+                  </section>
+                </section>
+
+
             </form>
+
+
+
+
+
+
+
+
+
         
 </main>
+
+
+
+
+
+
+
+
+
 <script>
   const inputFile = document.getElementById('image-input');
   const previewSection = document.getElementById('preview-section');
@@ -303,6 +364,157 @@ var tagify = new Tagify(input, {
 });
 
 </script>
+
+
+
+
+
+
+
+<script>
+  // NOVAS variáveis para o modal e form, diferentes das já usadas
+  const formModal = document.getElementById('post-form'); // Seu form, já deve ter id="post-form"
+  const modalConfirm = document.getElementById('confirm-modal');
+  const btnCancel = document.getElementById('cancel-btn');
+  const btnSend = document.getElementById('send-btn');
+
+  // Novo array para as imagens no modal (se quiser separar, mas pode usar imageFiles também se preferir)
+  // Como imageFiles já existe, vamos usar um nome diferente só para garantir:
+  let modalImageFiles = [...imageFiles]; // Copia do array original, ou só use imageFiles se quiser sincronizar
+
+  // Inicializa Tagify numa variável diferente, com input que tem id diferente para evitar conflito
+  // Se seu input de tags tem name="input-custom-dropdown", o seletor pode ser:
+  const inputTagifyModal = document.querySelector('input[name="input-custom-dropdown"]');
+
+  // Tagify novo, separado do antigo (que está em var tagify)
+  const tagifyModal = new Tagify(inputTagifyModal, {
+    whitelist: ["A# .NET", "A# (Axiom)", "A-0 System", "A+", "A++", "ABAP", /* ... */ "Mystic Programming L"],
+    maxTags: 10,
+    dropdown: {
+      maxItems: 20,
+      classname: 'tags-look',
+      enabled: 0,
+      closeOnSelect: false
+    },
+    transformTag: (tagData) => {
+      const colors = [
+        '#7490C9', '#969ED0', '#92C4E2', '#B8D9BD',
+        '#9BB7CF', '#C3E3DF', '#C2E5F0', '#ADBCE2'
+      ];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      tagData.color = color;
+      tagData.style = "--tag-bg:" + color;
+    }
+  });
+
+  // Atualiza modalImageFiles sempre que imagens mudarem no inputFile
+  // Ou sincronize na hora de abrir o modal
+  // Vou sincronizar direto no submit do form:
+
+  document.getElementById('prosseguir').addEventListener('click', (event) => {
+  event.preventDefault(); // impede comportamento padrão só por segurança
+
+  // Atualiza a lista de imagens para o modal
+  modalImageFiles = [...imageFiles];
+
+  // Pega os dados do form
+  const titulo = document.getElementById('titulo').value;
+  let categoria = document.getElementById('categoria').value;
+  const outraCategoriaInput = document.getElementById('outraCategoria');
+
+  if (categoria === 'outro' && outraCategoriaInput.value.trim() !== '') {
+    categoria = outraCategoriaInput.value.trim();
+  }
+
+  const descricao = document.getElementById('descricao').value;
+  const tagsArray = tagifyModal.value.map(tag => tag.value);
+
+  // Preenche os dados no modal
+  document.getElementById('confirm-title').textContent = titulo;
+  document.getElementById('confirm-category').textContent = categoria;
+  document.getElementById('confirm-description').textContent = descricao;
+  document.getElementById('confirm-tags').textContent = tagsArray.join(', ');
+
+  // Imagens
+  const confirmImagesDiv = document.getElementById('confirm-images');
+  confirmImagesDiv.innerHTML = '';
+  modalImageFiles.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.style.width = '80px';
+      img.style.height = '80px';
+      img.style.objectFit = 'cover';
+      confirmImagesDiv.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  modalConfirm.style.display = 'block';
+});
+
+
+  btnCancel.addEventListener('click', () => {
+    modalConfirm.style.display = 'none';
+  });
+
+ btnSend.addEventListener('click', (event) => {
+  event.preventDefault(); // Evita que o form seja enviado de forma tradicional (reload)
+
+  // Montar FormData para enviar para backend
+  const formData = new FormData();
+  formData.append('titulo', document.getElementById('titulo').value);
+  
+  let categoria = document.getElementById('categoria').value;
+  const outraCategoriaInput = document.getElementById('outraCategoria');
+
+  if (categoria === 'outro' && outraCategoriaInput.value.trim() !== '') {
+    categoria = outraCategoriaInput.value.trim();
+  }
+
+  formData.append('categoria', categoria);
+  formData.append('descricao', document.getElementById('descricao').value);
+
+  const tags = tagifyModal.value.map(tag => tag.value);
+  formData.append('tags', JSON.stringify(tags));
+
+  modalImageFiles.forEach((file) => {
+    formData.append('images', file, file.name);
+  });
+
+  // Enviar via fetch
+  fetch('/enviar-publicacao', {
+    method: 'POST',
+    body: formData,
+  })
+  .then(async response => {
+    if (!response.ok) {
+      // Tenta ler mensagem de erro JSON do backend
+      const errorData = await response.json().catch(() => null);
+      throw new Error(errorData?.message || 'Erro ao enviar publicação');
+    }
+    return response.json();
+  })
+  .then(data => {
+    alert('Publicação enviada com sucesso!');
+    modalConfirm.style.display = 'none';
+    formModal.reset();
+    modalImageFiles = [];
+    imageFiles = [];
+    previewSection.style.display = 'none';
+    mainImage.src = '';
+    thumbnailRow.innerHTML = '';
+    imageCount.textContent = 'Nenhuma imagem selecionada';
+    tagifyModal.removeAllTags();
+  })
+  .catch(error => {
+  
+  });
+});
+
+</script>
+
 </body>
 </html>
 

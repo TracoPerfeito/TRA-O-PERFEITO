@@ -504,7 +504,7 @@
 
     
     .principal-pag-publi {
-        width: 90%;
+        width: 100%;
 
     }
 
@@ -533,7 +533,7 @@
     }
 
     #img-principal {
-        width: 100%;
+        width: 90%;
         height: auto;
         border-radius: 5px;
   
@@ -545,7 +545,7 @@
     }
 
     .nome-like{
-        width: 100%;
+        width: 90%;
         display: flex;
         justify-content: space-between;
     }
@@ -673,7 +673,7 @@
 
 .publi-person-button{
     
-    width: 100% !important;
+    width: 90% !important;
     
 }
 
