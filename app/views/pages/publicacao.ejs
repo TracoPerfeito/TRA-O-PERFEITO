@@ -84,24 +84,44 @@
   </section>
 </section>
 
-<section class="container-img">
-  <!-- Imagem principal da publicação -->
- <img 
-  src="<%= publicacao.imagens && publicacao.imagens.length > 0 ? 'data:image/jpeg;base64,' + publicacao.imagens[0].toString('base64') : '/imagens/default-image.jpg' %>" 
-  id="img-principal" 
-  alt="Imagem da publicação"
-/>
 
+<section class="carrossel-imagens-explorar" onmouseenter="mostrarControles(this)" onmouseleave="esconderControles(this)">
+  <div class="container-imgs" ontouchstart="startSwipe(event, this)" ontouchmove="swipeMove(event)" ontouchend="endSwipe(event, this)">
+    <% publicacao.imagens.forEach((img, idx) => { %>
+      <img 
+        src="data:image/jpeg;base64,<%= img.toString('base64') %>" 
+        class="publicacao-img<%= idx === 0 ? ' ativa' : '' %>" 
+        alt="Imagem da publicação"/>
+    <% }) %>
+  </div>
+
+  <section class="aviso-zoom">
+    <ion-icon name="expand-outline"></ion-icon> <p>Clique para abrir a imagem</p>
+  </section>
+
+  <% if (publicacao.imagens.length > 1) { %>
+    <button class="seta-carrossel esquerda" onclick="event.preventDefault();prevImg(this)"><ion-icon name="chevron-back-outline"></ion-icon></button>
+    <button class="seta-carrossel direita" onclick="event.preventDefault();nextImg(this)"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+
+    <div class="indicadores">
+      <% publicacao.imagens.forEach((_, idx) => { %>
+        <span class="indicador<%= idx === 0 ? ' ativo' : '' %>"></span>
+      <% }) %>
+    </div>
+  <% } %>
 </section>
 
 <section class="con-img-expandida" id="con-img-expandida">
   <span class="fechar" id="fechar">&times;</span>
-  <img 
-    src="<%= publicacao.IMG_PUBLICACAO ? 'data:image/jpeg;base64,' + publicacao.IMG_PUBLICACAO.toString('base64') : '//imagens/default-image.jpg' %>" 
-    id="imgExpandida" 
-    alt="Imagem expandida"
-  >
+ <img src="" id="imgExpandida" alt="Imagem expandida">
+ <button id="prevArrow" class="arrow left"><ion-icon name="chevron-back-outline"></ion-icon></button>
+<button id="nextArrow" class="arrow right"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+
+
 </section>
+
+
+
 
 <section class="descricao-like">
   <section class="nome-like">
@@ -362,6 +382,7 @@
     <script src="/js/expan-img.js"></script>
     <script src="/js/mobile-navbar.js"></script>
     <script src="/js/denuncia-compartilhamento.js"></script>
+    <script src="/js/publicacoesindex.js"></script>
 
 </body>
 </html>

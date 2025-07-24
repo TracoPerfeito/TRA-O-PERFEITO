@@ -28,63 +28,89 @@
 
 
 
-
-const imagem = document.getElementById('img-principal');
 const contExpandido = document.getElementById('con-img-expandida');
 const imagemExpandida = document.getElementById('imgExpandida');
 const fechar = document.getElementById('fechar');
 
-// Nível inicial de zoom
 let zoomLevel = 1;
 
-// Expande a imagem ao clicar
-imagem.onclick = function() {
+document.querySelectorAll('.publicacao-img').forEach(imagem => {
+  imagem.style.cursor = 'zoom-in';  // opcional, cursor bonito
+
+  imagem.onclick = function() {
     contExpandido.classList.add("show");
     imagemExpandida.src = this.src; 
     zoomLevel = 1;
     imagemExpandida.style.transform = `scale(${zoomLevel})`;
-    imagemExpandida.style.transformOrigin = "center center"; // Reseta a origem do zoom ao centro
-}
+    imagemExpandida.style.transformOrigin = "center center";
+    imagemExpandida.style.cursor = 'zoom-in';
+  };
+});
 
-// Fecha a imagem expandida ao clicar no "X"
 fechar.onclick = function() {
+  contExpandido.classList.remove("show");
+  zoomLevel = 1;
+  imagemExpandida.style.transform = `scale(${zoomLevel})`;
+};
+
+contExpandido.onclick = function(event) {
+  if (event.target === contExpandido) {
     contExpandido.classList.remove("show");
     zoomLevel = 1;
     imagemExpandida.style.transform = `scale(${zoomLevel})`;
-}
+  }
+};
 
-// Fecha a imagem expandida ao clicar fora dela
-contExpandido.onclick = function(event) {
-    if (event.target === contExpandido) {
-        contExpandido.classList.remove("show");
-        zoomLevel = 1;
-        imagemExpandida.style.transform = `scale(${zoomLevel})`;
-    }
-}
-
-// Evento para o zoom ao passar o mouse na imagem expandida
 imagemExpandida.onmousemove = function(event) {
-    if (zoomLevel > 1) {
-        const rect = imagemExpandida.getBoundingClientRect(); // Pega o tamanho da imagem
-        const x = ((event.clientX - rect.left) / rect.width) * 100; // Calcula a posição X do mouse
-        const y = ((event.clientY - rect.top) / rect.height) * 100; // Calcula a posição Y do mouse
+  if (zoomLevel > 1) {
+    const rect = imagemExpandida.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
 
-        // Limita a movimentação da origem do zoom para evitar que a imagem se mexa demais
-        const limitX = Math.max(0, Math.min(100, x));
-        const limitY = Math.max(0, Math.min(100, y));
+    const limitX = Math.max(0, Math.min(100, x));
+    const limitY = Math.max(0, Math.min(100, y));
 
-        imagemExpandida.style.transformOrigin = `${limitX}% ${limitY}%`; // Ajusta a origem do zoom baseado no mouse
-    }
-}
+    imagemExpandida.style.transformOrigin = `${limitX}% ${limitY}%`;
+  }
+};
 
-// Clique na imagem para alternar entre zoom in/zoom out
 imagemExpandida.onclick = function() {
-    if (zoomLevel === 1) {
-        zoomLevel = 2; // Zoom de 2x no clique
-        imagemExpandida.style.cursor = "zoom-out";
-    } else {
-        zoomLevel = 1; // Volta ao zoom normal no segundo clique
-        imagemExpandida.style.cursor = "zoom-in";
-    }
-    imagemExpandida.style.transform = `scale(${zoomLevel})`;
+  if (zoomLevel === 1) {
+    zoomLevel = 2;
+    imagemExpandida.style.cursor = "zoom-out";
+  } else {
+    zoomLevel = 1;
+    imagemExpandida.style.cursor = "zoom-in";
+  }
+  imagemExpandida.style.transform = `scale(${zoomLevel})`;
+};
+
+
+let currentIndex = 0;
+const imagens = Array.from(document.querySelectorAll('.publicacao-img'));
+
+imagens.forEach((img, idx) => {
+  img.onclick = function() {
+    currentIndex = idx;
+    openExpandedImage(this.src);
+  };
+});
+
+function openExpandedImage(src) {
+  contExpandido.classList.add("show");
+  imagemExpandida.src = src;
+  zoomLevel = 1;
+  imagemExpandida.style.transform = `scale(${zoomLevel})`;
+  imagemExpandida.style.transformOrigin = "center center";
+  imagemExpandida.style.cursor = 'zoom-in';
 }
+
+document.getElementById('prevArrow').onclick = function() {
+  currentIndex = (currentIndex - 1 + imagens.length) % imagens.length;
+  openExpandedImage(imagens[currentIndex].src);
+};
+
+document.getElementById('nextArrow').onclick = function() {
+  currentIndex = (currentIndex + 1) % imagens.length;
+  openExpandedImage(imagens[currentIndex].src);
+};
