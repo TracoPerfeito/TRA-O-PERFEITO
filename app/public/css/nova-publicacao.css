@@ -629,5 +629,142 @@ margin-bottom: 10px;
 }
 
 #send-btn{
-  background-color: aqua;
+  background-color: rgb(19, 35, 82);
+}
+
+
+
+
+
+
+.thumbnail-container.first-image {
+  border: 2px solid #4CAF50; /* borda verde */
+  position: relative;
+}
+
+.thumbnail-container.first-image::after {
+  content: "PRIMEIRA";
+  position: absolute;
+  top: -10px;
+  left: 5px;
+  background: #4CAF50;
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+
+/* Fundo escurecido */
+.modal {
+  display: none; /* escondido por padrão */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* escurece o fundo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Conteúdo do modal */
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Botões do modal */
+.modal-content button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.modal-content button:hover {
+  background-color: #2980b9;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-buttons button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#btn-cortar {
+  background-color: #4caf50;
+  color: white;
+}
+
+#btn-manter {
+  background-color: #f44336;
+  color: white;
+}
+
+
+#avisoimgs-modal{
+  display: none;
+}
+
+.modais {
+  display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background-color:rgba(0,0,0,0.5); z-index:999; align-items:center; justify-content:center;
+}
+
+.dentromodais{
+  background:white; padding:20px; border-radius:8px; max-width:400px; text-align:center;
 }

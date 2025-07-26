@@ -105,7 +105,9 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 8px;
+  
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18) !important;
 }
 
 .container-imgs {
@@ -113,12 +115,18 @@
   transition: transform 0.5s ease;
 }
 
+.container-imgs img{
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18) !important;
+}
+
 .publicacao-img {
   width: 100%;
   flex-shrink: 0;
   object-fit: cover;
   display: block;
-  border-radius: 12px;
+  border-radius: 8px;
+
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18) !important;
 }
 
 .seta-carrossel {

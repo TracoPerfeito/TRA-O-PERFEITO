@@ -26,6 +26,8 @@ function updateCarrossel(carrossel, novoIndice) {
 
   if (setaEsq) setaEsq.classList.toggle('inativa', novoIndice === 0);
   if (setaDir) setaDir.classList.toggle('inativa', novoIndice === total - 1);
+
+  
 }
 
 

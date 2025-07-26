@@ -174,7 +174,12 @@
                     
                     <section class="container-pag-explorar">
 
-                        <% publicacoes.forEach(pub => { %>
+                      <% if (publicacoes.length === 0) { %>
+  <section class="sem-publicacoes">
+    <p>Não há publicações no momento.</p>
+  </section>
+<% } else { %>
+ <% publicacoes.forEach(pub => { %>
   <section class="item-explorar item-1">
 
     <!-- Link to publication page (you can pass the ID for dynamic routing) -->
@@ -199,7 +204,7 @@
         <span class="indicador<%= idx === 0 ? ' ativo' : '' %>"></span>
       <% }) %>
     </div>
-  <% } %>
+  <% }  %>
 </section>
 
   </a>
@@ -240,7 +245,7 @@
     <p class="descricao-item-explorar"><%= pub.DESCRICAO_PUBLICACAO %></p>
 
   </section>
-<% }) %>
+<% }) } %>
 
            
                         

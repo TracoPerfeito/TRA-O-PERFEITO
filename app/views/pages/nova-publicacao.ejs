@@ -14,6 +14,15 @@
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+
+    
+   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+  
+
 
 <!-- JS do Tagify -->
 <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
@@ -126,7 +135,7 @@ select.addEventListener('change', () => {
       <section class="main-image-container" id="main-image-container">
         <img id="main-image" src="" alt="Main preview" />
       </section>
-      <section id="thumbnail-row"></section>
+      <section id="thumbnail-row"  class="sortable-preview"></section>
     </section>
   </section>
 </section>
@@ -164,10 +173,27 @@ select.addEventListener('change', () => {
 
 
 
+  <button onclick="mostrarOrdem()">Mostrar Ordem</button>
+  <div id="result"></div>
 
 
+  <div id="limite-modal" class="modais">
+  <div class="dentromodais" >
+    <p>Limite máximo de 10 imagens. As imagens extras foram descartadas.</p>
+    <button onclick="fecharModal()" style="margin-top: 10px; padding: 6px 12px;">OK</button>
+  </div>
+</div>
 
 
+<!-- Modal de aviso de múltiplas imagens -->
+
+
+<div id="avisoimgs-modal" class="modal-aviso-imgs modais">
+  <div class="modal-conteudo dentromodais">
+    <p><strong>Aviso:</strong> É recomendado que todas as imagens tenham proporções semelhantes para uma melhor visualização.</p>
+    <button onclick="fecharModalavisoimgs()">Entendi</button>
+  </div>
+</div>
 
 
         
@@ -181,149 +207,403 @@ select.addEventListener('change', () => {
 
 
 
+ <script>
+//   const inputFile = document.getElementById('image-input');
+//   const previewSection = document.getElementById('preview-section');
+//   const mainImage = document.getElementById('main-image');
+//   const deleteBtn = document.getElementById('delete-btn');
+//   const thumbnailRow = document.getElementById('thumbnail-row');
+//   const imageCount = document.getElementById('image-count');
+
+//   let imageFiles = [];
+//   let currentIndex = 0;
+
+//   inputFile.addEventListener('change', (e) => {
+//     const newFiles = Array.from(e.target.files);
+//     imageFiles = [...imageFiles, ...newFiles];
+//     if (imageFiles.length > 0) {
+//       previewSection.style.display = 'block';
+//     }
+//     currentIndex = 0;
+//     displayImages();
+//     updateImageCount();
+//   });
+
+//   function displayImages() {
+//     thumbnailRow.innerHTML = '';
+
+//     if (imageFiles[currentIndex]) {
+//       const reader = new FileReader();
+//       reader.onload = (e) => {
+//         mainImage.src = e.target.result;
+//       };
+//       reader.readAsDataURL(imageFiles[currentIndex]);
+//     }
+
+//     imageFiles.forEach((file, index) => {
+//       const reader = new FileReader();
+//       reader.onload = (e) => {
+//         const thumbContainer = document.createElement('div');
+//         thumbContainer.classList.add('thumbnail-container');
+
+//         const img = document.createElement('img');
+//         img.src = e.target.result;
+//         img.title = "Clique para visualizar";
+
+//         img.addEventListener('click', () => {
+//           currentIndex = index;
+//           mainImage.src = e.target.result;
+//         });
+
+//         const delBtn = document.createElement('button');
+//         delBtn.classList.add('thumbnail-delete');
+//         delBtn.innerHTML = '&times;';
+//         delBtn.title = "Remover imagem";
+
+//         delBtn.addEventListener('click', (ev) => {
+//           ev.stopPropagation();
+//           imageFiles.splice(index, 1);
+
+//           if (currentIndex >= imageFiles.length) {
+//             currentIndex = 0;
+//           }
+
+//           if (imageFiles.length === 0) {
+//             previewSection.style.display = 'none';
+//             mainImage.src = '';
+//           }
+
+//           displayImages();
+//           updateImageCount();
+//         });
+
+//         thumbContainer.appendChild(img);
+//         thumbContainer.appendChild(delBtn);
+//         thumbnailRow.appendChild(thumbContainer);
+//       };
+//       reader.readAsDataURL(file);
+//     });
+//   }
+
+//   function updateImageCount() {
+//     const count = imageFiles.length;
+//     if (count === 0) {
+//       imageCount.textContent = 'Nenhuma imagem selecionada';
+//     } else if (count === 1) {
+//       imageCount.textContent = '1 imagem selecionada';
+//     } else {
+//       imageCount.textContent = `${count} imagens selecionadas`;
+//     }
+//   }
+
+//   deleteBtn.addEventListener('click', () => {
+//     imageFiles.splice(currentIndex, 1);
+//     if (currentIndex >= imageFiles.length) {
+//       currentIndex = 0;
+//     }
+
+//     if (imageFiles.length === 0) {
+//       previewSection.style.display = 'none';
+//       mainImage.src = '';
+//     }
+
+//     displayImages();
+//     updateImageCount();
+//   });
+
+
+
+
+
+
+
+//   let touchStartX = 0;
+// let touchEndX = 0;
+
+// mainImage.addEventListener('touchstart', (e) => {
+//   touchStartX = e.changedTouches[0].screenX;
+// });
+
+// mainImage.addEventListener('touchend', (e) => {
+//   touchEndX = e.changedTouches[0].screenX;
+//   handleGesture();
+// });
+
+// function handleGesture() {
+//   const swipeThreshold = 50; // Distância mínima para considerar um swipe
+
+//   if (touchEndX < touchStartX - swipeThreshold) {
+//     // Swipe para a esquerda (próxima imagem)
+//     if (currentIndex < imageFiles.length - 1) {
+//       currentIndex++;
+//       displayImages();
+//     }
+//   }
+
+//   if (touchEndX > touchStartX + swipeThreshold) {
+//     // Swipe para a direita (imagem anterior)
+//     if (currentIndex > 0) {
+//       currentIndex--;
+//       displayImages();
+//     }
+//   }
+// }
+
+ </script>
+
+
+
+
+
+
+
+
 <script>
-  const inputFile = document.getElementById('image-input');
-  const previewSection = document.getElementById('preview-section');
-  const mainImage = document.getElementById('main-image');
-  const deleteBtn = document.getElementById('delete-btn');
-  const thumbnailRow = document.getElementById('thumbnail-row');
-  const imageCount = document.getElementById('image-count');
+const inputFile = document.getElementById('image-input'); //pega o input
+const previewSection = document.getElementById('preview-section'); // pega a seção de pré-visualização
+const mainImage = document.getElementById('main-image'); // pega a img principal, a grandona de pre view
+const thumbnailRow = document.getElementById('thumbnail-row'); //pega a seção de fotinhas em miniatura
+const imageCount = document.getElementById('image-count');//pega a seção que mostra a quantidade de imgs selecionadas
 
-  let imageFiles = [];
-  let currentIndex = 0;
+let jaMostrouAviso = false; // variável pro aviso de mais de uma img
 
-  inputFile.addEventListener('change', (e) => {
-    const newFiles = Array.from(e.target.files);
-    imageFiles = [...imageFiles, ...newFiles];
-    if (imageFiles.length > 0) {
-      previewSection.style.display = 'block';
-    }
-    currentIndex = 0;
-    displayImages();
-    updateImageCount();
-  });
 
-  function displayImages() {
-    thumbnailRow.innerHTML = '';
+let imageFiles = []; // cria um array para armazenar as imagens selecionadas, por enquanto vazio
+let currentIndex = 0; // índice da imagem atual, começa em 0
 
-    if (imageFiles[currentIndex]) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        mainImage.src = e.target.result;
-      };
-      reader.readAsDataURL(imageFiles[currentIndex]);
-    }
+inputFile.addEventListener('change', (e) => { // ao usar o input
+  const newFiles = Array.from(e.target.files); // pega os novos arquivos selecionados e transforma em array
+  imageFiles = [...imageFiles, ...newFiles]; // adiciona os novos arquivos ao array existente
 
-    imageFiles.forEach((file, index) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const thumbContainer = document.createElement('div');
-        thumbContainer.classList.add('thumbnail-container');
 
-        const img = document.createElement('img');
-        img.src = e.target.result;
-        img.title = "Clique para visualizar";
+   if (imageFiles.length > 10) { // "se o array de imgs for maior que 10"
+    imageFiles = imageFiles.slice(0, 10); // mantém só os 10 primeiros
+    mostrarModalLimite(); // mostra o aviso
+  }
 
-        img.addEventListener('click', () => {
-          currentIndex = index;
-          mainImage.src = e.target.result;
+
+  if (imageFiles.length > 0) {// Se o array de imgs for maior que 0
+    previewSection.style.display = 'block'; // Mostra a seção de pré-visualização
+  }
+
+  currentIndex = 0; // Reseta o índice atual para 0, para começar a mostrar a primeira imagem
+  displayImages(); //chama a função que exibe as imagens
+  updateImageCount(); //atualiza a contagem de imagens selecionadas
+});
+
+function displayImages() { //função para exibir as imagens selecionadas
+  thumbnailRow.innerHTML = ''; // Limpa a seção de miniaturas antes de exibir as novas imagens
+
+  if (imageFiles[currentIndex]) { // Se houver uma imagem selecionada no índice atual
+    const reader = new FileReader(); // Cria um novo FileReader para ler a imagem
+    reader.onload = (e) => { // Quando a leitura da imagem for concluída
+      mainImage.src = e.target.result; // Define a imagem principal para o resultado da leitura, ou seja, aquela img grandona de pre view
+    };
+    reader.readAsDataURL(imageFiles[currentIndex]); // Começa a leitura da imagem. O resultado virá como uma URL do tipo base64
+  }
+
+  imageFiles.forEach((file, index) => { //Para cada img do array de imagens
+    const reader = new FileReader(); // Cria um novo FileReader para ler a imagem
+    reader.onload = (e) => { // Quando a leitura da imagem for concluída - Mano o vs code não para de completar os comentários, espero que ele esteja certo ein fio
+        const thumbContainer = document.createElement('section'); // Cria um novo elemento section para a miniatura
+        thumbContainer.classList.add('thumbnail-container'); // Adiciona a classe de contêiner de miniatura
+        thumbContainer.classList.add('img-box'); // mais uma classe pra section criada 
+        thumbContainer.setAttribute('data-nome', file.name); // Define um atributo data-nome com o name do arquivo, para facilitar a ordenação depois
+
+        const img = document.createElement('img'); // cria uma constante para a img de miniatura, cada uma das imgs do array
+        img.src = e.target.result; // Define o src da img para o resultado da leitura, ou seja, a imagem em miniatura
+        img.title = "Clique para visualizar"; // O titulo, quando a pessoa deixa o mouse em cima da img por um tempo
+
+        img.addEventListener('click', () => { //quando a pessoa clicar na img miniatura
+          currentIndex = index; //atualiza o índice atual para o índice da imagem clicada
+          mainImage.src = e.target.result; //Exibe na img grande de pre view a img clicada
         });
 
-        const delBtn = document.createElement('button');
-        delBtn.classList.add('thumbnail-delete');
-        delBtn.innerHTML = '&times;';
-        delBtn.title = "Remover imagem";
+        const delBtn = document.createElement('button'); //Cria uma constante para o botão de deletar
+        delBtn.classList.add('thumbnail-delete'); //adicion uma classe pro btn de deletar
+        delBtn.innerHTML = '&times;'; // bota o x no btn de deletar das imgszinhas
+        delBtn.title = "Remover imagem"; // O titulo, quando a pessoa deixa o mouse em cima do botão de deletar por um tempo
 
-        delBtn.addEventListener('click', (ev) => {
-          ev.stopPropagation();
-          imageFiles.splice(index, 1);
+        delBtn.addEventListener('click', (ev) => { // quando a pessoa clicar no botãozin de deletar
+          ev.stopPropagation(); // impede que o clique afete o preview
 
-          if (currentIndex >= imageFiles.length) {
-            currentIndex = 0;
+          imageFiles.splice(index, 1); // Remove a imagem do array de imagens usando o índice da imagem clicada
+
+          if (currentIndex >= imageFiles.length) { // se o índice atual for maior ou igual ao tamanho do array de imagens
+            currentIndex = 0; // Reseta o índice atual para 0, para começar a mostrar a primeira imagem novamente
           }
 
-          if (imageFiles.length === 0) {
-            previewSection.style.display = 'none';
-            mainImage.src = '';
+          if (imageFiles.length === 0) { // se o array de imgs nao tiver nada
+            previewSection.style.display = 'none'; // Esconde a seção de pré-visualização
+            mainImage.src = ''; //Nçao mostra nada na img grande de pre view
           }
 
-          displayImages();
-          updateImageCount();
+          displayImages(); // chama a função que exibe as imagens novamente, para atualizar 
+          updateImageCount(); // atualiza acontagem 
         });
 
-        thumbContainer.appendChild(img);
-        thumbContainer.appendChild(delBtn);
-        thumbnailRow.appendChild(thumbContainer);
-      };
-      reader.readAsDataURL(file);
+          thumbContainer.appendChild(img); // Adiciona a img miniatura dentro da section criada
+          thumbContainer.appendChild(delBtn); // Adiciona o botão de deletar dentro da section criada
+          thumbnailRow.appendChild(thumbContainer); // Adiciona a section com a img e o botão de deletar dentro da seção de miniaturas
+        };
+        reader.readAsDataURL(file); // Começa a leitura da imagem sla 
     });
-  }
 
-  function updateImageCount() {
-    const count = imageFiles.length;
-    if (count === 0) {
-      imageCount.textContent = 'Nenhuma imagem selecionada';
-    } else if (count === 1) {
-      imageCount.textContent = '1 imagem selecionada';
-    } else {
-      imageCount.textContent = `${count} imagens selecionadas`;
+ 
+new Sortable(thumbnailRow, { // agora o coisinha de arrastar e soltar
+  animation: 250, // animação, acho que é tipo o tempo
+  onEnd: () => { // quando a pessoa soltar a imagem depois de arrastar
+  
+    const boxes = Array.from(thumbnailRow.querySelectorAll('.img-box')); // cria uma constante boxes que pega todas as sections com a classe img-box dentro da seção de miniaturas
+    const novaOrdem = boxes.map(box => box.getAttribute('data-nome')); // Cria um novo array com os nomes das imagens na nova ordem, usando o atributo data-nome de cada section
+
+    // Reorganiza o array imageFiles de acordo com a nova ordem do DOM
+    const novaImageFiles = []; // cria imagefiles vazio para armazenar as imagens na nova ordem
+    novaOrdem.forEach(nome => { //pra cada coisinha do novaordem
+      const encontrado = imageFiles.find(img => img.name === nome); // tenta encontrar a imagem no array original imageFiles pelo nome
+      if (encontrado) novaImageFiles.push(encontrado); // se encontrar, adiciona a imagem no novo array novaImageFiles
+    });
+
+    imageFiles = novaImageFiles; // Atualiza o array imageFiles com a nova ordem, que o usuário escolheu
+
+    // Atualiza o índice da imagem principal com base na nova posição dela
+    const mainAtual = mainImage.src; // pega o src da imagem principal
+    const novaIndex = boxes.findIndex(box => { // tenta encontrar o índice da imagem principal na nova ordem
+      const img = box.querySelector('img'); // pega a img dentro da section
+      return img && img.src === mainAtual; // verifica se o src da img é igual ao src da imagem principal
+    });
+    if (novaIndex !== -1) { // se encontrar a imagem principal na nova ordem 
+      currentIndex = novaIndex; // o index atual passa a ser o novo índice da imagem principal
+    }
+
+    // Atualiza só a imagem principal sem redesenhar tudo
+    if (imageFiles[currentIndex]) { // Verifica se existe uma imagem no índice atual da lista de arquivos
+      const reader = new FileReader(); // Cria um leitor de arquivo
+
+      reader.onload = (e) => {// Define o que acontece quando o arquivo terminar de ser lido
+        mainImage.src = e.target.result;// Define a imagem principal do preview com o conteúdo da imagem lida 
+      };
+      reader.readAsDataURL(imageFiles[currentIndex]); // Começa a leitura da imagem.
     }
   }
-
-  deleteBtn.addEventListener('click', () => {
-    imageFiles.splice(currentIndex, 1);
-    if (currentIndex >= imageFiles.length) {
-      currentIndex = 0;
-    }
-
-    if (imageFiles.length === 0) {
-      previewSection.style.display = 'none';
-      mainImage.src = '';
-    }
-
-    displayImages();
-    updateImageCount();
-  });
-
-
-
-
-
-
-
-  let touchStartX = 0;
-let touchEndX = 0;
-
-mainImage.addEventListener('touchstart', (e) => {
-  touchStartX = e.changedTouches[0].screenX;
 });
 
-mainImage.addEventListener('touchend', (e) => {
-  touchEndX = e.changedTouches[0].screenX;
-  handleGesture();
-});
+}
 
-function handleGesture() {
-  const swipeThreshold = 50; // Distância mínima para considerar um swipe
-
-  if (touchEndX < touchStartX - swipeThreshold) {
-    // Swipe para a esquerda (próxima imagem)
-    if (currentIndex < imageFiles.length - 1) {
-      currentIndex++;
-      displayImages();
-    }
+function updateImageCount() { // funcao de atualizar a contagem de imgs
+  const count = imageFiles.length; // constante count é o tamanho do array de imgs
+  if (count === 0) { // se o tamanho for 0
+    imageCount.textContent = 'Nenhuma imagem selecionada'; // mostra essa mnsagem
+  } else if (count === 1) {// se for 1 img só
+    imageCount.textContent = '1 imagem selecionada'; // mostra isso
+  } else { // se for mais de uma img
+    imageCount.textContent = `${count} imagens selecionadas`; // mostra essa msg, no plural e com o numero de imgs no lugar do numero
   }
 
-  if (touchEndX > touchStartX + swipeThreshold) {
-    // Swipe para a direita (imagem anterior)
-    if (currentIndex > 0) {
-      currentIndex--;
-      displayImages();
-    }
+
+  //acho que dá pra adicionar o verificador de mais de uma img aqui
+
+  if (count > 1 && !jaMostrouAviso) {  // se tem mais de uma img e nao mostrou o aviso ainda
+    setTimeout(() => { // espera 5 segundos para verificar as proporções
+    
+      const promessas = imageFiles.map(file => {// para cada arquivo no array de imgs
+        return new Promise((resolve) => { // cria uma nova promessa
+          const img = new Image(); // cria const img
+          img.onload = () => resolve({ width: img.width, height: img.height }); // quando a imagem carregar, resolve a promessa com as dimensões
+          img.src = URL.createObjectURL(file);
+        });
+      });
+
+      Promise.all(promessas).then(dimensoes => {
+        const proporcaoBase = dimensoes[0].width / dimensoes[0].height;
+        const proporcoesIguais = dimensoes.every(d => { // vai verificar se todas as imagens têm a mesma proporção
+
+          const proporcao = d.width / d.height;  // calcula a proporção da imagem atual
+          return Math.abs(proporcao - proporcaoBase) < 0.05; // tolerância de 5%
+        });
+
+           if (!proporcoesIguais) { // se as proporções nao forem iguais
+          mostrarModalavisoImgs();  // exibe o aviso
+          jaMostrouAviso = true; // evita avisar novamente
+        }
+      });
+    }, 5000); // espera 500ms antes de verificar as proporções
+  }
+
+
+}
+
+
+//  Adiciona botão e função para exibir a ordem atual no console e na tela - só pra teste por enquanto . depois tirar esse bloco
+function mostrarOrdem() {
+  const boxes = Array.from(document.querySelectorAll('#thumbnail-row .img-box'));
+  const ordemAtual = boxes.map(el => el.getAttribute('data-nome'));
+  console.log('Ordem atual:', ordemAtual);
+  alert('Ordem atual:\n' + ordemAtual.join('\n')); // ou use um <div> para exibir se preferir
+}
+// tirar até aqui 
+
+
+
+
+
+function mostrarModalavisoImgs() { // função para exibir o modal de limite de imgs
+  const modalaviso = document.getElementById('avisoimgs-modal'); // pega o modal pelo id
+  if (modalaviso) { // se tiver o modal 
+    modalaviso.style.display = 'flex'; // mostra o modal
   }
 }
 
+function fecharModalavisoimgs() { // função para fechar o modal de aviso
+  const modalaviso = document.getElementById('avisoimgs-modal'); // pega o modal de aviso pelo id
+  if (modalaviso) {
+    modalaviso.style.display = 'none'; // nao mostra o modal
+  }
+}
+
+
+
+
+
+function mostrarModalLimite() { // função para exibir o modal de limite de imgs
+  const modal = document.getElementById('limite-modal'); // pega o modal pelo id
+  if (modal) { // se tiver o modal 
+    modal.style.display = 'flex'; // mostra o modal
+  }
+}
+
+function fecharModal() { // função para fechar o modal
+  const modal = document.getElementById('limite-modal'); // pega o modal pelo id (de novo?) acho que tem como reutilizar isso, nao?
+  if (modal) {
+    modal.style.display = 'none'; // nao mostra o modal
+  }
+}
+
+
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <%- include('../partials/rodape'); %>
 
@@ -352,7 +632,7 @@ function transformTag(tagData) {
 }
 
 var tagify = new Tagify(input, {
-  whitelist: ["A# .NET", "A# (Axiom)", "A-0 System", "A+", "A++", "ABAP", /* ... */ "Mystic Programming L"],
+  whitelist: ["Design Gráfico", "Design para web", "Arte Digital", "UI/UX", "Design de Embalagens", "Design de Produto", "Ilustração Digital"],
   maxTags: 10,
   dropdown: {
     maxItems: 20,
@@ -362,6 +642,8 @@ var tagify = new Tagify(input, {
   },
   transformTag: transformTag
 });
+
+
 
 </script>
 
@@ -386,30 +668,7 @@ var tagify = new Tagify(input, {
   // Se seu input de tags tem name="input-custom-dropdown", o seletor pode ser:
   const inputTagifyModal = document.querySelector('input[name="input-custom-dropdown"]');
 
-  // Tagify novo, separado do antigo (que está em var tagify)
-  const tagifyModal = new Tagify(inputTagifyModal, {
-    whitelist: ["A# .NET", "A# (Axiom)", "A-0 System", "A+", "A++", "ABAP", /* ... */ "Mystic Programming L"],
-    maxTags: 10,
-    dropdown: {
-      maxItems: 20,
-      classname: 'tags-look',
-      enabled: 0,
-      closeOnSelect: false
-    },
-    transformTag: (tagData) => {
-      const colors = [
-        '#7490C9', '#969ED0', '#92C4E2', '#B8D9BD',
-        '#9BB7CF', '#C3E3DF', '#C2E5F0', '#ADBCE2'
-      ];
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      tagData.color = color;
-      tagData.style = "--tag-bg:" + color;
-    }
-  });
-
-  // Atualiza modalImageFiles sempre que imagens mudarem no inputFile
-  // Ou sincronize na hora de abrir o modal
-  // Vou sincronizar direto no submit do form:
+ 
 
   document.getElementById('prosseguir').addEventListener('click', (event) => {
   event.preventDefault(); // impede comportamento padrão só por segurança
