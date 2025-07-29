@@ -61,6 +61,7 @@
                         <section class="form-grupo-1" id="titulo-publicacao">
                             <label for="titulo">Título:</label> <br>
                             <input type="text" id="titulo" name="titulo" class="caixa-texto" required>
+                            <div id="erro-titulo" class="mensagem-erro"></div>
                         </section>
                         <section class="form-grupo-1" id="categoria-publicacao">
                         <label for="categoria">Categoria:</label> <br>
@@ -89,6 +90,7 @@
                             <option value="fotografia">Fotografia</option>
                             <option value="outro">Outros</option>
                         </select>
+                        <div id="erro-select" class="mensagem-erro"></div>
 
                         
 <section id="outra-categoria-container" style="display:none; margin-top:10px;">
@@ -116,11 +118,13 @@ select.addEventListener('change', () => {
                             <label for="descricao">Descrição:</label> <br>
                             <textarea id="descricao" name="descricao" class="caixa-texto grande
                             " ></textarea>
+                            <div id="erro-descricao" class="mensagem-erro"></div>
                         </section>
                         <section class="form-grupo-1" id="tags-publicacao">
                             <label for="descricao">Tags:</label> <br>
-                           <input name='input-custom-dropdown' class='tagify--custom-dropdown caixa-texto' placeholder='Escreva sua' value='css, html, javascript'>
-                        </section>
+                           <input name='input-custom-dropdown' class='tagify--custom-dropdown caixa-texto' placeholder='Escreva sua' value='Design Gráfico, Arte Digital'>
+                          <div id="erro-tags" class="mensagem-erro"></div>
+                          </section>
                     </section>
         
                     <!-----------------colocar aquele negocio do upload---------------------->
@@ -131,6 +135,7 @@ select.addEventListener('change', () => {
   <input type="file" id="image-input" name="images" accept="image/*" multiple />
   <span class="image-count" id="image-count">Nenhuma imagem selecionada</span>
 </section>
+<div id="erro-imagens" class="mensagem-erro"></div>
     <section class="preview-section" id="preview-section" style="display:none;">
       <section class="main-image-container" id="main-image-container">
         <img id="main-image" src="" alt="Main preview" />
@@ -613,14 +618,14 @@ function fecharModal() { // função para fechar o modal
 var input = document.querySelector('input[name="input-custom-dropdown"]');
 
 var colors = [
-  '#7490C9', // vermelho claro
-  '#969ED0',  // verde água
-  '#92C4E2', // laranja suave
-  '#B8D9BD', // rosa antigo
-  '#9BB7CF', // azul petróleo
-  '#C3E3DF', // roxo escuro
-  '#C2E5F0', // laranja forte
-  '#ADBCE2', // vinho
+  '#7490C9', 
+  '#969ED0',  
+  '#92C4E2', 
+  '#B8D9BD', 
+  '#9BB7CF', 
+  '#C3E3DF',
+  '#C2E5F0', 
+  '#ADBCE2', 
  
 ];
 
@@ -631,8 +636,70 @@ function transformTag(tagData) {
   tagData.style = "--tag-bg:" + color;
 }
 
+
+
+
 var tagify = new Tagify(input, {
-  whitelist: ["Design Gráfico", "Design para web", "Arte Digital", "UI/UX", "Design de Embalagens", "Design de Produto", "Ilustração Digital"],
+  whitelist: [
+  // Design geral
+  "Design Gráfico",
+  "Design para Web",
+  "Arte Digital",
+  "UI/UX",
+  "Design de Embalagens",
+  "Design de Produto",
+  "Ilustração Digital",
+  "Tipografia",
+  "Identidade Visual",
+  "Branding",
+  "Design Editorial",
+  "Design de Interface",
+  "Design Responsivo",
+  
+  // Estilos de arte
+  "Arte Conceitual",
+  "Arte Vetorial",
+  "Arte Tradicional",
+  "Pintura Digital",
+  "Animação",
+  "Motion Graphics",
+  "Pixel Art",
+  "Ilustração Infantil",
+  "Quadrinhos",
+  "Arte Abstrata",
+  
+  // Técnicas/ferramentas
+  "Photoshop",
+  "Illustrator",
+  "Procreate",
+  "CorelDRAW",
+  "Sketch",
+  "Figma",
+  "Blender",
+  "Cinema 4D",
+  "After Effects",
+  "InDesign",
+  
+  // Cores (para inspiração, tema, etc)
+  "Cores Vibrantes",
+  "Tons Pastel",
+  "Monocromático",
+  "Cores Frias",
+  "Cores Quentes",
+  "Paleta Neutra",
+  "Contraste Alto",
+  "Preto e Branco",
+  
+  // Outros
+  "Tipografia Criativa",
+  "Prototipagem",
+  "Design de Aplicativos",
+  "Design de Jogos",
+  "Arte para Redes Sociais",
+  "Ilustração Editorial",
+  "Design Sustentável"
+],
+
   maxTags: 10,
   dropdown: {
     maxItems: 20,
@@ -645,7 +712,11 @@ var tagify = new Tagify(input, {
 
 
 
+
+
 </script>
+
+
 
 
 
@@ -654,125 +725,207 @@ var tagify = new Tagify(input, {
 
 
 <script>
-  // NOVAS variáveis para o modal e form, diferentes das já usadas
-  const formModal = document.getElementById('post-form'); // Seu form, já deve ter id="post-form"
+  
+  const formModal = document.getElementById('post-form'); // form principal
   const modalConfirm = document.getElementById('confirm-modal');
   const btnCancel = document.getElementById('cancel-btn');
   const btnSend = document.getElementById('send-btn');
 
-  // Novo array para as imagens no modal (se quiser separar, mas pode usar imageFiles também se preferir)
-  // Como imageFiles já existe, vamos usar um nome diferente só para garantir:
-  let modalImageFiles = [...imageFiles]; // Copia do array original, ou só use imageFiles se quiser sincronizar
+  const inputTitulo = document.getElementById('titulo');
+  const erroTitulo = document.getElementById('erro-titulo');
 
-  // Inicializa Tagify numa variável diferente, com input que tem id diferente para evitar conflito
-  // Se seu input de tags tem name="input-custom-dropdown", o seletor pode ser:
-  const inputTagifyModal = document.querySelector('input[name="input-custom-dropdown"]');
-
- 
-
-  document.getElementById('prosseguir').addEventListener('click', (event) => {
-  event.preventDefault(); // impede comportamento padrão só por segurança
-
-  // Atualiza a lista de imagens para o modal
-  modalImageFiles = [...imageFiles];
-
-  // Pega os dados do form
-  const titulo = document.getElementById('titulo').value;
-  let categoria = document.getElementById('categoria').value;
+  const selectCategoria = document.getElementById('categoria');
   const outraCategoriaInput = document.getElementById('outraCategoria');
+  const erroCategoria = document.getElementById('erro-select');
 
-  if (categoria === 'outro' && outraCategoriaInput.value.trim() !== '') {
-    categoria = outraCategoriaInput.value.trim();
+  const inputDescricao = document.getElementById('descricao');
+  const erroDescricao = document.getElementById('erro-descricao');
+
+  const erroTags = document.getElementById('erro-tags');
+  const erroImagens = document.getElementById('erro-imagens');
+
+
+  let modalImageFiles = [...imageFiles]; 
+
+
+  function validarTitulo() {
+    const val = inputTitulo.value.trim();
+    if (val.length < 2 || val.length > 30) {
+      erroTitulo.textContent = 'O título deve conter entre 2 e 30 caracteres.';
+      inputTitulo.classList.add('erro');
+      return false;
+    } else {
+      erroTitulo.textContent = '';
+      inputTitulo.classList.remove('erro');
+      return true;
+    }
   }
 
-  const descricao = document.getElementById('descricao').value;
-  const tagsArray = tagifyModal.value.map(tag => tag.value);
+  function validarCategoria() {
+    let val = selectCategoria.value.trim();
+    if (val === 'outro' && outraCategoriaInput.value.trim() !== '') {
+      val = outraCategoriaInput.value.trim();
+    }
+    if (!val) {
+      erroCategoria.textContent = 'Selecione uma categoria.';
+      selectCategoria.classList.add('erro');
+      return false;
+    } else {
+      erroCategoria.textContent = '';
+      selectCategoria.classList.remove('erro');
+      return true;
+    }
+  }
 
-  // Preenche os dados no modal
-  document.getElementById('confirm-title').textContent = titulo;
-  document.getElementById('confirm-category').textContent = categoria;
-  document.getElementById('confirm-description').textContent = descricao;
-  document.getElementById('confirm-tags').textContent = tagsArray.join(', ');
+  function validarDescricao() {
+    const val = inputDescricao.value.trim();
+    if (val.length < 2 || val.length > 300) {
+      erroDescricao.textContent = 'A descrição deve conter entre 2 e 300 caracteres.';
+      inputDescricao.classList.add('erro');
+      return false;
+    } else {
+      erroDescricao.textContent = '';
+      inputDescricao.classList.remove('erro');
+      return true;
+    }
+  }
 
-  // Imagens
-  const confirmImagesDiv = document.getElementById('confirm-images');
-  confirmImagesDiv.innerHTML = '';
-  modalImageFiles.forEach(file => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = document.createElement('img');
-      img.src = e.target.result;
-      img.style.width = '80px';
-      img.style.height = '80px';
-      img.style.objectFit = 'cover';
-      confirmImagesDiv.appendChild(img);
-    };
-    reader.readAsDataURL(file);
+  function validarTags() {
+    const tags = tagify.value.map(tag => tag.value);
+    if (tags.length === 0) {
+      erroTags.textContent = 'Adicione pelo menos uma tag.';
+      return false;
+    } else {
+      erroTags.textContent = '';
+      return true;
+    }
+  }
+
+  function validarImagens() {
+    if (!imageFiles || imageFiles.length === 0) {
+      erroImagens.textContent = 'Adicione pelo menos uma imagem.';
+      return false;
+    } else {
+      erroImagens.textContent = '';
+      return true;
+    }
+  }
+
+  
+  inputTitulo.addEventListener('input', validarTitulo);
+  selectCategoria.addEventListener('change', validarCategoria);
+  outraCategoriaInput.addEventListener('input', validarCategoria); // se selecionada a categoria "outro"
+  inputDescricao.addEventListener('input', validarDescricao);
+  tagify.on('change', validarTags);
+  // Para imagens, chamar validarImagens sempre que imageFiles for alterado 
+
+  // Ao clicar no botão Prosseguir, valida tudo e mostra modal se ok 
+  document.getElementById('prosseguir').addEventListener('click', (event) => {
+    event.preventDefault();
+
+    // Atualiza lista de imagens para o modal
+    modalImageFiles = [...imageFiles];
+
+    // Executa todas as validações
+    const tituloValido = validarTitulo();
+    const categoriaValida = validarCategoria();
+    const descricaoValida = validarDescricao();
+    const tagsValidas = validarTags();
+    const imagensValidas = validarImagens();
+
+    if (!tituloValido || !categoriaValida || !descricaoValida || !tagsValidas || !imagensValidas) {
+      // Se algum campo inválido, não abre o modal
+      return;
+    }
+
+    // Preenche o modal com os dados do form
+    document.getElementById('confirm-title').textContent = inputTitulo.value.trim();
+
+    let categoria = selectCategoria.value.trim();
+    if (categoria === 'outro' && outraCategoriaInput.value.trim() !== '') {
+      categoria = outraCategoriaInput.value.trim();
+    }
+    document.getElementById('confirm-category').textContent = categoria;
+
+    document.getElementById('confirm-description').textContent = inputDescricao.value.trim();
+
+    const tagsArray = tagify.value.map(tag => tag.value);
+    document.getElementById('confirm-tags').textContent = tagsArray.join(', ');
+
+    const confirmImagesDiv = document.getElementById('confirm-images');
+    confirmImagesDiv.innerHTML = '';
+    modalImageFiles.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.style.width = '80px';
+        img.style.height = '80px';
+        img.style.objectFit = 'cover';
+        confirmImagesDiv.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    modalConfirm.style.display = 'block';
   });
 
-  modalConfirm.style.display = 'block';
-});
-
-
+  // Cancelar modal
   btnCancel.addEventListener('click', () => {
     modalConfirm.style.display = 'none';
   });
 
- btnSend.addEventListener('click', (event) => {
-  event.preventDefault(); // Evita que o form seja enviado de forma tradicional (reload)
+  // Enviar dados ao backend
+  btnSend.addEventListener('click', (event) => {
+    event.preventDefault();
 
-  // Montar FormData para enviar para backend
-  const formData = new FormData();
-  formData.append('titulo', document.getElementById('titulo').value);
-  
-  let categoria = document.getElementById('categoria').value;
-  const outraCategoriaInput = document.getElementById('outraCategoria');
+    const formData = new FormData();
+    formData.append('titulo', inputTitulo.value.trim());
 
-  if (categoria === 'outro' && outraCategoriaInput.value.trim() !== '') {
-    categoria = outraCategoriaInput.value.trim();
-  }
-
-  formData.append('categoria', categoria);
-  formData.append('descricao', document.getElementById('descricao').value);
-
-  const tags = tagifyModal.value.map(tag => tag.value);
-  formData.append('tags', JSON.stringify(tags));
-
-  modalImageFiles.forEach((file) => {
-    formData.append('images', file, file.name);
-  });
-
-  // Enviar via fetch
-  fetch('/enviar-publicacao', {
-    method: 'POST',
-    body: formData,
-  })
-  .then(async response => {
-    if (!response.ok) {
-      // Tenta ler mensagem de erro JSON do backend
-      const errorData = await response.json().catch(() => null);
-      throw new Error(errorData?.message || 'Erro ao enviar publicação');
+    let categoria = selectCategoria.value.trim();
+    if (categoria === 'outro' && outraCategoriaInput.value.trim() !== '') {
+      categoria = outraCategoriaInput.value.trim();
     }
-    return response.json();
-  })
-  .then(data => {
-    alert('Publicação enviada com sucesso!');
-    modalConfirm.style.display = 'none';
-    formModal.reset();
-    modalImageFiles = [];
-    imageFiles = [];
-    previewSection.style.display = 'none';
-    mainImage.src = '';
-    thumbnailRow.innerHTML = '';
-    imageCount.textContent = 'Nenhuma imagem selecionada';
-    tagifyModal.removeAllTags();
-  })
-  .catch(error => {
-  
-  });
-});
+    formData.append('categoria', categoria);
+    formData.append('descricao', inputDescricao.value.trim());
 
+    const tags = tagify.value.map(tag => tag.value);
+    formData.append('tags', JSON.stringify(tags));
+
+    modalImageFiles.forEach((file) => {
+      formData.append('images', file, file.name);
+    });
+
+    fetch('/enviar-publicacao', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(async response => {
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => null);
+          throw new Error(errorData?.message || 'Erro ao enviar publicação');
+        }
+        return response.json();
+      })
+      .then(data => {
+        alert('Publicação enviada com sucesso!');
+        modalConfirm.style.display = 'none';
+        formModal.reset();
+
+        modalImageFiles = [];
+        imageFiles = [];
+        previewSection.style.display = 'none';
+        mainImage.src = '';
+        thumbnailRow.innerHTML = '';
+        imageCount.textContent = 'Nenhuma imagem selecionada';
+        tagify.removeAllTags();
+      })
+      .catch(error => {
+        alert('Erro ao enviar publicação: ' + error.message);
+      });
+  });
 </script>
+
 
 </body>
 </html>
