@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Planos e Assinaturas - Traço Perfeito</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/planos-assinaturas.css">
+
+</head>
+<body>
+
+
+    
+
+   <% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+
+
+
+  <section class="planos-container">
+
+    <!-- Plano Grátis -->
+    <section class="plano">
+      <section class="topo gratis">
+        <section class="tag">Plano base</section>
+        <section class="titulo">Traço Perfeito Gratis</section>
+        <section class="desc">Crie designs para tudo e dê vida às suas ideias. Não precisa pagar nada: é só soltar a criatividade.</section>
+        <section class="preco">R$0</section>
+        <section class="desc">/ano </section>
+        <a class="btn" href="#">Plano Básico</a>
+      </section>
+      <section class="base">
+        <section class="recursos-title">Recursos que você vai amar:</section>
+        <ul>
+          <li>Perfil básico com portfólio limitado </li>
+          <li>Acesso a busca por artistas</li>
+          <li>1 categoria de atuação</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- Plano Pro -->
+    <section class="plano">
+      <section class="topo">
+        <section class="tag">Para uma pessoa 👑</section>
+        <section class="titulo">Traço Perfeito Pro</section>
+        <section class="desc">Desbloqueie conteúdo premium.</section>
+        <section class="preco">R$240</section>
+        <section class="desc">/ano </section>
+        <a href="#" class="link-desc">Opções de planos diários e semanais</a><br>
+        <a class="btn roxo" href="#">Faça um teste grátis</a>
+      </section>
+      <section class="base">
+        <section class="recursos-title">Tudo o que o Plano Grátis oferece e ainda:</section>
+        <ul>
+          <li>Portfólio ampliado</li>
+          <li>Publicações ilimitadas</li>
+          <li>Prioridade nas oportunidades</li>
+          <li>Destaque em buscas por 24h/mês</li>
+          <li>Prioridade em suporte</li>
+          
+        </ul>
+      </section>
+    </section>
+
+    <!-- Plano Enterprise -->
+    <!-- <section class="plano">
+      <section class="topo">
+        <section class="tag">Para uma pessoa 👑</section>
+        <section class="titulo">Traço Perfeito Completo</section>
+        <section class="desc">Facilite o trabalho da sua organização com uma solução completa para sua empresa.</section>
+        <section class="preco">R$ 300</section>
+        <section class="desc">Entre em contato para saber mais</section>
+        <a class="btn roxo" href="#">Assinar Plano</a>
+      </section>
+      <section class="base">
+        <section class="recursos-title">Tudo o que o Traço Perfeito Pro oferece e ainda:</section>
+        <ul>
+          <li>Portfólio ilimitado</li>
+          <li>Destaque fixo em buscas e recomendações automáticas</li>
+          <li>Participação em vitrine especial da semana</li>
+          <li>Recebimento de reviews e comentários com moderação ativa</li>
+          <li>Até 5 categorias de especialização</li>
+        </ul>
+      </section>
+    </section> -->
+  </section>
+
+  
+    <%- include('../partials/rodape'); %>
+
+</body>
+</html>

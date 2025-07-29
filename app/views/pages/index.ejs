@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#191E29">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="Contrate ilustradores e designers freelancers para criar artes personalizadas. Descubra talentos, veja portfólios e transforme suas ideias em projetos incríveis no Traço Perfeito.">
+  <meta name="keywords" content="contratar designer online, contratar ilustrador online, arte personalizada, designers freelancers, portfólio de arte, site para artistas, contratar designer gráfico, ilustração digital, traço perfeito, projeto design, procurar designers">
+
+
+
+    <title>Traço Perfeito - Encontre Ilustradores e Designers Freelancers</title>
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/barrapesquisa.css">
+    <link rel="stylesheet" href="css/banner.css">
+    <link rel="stylesheet" href="css/blocos.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/filtro-index.css">
+    <link rel="stylesheet" href="css/share-button.css">
+   
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="js/simple-notify.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="js/banner.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+</head>
+ 
+ 
+ 
+<!-------------------------------BODY------------------------------------------------>
+<body onload="iniciarCarrossel()">
+ <% if (typeof logado !== 'undefined' && logado != null) { %>
+    <% if (logado == 2) { %>
+        <script>
+            notify("Login efetuado com sucesso", 
+              "Olá, <%= autenticado.autenticado%>!","success");
+        </script>
+    <% } %>
+<% } %>
+
+ 
+ <%  if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "top right");
+                                   
+        </script>
+    <% } %>
+
+
+
+
+   <% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+
+
+    <!----------------------------------BANNER--------------------------------------------------------->
+  <% if (!tipo_usuario) { %>
+ 
+   <section class="banner">
+      
+ 
+            <section class="branco">
+                <ul class="slider">
+                    <li>
+                        <input type="radio" id="slide1" name="slider" checked>
+                        <label for="slide1" ></label>
+                        <picture onclick="location.href='/cadastro'">
+                            <source media="(min-width:1100px)" srcset="imagens/banner-1-desktop.png" class="img-banner">
+                            <source media="(min-width:850px)" srcset="imagens/banner-1-grande.png" class="img-banner">
+                            <source media="(min-width:600px)" srcset="imagens/banner-1-medio.png" class="img-banner">
+                            <img src="imagens/banner-1-mobile.png"  >
+                          </picture> 
+                        
+               
+                    </li>
+                    <li>
+                        <input type="radio" id="slide2" name="slider" >
+                        <label for="slide2" ></label>
+                        <picture onclick="location.href='/cadastro'">
+                            <source media="(min-width:1100px)" srcset="imagens/banner-2-desktop.png" class="img-banner">
+                            <source media="(min-width:850px)" srcset="imagens/banner-2-grande.png" class="img-banner">
+                            <source media="(min-width:600px)" srcset="imagens/banner-2-medio.png" class="img-banner">
+                            <img src="imagens/banner-2-mobile.png"  >
+                          </picture> 
+               
+                    </li>
+
+                   
+                 
+                 
+       
+                </ul>
+
+                 <!-- <section class="button-holder">
+                   <button class="call-to-action" onclick="location.href='/cadastro'"> Criar conta</button>
+                </section>
+     -->
+    </section>
+ 
+  
+<% } %>
+
+   
+ 
+                <main>
+ 
+ 
+                    <!---------------------BARRA DE PESQUISA---------------->
+                     
+                     <section class="pesquisas">
+                        <section class="search">
+                            <section class="icon"> <ion-icon name="search-outline"></ion-icon></section>
+                            <input class="search-input" type="search" placeholder="O que você está procurando hoje?">
+                        
+                        </section> 
+ 
+                    
+<!--                         
+                        <button class="filtragem"><img src="imagens/filter.svg" alt="filter icon" onclick="Aparecer()">
+                            <a class="filtro" href="#">Data de Publicação</a>
+                            <ul class="lista">
+                                <li><a href="#">Mais Recente</a></li>
+                                <li><a href="#">Há um mês</a></li>
+                                <li><a href="#">Há um ano</a></li>
+                            </ul>
+                            <a class="filtro" href="#">Tipo</a>
+                            <ul class="lista">
+                                <li><a href="#">Ilustração</a></li>
+                                <li><a href="#">Edição de Vídeo</a></li>
+                                <li><a href="#">Design Gráfico</a></li>
+                            </ul>
+                            <a class="filtro" href="#">Sobre o Artista</a>
+                            <ul class="lista">
+                                <li><a href="#">Formação em Design Gráfico</a></li>
+                                <li><a href="#">Formação em ...</a></li>
+                                <li><a href="#">Formação em ...</a></li>
+                            </ul>
+                            <a class="filtro" href="#">Traços</a>
+                            <ul>
+                                <li><a href="#">Linha Cheia</a></li>
+                                <li><a href="#">Linha tracejada</a></li>
+                                <li><a href="#">Linha traço-ponto</a></li>
+                            </ul>
+                            </button> -->
+
+                             <%- include('../partials/filtro-index'); %>
+                        
+                    </section>
+
+
+
+                    
+
+   
+ 
+                    <!--------------------------------------CAIXAS--------------------------------------------------------->
+                    
+                    <section class="container-pag-explorar">
+
+                      <% if (publicacoes.length === 0) { %>
+  <section class="sem-publicacoes">
+    <p>Não há publicações no momento.</p>
+  </section>
+<% } else { %>
+ <% publicacoes.forEach(pub => { %>
+  <section class="item-explorar item-1">
+
+    <!-- Link to publication page (you can pass the ID for dynamic routing) -->
+    <a href="/publicacao/<%= pub.ID_PUBLICACAO %>">
+      <!-- Show image; assuming you store image file path or base64 -->
+    <section class="carrossel-imagens-explorar" onmouseenter="mostrarControles(this)" onmouseleave="esconderControles(this)">
+  <div class="container-imgs" ontouchstart="startSwipe(event, this)" ontouchmove="swipeMove(event)" ontouchend="endSwipe(event, this)">
+    <% pub.imagens.forEach((img, idx) => { %>
+      <img 
+        src="data:image/jpeg;base64,<%= img.toString('base64') %>" 
+        class="publicacao-img<%= idx === 0 ? ' ativa' : '' %>" 
+        alt="Imagem da publicação"/>
+    <% }) %>
+  </div>
+
+  <% if (pub.imagens.length > 1) { %>
+    <button class="seta-carrossel esquerda" onclick="event.preventDefault();prevImg(this)"><ion-icon name="chevron-back-outline"></ion-icon></button>
+    <button class="seta-carrossel direita" onclick="event.preventDefault();nextImg(this)"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+
+    <div class="indicadores">
+      <% pub.imagens.forEach((_, idx) => { %>
+        <span class="indicador<%= idx === 0 ? ' ativo' : '' %>"></span>
+      <% }) %>
+    </div>
+  <% }  %>
+</section>
+
+  </a>
+
+    <section class="menu-opcoes"> <!-- Denunciar e compartilhar -->
+
+      <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
+
+      <section class="opcoes-menu">
+        <button class="btn-compartilhar" title="Compartilhar" id="openShareModal" onclick="openModal()">
+          <ion-icon name="share-social-outline"></ion-icon>
+          Compartilhar
+        </button>
+        <button class="btn-denunciar" title="Denunciar">
+          <ion-icon name="flag-outline"></ion-icon>
+          Denunciar
+        </button>
+      </section>
+    </section>
+
+    <section class="nome-e-btn-like">
+
+      <section class="foto-nome-dono-publi">
+        <!-- User profile photo -->
+        <img src="<%= pub.FOTO_PERFIL_PASTA_USUARIO || '/imagens/default-profile.png' %>" class="foto-perfil-explorar" alt="Foto do usuário">
+        <p class="nome-dono-post-ex">
+          <a href="/perfil/<%= pub.ID_USUARIO %>"><%= pub.NOME_USUARIO %></a>
+        </p>
+      </section>
+
+      <button class="like-button">
+        <i class="far fa-heart"></i>
+      </button>
+
+    </section>
+
+    <!-- Description -->
+    <p class="descricao-item-explorar"><%= pub.DESCRICAO_PUBLICACAO %></p>
+
+  </section>
+<% }) } %>
+
+           
+                        
+                        </section>
+
+
+
+                                                <!-- Modal de denúncia -->
+                        <section id="modalDenuncia" class="modal">
+                            <section class="modal-content">
+                            <h3>Qual o motivo da denúncia?</h3>
+                            <form id="formDenuncia">
+                                <label><input type="radio" name="motivo" value="Conteúdo ofensivo"> Conteúdo ofensivo</label><br>
+                                <label><input type="radio" name="motivo" value="Spam"> Spam</label><br>
+                                <label><input type="radio" name="motivo" value="Informação falsa ou enganosa"> Informação falsa ou enganosa</label><br>
+                                <label><input type="radio" name="motivo" value="Nudez ou conteúdo sexual"> Nudez ou conteúdo sexual</label><br>
+                                <label><input type="radio" name="motivo" value="Plágio ou cópia não autorizada"> Plágio ou cópia não autorizada</label><br>
+                                <label><input type="radio" name="motivo" value="Outro"> Outro</label><br><br>
+                                <button type="submit">Enviar denúncia</button>
+                                <button type="button" id="fecharModal">Cancelar</button>
+                            </form>
+                            </section>
+                        </section>
+
+
+
+                <!-- Modal de compartilhamento -->
+                <section id="modal-share">
+                <section class="modal-content-share">
+                    <h2>Compartilhar link da publicação</h2>
+
+                    <section class="link-container">
+                    <section id="shareLink">
+                      https://tracoperfeito.onrender.com/publicacao
+                    </section>
+
+                    <button class="copy-button" onclick="copyToClipboard()">
+                        <section id="copyIcon">
+                       
+                            <svg xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px; margin-right: 4px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2M16 8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8a2 2 0 01-2-2v-2"/>
+                            </svg>
+      
+                        </section>
+                        <section id="copyText">Copiar link</section>
+                        <section id="tooltip">Copiado!</section>
+                    </button>
+                    </section>
+
+                    <button class="close-modal-btn" onclick="closeModal()">×</button>
+                </section>
+                </section>
+
+
+           
+
+
+
+               
+                </main>
+
+                
+
+               
+
+               
+
+    <%- include('../partials/rodape'); %>
+
+<script>
+  window.addEventListener('scroll', function () {
+    const barra = document.querySelector('.pesquisas');
+    if (window.scrollY > 10) {
+      barra.classList.add('sombra');
+    } else {
+      barra.classList.remove('sombra');
+    }
+  });
+</script>
+
+<script>
+
+  
+
+// autoplay
+document.addEventListener('DOMContentLoaded', () => {
+  const carrosseis = document.querySelectorAll('.carrossel-imagens-explorar');
+
+  carrosseis.forEach(carrossel => {
+    let idx = 0;
+    const total = carrossel.querySelectorAll('.publicacao-img').length;
+
+    if (total > 1 && window.innerWidth > 500) {
+      setInterval(() => {
+        idx = (parseInt(carrossel.dataset.idx || '0') + 1) % total;
+        updateCarrossel(carrossel, idx);
+      }, 10000);
+    }
+
+    updateCarrossel(carrossel, 0);
+  });
+});
+</script>
+
+<script src="/js/publicacoesindex.js"></script>
+
+
+    <script src="js/like.js"></script>
+    <script src="js/mobile-navbar.js"></script>
+    <script src="js/denuncia-compartilhamento.js"></script>
+
+</body>
+</html>

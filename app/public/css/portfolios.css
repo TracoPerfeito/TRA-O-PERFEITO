@@ -1,0 +1,246 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url(cores.css);
+
+.botao-de-voltar{
+  width: 100%;
+  background-color: var(--cor-btn-voltar-section);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  
+}
+
+.btn-voltar{
+  border-radius: 50%;
+  border: 1px solid var(--cor-btn-voltar-borda);
+  width: 30px;
+  height: 30px;
+  background-color: var(--cor-btn-voltar);
+  color: var(--cor-btn-voltar-seta);
+  margin: 0px 0px 0px 60px;
+  font-size: 17px;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-voltar:hover {
+  background-color: var(--cor-btn-voltar-hover);
+  cursor: pointer;
+  
+}
+
+.lado-botao {
+  margin: 0px 10px;
+  font-family: "Josefin Sans";
+  font-weight: 400;
+  font-size: 15px;
+  color: var( --cor-btn-voltar-texto);
+}
+
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+ 
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+
+
+
+/* aqui */
+
+    main {
+        padding: 20px 60px;
+    }
+    .container-portfolios {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    #nome-pagina{
+        margin-bottom: 30px;
+        font-family: 'Montserrat';
+        color:  var(--text-color);
+    }
+
+
+
+  .portfolio {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .portfolio-item {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container img {
+    object-fit: cover;
+    object-position: center top; 
+  
+  }
+
+ 
+  
+  .image-row {
+    display: flex;
+    width: 100%;
+  }
+  
+  .portfolio-image {
+    width: 50%;
+    height: 125px;
+    object-fit: cover;
+    object-position: center top; 
+    transition: opacity 0.3s ease;
+  }
+  
+  .overlay {
+   
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #000000d3, #00000046);
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    padding: 10px;
+  }
+
+    .overlay p {
+     color: transparent;
+     font-size: small;
+     padding: 5px 20px 5px 0px;
+     transform: translateY(20px);
+    }
+
+    .overlay:hover{
+        background: linear-gradient(to bottom, #000000d3, #000000a9);
+        transition: all 0.3s;
+
+    }
+
+
+  
+    .overlay:hover .prev-descrip {
+    color: rgb(255, 255, 255);
+    transition: all 0.3s  ease-in-out;
+    transform: translateY(0); 
+    }
+  
+
+  .portfolio-name {
+    color: white;
+    font-size: 1.5rem;
+
+    font-weight: bold;
+    z-index: 1;
+  }
+  
+  
+ 
+   /* responsividade */
+
+
+   
+
+@media (max-width:1000px){
+
+    .container-portfolios {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 20px;
+        row-gap: 50px;
+        margin: 30px 25px;
+
+    }
+
+}
+
+
+  
+  @media (max-width: 870px) {
+
+    .container-portfolios {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 20px;
+        row-gap: 50px;
+        margin: 30px 25px;
+
+    }
+
+  }
+
+
+  @media (max-width:630px) {
+
+    .container-portfolios {
+
+        display: block;
+      
+       margin: 30px 25px;
+
+    
+    }
+
+    
+  .portfolio {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+
+    
+  }
+  
+
+
+
+    main {
+        padding: 20px 35px;
+    }
+
+    
+    .btn-voltar{
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        margin: 0px 0px 0px 35px;
+    }
+
+    
+    #nome-pagina{
+        margin-bottom: 20px;
+        color:  var(--text-color);
+        font-size: large;
+    }
+
+
+  }
+  
+

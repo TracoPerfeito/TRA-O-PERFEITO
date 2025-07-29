@@ -1,0 +1,194 @@
+
+.search {
+ 
+    --padding: 7px;
+ 
+    width:max-content;
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+    border-radius: 10px;
+    background: var(--verdinho-transparente-barra);
+    width: 70%;
+    min-width:  700px;
+    border: 1px solid var(--borda-barra-pesquisa);
+   
+   
+
+}
+
+.search1 {
+ 
+    --padding: 7px;
+ 
+    width:max-content;
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+    border-radius: 10px;
+    background: var(--verdinho-transparente-barra);
+    width: 600px;
+    margin: auto;
+    margin-top: 20px;
+    border: 1px solid var(--borda-barra-pesquisa);
+
+}
+
+
+
+.search:hover{
+    border: 2px solid var(--texto-barra-pesquisa);
+}
+
+
+
+
+.search1:hover{
+    border: 2px solid var(--texto-barra-pesquisa);
+}
+ 
+.search-input{
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    padding: var(--padding);
+    outline: none;
+    border: none;
+    background: transparent;
+    width: 100%;
+    flex: 1.
+ 
+}
+ 
+.search-input::placeholder, #botao-filtro, .search-icon {
+    color: var(--texto-barra-pesquisa);
+ 
+ 
+}
+
+.search-input::placeholder {
+    opacity: 60%;
+}
+ 
+.search  .icon{
+    margin-top: 4px;
+    margin-left: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--texto-barra-pesquisa);
+  }
+
+  .icon {
+    color: var(--texto-barra-pesquisa);
+  }
+
+  .pesquisas {
+    margin-top: 10px;
+    position: sticky; /* Daqui até o transition estão as configurações para manter a barra de pesquisas sempre visivel conforme rola a página.*/
+    top: 58px;
+    z-index: 3;
+    background-color: var(--cor-fundo);
+    padding: 10px 0;
+   transition: box-shadow 0.3s ease, border-bottom 0.3s ease;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.pesquisas.sombra {
+
+  border-bottom: 1px solid var(--linha-pesquisa);
+}
+
+
+#botao-filtro {
+    background-color: var(--verdinho-transparente-barra);
+    border-radius: 10px;
+    border: 1px solid var(--borda-barra-pesquisa);
+    padding: 7px;
+    margin-left: 10px;
+    width: 50px;
+    height: auto;
+   
+}
+
+
+#botao-filtro:hover{
+    border: 2px solid  var(--texto-barra-pesquisa);
+    cursor: pointer;
+
+
+}
+
+#icon-filtro {
+    font-size: 25px;
+ }
+
+.pesquisas {
+    display: flex;
+    justify-content: center;
+    font-size: "Josefin Sans";
+}
+
+
+.barra-filtro-centralizada {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+  margin: auto;
+  gap: 10px; /* espaçamento entre barra e botão */
+}
+
+@media (max-width: 640px) {
+  .barra-filtro-centralizada {
+    width: 90%;
+  }
+}
+
+
+
+  
+@media (max-width:800px) {
+
+    .search, .search1 {
+
+        width: 500px;
+        min-width: 100px;
+       
+    
+    }
+
+}
+
+     
+@media (max-width:640px) {
+
+    .search, .search1 {
+
+        width: 400px;
+        min-width: 100px;
+       
+    
+    }
+
+}
+
+ 
+@media (max-width: 460px) {
+
+    .search, .search1{
+
+        max-width: 80%;
+        min-width: 100px;
+    
+    }
+
+        
+    .search-input {
+        font-size: 70%;
+    
+    }
+
+}
+

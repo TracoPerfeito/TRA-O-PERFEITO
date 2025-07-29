@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+   
+    <title>Teste</title>
+
+
+    <style>
+
+        .cont{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+
+        .quad p {
+            font-size: 15px;
+            width: 190px;
+            left: -50px;
+            padding: 0px;
+            margin: 15px 10px 15px 10px;
+        }
+
+        .quad {
+            position: absolute;
+          
+            border-radius: 20px;
+            left: 20%;
+            background:  #ACDABF;
+          
+           
+        }
+
+        .trian {
+
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-right: 60px solid #ACDABF;
+            border-top:60px solid transparent;
+            border-bottom: 60px solid transparent;
+            top: 50%;
+            left: 60%;
+            z-index: -1;
+
+        }
+
+        .quadr {
+            position: absolute;
+          
+            border-radius: 20px;
+            left: 60%;
+            background:  #ACDABF;
+          
+           
+        }
+
+
+
+        
+        .dif {
+
+position: absolute;
+width: 0;
+height: 0;
+border-left: 60px solid #ACDABF;
+border-top:60px solid transparent;
+border-bottom: 60px solid transparent;
+top: -400%;
+left: 10%;
+z-index: -1;
+
+}
+
+
+    </style>
+    
+</head>
+<body>
+
+   <%- include('menu.ejs') -%>
+  
+<main class="cont">
+
+<section class="quad">
+
+    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius modi quia, cumque alias deserunt voluptate blanditiis omnis error iusto maiores eaque excepturi? Odit quae provident nesciunt iste magni, eveniet officiis?</p>
+    <section class="trian"></section>
+</section>
+
+
+<section class="quadr">
+    Lorem ipsum dolor sit ameeius ad. Id, ab est.
+    <section class="dif"> </section>
+</section>
+</main>
+</body>
+</html>

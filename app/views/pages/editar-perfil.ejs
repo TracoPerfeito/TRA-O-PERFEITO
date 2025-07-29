@@ -1,0 +1,885 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+   
+ 
+    <link rel="stylesheet" href="css/editar-perfil.css">
+   
+   
+   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <script src="js/simple-notify.js"></script>
+   
+</head>
+ 
+<body>
+ 
+ 
+   
+<%
+ 
+ 
+let msgErro = "";
+let avisoErro = {
+  nome_usu: "",
+  nomeusu_usu: "",  
+  celular_usu: "",
+  email_usu: "",
+  imagem: "",
+  "imagem-capa_usu": ""
+};
+
+let avisoErroGenero = {
+  genero: "",
+  data_nasc: ""
+};
+
+let avisoErroSenha = {
+  senhaAtual: "",
+  novaSenha: "",
+  confirmarNovaSenha: ""
+};
+ 
+let errosArray = [];
+ 
+if (listaErros) {
+  if (Array.isArray(listaErros)) {
+    errosArray = listaErros;
+  } else if (Array.isArray(listaErros.errors)) {
+    errosArray = listaErros.errors;
+  }
+}
+ 
+ 
+errosArray.forEach((itemErro) => {
+    if (itemErro.path === "nome_usu") {
+        avisoErro.nome_usu = itemErro.msg;
+    
+    }
+    if (itemErro.path === "nomeusu_usu") {
+      avisoErro.nomeusu_usu = itemErro.msg;
+     
+    }
+    if (itemErro.path === "celular_usu") {
+      avisoErro.celular_usu = itemErro.msg;
+      
+    }
+    if (itemErro.path === "email_usu") {
+      avisoErro.email_usu = itemErro.msg;
+     
+    }
+    if (itemErro.path === "especializacao") {
+      avisoErro.especializacao = itemErro.msg;
+
+    }
+     if (itemErro.path === "descricao_perfil") {
+      avisoErro.descricao_perfil = itemErro.msg;
+
+    }
+      if (itemErro.path === "senhaAtual") {
+      avisoErro.senhaAtual = itemErro.msg;
+
+    }
+      if (itemErro.path === "novaSenha") {
+      avisoErro.novaSenha = itemErro.msg;
+
+    }
+     if (itemErro.path === "genero") {
+      avisoErro.genero = itemErro.msg;
+
+    }
+     if (itemErro.path === "data_nasc") {
+      avisoErro.data_nasc = itemErro.msg;
+
+    }
+      if (itemErro.path === "confirmarNovaSenha") {
+      avisoErro.confirmarNovaSenha = itemErro.msg;
+
+    }
+    if (itemErro.path === "imagem-perfil_usu") {
+      avisoErro.imagem = itemErro.msg;
+    
+    }
+    if (itemErro.path === "imagem-capa_usu") {
+      avisoErro["imagem-capa_usu"] = itemErro.msg;
+    }
+  });
+ 
+ 
+   
+          let arquivo = { imagem: "imagens/foto-perfil.png" };
+   
+         if (autenticado.img_perfil_pasta) {
+          arquivo.imagem = autenticado.img_perfil_pasta;
+        } else if (autenticado.img_perfil_banco) {
+          arquivo.imagem = autenticado.img_perfil_banco;
+        }
+ 
+        let arquivobanner = {imagem_banner: "imagens/bg.png" };
+ 
+        if (autenticado.img_banner_pasta) {
+          arquivobanner.imagem_banner = autenticado.img_banner_pasta;
+        }
+        if (autenticado.img_banner_banco) {
+          arquivobanner.imagem_banner = autenticado.img_banner_banco;
+        }
+ 
+ 
+       
+ 
+   %>
+ 
+<% if (msgErro != "") { %>
+ 
+                    <script>
+                        let msgErro ="<%= msgErro %>"
+                        notify("Erro no preenchimento",
+                        "Verifique o(s) campo(s): <br>" + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"),
+                        "error", "center",5000)                        
+                    </script>
+                    <%
+ 
+            }
+       
+        if (dadosNotificacao) {
+            %>
+           <script>
+    console.log("🔔 Notificação recebida!");
+    notify("<%= dadosNotificacao.titulo %>",
+           "<%= dadosNotificacao.mensagem %>",
+           "<%= dadosNotificacao.tipo %>",
+           "center");
+
+       // Comentado para não redirecionar:
+    // if ("<%= dadosNotificacao.tipo %>" == "success") {
+    //   setTimeout(function () {
+    //     window.location = "/";
+    //   }, 3000);
+    // }
+  </script>
+<% } %>
+
+
+
+<% if (typeof abaAtiva !== 'undefined' && abaAtiva) { %>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const targetId = "<%= abaAtiva %>";
+      const itemMenu = document.querySelector(`#ul-config li[data-target="${targetId}"]`);
+      const abaConteudo = document.getElementById(targetId);
+
+      if (itemMenu && abaConteudo) {
+        // Remove 'active' e 'ativo' de todos
+        document.querySelectorAll('.aba-conteudo').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('#ul-config li').forEach(el => el.classList.remove('ativo'));
+
+        // Ativa a aba correta
+        itemMenu.classList.add('ativo');
+        abaConteudo.classList.add('active');
+      }
+    });
+  </script>
+<% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <%
+        const opcoesFixas = [
+            "Design de Logotipo", "Design Gráfico", "Ilustração", "Arte Digital", 
+            "Design UX/UI", "Design para Web", "Modelagem 3D", "Design de Personagens",
+            "Arte para Games", "Arte Conceitual", "Storyboard", "Direção de Arte",
+            "Branding", "Design de Embalagens", "Animação e Modelagem 2D / 3D"
+        ];
+        const ehOutro = valores.especializacao && !opcoesFixas.includes(valores.especializacao);
+        %>
+
+        <%
+          const erroSenha = avisoErro.senhaAtual || avisoErro.novaSenha || avisoErro.confirmarNovaSenha;
+        %>
+
+
+ 
+ 
+<script>
+  window.onload = function() {
+    console.log('Data received:', valores);
+  };
+</script>
+
+<% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+ 
+<section class="config-wrapper">
+  
+  <section class="menu-config-lateral">
+  
+    <nav id="menu-config-nav">
+
+      <h2 id="configuracoes-h2">Configurações <svg id="tools" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M756-120 537-339l84-84 219 219-84 84Zm-552 0-84-84 276-276-68-68-28 28-51-51v82l-28 28-121-121 28-28h82l-50-50 142-142q20-20 43-29t47-9q24 0 47 9t43 29l-92 92 50 50-28 28 68 68 90-90q-4-11-6.5-23t-2.5-24q0-59 40.5-99.5T701-841q15 0 28.5 3t27.5 9l-99 99 72 72 99-99q7 14 9.5 27.5T841-701q0 59-40.5 99.5T701-561q-12 0-24-2t-23-7L204-120Z"/></svg></h2>
+
+      <ul id="ul-config">
+        <li data-target="dados-pessoais">Editar Perfil</li>
+        <li data-target="conta">Gerenciamento da conta</li>
+        <li data-target="senha">Senhas e segurança</li>
+        <li data-target="tema">Temas</li>
+      </ul>
+  
+    </nav>
+  </section>
+  
+   <section class="lateral-conteudo">
+  
+  
+       <section id="dados-pessoais" class="aba-conteudo active">
+  
+  
+            <form id="form-perfil" class="form-container" enctype="multipart/form-data" method="POST" action=/meu-perfil-artista>
+                  <section class="banner-container">
+                      <figure class="banner-overlay">
+  
+  
+                         <img src="<%= valores.img_capa_pasta ? '/' + valores.img_capa_pasta : '/imagens/bg.png' %>" alt="Banner" id="bannerImage">
+                          <figcaption class="icon-overlay" id="editBanner">
+                              <img src="#" alt="Editar Banner">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="pencil" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+                          </figcaption>
+                      </figure>
+                      <section class="profile-info">
+                          <figure class="profile-pic-overlay">
+  
+  
+                             <img src="<%= valores.img_perfil_pasta ? '/' + valores.img_perfil_pasta : '/imagens/img.png' %>" alt="Perfil" id="profileImage">
+                              <figcaption class="icon-overlay small" id="editProfile">
+  
+                                  <img src="#" alt="Editar Perfil">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="pencil" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+                              </figcaption>
+                          </figure>
+  
+                      </section>
+                  </section>
+                  <!-- Inputs -->
+                  <input type="file" id="bannerInput" value="imagens/usuarios/default_background.jpg" name="img_capa" accept="image/*" hidden>
+                  <input type="file" id="profileInput" value="imagens/usuarios/default_user.jpg" name="img_perfil" accept="image/*" hidden>
+                  <section class="container-principal">
+  
+                          <h1 class="titulo-content">Editar Perfil</h1>
+  
+  
+                          <h2 class="h2-subtitulos">Informações do Usuário</h2>
+  
+  
+                      <!--campos para os dados -->
+                      <section id="form-usuario" class="form active">
+         <section class="grid-perfil">
+          <section class="coluna-direita">
+  
+                                  <section class="dado-basicos">
+                                      <label class="label-form" for="nome">Nome Completo:</label>
+                                      <input type="text" id="nome" name="nome_usu" value="<%=valores.nome_usu %>" required>
+                                      <p class="msg-erro"><%= avisoErro.nome_usu %></p>
+                                      <label class="label-form" for="email">Meu e-mail:</label>
+                                      <input type="email" id="email" name="email_usu" value="<%= valores.email_usu %>">
+                                      <p class="msg-erro"><%= avisoErro.email_usu %></p>
+                                      <label class="label-form" for="celular">Celular (com DDD):</label>
+                                      <input type="tel" id="celular" name="celular_usu" value="<%= valores.celular_usu %>" >
+                                      <p class="msg-erro"><%= avisoErro.celular_usu %></p>
+                                      <label class="label-form" for="usuario">Nome de Usuário:</label>
+                                      <input type="text" id="usuario" name="nomeusu_usu" value="<%= valores.nomeusu_usu %>" required>
+                                      <p class="msg-erro"><%= avisoErro.nomeusu_usu %></p>
+                                  </section>
+                                 <% if (autenticado.tipo === "profissional") { %>
+                                 <label for="especializacao">Minha especialização:</label>
+                                      <select id="especializacao" name="especializacao" onchange="handleSpecializationChange(this.value)">
+                                          <option value="">Selecionar especialização</option>
+                                          <option value="Design de Logotipo" <%= valores.especializacao === "Design de Logotipo" ? "selected" : "" %>>Design de Logotipo</option>
+                                          <option value="Design Gráfico" <%= valores.especializacao === "Design Gráfico" ? "selected" : "" %>>Design Gráfico</option>
+                                          <option value="Ilustração" <%= valores.especializacao === "Ilustração" ? "selected" : "" %>>Ilustração</option>
+                                          <option value="Arte Digital" <%= valores.especializacao === "Arte Digital" ? "selected" : "" %>>Arte Digital</option>
+                                          <option value="Design UX/UI" <%= valores.especializacao === "Design UX/UI" ? "selected" : "" %>>Design UX/UI</option>
+                                          <option value="Design para Web" <%= valores.especializacao === "Design para Web" ? "selected" : "" %>>Design para Web</option>
+                                          <option value="Modelagem 3D" <%= valores.especializacao === "Modelagem 3D" ? "selected" : "" %>>Modelagem 3D</option>
+                                          <option value="Design de Personagens" <%= valores.especializacao === "Design de Personagens" ? "selected" : "" %>>Design de Personagens</option>
+                                          <option value="Arte para Games" <%= valores.especializacao === "Arte para Games" ? "selected" : "" %>>Arte para Games</option>
+                                          <option value="Arte Conceitual" <%= valores.especializacao === "Arte Conceitual" ? "selected" : "" %>>Arte Conceitual</option>
+                                          <option value="Storyboard" <%= valores.especializacao === "Storyboard" ? "selected" : "" %>>Storyboard</option>
+                                          <option value="Direção de Arte" <%= valores.especializacao === "Direção de Arte" ? "selected" : "" %>>Direção de Arte</option>
+                                          <option value="Branding" <%= valores.especializacao === "Branding" ? "selected" : "" %>>Branding</option>
+                                          <option value="Design de Embalagens" <%= valores.especializacao === "Design de Embalagens" ? "selected" : "" %>>Design de Embalagens</option>
+                                          <option value="Animação e Modelagem 2D / 3D" <%= valores.especializacao === "Animação e Modelagem 2D / 3D" ? "selected" : "" %>>Animação e Modelagem 2D / 3D</option>
+  
+                                          <option value="Outro" <%= ehOutro ? "selected" : "" %>>Outro</option>
+                                          </select>
+
+                                          <section id="outra-especializacao" style{"<%= ehOutro ? 'display: block;' : 'display: none;' %>"}>
+
+                                          <label for="customSpecialization">Coloque sua especialização:</label>
+                                          <input type="text" name="customSpecialization" id="customSpecialization" value="<%=valores.especializacao %>" />
+                                          </section>
+                                           <p class="msg-erro"><%= avisoErro.especializacao %></p>
+                                           <% } %>
+  
+  
+                                          <label class="label-form">Descrição do Perfil
+                                          <textarea id="textarea" name="descricao_perfil" placeholder="Escreva algo sobre você..." maxlength="500"><%= valores.descricao_perfil ? valores.descricao_perfil : '' %></textarea>
+                                        </label>
+                                        <small id="contador">  500 caracteres restantes</small>
+                                        <script>
+
+
+
+                                        // contador de caracteres para textarea de descricao 
+                                        const textarea = document.getElementById('textarea');
+                                        const contador = document.getElementById('contador');
+                                        const max = 500;
+                                
+                                        function atualizarContador() {
+                                        if (textarea.value.length > max) {
+                                          textarea.value = textarea.value.slice(0, max); // corta o excesso
+                                        }
+                                        const restante = max - textarea.value.length;
+                                        contador.textContent = `${restante} caractere${restante === 1 ? '' : 's'} restante${restante === 1 ? '' : 's'}`;
+                                        }
+                                
+                                        textarea.addEventListener('input', atualizarContador);
+                                
+                                        // Atualiza ao carregar a página
+                                        atualizarContador();
+                                      </script>
+          </section>
+  
+                          <section class="coluna-esquerda">
+  
+  
+                                   <section class="redes-sociais-bloco">
+                                       <h2 class="h2-subtitulos links">Links para minhas redes sociais</h2>
+                                       <label for="linkedin">LinkedIn:</label>
+                                       <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/usuario" pattern="https?://.+" title="Digite uma URL válida" value="<%=valores.linkedin%>">
+  
+                                     <label for="pinterest">Pinterest:</label>
+                                      <input type="url" id="pinterest" name="pinterest" placeholder="https://www.pinterest.com/usuario" pattern="https?://.+" title="Digite uma URL válida" value="<%=valores.pinterest%>">
+  
+                                      <label for="instagram">Instagram:</label>
+                                     <input type="url" id="instagram" name="instagram" placeholder="https://www.instagram.com/usuario" pattern="https?://.+" title="Digite uma URL válida" value="<%=valores.instagram%>">
+  
+  
+                                    <label for="whatsapp">WhatsApp:</label>
+                                    <input type="url" id="whatsapp" name="whatsapp" placeholder="https://wa.me/5511999999999" pattern="https?://.+" title="Digite uma URL válida" value="<%=valores.whatsapp%>">
+                                   </section>
+  
+  
+  
+  
+  
+  
+  
+                          </section>
+         </section>
+                       
+        
+  
+                       
+                      </section>
+                      <!-- Aba Informações Pessoais -->
+  
+                      <button type="submit" class="btn-salvar">Salvar Alterações</button>
+                  </section>
+              </form>
+       </section>
+
+
+      <section id="conta" class="aba-conteudo hidden">
+        
+          <h1 class="g-conta content-conta titulo-content">Gerenciamento de Conta</h1>
+          <p  class="content-conta"> Faça alterações nas suas informações pessoais ou no tipo de conta.</p>
+          <form action=/atualizardtg method="POST" class="content-conta">
+
+            <h3 class="h3-conta">Editar dados pessoais</h3>
+          <section class="form-conta">
+            <section class="sec-conta-form">
+              <label for="genero">Gênero:</label>
+             <select name="genero" id="genero">
+                <option value="" <%= !valores.genero_usu ? 'selected' : '' %>>Selecione</option>
+                <option value="feminino" <%= valores.genero_usu === 'feminino' ? 'selected' : '' %>>Feminino</option>
+                <option value="masculino" <%= valores.genero_usu === 'masculino' ? 'selected' : '' %>>Masculino</option>
+                <option value="prefiro não dizer" <%= valores.genero_usu === 'prefiro não dizer' ? 'selected' : '' %>>Prefiro não dizer</option>
+                <option value="outro" <%= valores.genero_usu === 'outro' ? 'selected' : '' %>>Outro</option>
+              </select>
+               <p class="msg-erro"><%= avisoErro.genero %></p>
+
+            </section>
+            <section class="sec-conta-form">
+            
+                        <label for="nascimento">Data de nascimento:</label>
+                      <input type="date" name="data_nasc" id="nascimento" value="<%= valores.data_nasc_usu ? valores.data_nasc_usu.toISOString().split('T')[0] : '' %>">
+                       <p class="msg-erro"><%= avisoErro.data_nasc %></p>
+            </section>
+          </section>
+
+          <button type="submit" class="btn-salvar-conta">Salvar</button>
+</form>
+
+
+
+
+   <h1 class="g-conta content-conta titulo-content">Configurações Avançadas</h1>
+
+  <!-- Alterar tipo de usuário -->
+
+  <% if (autenticado.tipo === "comum") { %>
+  <section  class="content-conta">
+    <h3 class="h3-conta">Alterar Tipo de Usuário</h3>
+    <form method="POST" action=/alterar-tipo-usuario id="form-tipo-usuario">
+      <label for="tipoUsuario">Selecione o novo tipo de usuário:</label>
+      <select id="tipoUsuario" name="tipo_usuario" required>
+        <option value="" disabled selected>Escolha uma opção</option>
+        <option value="comum" <%= tipo_usuario === 'comum' ? 'selected' : '' %>>Conta Comum</option>
+        <option value="profissional" <%= tipo_usuario === 'profissional' ? 'selected' : '' %>>Profissional</option>
+      </select>
+
+      <p class="confirmacao">* Ao alterar para Profissional, você poderá publicar seus trabalhos e acessar recursos avançados. <strong>Esta alteração é irreversível.</strong></p>
+
+      <button type="submit" class="btn-salvar-conta">Alterar Tipo</button>
+    </form>
+  </section>
+
+  <% } %>
+
+
+<script>
+
+
+// Não deixa enviar o formulário de alterar tipo usuário se a pessoa não tiver selecionado "profissional"
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("form-tipo-usuario");
+    if (!form) return;
+
+    const tipoSelect = form.querySelector("#tipoUsuario");
+    const submitButton = form.querySelector("button[type='submit']");
+    const tipoAtual = "<%= tipo_usuario %>";
+
+    // Inicialmente desativa o botão
+    submitButton.disabled = true;
+
+    tipoSelect.addEventListener("change", function () {
+      if (this.value === "" || this.value === tipoAtual) {
+        submitButton.disabled = true;
+      } else {
+        submitButton.disabled = false;
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+
+  <!-- Desativar conta -->
+  <section  class="content-conta">
+    <h3 class="h3-conta">Desativar Conta</h3>
+    <p class="confirmacao">* <strong>Essa ação é irreversível! </strong>Você não poderá recuperar sua conta após desativá-la.</p>
+
+      <button class="btn-salvar-conta danger" onclick="AbrirModalDesativarConta()">Desativar Conta</button>
+    
+  </section>
+
+  
+<!-- Modal de confirmação -->
+<section id="modal-desativar" class="modal-overlay-des" style="display: none;">
+  <section class="modal-des">
+    <h4>Tem certeza que deseja desativar sua conta?</h4>
+    <p>Seu perfil não aparecerá mais para os outros usuários. Você não poderá acessar sua conta. </p>
+    <p><strong>Essa ação não poderá ser desfeita.</strong></p>
+    <form action=/desativar-conta method="POST">
+
+        <p>Para confirmar, digite exatamente: <strong>QueroDesativarMinhaConta</strong></p>
+      <input type="text" id="confirmacaoTexto" name="confirmacaoTexto" placeholder="Digite aqui..." autocomplete="off" required style=" padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+
+       <button type="button" onclick="FecharModalDesativarConta()" class="btn-desistir">Cancelar</button>
+      <button type="submit" class="btn-salvar-conta danger" id="btnConfirmar" disabled>Sim, desativar</button>
+    
+    
+    </form>
+  </section>
+</section>
+
+
+
+<script>
+
+
+// Para modal de confirmação para a desativação da conta 
+
+function AbrirModalDesativarConta() {
+  document.getElementById("modal-desativar").style.display = "flex";
+}
+
+function FecharModalDesativarConta() {
+  const modal = document.getElementById("modal-desativar");
+  modal.style.display = "none";
+
+  const input = document.getElementById("confirmacaoTexto");
+  const botao = document.getElementById("btnConfirmar");
+
+
+  input.value = "";
+  input.style.borderColor = "#ccc"; 
+  botao.disabled = true;
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("confirmacaoTexto");
+  const botao = document.getElementById("btnConfirmar");
+
+  input.addEventListener("input", () => {
+    
+    if (input.value === "QueroDesativarMinhaConta") {
+      botao.disabled = false;
+      input.style.borderColor = "#28a745";
+    } else {
+      botao.disabled = true;
+      input.style.borderColor = "#dc3545"; 
+    }
+  });
+});
+
+</script>
+
+  
+
+        
+      </section>
+
+      <section id="senha" class="aba-conteudo hidden">
+        <form method="POST" action="/atualizarsenha"  class="form-container content-conta">
+          <h1 class="titulo-content" >Senhas e segurança</h1>
+
+                          <h2 class="h2-subtitulos">Alterar Senha</h2>
+                          <p>
+                           Preencha os campos abaixo caso deseje alterar sua senha atual.
+                          </p><br>
+                        
+                          <section id="passwordFields">
+
+                          <label for="senhaAtual">Senha atual:</label> <br>
+                          <input type="password" id="senhaAtual" name="senhaAtual" value="<%= valores.senhaAtual %>" required> <br>
+                          <p class="msg-erro"><%= avisoErro.senhaAtual %></p>
+  
+                          <label for="novaSenha">Nova senha:</label> <br>
+                          <input type="password" id="novaSenha" name="novaSenha" value="<%= valores.novaSenha %>" required> <br>
+                          <p class="msg-erro"><%= avisoErro.novaSenha %></p>
+  
+                          <label for="confirmarNovaSenha">Confirmar nova senha:</label> <br>
+                          <input type="password" id="confirmarNovaSenha" name="confirmarNovaSenha" value="<%= valores.confirmarNovaSenha %>" required > <br>
+                          <p class="msg-erro"><%= avisoErro.confirmarNovaSenha %></p>
+                          </section>
+
+                          <button type="submit" id="btnChangePassword" class="btn-salvar-conta">Alterar senha</button>
+
+        </form>
+      </section>
+
+       
+
+      <section id="tema" class="aba-conteudo hidden">
+        <h2>Escolher Temas</h2>
+        <!-- opções de tema -->
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   </section>
+  
+</section>
+ 
+    <!-- Modal de Recorte -->
+    <aside id="cropperModal" class="modal">
+        <section class="modal-content">
+            <p class="close">&times;</p>
+            <h2>Recortar Imagem</h2>
+            <section class="image-container">
+                <img id="cropperImage" src="">
+            </section>
+            <section class="botoes-crop">
+             
+                <button id="cancelCrop" class="btn-cancelar-crop">Cancelar</button>
+                <button id="confirmCrop" class="btn-salvar-crop">Confirmar</button>
+            </section>
+        </section>
+    </aside>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+ 
+<script>
+  
+
+  // Modal de cropper
+
+    let cropper;
+const cropperModal = document.getElementById('cropperModal');
+const cropperImage = document.getElementById('cropperImage');
+const closeModal = document.querySelector('.close');
+const confirmCrop = document.getElementById('confirmCrop');
+const cancelCrop = document.getElementById('cancelCrop');
+ 
+const bannerInput = document.getElementById('bannerInput');
+const profileInput = document.getElementById('profileInput');
+ 
+const bannerImage = document.getElementById('bannerImage');
+const profileImage = document.getElementById('profileImage');
+ 
+const editBanner = document.getElementById('editBanner');
+const editProfile = document.getElementById('editProfile');
+ 
+let currentType = '';
+ 
+ 
+editBanner.addEventListener('click', () => {
+    currentType = 'banner';
+    bannerInput.click();
+});
+ 
+ 
+editProfile.addEventListener('click', () => {
+    currentType = 'profile';
+    profileInput.click();
+});
+ 
+ 
+[bannerInput, profileInput].forEach(input => {
+    input.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                cropperImage.src = reader.result;
+                openModal();
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
+ 
+ 
+function openModal() {
+    cropperModal.style.display = 'flex';
+ 
+    if (cropper) cropper.destroy();
+ 
+    cropper = new Cropper(cropperImage, {
+        aspectRatio: currentType === 'banner' ? 16 / 2 : 1,
+        viewMode: 1,
+        background: false,
+        movable: true,
+        zoomable: true,
+        scalable: false,
+        rotatable: false,
+        dragMode: 'move',
+        autoCropArea: 1
+    });
+}
+ 
+ 
+function closeCropper() {
+    cropper.destroy();
+    cropper = null;
+    cropperModal.style.display = 'none';
+}
+ 
+ 
+confirmCrop.addEventListener('click', () => {
+    const canvas = cropper.getCroppedCanvas({
+        width: currentType === 'banner' ? 1600 : 500,
+        height: currentType === 'banner' ? 500 : 500,
+        imageSmoothingQuality: 'high'
+    });
+ 
+    canvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+ 
+        if (currentType === 'banner') {
+            bannerImage.src = url;
+            const file = new File([blob], 'banner.png', { type: 'image/png' });
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            bannerInput.files = dataTransfer.files;
+        } else if (currentType === 'profile') {
+            profileImage.src = url;
+            const file = new File([blob], 'profile.png', { type: 'image/png' });
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            profileInput.files = dataTransfer.files;
+        }
+        closeCropper();
+    }, 'image/png');
+});
+ 
+ 
+cancelCrop.addEventListener('click', closeCropper);
+closeModal.addEventListener('click', closeCropper);
+ 
+ 
+window.addEventListener('click', (e) => {
+    if (e.target === cropperModal) {
+        closeCropper();
+    }
+});
+</script>
+ 
+<script>
+
+  // Exibição da especialização no select 
+ 
+  document.addEventListener("DOMContentLoaded", function () {
+    const select = document.getElementById("especializacao");
+    const outraEspecializacao = document.getElementById("outra-especializacao");
+    const customInput = document.getElementById("customSpecialization");
+
+    function handleSpecializationChange(value) {
+      if (value === "Outro") {
+        outraEspecializacao.style.display = "block";
+      } else {
+        outraEspecializacao.style.display = "none";
+        customInput.value = "";
+      }
+    }
+
+
+    select.addEventListener("change", function () {
+      handleSpecializationChange(select.value);
+    });
+
+    handleSpecializationChange(select.value);
+  });
+</script>
+
+
+
+<script>
+  const menuItens = document.querySelectorAll('#ul-config li');
+  const conteudos = document.querySelectorAll('.aba-conteudo');
+
+  menuItens.forEach(item => {
+    item.addEventListener('click', () => {
+      // Remove 'active' de todos
+      conteudos.forEach(conteudo => conteudo.classList.remove('active'));
+      menuItens.forEach(i => i.classList.remove('ativo'));
+
+      // Adiciona 'active' ao conteúdo certo
+      const targetId = item.getAttribute('data-target');
+      document.getElementById(targetId).classList.add('active');
+      item.classList.add('ativo');
+    });
+  });
+</script>
+
+
+<% if (typeof mostrarModalLogout !== "undefined" && mostrarModalLogout) { %>
+  <section id="modalLogout" class="modal-logout">
+    <section class="modal-content">
+
+      <p><strong>Tipo de conta alterado com sucesso!</strong><br>Sua sessão será encerrada e você será redirecionado à página inicial. Faça login novamente para continuar.</p>
+
+    
+    </section>
+  </section>
+
+  <script>
+
+      // Logout depois que muda tipo de conta
+
+
+
+    setTimeout(() => {
+      window.location.href = "/logout";
+    }, 3000); // 3 segundos
+
+    window.addEventListener('beforeunload', bloquearSaida);
+
+    function bloquearSaida(e) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+  </script>
+
+  
+<% } %>
+
+
+
+
+ 
+ 
+ 
+ 
+</body>
+</html>
