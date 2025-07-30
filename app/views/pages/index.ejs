@@ -245,12 +245,12 @@
     <p class="descricao-item-explorar"><%= pub.DESCRICAO_PUBLICACAO %></p>
 
   </section>
-<% }) } %>
 
-           
-                        
-                        </section>
 
+
+
+
+  
 
 
                                                 <!-- Modal de denúncia -->
@@ -279,7 +279,7 @@
 
                     <section class="link-container">
                     <section id="shareLink">
-                      https://tracoperfeito.onrender.com/publicacao
+                      tracoperfeito.onrender.com/publicacao/ <%= pub.ID_PUBLICACAO %>
                     </section>
 
                     <button class="copy-button" onclick="copyToClipboard()">
@@ -298,6 +298,12 @@
                     <button class="close-modal-btn" onclick="closeModal()">×</button>
                 </section>
                 </section>
+
+<% }) } %>
+
+           
+                        
+                        </section>
 
 
            

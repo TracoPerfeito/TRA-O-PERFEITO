@@ -6,7 +6,7 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 const https = require('https');
 const fs = require('fs');
 
-// Removi o require do fs, pois não vamos usar fs.readFile mais
+
 
 const publicacoesController = {
 

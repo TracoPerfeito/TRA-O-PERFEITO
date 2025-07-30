@@ -768,3 +768,17 @@ margin-bottom: 10px;
 .dentromodais{
   background:white; padding:20px; border-radius:8px; max-width:400px; text-align:center;
 }
+
+
+
+.mensagem-erro {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
+
+input.erro,
+textarea.erro,
+select.erro {
+  border: 1px solid red !important;
+}
