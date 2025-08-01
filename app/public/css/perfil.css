@@ -294,6 +294,93 @@ input[type='file'] {
 
 
 
+.like-button.liked{
+    color: #508BBF;
+}
+ 
+.carrossel-imagens-explorar {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18) !important;
+}
+
+.container-imgs {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.container-imgs img{
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18) !important;
+}
+
+.publicacao-img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18) !important;
+}
+
+.seta-carrossel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 24px;
+  border-radius: 50%;
+ display: none ; /* por padrão, escondidas */
+}
+
+.seta-carrossel.inativa {
+  visibility: hidden; /* ainda ocupa espaço pra não quebrar layout */
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.seta-carrossel.esquerda { left: 10px; }
+.seta-carrossel.direita { right: 10px; }
+
+.carrossel-imagens-explorar:hover .seta-carrossel {
+  display: block;
+}
+
+.indicadores {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+  display: none;
+}
+
+.indicador {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+}
+
+.indicador.ativo {
+  background: white;
+}
+
+.carrossel-imagens-explorar:hover .indicadores {
+  display: flex;
+}
+
+
 .like-button{
   background-color: transparent;
   border: 0px;
