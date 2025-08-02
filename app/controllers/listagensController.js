@@ -26,6 +26,7 @@ const listagensController = {
   const id = req.params.id;
   try {
     const usuario = await listagensModel.findId(id);
+    const publicacoes = await listagensModel.listarPublicacoesPorUsuario(id);
 
     if (!usuario) {
       return res.status(404).send('Usuário não encontrado');
@@ -33,10 +34,13 @@ const listagensController = {
 
     const especializacao = await listagensModel.findEspecializacaoByUserId(id);
 
-    console.log("Ddados do perfil sendo exibido:", usuario, especializacao);
+    
+
+    console.log("Dados do perfil sendo exibido:", usuario, especializacao, publicacoes);
     res.render('pages/perfil', {
       usuario,
-      especializacao
+      especializacao,
+      publicacoes
     });
   } catch (erro) {
     console.log(erro);
@@ -92,6 +96,10 @@ const listagensController = {
     res.status(500).send('Erro ao carregar publicação');
   }
 },
+
+
+ 
+
 
 
 

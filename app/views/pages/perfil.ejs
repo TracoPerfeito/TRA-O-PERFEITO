@@ -126,63 +126,58 @@
 
           </section>
 
-          <section class="publi">
-            <section class="publi-perfil">
-              <img src="/imagens/arte1.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
-              <section class="nome-btn-like">
-                <span>Nome da publicação</span>
-                <button class="like-button">
-                    <i class="far fa-heart"></i>
-                </button>
-              </section>
-            </section>
-            <section class="publi-perfil">
-              <img src="/imagens/arte2.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
-              <section class="nome-btn-like">
-                <span>Nome da publicação</span>
-                <button class="like-button">
-                    <i class="far fa-heart"></i>
-                </button>
-              </section>
-            </section>
-            <section class="publi-perfil">
-              <img src="/imagens/aak.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
-              <section class="nome-btn-like">
-                <span>Nome da publicação</span>
-                <button class="like-button">
-                    <i class="far fa-heart"></i>
-                </button>
-              </section>
-            </section>
-            <section class="publi-perfil">
-              <img src="/imagens/aar.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
-              <section class="nome-btn-like">
-                <span>Nome da publicação</span>
-                <button class="like-button">
-                    <i class="far fa-heart"></i>
-                </button>
-              </section>
-            </section>
-            <section class="publi-perfil">
-              <img src="/imagens/aaj.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
-              <section class="nome-btn-like">
-                <span>Nome da publicação</span>
-                <button class="like-button">
-                    <i class="far fa-heart"></i>
-                </button>
-              </section>
-            </section>
-            <section class="publi-perfil">
-              <img src="/imagens/aaq.jpg" alt="Publicações" class="publicacao-perfil" onclick="location.href='/publicacao'" />
-              <section class="nome-btn-like">
-                <span>Nome da publicação</span>
-                <button class="like-button">
-                    <i class="far fa-heart"></i>
-                </button>
-              </section>
-            </section>
-            
-          </section>
+       
+<section class="publi">
+  <% if (publicacoes.length > 0) { %>
+    <% publicacoes.forEach(pub => { %>
+      <section class="publi-perfil">
+
+        <!-- Carrossel de imagens -->
+        <section class="carrossel-imagens-explorar" onmouseenter="mostrarControles(this)" onmouseleave="esconderControles(this)">
+          <div class="container-imgs" ontouchstart="startSwipe(event, this)" ontouchmove="swipeMove(event)" ontouchend="endSwipe(event, this)">
+            <% pub.imagens.forEach((img, idx) => { %>
+              <img 
+                src="data:image/jpeg;base64,<%= img.toString('base64') %>" 
+                class="publicacao-img<%= idx === 0 ? ' ativa' : '' %>" 
+                alt="Imagem da publicação"/>
+            <% }) %>
+          </div>
+
+          <% if (pub.imagens.length > 1) { %>
+            <button class="seta-carrossel esquerda" onclick="event.preventDefault();prevImg(this)">
+              <ion-icon name="chevron-back-outline"></ion-icon>
+            </button>
+            <button class="seta-carrossel direita" onclick="event.preventDefault();nextImg(this)">
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
+
+            <div class="indicadores">
+              <% pub.imagens.forEach((_, idx) => { %>
+                <span class="indicador<%= idx === 0 ? ' ativo' : '' %>"></span>
+              <% }) %>
+            </div>
+          <% } %>
+        </section>
+
+        <!-- Nome e botão de like -->
+        <section class="nome-btn-like">
+          <span><%= pub.NOME_PUBLICACAO %></span>
+          <button class="like-button">
+            <i class="far fa-heart"></i>
+          </button>
+        </section>
+
+      </section>
+    <% }) %>
+  <% } else { %>
+    <section class="sem-publicacoes">
+      <p>Este usuário ainda não publicou nada.</p>
+    </section>
+  <% } %>
+</section>
+
+
+        
         </section>
       </section>
     </section>
@@ -404,6 +399,30 @@
     <script src="/js/voltar.js"></script>
     <script src="/js/like.js"></script>
     <script src="/js/carrossel-avaliacoes.js"></script>
+     <script src="/js/publicacoesindex.js"></script>
+    <script>
+
+  
+
+// autoplay
+document.addEventListener('DOMContentLoaded', () => {
+  const carrosseis = document.querySelectorAll('.carrossel-imagens-explorar');
+
+  carrosseis.forEach(carrossel => {
+    let idx = 0;
+    const total = carrossel.querySelectorAll('.publicacao-img').length;
+
+    if (total > 1 && window.innerWidth > 500) {
+      setInterval(() => {
+        idx = (parseInt(carrossel.dataset.idx || '0') + 1) % total;
+        updateCarrossel(carrossel, idx);
+      }, 10000);
+    }
+
+    updateCarrossel(carrossel, 0);
+  });
+});
+</script>
     
  
     
