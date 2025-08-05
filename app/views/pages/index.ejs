@@ -182,9 +182,9 @@
  <% publicacoes.forEach(pub => { %>
   <section class="item-explorar item-1">
 
-    <!-- Link to publication page (you can pass the ID for dynamic routing) -->
+   
     <a href="/publicacao/<%= pub.ID_PUBLICACAO %>">
-      <!-- Show image; assuming you store image file path or base64 -->
+   
     <section class="carrossel-imagens-explorar" onmouseenter="mostrarControles(this)" onmouseleave="esconderControles(this)">
   <div class="container-imgs" ontouchstart="startSwipe(event, this)" ontouchmove="swipeMove(event)" ontouchend="endSwipe(event, this)">
     <% pub.imagens.forEach((img, idx) => { %>

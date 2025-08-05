@@ -1,7 +1,7 @@
 *{
 	padding: 0;
 	margin: 0;
-	box-sizing: border-box;
+	box-sizing: border-box;  
 }
 
 body{
@@ -20,30 +20,108 @@ body{
 .container{
     width: 100vw;
     height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap :7rem;
+    display: flex;
+	flex-direction: row;
+	align-items: center;
+gap: 10%;
     padding: 0 2rem;
     /* margin-left: 10%; */
 }
-
-
-.img{
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	
+ .img-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto;
 }
+
+
+.container {
+  position: relative;
+}
+
+.img {
+  position: relative;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: float 7s ease-in-out infinite;
+  z-index: 0; /* Fica atrás da bonequinha */
+}
+
+/* Círculo 1 */
+.circle1 {
+  width: 200px;
+  height: 200px;
+  background-color: #ADBCE2;
+  top: 70px;
+  left: -40px;
+  animation-delay: 0s;
+}
+
+/* Círculo 2 */
+.circle2 {
+  width: 180px;
+  height: 180px;
+  background-color: #95C7B5;
+  top: -40px;
+  left: 88px;
+  animation-delay: 1.8s;
+}
+
+/* Círculo 3 */
+.circle3 {
+  width: 180px;
+  height: 180px;
+  background-color: #C2E5F0;
+  bottom: 150px;
+  left: 100px;
+  animation-delay: 1.2s;
+}
+
+/* Círculo 4 */
+.circle4 {
+  width: 80px;
+  height: 80px;
+  background-color: #92C4E2;
+  top: -45px;
+  left: -20px;
+  animation-delay: 1s;
+}
+
+/* Movimento de flutuação */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-24px); }
+  100% { transform: translateY(0); }
+}
+
+.img img {
+  position: relative;
+  display: block;
+  z-index: 1; /* Fica na frente dos círculos */
+  max-width: 300px; /* Ajuste conforme o necessário */
+  margin: 0 auto;
+}
+
 
 .login-content{
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	text-align: center;
+	width:40%;
 }
 
 .img img{
-	width: 500px;
+	height: 500px;
+	margin: 0 auto;
 }
     
 form{
@@ -106,7 +184,7 @@ form{
 	bottom: -2px;
 	width: 0%;
 	height: 2px;
-	background-color: #38d39f;
+	background-color: #8DD4BA;
 	transition: .4s;
 }
 
@@ -162,12 +240,12 @@ form{
 }
 
 .senha-esquecida:hover{
-	color: #01c38d;
+	color:#8DD4BA;
 }
 
 a {
 	text-decoration: none;
-	color: #01c38d;
+	color: #7AC1A7;
 }
 
 a:hover {
@@ -181,7 +259,7 @@ a:hover {
 	border-radius: 25px;
 	outline: none;
 	border: none;
-	background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+	background-image: linear-gradient(to right, #8DD4BA, #7AC1A7, #8DD4BA);
 	background-size: 200%;
 	font-size: 1.2rem;
 	color: #fff;
@@ -219,46 +297,37 @@ margin-bottom: 10px;}
 
 .cadas {
 	color: #555;
+	margin: 10px 0 0 0;
 	
 }
 
-@media screen and (max-width: 1050px){
-	.container{
-		grid-gap: 4rem;
-        margin-right: 30%;
-	}
-}
 
-@media screen and (max-width: 1000px){
-	form{
-		width: 290px;
-	}
 
-	.login-content h2{
-        font-size: 2.4rem;
-        margin: 8px 0;
-	}
-
-	
-}
 
 @media screen and (max-width: 900px){
-	.container{
-		grid-template-columns: 1fr;
-        align-self: center;
-	}
+	  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    gap: 0;
+  }
 
-	.img{
-		display: none;
-	}
+  .img {
+    display: none;
+  }
 
-	.wave{
-		display: none;
-	}
+  form {
+    width: 100%;
+    max-width: 400px; /* limite para não ficar muito esticado */
+    margin: 0 auto;
+  }
 
-	.login-content{
-		justify-content: center;
-	}
+  .login-content {
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 

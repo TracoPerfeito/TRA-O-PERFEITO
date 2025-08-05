@@ -204,6 +204,61 @@ listarPublicacoesPorUsuario: async (idUsuario) => {
   }
 },
 
+listarPublicacoesPorUsuario: async (idUsuario) => {
+  try {
+    // 1) Buscar publicações do usuário específico
+    const [publicacoes] = await pool.query(`
+      SELECT 
+        p.ID_PUBLICACAO,
+        p.ID_USUARIO,
+        p.NOME_PUBLICACAO,
+        p.DESCRICAO_PUBLICACAO,
+        p.CATEGORIA,
+        u.NOME_USUARIO,
+        u.FOTO_PERFIL_PASTA_USUARIO,
+        GROUP_CONCAT(DISTINCT t.NOME_TAG) AS TAGS
+      FROM PUBLICACOES_PROFISSIONAL p
+      LEFT JOIN TAGS_PUBLICACOES tp ON p.ID_PUBLICACAO = tp.ID_PUBLICACAO
+      LEFT JOIN TAGS t ON tp.ID_TAG = t.ID_TAG
+      LEFT JOIN USUARIOS u ON p.ID_USUARIO = u.ID_USUARIO
+      WHERE p.ID_USUARIO = ?
+      GROUP BY p.ID_PUBLICACAO
+      ORDER BY p.ID_PUBLICACAO DESC
+    `, [idUsuario]);
+
+    // 2) Buscar todas as imagens das publicações listadas
+    const ids = publicacoes.map(pub => pub.ID_PUBLICACAO);
+    if (ids.length === 0) return [];
+
+    const [imgs] = await pool.query(`
+      SELECT ID_PUBLICACAO, IMG_PUBLICACAO
+      FROM CONTEUDOS_PUBLICACAO_PROFISSIONAL
+      WHERE ID_PUBLICACAO IN (?)
+    `, [ids]);
+
+    // 3) Mapear imagens para cada publicação
+    const imagensPorPublicacao = {};
+    imgs.forEach(img => {
+      if (!imagensPorPublicacao[img.ID_PUBLICACAO]) imagensPorPublicacao[img.ID_PUBLICACAO] = [];
+      imagensPorPublicacao[img.ID_PUBLICACAO].push(img.IMG_PUBLICACAO);
+    });
+
+    // 4) Adicionar o array de imagens em cada publicação
+    publicacoes.forEach(pub => {
+      pub.imagens = imagensPorPublicacao[pub.ID_PUBLICACAO] || [];
+    });
+
+    return publicacoes;
+
+  } catch (error) {
+    console.error("Erro ao listar publicações do usuário:", error);
+    return [];
+  }
+},
+
+
+
+
 
 
 };
