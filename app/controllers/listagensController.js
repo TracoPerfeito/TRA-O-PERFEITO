@@ -22,7 +22,7 @@ const listagensController = {
 },
 
 
-  exibirPerfil: async (req, res) => {
+exibirPerfil: async (req, res) => {
   const id = req.params.id;
   try {
     const usuario = await listagensModel.findId(id);
@@ -47,6 +47,7 @@ const listagensController = {
     res.status(500).send('Erro ao carregar perfil');
   }
 },
+
 
 
     listarPublicacoes: async (req, res,  dadosNotificacao) => {
@@ -99,7 +100,6 @@ const listagensController = {
 
 
  
-
 
 
 
