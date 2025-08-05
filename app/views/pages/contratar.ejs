@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Traço Perfeito</title>
+<title>Contratar profissionais | Traço Perfeito</title>
 <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -138,19 +138,25 @@
   <% profissionais.forEach(profissional => { %>
     <section class="card" onclick="location.href='/perfil/<%= profissional.ID_USUARIO %>'">
         <section class="card-header">
-           <img src="<%= profissional.IMG_BANNER_PASTA_USUARIO || '/imagens/bannerperfil.jpg' %>"  alt="Background Image"  class="background-image">
+           <img src="<%= profissional.IMG_BANNER_PASTA_USUARIO || '/imagens/bg.jpg' %>"  alt="Background Image"  class="background-image" onerror="this.onerror=null; this.src='/imagens/bg.png'">
 
         </section>
         <section class="card-content">
             <section class="profile">
-                <img src="<%= profissional.FOTO_PERFIL_PASTA_USUARIO || '/imagens/fotoperfil2.jpeg' %>" alt="Profile Picture" class="profile-image">
+                <img src="<%= profissional.FOTO_PERFIL_PASTA_USUARIO || '/imagens/img.png' %>" alt="Profile Picture" class="profile-image" onerror="this.onerror=null; this.src='/imagens/img.png'">
 
-                <section class="informacoes-card">
-                    <h2 class="name"><%= profissional.NOME_USUARIO %></h2>
-                    <p class="role"><%= profissional.ESPECIALIZACAO_DESIGNER || 'Profissional' %></p>
-                </section>
-                <ion-icon name="star-outline" class="far estrela-perfil" id="f-star"></ion-icon>
-                <span class="rating">5</span>
+                <section class="info-prof">
+  <section class="info-header">
+    <section class="informacoes-card">
+        <h2 class="name"><%= profissional.NOME_USUARIO %></h2>
+        <p class="role"><%= profissional.ESPECIALIZACAO_DESIGNER || 'Profissional' %></p>
+    </section>
+    <section class="nota-prof">
+      <ion-icon name="star-outline" class="estrela-perfil"></ion-icon>
+      <span class="rating">5</span>
+    </section>
+  </section>
+</section>
             </section>
             <section class="description">
                 <p><%= profissional.DESCRICAO_PERFIL_USUARIO || 'Profissional criativo e dedicado.' %></p>
@@ -181,6 +187,27 @@
  </section>
  
  <%- include('../partials/rodape'); %>
+
+<script>
+const nomes = document.querySelectorAll('.name');
+const ignorar = ['de', 'da', 'do', 'das', 'dos'];
+
+nomes.forEach(nome => {
+  const partesOriginais = nome.innerText.trim().split(' ');
+  
+  // Filtra as palavras que não estão na lista de ligação
+  const partesSemLigacao = partesOriginais.filter(p => !ignorar.includes(p.toLowerCase()));
+
+  if (partesSemLigacao.length > 3) {
+    // Pega o primeiro e o último nome úteis (ignorando 'de', 'da', etc.)
+    nome.innerText = `${partesSemLigacao[0]} ${partesSemLigacao[partesSemLigacao.length - 1]}`;
+  } else {
+    // Se tiver 3 ou menos nomes úteis, mantém o nome original
+    nome.innerText = partesOriginais.join(' ');
+  }
+});
+</script>
+
 
  <script src="js/filtro.js"></script>
  <script src="js/like.js"></script>

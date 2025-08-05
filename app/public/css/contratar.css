@@ -57,6 +57,7 @@
 
 .informacoes-card {
     margin-left: 15px;
+    width: 100%;
 }
 
 .name-row {
@@ -80,7 +81,7 @@
 .estrela-perfil {
     color: #f5b301;
     font-size: 18px;
-    margin-left: 45px;
+    margin-left: 5px;
     padding-bottom: 20px;
 }
 
@@ -105,7 +106,34 @@
   text-overflow: ellipsis;
 }
 
+.nota-prof{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
 
+.info-prof {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.estrela-perfil {
+    color: #f5b301;
+    font-size: 18px;
+}
+
+.rating {
+    font-weight: bold;
+    margin-left: 5px;
+}
 
 .container-perfis {
     display: grid;
