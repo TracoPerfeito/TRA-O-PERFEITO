@@ -72,6 +72,8 @@
 
     <!----------------------------------BANNER--------------------------------------------------------->
   <% if (!tipo_usuario) { %>
+
+    
  
    <section class="banner">
       
@@ -235,9 +237,13 @@
   alt="Foto do usuário"
   onerror="this.onerror=null; this.src='/imagens/img.png'">
 
-        <p class="nome-dono-post-ex">
-          <a href="/perfil/<%= pub.ID_USUARIO %>"><%= pub.NOME_USUARIO %></a>
-        </p>
+       <p class="nome-dono-post-ex">
+  <a href="<%= (autenticado && id_usuario === pub.ID_USUARIO) ? '/meu-perfil-artista' : '/perfil/' + pub.ID_USUARIO %>">
+
+    <%= pub.NOME_USUARIO %>
+  </a>
+</p>
+
       </section>
 
       <button class="like-button">
@@ -364,9 +370,9 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="/js/publicacoesindex.js"></script>
 
 
-    <script src="js/like.js"></script>
-    <script src="js/mobile-navbar.js"></script>
-    <script src="js/denuncia-compartilhamento.js"></script>
+<script src="js/like.js"></script>
+<script src="js/mobile-navbar.js"></script>
+<script src="js/denuncia-compartilhamento.js"></script>
 
 </body>
 </html>

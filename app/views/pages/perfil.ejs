@@ -61,11 +61,12 @@
           <p><%= usuario.EMAIL_USUARIO %></p>
         </section>
         
-          <ul class="quan-p-t-c">
-            <li><span>50</span>Projetos</li>
-            <li><span>18</span>Trabalhos</li>
-            <li><span>6</span>Portfólios</li>
-          </ul>
+            <ul class="quan-p-t-c">
+              <li title="Quantidade de publicações feitas por <%= usuario.NOME_USUARIO %>"><span> <%=publicacoes.length %></span>Publicações</li>
+              <li title="Quantidade de portfólios criados por <%= usuario.NOME_USUARIO %>"><span>0</span>Portfólios</li>
+              <li title="Quantidade de vezes que <%= usuario.NOME_USUARIO %> fechou negócios pela plataforma."><span>0</span>Contratações</li>
+              
+            </ul>
 
          
             
@@ -130,8 +131,10 @@
 <section class="publi">
   <% if (publicacoes.length > 0) { %>
     <% publicacoes.forEach(pub => { %>
+      
       <section class="publi-perfil">
 
+         <a href="/publicacao/<%= pub.ID_PUBLICACAO %>">
         <!-- Carrossel de imagens -->
         <section class="carrossel-imagens-explorar" onmouseenter="mostrarControles(this)" onmouseleave="esconderControles(this)">
           <div class="container-imgs" ontouchstart="startSwipe(event, this)" ontouchmove="swipeMove(event)" ontouchend="endSwipe(event, this)">
@@ -157,7 +160,9 @@
               <% }) %>
             </div>
           <% } %>
+          </a>
         </section>
+           
 
         <!-- Nome e botão de like -->
         <section class="nome-btn-like">
@@ -168,6 +173,8 @@
         </section>
 
       </section>
+
+ 
     <% }) %>
   <% } else { %>
     <section class="sem-publicacoes">

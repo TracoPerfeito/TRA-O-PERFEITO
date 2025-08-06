@@ -169,9 +169,10 @@ errosArray.forEach((itemErro) => {
 
          <% if (tipo_usuario === 'profissional') { %>
             <ul class="quan-p-t-c">
-              <li><span>6</span>Projetos</li>
-              <li><span>0</span>Trabalhos</li>
-              <li><span>0</span>Portfólios</li>
+              <li title="Quantidade de publicações feitas por você."><span> <%=publicacoes.length %></span>Publicações</li>
+              <li title="Quantidade de portfólios criados por você."><span>0</span>Portfólios</li>
+              <li title="Quantidade de vezes que você foi contratado através plataforma."><span>0</span>Contratações</li>
+              
             </ul>
           <% } %>
 
@@ -240,18 +241,72 @@ errosArray.forEach((itemErro) => {
           </section>
 
           
-
-          <section class="publi">
-            <img src="imagens/arte1.jpg" alt="Publicações" class="publicacao-perfil"/>
-            <img src="imagens/arte2.jpg" alt="Publicações" class="publicacao-perfil"/>
-            <img src="imagens/arte3.jpg" alt="Publicações" class="publicacao-perfil"/>
-            <img src="imagens/arte4.jpg" alt="Publicações" class="publicacao-perfil"/>
-            <img src="imagens/arte5.jpg" alt="Publicações" class="publicacao-perfil"/>
-            <img src="imagens/arte6.jpg" alt="Publicações" class="publicacao-perfil"/>
+<section class="publi">
+  
+            <% if (publicacoes.length > 0) { %>
+      <% publicacoes.forEach(pub => { %>
+      
+        <section class="publi-perfil">
+  
+             <a href="/publicacao/<%= pub.ID_PUBLICACAO %>">
+          <!-- Carrossel de imagens -->
+          <section class="carrossel-imagens-explorar" onmouseenter="mostrarControles(this)" onmouseleave="esconderControles(this)">
+            <div class="container-imgs" ontouchstart="startSwipe(event, this)" ontouchmove="swipeMove(event)" ontouchend="endSwipe(event, this)">
+              <% pub.imagens.forEach((img, idx) => { %>
+                <img
+                  src="data:image/jpeg;base64,<%= img.toString('base64') %>"
+                  class="publicacao-img<%= idx === 0 ? ' ativa' : '' %>"
+                  alt="Imagem da publicação"/>
+              <% }) %>
+            </div>
+  
+            <% if (pub.imagens.length > 1) { %>
+              <button class="seta-carrossel esquerda" onclick="event.preventDefault();prevImg(this)">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </button>
+              <button class="seta-carrossel direita" onclick="event.preventDefault();nextImg(this)">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </button>
+  
+              <div class="indicadores">
+                <% pub.imagens.forEach((_, idx) => { %>
+                  <span class="indicador<%= idx === 0 ? ' ativo' : '' %>"></span>
+                <% }) %>
+              </div>
+            <% } %>
+            </a>
           </section>
+          
+  
+          <!-- Nome e botão de like -->
+          <section class="nome-btn-like">
+            <span><%= pub.NOME_PUBLICACAO %></span>
+
+              
+            <button class="like-button">
+              <i class="far fa-heart"></i>
+            </button>
+          </section>
+  
+        </section>
+  
+    
+      <% }) %>
+    <% } else { %>
+      <section class="sem-publicacoes">
+        <p>Você ainda nã publicou nada.</p>
+      </section>
+    <% } %>
+  </section>
+</section>
+
+
+        
         </section>
       </section>
-    </section>
+    
+
+        
 
     
 <% if (tipo_usuario === 'profissional') { %>
@@ -305,7 +360,34 @@ errosArray.forEach((itemErro) => {
 
 
 <%- include('../partials/rodape'); %>
-     
+
+
+
+ <script src="/js/publicacoesindex.js"></script>
+    <script>
+
+  
+
+// autoplay
+document.addEventListener('DOMContentLoaded', () => {
+  const carrosseis = document.querySelectorAll('.carrossel-imagens-explorar');
+
+  carrosseis.forEach(carrossel => {
+    let idx = 0;
+    const total = carrossel.querySelectorAll('.publicacao-img').length;
+
+    if (total > 1 && window.innerWidth > 500) {
+      setInterval(() => {
+        idx = (parseInt(carrossel.dataset.idx || '0') + 1) % total;
+        updateCarrossel(carrossel, idx);
+      }, 10000);
+    }
+
+    updateCarrossel(carrossel, 0);
+  });
+});
+</script>
+      <script src="/js/like.js"></script>
 
   </body>
 

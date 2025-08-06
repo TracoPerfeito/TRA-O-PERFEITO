@@ -94,6 +94,10 @@ width: 100%;
   aspect-ratio: 4/3;
 }
 
+.coluna-esquerda{
+  width: 400px !important;
+}
+
 .base_cabecalho header {
   width: 100%;
   background: url(../imagens/bg.png) no-repeat 50% 20% / cover;  
@@ -243,6 +247,9 @@ span {
     margin-right: 100px;
     margin-left: 100px;
     padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 input[type='file'] {
@@ -400,9 +407,6 @@ input[type='file'] {
  
 }
 
-.like-button.liked{
-  color: red;
-}
 
 .nome-btn-like {
   display: flex;
@@ -695,6 +699,10 @@ input[type='file'] {
 
 @media (max-width:500px){
 
+
+  .coluna-esquerda {
+  width: auto !important;
+}
 
 
   .publi{

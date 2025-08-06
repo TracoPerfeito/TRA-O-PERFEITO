@@ -204,9 +204,9 @@ listarPublicacoesPorUsuario: async (idUsuario) => {
   }
 },
 
-listarPublicacoesPorUsuario: async (idUsuario) => {
+
+listarPublicacoesUsuarioLogado: async (idUsuario) => {
   try {
-    // 1) Buscar publicações do usuário específico
     const [publicacoes] = await pool.query(`
       SELECT 
         p.ID_PUBLICACAO,
@@ -226,7 +226,6 @@ listarPublicacoesPorUsuario: async (idUsuario) => {
       ORDER BY p.ID_PUBLICACAO DESC
     `, [idUsuario]);
 
-    // 2) Buscar todas as imagens das publicações listadas
     const ids = publicacoes.map(pub => pub.ID_PUBLICACAO);
     if (ids.length === 0) return [];
 
@@ -236,14 +235,12 @@ listarPublicacoesPorUsuario: async (idUsuario) => {
       WHERE ID_PUBLICACAO IN (?)
     `, [ids]);
 
-    // 3) Mapear imagens para cada publicação
     const imagensPorPublicacao = {};
     imgs.forEach(img => {
       if (!imagensPorPublicacao[img.ID_PUBLICACAO]) imagensPorPublicacao[img.ID_PUBLICACAO] = [];
       imagensPorPublicacao[img.ID_PUBLICACAO].push(img.IMG_PUBLICACAO);
     });
 
-    // 4) Adicionar o array de imagens em cada publicação
     publicacoes.forEach(pub => {
       pub.imagens = imagensPorPublicacao[pub.ID_PUBLICACAO] || [];
     });
@@ -254,11 +251,7 @@ listarPublicacoesPorUsuario: async (idUsuario) => {
     console.error("Erro ao listar publicações do usuário:", error);
     return [];
   }
-},
-
-
-
-
+}
 
 
 };

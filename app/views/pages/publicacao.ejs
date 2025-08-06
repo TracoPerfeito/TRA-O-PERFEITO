@@ -61,7 +61,7 @@
     <img src="/<%= publicacao.FOTO_PERFIL_PASTA_USUARIO || '/imagens/default-profile.png' %>" class="foto-de-perfil" alt="Foto do perfil">
 
     <!-- Link para o perfil do usuário, usando o ID do usuário -->
-    <a href="/perfil/<%= publicacao.ID_USUARIO %>">
+     <a href="<%= (autenticado && id_usuario === publicacao.ID_USUARIO) ? '/meu-perfil-artista' : '/perfil/' + publicacao.ID_USUARIO %>">
       <p class="nome-dono-post"><%= publicacao.NOME_USUARIO %></p>
     </a>
   </section>

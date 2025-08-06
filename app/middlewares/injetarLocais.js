@@ -12,7 +12,8 @@ function injetarLocais(req, res, next) {
     res.locals.autenticado = req.session.autenticado || {};
  
     res.locals.tipo_usuario = req.session.autenticado.tipo;
-    res.locals.nome_usuario = req.session.autenticado.nome;  
+    res.locals.nome_usuario = req.session.autenticado.nome; 
+    res.locals.id_usuario = req.session.autenticado.id; 
     res.locals.user_usuario = req.session.autenticado.user;
     res.locals.email_usuario = req.session.autenticado.email;  
     res.locals.celular_usuario = req.session.autenticado.celular;
@@ -26,6 +27,7 @@ function injetarLocais(req, res, next) {
   } else {
     res.locals.tipo_usuario = null;
     res.locals.nome_usuario = null;
+    res.locals.id_usuario = null;
     res.locals.user_usuario = null;
     res.locals.email_usuario = null;
     res.locals.celular_usuario = null;

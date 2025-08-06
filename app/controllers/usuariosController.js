@@ -1,4 +1,5 @@
 const usuariosModel = require("../models/usuariosModel");
+const listagensModel = require("../models/listagensModel");
 const { body, validationResult } = require("express-validator");
 const moment = require("moment");
 const bcrypt = require("bcryptjs");
@@ -284,6 +285,7 @@ cadastrarUsuario: async (req, res) => {
     try {
         let results = await usuariosModel.findId(req.session.autenticado.id);
         const dadosProfissional = await usuariosModel.findProfissional(req.session.autenticado.id);
+        const publicacoes = await listagensModel.listarPublicacoesUsuarioLogado(req.session.autenticado.id);
 
 
         let campos = {
@@ -315,7 +317,7 @@ cadastrarUsuario: async (req, res) => {
          delete req.session.notificacao; 
 
         console.log("Resultado da consulta:", results);
-        res.render("pages/meu-perfil-artista", { listaErros: null, dadosNotificacao: notificacao,  valores: campos, msgErro: null });
+        res.render("pages/meu-perfil-artista", { listaErros: null, dadosNotificacao: notificacao,  valores: campos, msgErro: null, publicacoes });
     } catch (e) {
         console.log(e);
         res.render("pages/meu-perfil-artista", {
