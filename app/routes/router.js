@@ -67,6 +67,7 @@ router.get("/publicacao/:id", function (req, res) { //publicacao
 
 
 
+
 router.get("/chat", function (req, res) { //chat
     res.render('pages/chat')
  

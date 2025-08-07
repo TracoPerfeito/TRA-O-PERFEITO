@@ -120,11 +120,12 @@ select.addEventListener('change', () => {
                             " ></textarea>
                             <div id="erro-descricao" class="mensagem-erro"></div>
                         </section>
-                        <section class="form-grupo-1" id="tags-publicacao">
+                        <section class="form-grupo-1" id="tags-publicacao" >
                             <label for="descricao">Tags:</label> <br>
-                           <input name='input-custom-dropdown' class='tagify--custom-dropdown caixa-texto' placeholder='Escreva sua' value='Design Gráfico, Arte Digital'>
-                          <div id="erro-tags" class="mensagem-erro"></div>
+                           <input   id="tagInput"  name='input-custom-dropdown' class='tags-look tagify--custom-dropdown caixa-texto' placeholder='Adicione tags à sua publicação...' value='Design Gráfico, Arte Digital'>
+                          
                           </section>
+                          <div id="erro-tags" class="mensagem-erro"></div>
                     </section>
         
                     <!-----------------colocar aquele negocio do upload---------------------->
@@ -203,158 +204,6 @@ select.addEventListener('change', () => {
 
         
 </main>
-
-
-
-
-
-
-
-
-
- <script>
-//   const inputFile = document.getElementById('image-input');
-//   const previewSection = document.getElementById('preview-section');
-//   const mainImage = document.getElementById('main-image');
-//   const deleteBtn = document.getElementById('delete-btn');
-//   const thumbnailRow = document.getElementById('thumbnail-row');
-//   const imageCount = document.getElementById('image-count');
-
-//   let imageFiles = [];
-//   let currentIndex = 0;
-
-//   inputFile.addEventListener('change', (e) => {
-//     const newFiles = Array.from(e.target.files);
-//     imageFiles = [...imageFiles, ...newFiles];
-//     if (imageFiles.length > 0) {
-//       previewSection.style.display = 'block';
-//     }
-//     currentIndex = 0;
-//     displayImages();
-//     updateImageCount();
-//   });
-
-//   function displayImages() {
-//     thumbnailRow.innerHTML = '';
-
-//     if (imageFiles[currentIndex]) {
-//       const reader = new FileReader();
-//       reader.onload = (e) => {
-//         mainImage.src = e.target.result;
-//       };
-//       reader.readAsDataURL(imageFiles[currentIndex]);
-//     }
-
-//     imageFiles.forEach((file, index) => {
-//       const reader = new FileReader();
-//       reader.onload = (e) => {
-//         const thumbContainer = document.createElement('div');
-//         thumbContainer.classList.add('thumbnail-container');
-
-//         const img = document.createElement('img');
-//         img.src = e.target.result;
-//         img.title = "Clique para visualizar";
-
-//         img.addEventListener('click', () => {
-//           currentIndex = index;
-//           mainImage.src = e.target.result;
-//         });
-
-//         const delBtn = document.createElement('button');
-//         delBtn.classList.add('thumbnail-delete');
-//         delBtn.innerHTML = '&times;';
-//         delBtn.title = "Remover imagem";
-
-//         delBtn.addEventListener('click', (ev) => {
-//           ev.stopPropagation();
-//           imageFiles.splice(index, 1);
-
-//           if (currentIndex >= imageFiles.length) {
-//             currentIndex = 0;
-//           }
-
-//           if (imageFiles.length === 0) {
-//             previewSection.style.display = 'none';
-//             mainImage.src = '';
-//           }
-
-//           displayImages();
-//           updateImageCount();
-//         });
-
-//         thumbContainer.appendChild(img);
-//         thumbContainer.appendChild(delBtn);
-//         thumbnailRow.appendChild(thumbContainer);
-//       };
-//       reader.readAsDataURL(file);
-//     });
-//   }
-
-//   function updateImageCount() {
-//     const count = imageFiles.length;
-//     if (count === 0) {
-//       imageCount.textContent = 'Nenhuma imagem selecionada';
-//     } else if (count === 1) {
-//       imageCount.textContent = '1 imagem selecionada';
-//     } else {
-//       imageCount.textContent = `${count} imagens selecionadas`;
-//     }
-//   }
-
-//   deleteBtn.addEventListener('click', () => {
-//     imageFiles.splice(currentIndex, 1);
-//     if (currentIndex >= imageFiles.length) {
-//       currentIndex = 0;
-//     }
-
-//     if (imageFiles.length === 0) {
-//       previewSection.style.display = 'none';
-//       mainImage.src = '';
-//     }
-
-//     displayImages();
-//     updateImageCount();
-//   });
-
-
-
-
-
-
-
-//   let touchStartX = 0;
-// let touchEndX = 0;
-
-// mainImage.addEventListener('touchstart', (e) => {
-//   touchStartX = e.changedTouches[0].screenX;
-// });
-
-// mainImage.addEventListener('touchend', (e) => {
-//   touchEndX = e.changedTouches[0].screenX;
-//   handleGesture();
-// });
-
-// function handleGesture() {
-//   const swipeThreshold = 50; // Distância mínima para considerar um swipe
-
-//   if (touchEndX < touchStartX - swipeThreshold) {
-//     // Swipe para a esquerda (próxima imagem)
-//     if (currentIndex < imageFiles.length - 1) {
-//       currentIndex++;
-//       displayImages();
-//     }
-//   }
-
-//   if (touchEndX > touchStartX + swipeThreshold) {
-//     // Swipe para a direita (imagem anterior)
-//     if (currentIndex > 0) {
-//       currentIndex--;
-//       displayImages();
-//     }
-//   }
-// }
-
- </script>
 
 
 
@@ -567,7 +416,7 @@ function fecharModalavisoimgs() { // função para fechar o modal de aviso
 }
 
 
-
+    
 
 
 function mostrarModalLimite() { // função para exibir o modal de limite de imgs
@@ -741,6 +590,7 @@ var tagify = new Tagify(input, {
   const inputDescricao = document.getElementById('descricao');
   const erroDescricao = document.getElementById('erro-descricao');
 
+  const inputTag = document.getElementById('tagInput');
   const erroTags = document.getElementById('erro-tags');
   const erroImagens = document.getElementById('erro-imagens');
 
@@ -791,25 +641,43 @@ var tagify = new Tagify(input, {
   }
 
   function validarTags() {
-    const tags = tagify.value.map(tag => tag.value);
-    if (tags.length === 0) {
-      erroTags.textContent = 'Adicione pelo menos uma tag.';
-      return false;
-    } else {
-      erroTags.textContent = '';
-      return true;
-    }
-  }
+  // Captura as tags inseridas (array de objetos), extrai os valores
+  const tags = tagify.value.map(tag => tag.value);
 
-  function validarImagens() {
-    if (!imageFiles || imageFiles.length === 0) {
-      erroImagens.textContent = 'Adicione pelo menos uma imagem.';
-      return false;
-    } else {
-      erroImagens.textContent = '';
-      return true;
-    }
+  if (tags.length === 0) {
+    // Exibe a mensagem de erro
+    erroTags.textContent = 'Adicione pelo menos uma tag.';
+
+    // Adiciona a classe de erro no container visual do Tagify
+    tagify.DOM.scope.classList.add('erro');
+
+    return false;
+  } else {
+    // Remove a mensagem de erro
+    erroTags.textContent = '';
+
+    // Remove a classe de erro, se houver
+    tagify.DOM.scope.classList.remove('erro');
+
+    return true;
   }
+}
+
+
+function validarImagens() {
+  const erroImagens = document.getElementById('erro-imagens');
+
+  if (!imageFiles || imageFiles.length === 0) {
+    erroImagens.textContent = 'Adicione pelo menos uma imagem.';
+    erroImagens.classList.add('erro-img-msg');  
+    return false;
+  } else {
+    erroImagens.textContent = '';
+    erroImagens.classList.remove('erro-img-msg');  
+    return true;
+  }
+}
+
 
   
   inputTitulo.addEventListener('input', validarTitulo);
@@ -879,6 +747,13 @@ var tagify = new Tagify(input, {
   btnSend.addEventListener('click', (event) => {
     event.preventDefault();
 
+      // Desabilita o botão para evitar múltiplos cliques
+  btnSend.disabled = true;
+
+  // Muda o texto do botão para indicar que está carregando
+  const originalText = btnSend.textContent;
+  btnSend.textContent = 'Enviando...';
+
     const formData = new FormData();
     formData.append('titulo', inputTitulo.value.trim());
 
@@ -922,7 +797,12 @@ var tagify = new Tagify(input, {
       })
       .catch(error => {
         alert('Erro ao enviar publicação: ' + error.message);
-      });
+      })
+        .finally(() => {
+      // Reabilita o botão e volta o texto original
+      btnSend.disabled = false;
+      btnSend.textContent = originalText;
+    });
   });
 </script>
 

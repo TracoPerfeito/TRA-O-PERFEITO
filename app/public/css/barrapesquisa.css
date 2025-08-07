@@ -11,7 +11,7 @@
     background: var(--verdinho-transparente-barra);
     width: 70%;
     min-width:  700px;
-    border: 1px solid var(--borda-barra-pesquisa);
+    border: 2px solid var(--borda-barra-pesquisa);
    
    
 
@@ -30,7 +30,7 @@
     width: 600px;
     margin: auto;
     margin-top: 20px;
-    border: 1px solid var(--borda-barra-pesquisa);
+    border: 2px solid var(--borda-barra-pesquisa);
 
 }
 
