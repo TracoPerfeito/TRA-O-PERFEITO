@@ -5,6 +5,8 @@ const { body, validationResult } = require("express-validator");
 const usuariosController = require("../controllers/usuariosController");
 const listagensController = require("../controllers/listagensController");
 const publicacoesController = require("../controllers/publicacoesController");
+const comentariosController = require("../controllers/comentariosController");
+
 
 const {
   verificarUsuAutenticado,
