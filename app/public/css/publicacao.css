@@ -3,6 +3,9 @@
     padding: 0;
 }
 
+body{
+    overflow-x: hidden;
+}
 
 .botao-de-voltar{
     width: 100%;
@@ -117,12 +120,14 @@
 
 
 .comentarios {
-    width: 90%;
-    margin: 20px;
+    width: 100%;
+    
     font-family: "Josefin Sans";
     color: var(--text-color);
 
 }
+
+
 
 #comentarios-nome-secao {
     font-family: "Montserrat";
@@ -152,7 +157,7 @@
 
 
 .comentario {
-    width: 95%;
+    width: 100%;
     background-color: var(--cor-fundo-comentario);
     margin: 10px 0px;
     border-radius: 5px;
@@ -171,11 +176,12 @@
     color: var(--text-color);
     margin-left: 10px;
 }
-
 .comentario p {
-    font-size: 15px;
+  font-size: 15px;
+  word-wrap: break-word;  
+  overflow-wrap: break-word; 
+  white-space: normal;  
 }
-
 
 #ad-comentario {
     width: 95%;
@@ -559,8 +565,8 @@
     
         
         .comentarios {
-            width: 90%;
-            margin: 20px;
+            width: 100%;
+            margin: 20px 0;
     
         }
 
@@ -724,8 +730,8 @@
 
 
     .comentarios {
-        width: 90%;
-        margin: 20px;
+        width: 100%;
+        margin: 20px 0;
 
     }
 
@@ -758,7 +764,7 @@
     }
 
     .comentario {
-        width: 95%;
+        width: 100%;
         margin: 10px 0px;
         border-radius: 5px;
         padding: 10px;
