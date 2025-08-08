@@ -383,7 +383,7 @@ gravarPerfil: async (req, res) => {
         console.log("Erro do multer:", erroMulter);
 
         return res.render("pages/editar-perfil", { 
-          listaErros: lista,
+            listaErros: lista,
             dadosNotificacao: {
               titulo: "Ocorreu um erro.",
               mensagem: "Verifique se todos os campos estão preenchidos corretamente.",

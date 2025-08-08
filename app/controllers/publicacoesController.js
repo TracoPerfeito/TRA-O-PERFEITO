@@ -13,16 +13,16 @@ const publicacoesController = {
   regrasValidacaoCriarPublicacao: [
     body("titulo")
       .trim()
-      .isLength({ min: 3, max: 70 })
-      .withMessage("O título deve ter entre 3 e 70 caracteres."),
+      .isLength({ min: 2, max: 70 })
+      .withMessage("O título deve ter entre 2 e 70 caracteres."),
     body("categoria")
       .trim()
       .notEmpty()
       .withMessage("A categoria é obrigatória."),
     body("descricao")
       .trim()
-      .isLength({ min: 5, max: 2000 })
-      .withMessage("A descrição deve ter entre 5 e 2000 caracteres."),
+      .isLength({ min: 2, max: 2000 })
+      .withMessage("A descrição deve ter entre 2 e 2000 caracteres."),
     body("tags")
       .custom((value) => {
         try {
@@ -59,7 +59,9 @@ const publicacoesController = {
       //Verifica se a validação retornou algum erro.
       const erros = validationResult(req);
       if (!erros.isEmpty()) {
+        console.log("Deu erro na validação af");
         return res.status(400).json({ erros: erros.array() });
+      
       }
 
       // titulo, descricao, categoria e tags são retirados do body.
