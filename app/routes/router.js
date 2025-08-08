@@ -59,12 +59,22 @@ router.get("/publicacoes-perfil", function (req, res) { //publicações de um pe
 
 
 
+
 router.get("/publicacao/:id", function (req, res) { //publicacao
-
+ 
     listagensController.exibirPublicacao(req, res);
-
+   
+ 
 });
-
+ 
+router.post(
+    "/salvarcomentario",
+    comentariosController.regrasValidacaoComentario,
+    async function (req, res) {
+      comentariosController.criarComentario(req, res);
+    }
+  );
+ 
 
 
 

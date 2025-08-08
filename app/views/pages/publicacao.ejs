@@ -1,33 +1,38 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-
+ 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/imagens/favicon.ico" type="image/x-icon">
-    
+   
     <link rel="stylesheet" href="/css/publicacao.css">
      <link rel="stylesheet" href="/css/share-button.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="js/simple-notify.js"></script>
+ 
    
-
-    
+ 
+   
     <title>Publicação</title>
 </head>
-
-
-
-<body>
-
  
-
+ 
+ 
+<body>
+ 
+ 
+ 
+ 
+ 
+ 
    <% if (tipo_usuario === 'profissional') { %>
   <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
 <% } else if (tipo_usuario === 'comum') { %>
@@ -35,42 +40,66 @@
 <% } else { %>
   <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
 <% } %>
-
-
-
-    
+ 
+ 
+<% if (dadosNotificacao && Object.keys(dadosNotificacao).length > 0) { %>
+  <script>
+    notify("<%= dadosNotificacao.titulo %>", "<%= dadosNotificacao.mensagem %>", "<%= dadosNotificacao.tipo %>", "top right");
+  </script>
+<% } %>
+ 
+ 
+<%
+let cssErros = {conteudo: ""};
+let msgErros = {conteudo: ""};
+ 
+if(listaErros){
+    listaErros.errors.forEach(function (elemento){
+        if(elemento.path == "conteudo"){
+            cssErros.conteudo = "erro-form";
+            msgErros.conteudo = elemento.msg;
+        }
+ 
+    });
+}
+%>
+ 
+ 
+ 
+ 
+   
     <main>
-
-        <section class="botao-de-voltar">   
+ 
+        <section class="botao-de-voltar">  
             <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
-                
+               
                
             </button>
             <p class="lado-botao">Publicação de <%= publicacao.NOME_USUARIO %></p>
         </section>
-
-      
-
+ 
+     
+ 
         <section class="container-pag-publi">
-
+ 
             <section class="principal-pag-publi">
-
+ 
                <section class="publi-person-button">
   <section class="publi-info">
     <!-- Foto do perfil do usuário -->
     <img src="/<%= publicacao.FOTO_PERFIL_PASTA_USUARIO || '/imagens/default-profile.png' %>" class="foto-de-perfil" alt="Foto do perfil">
-
+ 
     <!-- Link para o perfil do usuário, usando o ID do usuário -->
-     <a href="<%= (autenticado && id_usuario === publicacao.ID_USUARIO) ? '/meu-perfil-artista' : '/perfil/' + publicacao.ID_USUARIO %>">
+    <a href="/perfil/<%= publicacao.ID_USUARIO %>">
       <p class="nome-dono-post"><%= publicacao.NOME_USUARIO %></p>
     </a>
   </section>
-
+ 
   <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
     <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
       <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/>
     </svg>
-
+ 
     <section class="opcoes-menu">
       <button class="btn-compartilhar" title="Compartilhar" id="openShareModal" onclick="openModal()">
         <ion-icon name="share-social-outline"></ion-icon>
@@ -83,158 +112,127 @@
     </section>
   </section>
 </section>
-
-
+ 
+ 
 <section class="carrossel-imagens-explorar" onmouseenter="mostrarControles(this)" onmouseleave="esconderControles(this)">
-  <div class="container-imgs" ontouchstart="startSwipe(event, this)" ontouchmove="swipeMove(event)" ontouchend="endSwipe(event, this)">
+  <section class="container-imgs" ontouchstart="startSwipe(event, this)" ontouchmove="swipeMove(event)" ontouchend="endSwipe(event, this)">
     <% publicacao.imagens.forEach((img, idx) => { %>
-      <img 
-        src="data:image/jpeg;base64,<%= img.toString('base64') %>" 
-        class="publicacao-img<%= idx === 0 ? ' ativa' : '' %>" 
+      <img
+        src="data:image/jpeg;base64,<%= img.toString('base64') %>"
+        class="publicacao-img<%= idx === 0 ? ' ativa' : '' %>"
         alt="Imagem da publicação"/>
     <% }) %>
-  </div>
-
+  </section>
+ 
   <section class="aviso-zoom">
     <ion-icon name="expand-outline"></ion-icon> <p>Clique para abrir a imagem</p>
   </section>
-
+ 
   <% if (publicacao.imagens.length > 1) { %>
     <button class="seta-carrossel esquerda" onclick="event.preventDefault();prevImg(this)"><ion-icon name="chevron-back-outline"></ion-icon></button>
     <button class="seta-carrossel direita" onclick="event.preventDefault();nextImg(this)"><ion-icon name="chevron-forward-outline"></ion-icon></button>
-
-    <div class="indicadores">
+ 
+    <section class="indicadores">
       <% publicacao.imagens.forEach((_, idx) => { %>
-        <span class="indicador<%= idx === 0 ? ' ativo' : '' %>"></span>
+        <p class="indicador<%= idx === 0 ? ' ativo' : '' %>"></p>
       <% }) %>
-    </div>
+    </section>
   <% } %>
 </section>
-
+ 
 <section class="con-img-expandida" id="con-img-expandida">
-  <span class="fechar" id="fechar">&times;</span>
+  <p class="fechar" id="fechar">&times;</p>
  <img src="" id="imgExpandida" alt="Imagem expandida">
  <button id="prevArrow" class="arrow left"><ion-icon name="chevron-back-outline"></ion-icon></button>
 <button id="nextArrow" class="arrow right"><ion-icon name="chevron-forward-outline"></ion-icon></button>
-
-
+ 
+ 
 </section>
-
-
-
-
+ 
+ 
+ 
+ 
 <section class="descricao-like">
   <section class="nome-like">
     <!-- Nome da publicação -->
     <p class="nome-da-publicacao"><%= publicacao.NOME_PUBLICACAO %></p>
-
+ 
     <button class="like-button" title="Curtir">
       <i class="far fa-heart"></i>
     </button>
   </section>
-
+ 
   <!-- Descrição da publicação -->
   <p class="descricao-publi-prin"><%= publicacao.DESCRICAO_PUBLICACAO %></p>
 </section>
-
+ 
 </section>
-
-
-
-
-
-            <section class="comentarios">
-
-                <h2 id="comentarios-nome-secao"> Comentários</h2>
-
-                <section class="adicionar-comentario">
-
-                   <form >
-                    <label for="adicionar-comentario">Adicionar comentário:</label>
-                    <textarea id="ad-comentario" name="ad-comentario" rows="4" cols="50" placeholder="Digite seu comentário aqui..."></textarea>
-                    <br>
-                    <section class="button-container-submit">
-                        <% if (!tipo_usuario) { %>
-                        <input type="submit" value="Enviar" class="enviar-comentario" disabled>
-                        <span class="tooltip">Crie uma conta para publicar um comentário.</span>
-                        <% } else { %>
-                        <input type="submit" value="Enviar" class="enviar-comentario">
-                        <% } %>
+ 
+ 
+ 
+ 
+ 
+                <section class="comentarios">
+                    <h2 id="comentarios-nome-secao"> Comentários</h2>
+                    <section class="adicionar-comentario">
+ 
+                        <form action="/salvarcomentario" method="post">
+                          <label for="adicionar-comentario">Adicionar comentário:</label>
+                          <textarea id="ad-comentario" name="conteudo" rows="4" cols="50" placeholder="Digite seu comentário aqui..." class="<%= cssErros.conteudo %>"></textarea>
+                          <p class="msg-erro"></p>
+                          <input type="hidden" name="idPublicacao" value="<%= publicacao.ID_PUBLICACAO %>">
+                          <br>
+                          <section class="button-container-submit">
+                              <% if (!tipo_usuario) { %>
+                                  <button class="enviar-comentario" disabled>Enviar</button>
+                                  <p class="tooltip">Crie uma conta para publicar um comentário.</p>
+                              <% } else { %>
+                                  <button class="enviar-comentario">Enviar</button>
+                              <% } %>
+                          </section>
+                        </form>
                     </section>
-                    </form>
-
-
+                   
+ 
+                    <section class="comentarios">
+                      <% if (comentarios && comentarios.length > 0) { %>
+                        <% comentarios.forEach(comentario => { %>
+                          <section class="comentario">
+                            <section class="comentario-info">
+                              <img src="<%= comentario.FOTO_PERFIL || '/imagens/fotoperfil1.jpeg' %>" class="foto-de-perfil" >
+                              <a href="/perfil/<%= comentario.ID_USUARIO %>">
+                                <p class="nome-comentario"><%= comentario.NOME %></p>
+                              </a>
+                            </section>
+                            <section class="escrita-comentario">
+                              <p><%= comentario.CONTEUDO_COMENTARIO %></p>
+                            </section>
+                          </section>
+                        <% }) %>
+                      <% } else { %>
+                        <p>Não há comentários.</p>
+                      <% } %>
+                    </section>
+                   
                 </section>
-
-                <section class="comentario">
-                    <section class="comentario-info">
-                        <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                        <a href=/perfil>
-                            <p class="nome-comentario"> Mariana Sanchez</p>
-                        </a>
-                    </section>
-                    <section class="escrita-comentario">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipis
-                            icing elit. Amet earum nulla facilis, soluta ipsam do
-                            loremque corporis neque porro possimus quas assu
-                            menda dignissimos ea expedita commodi atque magn
-                            am tenetur obcaecati labore!</p>
-                    </section>
-                </section>
-
-                <section class="comentario">
-                    <section class="comentario-info">
-                        <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                        <a href=/perfil>
-                            <p class="nome-comentario"> Fábinho Ilustrações</p>
-                        </a>
-                    </section>
-                    <section class="escrita-comentario">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ipsam lacupiditate voluptate. Accusamus totam labore tenetur.
-
-
-                        </p>
-                    </section>
-                </section>
-    
-            
-
-                <section class="comentario">
-                    <section class="comentario-info">
-                        <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
-                        <a href=/perfil>
-                            <p class="nome-comentario"> Creuza Aparecida </p>
-                        </a>
-                    </section>
-                    <section class="escrita-comentario">
-                        <p>Mi piace il tuo lavoro! Accusamus totam labore tenetur</p>
-                    </section>
-                </section>
-
-              
-    
-            
-    
-            
-
-            </section>
-
-
+             
+ 
+ 
             <section class="publi-relacionadas">
-
-
+ 
+ 
                     <h2 id="publi-rel-nome-secao">
                         Publicações Relacionadas
                     </h2>
-                    
+                   
                
                 <section class="publicacoes-rel-caixas">
-    
+   
                     <section class="publi-re">
                         <img src="/imagens/2.jpg" >
-
+ 
                         <section class="publi-rel-info">
-
+ 
                             <section class="foto-nome-p-rel">
                                 <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
                                 <a href=/perfil>
@@ -245,15 +243,15 @@
                                 <i class="far fa-heart"></i>
                             </button>
                         </section>
-
+ 
                     </section>
-
-
+ 
+ 
                     <section class="publi-re">
                         <img src="/imagens/aao.jpg" >
-
+ 
                         <section class="publi-rel-info">
-
+ 
                             <section class="foto-nome-p-rel">
                                 <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
                                 <a href=/perfil>
@@ -264,15 +262,15 @@
                                 <i class="far fa-heart"></i>
                             </button>
                         </section>
-
+ 
                     </section>
-
-
+ 
+ 
                     <section class="publi-re">
                         <img src="/imagens/aas.jpg" >
-
+ 
                         <section class="publi-rel-info">
-
+ 
                             <section class="foto-nome-p-rel">
                                 <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
                                 <a href=/perfil>
@@ -283,15 +281,15 @@
                                 <i class="far fa-heart"></i>
                             </button>
                         </section>
-
+ 
                     </section>
-
-                    
+ 
+                   
                     <section class="publi-re">
                         <img src="/imagens/aad.jpg" >
-
+ 
                         <section class="publi-rel-info">
-
+ 
                             <section class="foto-nome-p-rel">
                                 <img src="/imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
                                 <a href=/perfil>
@@ -302,23 +300,23 @@
                                 <i class="far fa-heart"></i>
                             </button>
                         </section>
-
+ 
                     </section>
-
+ 
                    
-    
+   
                 </section>
-
+ 
             </section>
-
-
+ 
+ 
             </section>
         </section>
-
-
-
-        
-
+ 
+ 
+ 
+       
+ 
                                                 <!-- Modal de denúncia -->
                         <section id="modalDenuncia" class="modal">
                             <section class="modal-content">
@@ -335,47 +333,47 @@
                             </form>
                             </section>
                         </section>
-
-
-
+ 
+ 
+ 
                 <!-- Modal de compartilhamento -->
                 <section id="modal-share">
                 <section class="modal-content-share">
                     <h2>Compartilhar link da publicação</h2>
-
+ 
                     <section class="link-container">
                     <section id="shareLink">
-                      https://tracoperfeito.onrender.com/publicacao/<%= publicacao.ID_PUBLICACAO %>
+                      https://tracoperfeito.onrender.com/publicacao
                     </section>
-
+ 
                     <button class="copy-button" onclick="copyToClipboard()">
                         <section id="copyIcon">
                        
                             <svg xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px; margin-right: 4px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2M16 8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8a2 2 0 01-2-2v-2"/>
                             </svg>
-      
+     
                         </section>
                         <section id="copyText">Copiar link</section>
                         <section id="tooltip">Copiado!</section>
                     </button>
                     </section>
-
+ 
                     <button class="close-modal-btn" onclick="closeModal()">×</button>
                 </section>
                 </section>
-
-
+ 
+ 
            
-
-
-
+ 
+ 
+ 
     </main>
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
     <%- include('../partials/rodape'); %>
     <script src="/js/like.js"></script>
     <script src="/js/voltar.js"></script>
@@ -383,6 +381,6 @@
     <script src="/js/mobile-navbar.js"></script>
     <script src="/js/denuncia-compartilhamento.js"></script>
     <script src="/js/publicacoesindex.js"></script>
-
+ 
 </body>
 </html>
