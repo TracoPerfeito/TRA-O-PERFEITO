@@ -71,7 +71,7 @@ if(listaErros){
     <main>
  
         <section class="botao-de-voltar">  
-            <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+            <button class="btn-voltar" onclick="voltarPaginaCustom()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
                
                
             </button>
@@ -381,12 +381,32 @@ if(listaErros){
  
     <%- include('../partials/rodape'); %>
     <script src="/js/like.js"></script>
-    <script src="/js/voltar.js"></script>
+    
     <script src="/js/expan-img.js"></script>
     <script src="/js/mobile-navbar.js"></script>
     <script src="/js/denuncia-compartilhamento.js"></script>
     <script src="/js/publicacoesindex.js"></script>
     <script src="/js/arrumardata.js"></script>
+    <script>
+
+      function isSalvarComentarioRoute(path) {
+        return path === '/salvarcomentario';
+      }
+
+      function voltarPaginaCustom() {
+        const currentPath = window.location.pathname;
+        console.log('[VOLTAR] Página atual:', currentPath);
+
+        if (isSalvarComentarioRoute(currentPath)) {
+          console.log('[VOLTAR] Está em /salvarcomentario, voltando 2 passos no histórico');
+          window.history.go(-2);
+        } else {
+          console.log('[VOLTAR] Página normal, voltando 1 passo no histórico');
+          window.history.back();
+        }
+      }
+
+    </script>
  
 </body>
 </html>
