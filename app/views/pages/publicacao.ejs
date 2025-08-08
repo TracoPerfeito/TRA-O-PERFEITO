@@ -90,7 +90,7 @@ if(listaErros){
     <img src="/<%= publicacao.FOTO_PERFIL_PASTA_USUARIO || '/imagens/default-profile.png' %>" class="foto-de-perfil" alt="Foto do perfil">
  
     <!-- Link para o perfil do usuário, usando o ID do usuário -->
-    <a href="/perfil/<%= publicacao.ID_USUARIO %>">
+    <a href="<%= (autenticado && id_usuario === pub.ID_USUARIO) ? '/meu-perfil-artista' : '/perfil/' + pub.ID_USUARIO %>">
       <p class="nome-dono-post"><%= publicacao.NOME_USUARIO %></p>
     </a>
   </section>
@@ -200,7 +200,7 @@ if(listaErros){
                           <section class="comentario">
                             <section class="comentario-info">
                               <img src="/<%= comentario.FOTO_PERFIL_PASTA_USUARIO || 'imagens/img.png' %>" class="foto-de-perfil" >
-                              <a href="/perfil/<%= comentario.ID_USUARIO %>">
+                              <a href="<%= (autenticado && id_usuario === pub.ID_USUARIO) ? '/meu-perfil-artista' : '/perfil/' + pub.ID_USUARIO %>">
                                 <p class="nome-comentario"><%= comentario.NOME_USUARIO %></p>
                               </a>
                             </section>
