@@ -200,7 +200,7 @@ if(listaErros){
                           <section class="comentario">
                             <section class="comentario-info">
                               <img src="/<%= comentario.FOTO_PERFIL_PASTA_USUARIO || 'imagens/img.png' %>" class="foto-de-perfil" >
-                              <a href="<%= (autenticado && id_usuario === pub.ID_USUARIO) ? '/meu-perfil-artista' : '/perfil/' + pub.ID_USUARIO %>">
+                              <a href="<%= (autenticado && id_usuario === publicacao.ID_USUARIO) ? '/meu-perfil-artista' : '/perfil/' + publicacao.ID_USUARIO %>">
                                 <p class="nome-comentario"><%= comentario.NOME_USUARIO %></p>
                               </a>
                             </section>
