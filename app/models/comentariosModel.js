@@ -13,32 +13,35 @@ const comentariosModel = {
     }
   },
  
+ listarComentarios: async (idPublicacao) => {
+  try {
+    const [resultado] = await pool.query(`
+      SELECT
+        c.ID_COMENTARIO,
+        c.ID_USUARIO,
+        c.ID_PUBLICACAO,
+        c.CONTEUDO_COMENTARIO,
+        c.DATA_COMENTARIO,
+        u.NOME_USUARIO,
+        u.FOTO_PERFIL_PASTA_USUARIO
+      FROM COMENTARIOS c
+      LEFT JOIN USUARIOS u ON c.ID_USUARIO = u.ID_USUARIO
+      WHERE u.STATUS_USUARIO = 'ativo'
+        AND c.ID_PUBLICACAO = ?  -- filtro pela publicação correta
+      ORDER BY c.DATA_COMENTARIO DESC
+    `, [idPublicacao]);  
+
+    console.log(resultado);
+    return resultado;
+
+  } catch (error) {
+    console.error("Erro ao listar comentários:", error);
+    return null;
+  }
+},
+
+
  
-  listarComentarios: async (id) => {
-    try {
-      const [resultado] = await pool.query(`
-        SELECT
-          c.ID_COMENTARIO,
-          c.ID_USUARIO,
-          c.ID_PUBLICACAO,
-          c.CONTEUDO_COMENTARIO,
-          c.DATA_COMENTARIO,
-          u.NOME,
-          u.FOTO_PERFIL
-        FROM COMENTARIOS c
-        LEFT JOIN USUARIOS u ON c.ID_USUARIO = u.ID_USUARIO
-        WHERE u.STATUS_USUARIO = 'ativo'
-        ORDER BY c.DATA_COMENTARIO DESC
-      `);
- 
-      console.log(resultado);
-      return resultado;
- 
-    } catch (error) {
-      console.error("Erro ao listar comentários:", error);
-      return null;
-    }
-  },
 };
  
 module.exports = comentariosModel;

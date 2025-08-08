@@ -28,7 +28,7 @@ const listagensModel = {
   }
 },
 
-  findId: async (id) => {
+  findIdusuario: async (id) => {
   try {
     const [rows] = await pool.query('SELECT * FROM USUARIOS WHERE ID_USUARIO = ?', [id]);
     if (rows.length === 0) {

@@ -15,88 +15,110 @@ const comentariosController = {
   ],
  
  
-  criarComentario: async (req, res) =>{
-    try{
- 
-      console.log("Chegou no criarComentario");
-      console.log('Body:', req.body);
- 
-      const erros = validationResult(req);
-      if (!erros.isEmpty()) {
-        console.log("Deu erro na validação af");
-     
-       
-        const { idPublicacao } = req.body;
-        const publicacao = await listagensModel.findIdPublicacao(idPublicacao);
-     
-        return res.render('pages/publicacao', {
-          listaErros: erros,  
-          dadosNotificacao: {
-            titulo: 'Erro ao enviar comentário',
-            mensagem: 'O comentário deve ter no mínimo 1 caractere e no máximo 2000',
-            tipo: 'error'
-          },
-          publicacao
-        });
-      }
- 
-      const { conteudo, idPublicacao } = req.body;
-      const idUsuario = req.session.autenticado.id;
- 
-     
- 
-      const resultado = await comentariosModel.criarComentario({
-        ID_USUARIO: idUsuario,
-        ID_PUBLICACAO: idPublicacao,
-        CONTEUDO_COMENTARIO: conteudo,
-        DATA_COMENTARIO: new Date()
-      });
-      console.log(resultado)
- 
-      if (!resultado){
-        console.log("Deu erro na validação af");
-     
-       
-        const { idPublicacao } = req.body;
-        const publicacao = await listagensModel.findIdPublicacao(idPublicacao);
-     
-        return res.render('pages/publicacao', {
-          listaErros: erros,  
-          dadosNotificacao: {
-            titulo: 'Erro ao enviar comentário.',
-            mensagem: 'Não foi possível salvar seu comentário.',
-            tipo: 'error'
-          },
-          publicacao
-        });
-      }
- 
+ criarComentario: async (req, res) => {
+  try {
+    console.log("Chegou no criarComentario");
+    console.log('Body:', req.body);
+
+    const erros = validationResult(req);
+    const { conteudo, idPublicacao } = req.body;
+
+    if (!erros.isEmpty()) {
+      console.log("Deu erro na validação af");
+
       const publicacao = await listagensModel.findIdPublicacao(idPublicacao);
- 
-      return res.render('pages/publicacao',{
-        listaErros:null,
-        dadosNotificacao:{
-          titulo: 'Comentário enviado!',
-          mensagem: "Seu comtário foi salvo",
-          tipo: "success"
+      const comentarios = await comentariosModel.listarComentarios(idPublicacao);
+
+      return res.render('pages/publicacao', {
+        listaErros: erros,
+        dadosNotificacao: {
+          titulo: 'Erro ao enviar comentário',
+          mensagem: 'O comentário deve ter no mínimo 1 caractere e no máximo 2000',
+          tipo: 'error'
         },
-        publicacao
+        publicacao,
+        comentarios,
+        usuario: req.session.autenticado || null,
+        autenticado: !!req.session.autenticado,
       });
- 
-    } catch(erro){
-      console.error("Erro ao criar comentario:", erro);
-      return res.render('pages/publicacao',{
-        listaErros: erro,
-        dadosNotificacao:{
-          titulo: 'feu erro',
-          mensagem: "Seu comtário  n foi salvo",
-          tipo: "error"
-        },
-        publicacao
-      });
- 
     }
+
+    const idUsuario = req.session.autenticado.id;
+
+    const resultado = await comentariosModel.criarComentario({
+      ID_USUARIO: idUsuario,
+      ID_PUBLICACAO: idPublicacao,
+      CONTEUDO_COMENTARIO: conteudo,
+      DATA_COMENTARIO: new Date()
+    });
+    console.log(resultado);
+
+    if (!resultado) {
+      console.log("Deu erro ao salvar comentário");
+
+      const publicacao = await listagensModel.findIdPublicacao(idPublicacao);
+      const comentarios = await comentariosModel.listarComentarios(idPublicacao);
+
+      return res.render('pages/publicacao', {
+        listaErros: null,
+        dadosNotificacao: {
+          titulo: 'Erro ao enviar comentário.',
+          mensagem: 'Não foi possível salvar seu comentário.',
+          tipo: 'error'
+        },
+        publicacao,
+        comentarios,
+        usuario: req.session.autenticado || null,
+        autenticado: !!req.session.autenticado,
+      });
+    }
+
+    const publicacao = await listagensModel.findIdPublicacao(idPublicacao);
+    const comentarios = await comentariosModel.listarComentarios(idPublicacao);
+
+    return res.render('pages/publicacao', {
+      listaErros: null,
+      dadosNotificacao: {
+        titulo: 'Comentário enviado!',
+        mensagem: "Seu comentário foi salvo",
+        tipo: "success"
+      },
+      publicacao,
+      comentarios,
+      usuario: req.session.autenticado || null,
+      autenticado: !!req.session.autenticado,
+    });
+
+  } catch (erro) {
+    console.error("Erro ao criar comentario:", erro);
+
+    // Tente buscar publicacao e comentarios para a renderização mesmo em caso de erro
+    let publicacao = null;
+    let comentarios = [];
+
+    try {
+      const { idPublicacao } = req.body;
+      publicacao = await listagensModel.findIdPublicacao(idPublicacao);
+      comentarios = await comentariosModel.listarComentarios(idPublicacao);
+    } catch (e) {
+      console.error("Erro ao buscar publicação/comentários no catch:", e);
+    }
+
+    return res.render('pages/publicacao', {
+      listaErros: erro,
+      dadosNotificacao: {
+        titulo: 'Erro',
+        mensagem: "Seu comentário não foi salvo",
+        tipo: "error"
+      },
+      publicacao,
+      comentarios,
+      usuario: req.session.autenticado || null,
+      autenticado: !!req.session.autenticado,
+    });
   }
+}
+
 };
  
 module.exports = comentariosController;

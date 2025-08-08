@@ -26,7 +26,7 @@ const listagensController = {
   exibirPerfil: async (req, res) => {
   const id = req.params.id;
   try {
-    const usuario = await listagensModel.findId(id);
+    const usuario = await listagensModel.findIdusuario(id);
  
     if (!usuario) {
       return res.status(404).send('Usuário não encontrado');
@@ -85,16 +85,21 @@ const listagensController = {
     }
  
     let usuario = null;
-    if (req.session.autenticado && typeof req.session.autenticado === 'object' && req.session.autenticado.ID_USUARIO) {
-      usuario = req.session.autenticado;
-    } else if (req.session.autenticado && typeof req.session.autenticado === 'object') {
-      // Se autenticado for um objeto mas sem ID_USUARIO, tenta pegar o campo id
-      usuario = await listagensModel.findId(req.session.autenticado.id || req.session.autenticado.ID || req.session.autenticado);
-    } else if (req.session.autenticado) {
-      // Se autenticado for apenas o ID
-      usuario = await listagensModel.findId(req.session.autenticado);
+const sessao = req.session.autenticado;
+
+    // Se houver sessão ativa e for um objeto
+    if (sessao && typeof sessao === 'object') {
+      const idUsuario = sessao.ID_USUARIO || sessao.id || sessao.ID;
+
+      if (idUsuario) {
+        usuario = await listagensModel.findIdusuario(idUsuario);
+      }
+    } else if (typeof sessao === 'number' || typeof sessao === 'string') {
+      // Se a sessão for diretamente um ID (número ou string)
+      usuario = await listagensModel.findIdusuario(sessao);
     }
- 
+
+    
     // Só bloqueia se o usuário estiver autenticado mas não for encontrado no banco
     // Se não encontrar o usuário autenticado, apenas trata como visitante
     // Se não estiver autenticado, apenas mostra a publicação normalmente
@@ -102,6 +107,7 @@ const listagensController = {
     const comentarios = await comentariosModel.listarComentarios(id);
  
     console.log("Dados da publicação sendo exibida:", publicacao);
+    console.log("Comentarios da publicação sendo exibida: ", comentarios)
     console.log("Usuário autenticado passado para a view:", usuario);
     res.render('pages/publicacao', {
       publicacao,
