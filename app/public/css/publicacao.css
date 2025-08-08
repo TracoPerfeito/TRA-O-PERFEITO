@@ -127,6 +127,13 @@ body{
 
 }
 
+.comentario-info-total{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 
 
 #comentarios-nome-secao {
@@ -169,7 +176,7 @@ body{
 .comentario-info {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+  
 }
 
 .comentario-info p {
@@ -772,15 +779,9 @@ body{
         
     }
 
-    .comentario-info {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
+ 
 
-    .comentario-info p {
-        margin-left: 10px;
-    }
+    
 
     .comentario p {
         font-size: 15px;

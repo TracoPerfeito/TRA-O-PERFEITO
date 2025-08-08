@@ -193,16 +193,21 @@ if(listaErros){
                         </form>
                     </section>
                    
+
+                   
  
                     <section class="comentarios" id="comentariosSection">
                       <% if (comentarios && comentarios.length > 0) { %>
                         <% comentarios.forEach(comentario => { %>
                           <section class="comentario">
-                            <section class="comentario-info">
-                              <img src="/<%= comentario.FOTO_PERFIL_PASTA_USUARIO || 'imagens/img.png' %>" class="foto-de-perfil" >
-                              <a href="<%= (autenticado && id_usuario === comentario.ID_USUARIO) ? '/meu-perfil-artista' : '/perfil/' + comentario.ID_USUARIO %>">
-                                <p class="nome-comentario"><%= comentario.NOME_USUARIO %></p>
-                              </a>
+                            <section class="comentario-info-total">
+                              <section class="comentario-info">
+                                <img src="/<%= comentario.FOTO_PERFIL_PASTA_USUARIO || 'imagens/img.png' %>" class="foto-de-perfil" >
+                                <a href="<%= (autenticado && id_usuario === comentario.ID_USUARIO) ? '/meu-perfil-artista' : '/perfil/' + comentario.ID_USUARIO %>">
+                                  <p class="nome-comentario"><%= comentario.NOME_USUARIO %></p>
+                                </a>
+                              </section>
+                              <small  class="data-comentario" data-data="<%= comentario.DATA_COMENTARIO %>"></small>
                             </section>
                             <section class="escrita-comentario">
                               <p><%= comentario.CONTEUDO_COMENTARIO %></p>
@@ -381,6 +386,7 @@ if(listaErros){
     <script src="/js/mobile-navbar.js"></script>
     <script src="/js/denuncia-compartilhamento.js"></script>
     <script src="/js/publicacoesindex.js"></script>
+    <script src="/js/arrumardata.js"></script>
  
 </body>
 </html>
