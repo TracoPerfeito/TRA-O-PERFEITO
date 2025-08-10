@@ -12,6 +12,20 @@ const comentariosModel = {
       return null;
     }
   },
+
+  excluirComentario: async (idComentario) => {
+  try {
+    const [result] = await pool.query('DELETE FROM COMENTARIOS WHERE ID_COMENTARIO = ?', [idComentario]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log('Erro ao excluir comentario:', error);
+    return null;
+  }
+},
+
+
+
  
  listarComentarios: async (idPublicacao) => {
   try {

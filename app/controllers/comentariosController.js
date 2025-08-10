@@ -117,7 +117,87 @@ const comentariosController = {
       autenticado: !!req.session.autenticado,
     });
   }
+},
+excluirComentario: async (req, res) => {
+  try {
+    console.log("Chegou no excluirComentario");
+    console.log('Body:', req.body);
+
+    const { idComentario, idPublicacao } = req.body; // idPublicacao precisa ser extraído aqui
+    const idUsuario = req.session.autenticado.id;
+
+    const dadosForm = { idComentario, idUsuario };
+    console.log("olja aqui", dadosForm.idComentario)
+    const resultado = await comentariosModel.excluirComentario(dadosForm.idComentario);
+
+    console.log(resultado);
+
+    if (!resultado) {
+      console.log("Deu erro ao excluir comentário");
+
+      const publicacao = await listagensModel.findIdPublicacao(idPublicacao);
+      const comentarios = await comentariosModel.listarComentarios(idPublicacao);
+
+      return res.render('pages/publicacao', {
+        listaErros: null,
+        dadosNotificacao: {
+          titulo: 'Erro ao excluir comentário.',
+          mensagem: 'Não foi possível excluir o comentário.',
+          tipo: 'error'
+        },
+        publicacao,
+        comentarios,
+        usuario: req.session.autenticado || null,
+        autenticado: !!req.session.autenticado,
+      });
+    }
+
+    const publicacao = await listagensModel.findIdPublicacao(idPublicacao);
+    const comentarios = await comentariosModel.listarComentarios(idPublicacao);
+
+    return res.render('pages/publicacao', {
+      listaErros: null,
+      dadosNotificacao: {
+        titulo: 'Comentário excluído.',
+        mensagem: "O comentário foi excluído.",
+        tipo: "success"
+      },
+      publicacao,
+      comentarios,
+      usuario: req.session.autenticado || null,
+      autenticado: !!req.session.autenticado,
+    });
+
+  } catch (erro) {
+    console.error("Erro ao excluir comentário:", erro);
+
+    let publicacao = null;
+    let comentarios = [];
+
+    try {
+      const { idPublicacao } = req.body;
+      publicacao = await listagensModel.findIdPublicacao(idPublicacao);
+      comentarios = await comentariosModel.listarComentarios(idPublicacao);
+    } catch (e) {
+      console.error("Erro ao buscar publicação/comentários no catch:", e);
+    }
+
+    return res.render('pages/publicacao', {
+      listaErros: erro,
+      dadosNotificacao: {
+        titulo: 'Erro',
+        mensagem: "Não foi possível excluir o comentário.",
+        tipo: "error"
+      },
+      publicacao,
+      comentarios,
+      usuario: req.session.autenticado || null,
+      autenticado: !!req.session.autenticado,
+    });
+  }
 }
+
+
 
 };
  

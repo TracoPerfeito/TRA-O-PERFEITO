@@ -53,7 +53,7 @@
 let cssErros = {conteudo: ""};
 let msgErros = {conteudo: ""};
  
-if(listaErros){
+if (Array.isArray(listaErros)) {
     listaErros.errors.forEach(function (elemento){
         if(elemento.path == "conteudo"){
             cssErros.conteudo = "erro-form";
@@ -165,6 +165,33 @@ if(listaErros){
   <!-- Descrição da publicação -->
   <p class="descricao-publi-prin"><%= publicacao.DESCRICAO_PUBLICACAO %></p>
 </section>
+
+<% 
+  
+  const cores = [
+  '#7490C9', 
+  '#969ED0',  
+  '#92C4E2', 
+  '#B8D9BD', 
+  '#9BB7CF', 
+  '#C3E3DF',
+  '#C2E5F0', 
+  '#ADBCE2', ];
+  const tagsArray = publicacao.TAGS.split(',');
+%>
+
+<section class="tags">
+  <% tagsArray.forEach(tag => { %>
+    <% 
+    
+      const cor = cores[Math.floor(Math.random() * cores.length)];
+    %>
+    <span class="tag" style="background-color: <%= cor %>">
+      #<%= tag.trim() %>
+    </span>
+  <% }) %>
+</section>
+
  
 </section>
  
@@ -196,7 +223,7 @@ if(listaErros){
 
                    
  
-                    <section class="comentarios" id="comentariosSection">
+                    <section class="comentarios-caixa" id="comentariosSection">
                       <% if (comentarios && comentarios.length > 0) { %>
                         <% comentarios.forEach(comentario => { %>
                           <section class="comentario">
@@ -208,10 +235,48 @@ if(listaErros){
                                 </a>
                               </section>
                               <small  class="data-comentario" data-data="<%= comentario.DATA_COMENTARIO %>"></small>
-                            </section>
-                            <section class="escrita-comentario">
+                                   
+                         
+<form action="/excluircomentario" method="post">
+
+  <input type="hidden" name="idPublicacao" value="<%= publicacao.ID_PUBLICACAO %>">
+  <input type="hidden" name="idComentario" value="<%= comentario.ID_COMENTARIO %>">
+
+  <button type="submit"> <ion-icon name="trash-outline" style="margin-right: 5px;"></ion-icon></button>
+</form>
+
+                                <!-- <section class="opcoes-menu">
+                                    <button class="btn-exclui-comentario" title="Excluir Comentário" id="openShareModal" onclick="openModalExcluir()">
+                                      <ion-icon name="trash-outline" style="margin-right: 5px;"></ion-icon>
+                                      Excluir
+                                    </button>
+                                    <button class="btn-denunciar" title="Denunciar">
+                                      <ion-icon name="flag-outline"></ion-icon>
+                                      Denunciar
+                                    </button>
+                                  </section> -->
+                                </section>
+                              </section>
+
+                               <section class="escrita-comentario">
                               <p><%= comentario.CONTEUDO_COMENTARIO %></p>
                             </section>
+ 
+                            </section>
+
+                            <!-- Modal para confirmar exclusão -->
+                          <div id="modalexcluircomentario" class="modal" style="display:none;">
+                            <div class="modal-content">
+                              <h2>Excluir comentário</h2>
+                              <p>Tem certeza que deseja excluir este comentário?</p>
+                              <div class="modal-buttons">
+                                <button id="confirmarExcluir" class="btn-confirmar">Sim, excluir</button>
+                                <button id="cancelarExcluir" class="btn-cancelar">Cancelar</button>
+                              </div>
+                            </div>
+                          </div>
+
+                           
                           </section>
                         <% }) %>
                       <% } else { %>
@@ -387,6 +452,7 @@ if(listaErros){
     <script src="/js/denuncia-compartilhamento.js"></script>
     <script src="/js/publicacoesindex.js"></script>
     <script src="/js/arrumardata.js"></script>
+    <script src="/js/eccomentario.js"></script>
     <script>
 
       function isSalvarComentarioRoute(path) {
@@ -407,6 +473,9 @@ if(listaErros){
       }
 
     </script>
+
+
+
  
 </body>
 </html>

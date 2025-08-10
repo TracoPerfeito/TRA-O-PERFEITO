@@ -77,6 +77,12 @@ router.post(
     }
   );
  
+  router.post(
+    "/excluircomentario",
+    async function (req, res) {
+      comentariosController.excluirComentario(req, res);
+    }
+  );
 
 
 

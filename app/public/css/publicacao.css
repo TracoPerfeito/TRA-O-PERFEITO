@@ -125,7 +125,7 @@ body{
     font-family: "Josefin Sans";
     color: var(--text-color);
 
-}
+} 
 
 .comentario-info-total{
     display: flex;
@@ -152,7 +152,7 @@ body{
 }
 
 .button-container-submit {
-    width: 90%;
+    width: 100%;
     justify-content: flex-end;
     display: flex;
   
@@ -164,7 +164,7 @@ body{
 
 
 .comentario {
-    width: 100%;
+    width: 95%;
     background-color: var(--cor-fundo-comentario);
     margin: 10px 0px;
     border-radius: 5px;
@@ -236,6 +236,7 @@ body{
 #publi-rel-nome-secao{
     font-family: "Montserrat";
     color: var(--text-color);
+    margin-top: 40px;
 }
 
 .publicacoes-rel-caixas {
@@ -632,8 +633,14 @@ body{
 
 @media(max-width: 650px) {
 
+    body{
+    overflow-x: hidden !important;
+}
 
-    
+
+    .tags{
+        width: 90% !important;
+    }
 
 .carrossel-imagens-explorar {
  
@@ -670,7 +677,7 @@ body{
 
     .container-pag-publi {
         display: block;
-        margin: 0px 10px;
+      margin: 0;
     }
 
     
@@ -737,9 +744,13 @@ body{
 
 
     .comentarios {
-        width: 100%;
-        margin: 20px 0;
+        width: 90%;
+        margin: 20px auto;
 
+    }
+
+    .comentarios-caixa{
+        width: 100%;
     }
 
     .adicionar-comentario {
@@ -771,7 +782,7 @@ body{
     }
 
     .comentario {
-        width: 100%;
+        width: 95%;
         margin: 10px 0px;
         border-radius: 5px;
         padding: 10px;
@@ -788,22 +799,25 @@ body{
     }
 
     .publi-relacionadas{
-        margin: 20px;
-        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 90%;
        
     }
 
     .publicacoes-rel-caixas {
         width: 100%;
         display: block;
+        margin: 0 auto;
     }
 
     .publi-re {
         margin: 10px 0px 20px 0px;
+        width: 100%;
     }
 
     .publi-re img{
-       width: 90%;
+       width: 100%;
        border-radius: 5px;
  
     }
@@ -811,7 +825,7 @@ body{
     .publi-rel-info {
         display: flex;
         justify-content: space-between;
-        width: 90%;
+        width: 100%;
        
     }
 
@@ -862,9 +876,15 @@ body{
     
     .publicacoes-rel-caixas {
         width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
+
+    .tags{
+        width: 90% !important;
+    }
+
 
 
 }
@@ -926,3 +946,96 @@ body{
     transform: translateX(-90px) !important;
     min-width: 130px !important;
 }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 95%;
+  margin: auto;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: 8px;
+  color: rgb(63, 63, 63);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.btn-opcoes-container {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-tres-pontinhos {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.menu-opcoes-comentario {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 100;
+  min-width: 100px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+}
+
+.menu-opcoes-comentario button {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.menu-opcoes-comentario button:hover {
+  background-color: #eee;
+}
+
+/* Modal básico */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.btn-compartilhar{
+    display: flex;
+    align-items: center;
+}
+
