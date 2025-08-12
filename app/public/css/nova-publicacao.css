@@ -818,3 +818,21 @@ select.erro {
   border: 2px solid #d62246 !important;
 }
 
+
+
+
+
+
+
+
+
+/* 
+
+novas partes pag de pedidos */
+
+.conteudo-form-pedido{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+}
