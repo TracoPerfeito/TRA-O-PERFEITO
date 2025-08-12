@@ -1039,3 +1039,6 @@ body{
     align-items: center;
 }
 
+.form-apagar-comentario{
+    display: none;
+}
