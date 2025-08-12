@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
-
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
 
 </head>
 
@@ -37,32 +37,41 @@
             </section>
 
             <p class="p-explicativo-np"> Especifique o que você deseja para que os artistas em nosso site possam entrar em contato com você.</p>
+           
+           
             <form>
        
     
     
-                <section class="form-grupo-1" id="titulo-publicacao">
-                    <label for="titulo">Título:</label> <br>
-                    <input type="text" id="titulo" name="titulo" class="caixa-texto" required>
-                </section>
-                <section class="form-grupo-1" id="descricao-publicacao">
-                    <label for="descricao">Descrição breve:</label> <br>
-                    <input type="text" id="descricao" name="descricao" class="caixa-texto" required>
-                </section>
-                <!-----------------colocar aquele negocio do upload---------------------->
-                <section class="lugar-botar-img">
-                <label class="picture" for="picture__input" >
-                    <span class="picture__image"></span>
-                    <p>Carregar imagens</p>
-                  </label>
-    
-                  <input type="file" name="picture__input" id="picture__input" accept="image/*">
-                </section> 
-             <!-------------------------------------------------------------------------->
-             <section class="form-grupo-1" id="conteudo-publicacao">
-                    <label for="conteudo"> Explique o que você está procurando:</label> <br>
-                    <textarea id="conteudo" name="conteudo" class="caixa-texto grande
-                    " required></textarea>
+                <section class="lado-esq">
+                    <section class="form-grupo-1" id="titulo-publicacao">
+                        <label for="titulo">Título:</label> <br>
+                        <input type="text" id="titulo" name="titulo" class="caixa-texto" required>
+                    </section>
+                    <section class="form-grupo-1" id="descricao-publicacao">
+                        <label for="descricao">Descrição breve:</label> <br>
+                        <input type="text" id="descricao" name="descricao" class="caixa-texto" required>
+                    </section>
+                    <!-----------------colocar aquele negocio do upload---------------------->
+                    <!-- <section class="lugar-botar-img">
+                    <label class="picture" for="picture__input" >
+                        <span class="picture__image"></span>
+                        <p>Carregar imagens</p>
+                      </label>
+                      <input type="file" name="picture__input" id="picture__input" accept="image/*">
+                    </section>  -->
+                                 <!-------------------------------------------------------------------------->
+                                 <section class="form-grupo-1" id="conteudo-publicacao">
+                        <label for="conteudo"> Explique o que você está procurando:</label> <br>
+                        <!-- <textarea id="conteudo" name="conteudo" class="caixa-texto grande
+                        " required></textarea> -->
+                        <section id="editor">
+                    
+                    
+                        </section>
+                    
+                    
+                    </section>
                 </section>
                 <section class="btn-publicar-area">
                     <button type="submit" class="btn-publicar" >PUBLICAR</button>
@@ -73,6 +82,16 @@
 
 
 <%- include('../partials/rodape'); %>
+
+  <!-- Include the Quill library -->
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+                      
+  <!-- Initialize Quill editor -->
+  <script>
+    const quill = new Quill('#editor', {
+      theme: 'snow'
+    });
+  </script>
 
 <script src="js/mobile-navbar.js"></script>
 </body>
