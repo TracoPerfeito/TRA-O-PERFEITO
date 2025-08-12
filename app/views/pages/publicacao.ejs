@@ -237,25 +237,18 @@ if (Array.isArray(listaErros)) {
                               <small  class="data-comentario" data-data="<%= comentario.DATA_COMENTARIO %>"></small>
                                    
                                                           
-                              
-                                 
-                                    <section class="menu-opcoes"> <!-- Denunciar e excluir comentario-->
-                                      <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-                                        <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/>
-                                      </svg>
-                                  
-                                      <section class="opcoes-menu">
-                                        <button class="btn-excluir-comentario" title="Excluir Comentário"  onclick="openModalExcluir()">
-                                          <ion-icon name="trash-outline"></ion-icon>
-                                          Excluir
-                                          
-                                        </button>
-                                        <button class="btn-denunciar" title="Denunciar">
-                                          <ion-icon name="flag-outline"></ion-icon>
-                                          Denunciar
-                                        </button>
-                                      </section>
-                                    </section>
+                            
+<section class="menu-opcoes-coment" data-id-comentario="123">
+  <svg class="icone-menu-coment" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+    <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/>
+  </svg>
+
+  <section class="opcoes-menu-coment">
+    <button class="btn-excluir-comentario" title="Excluir Comentário"> <ion-icon name="trash-outline"></ion-icon>Excluir</button>
+    <button class="btn-denunciar-comentario" title="Denunciar">  <ion-icon name="flag-outline"></ion-icon>Denunciar</button>
+  </section>
+</section>
+
 
                                 </section>
                                 <section class="escrita-comentario">
@@ -425,30 +418,74 @@ if (Array.isArray(listaErros)) {
                 </section>
 
 
-                <section class="form-apagar-comentario modal" id="modalexcluircomentario">
-                  <form action="/excluircomentario" method="post">
 
-                    <input type="hidden" name="idPublicacao" value="">
-                    <input type="hidden" name="idComentario" value="">
 
-                    h2>Excluir comentário</h2>
-              <p>Tem certeza que deseja excluir este comentário?</p>
-             
 
-                    <div class="modal-buttons">
-                      <button id="confirmarExcluir" class="btn-confirmar">Sim, excluir</button>
-                      <button id="cancelarExcluir" class="btn-cancelar">Cancelar</button>
-                    </div>
-                  </form>
 
-                </section>
- 
- 
-           
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+               
+<!-- Modal Excluir Comentário -->
+<div id="modalExcluirComentario" class="modal-coment hidden">
+  <div class="modal-content-coment">
+    <h2>Excluir Comentário</h2>
+    <form action="/excluir-comentario" method="POST">
+      <input type="hidden" name="id_comentario" id="excluirComentarioId" value="">
+      <p>Tem certeza que deseja excluir este comentário?</p>
+      <button type="submit">Sim, excluir</button>
+      <button type="button" class="btn-fechar-modal-coment">Cancelar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Denunciar Comentário -->
+<div id="modalDenunciarComentario" class="modal-coment hidden">
+  <div class="modal-content-coment">
+    <h2>Denunciar Comentário</h2>
+    <form action="/denunciar-comentario" method="POST">
+      <input type="hidden" name="id_comentario" id="denunciarComentarioId" value="">
+      <label for="motivoDenuncia">Motivo:</label>
+      <textarea id="motivoDenuncia" name="motivo" required></textarea>
+      <button type="submit">Enviar Denúncia</button>
+      <button type="button" class="btn-fechar-modal-coment">Cancelar</button>
+    </form>
+  </div>
+</div>
  
  
     </main>
+    
  
  
  
@@ -484,14 +521,7 @@ if (Array.isArray(listaErros)) {
 
     </script>
 
-           <!-- Modal para confirmar exclusão -->
-           <div id="modalexcluircomentario" class="modal" style="display:none;">
-            <div class="modal-content">
-              <h2>Excluir comentário</h2>
-              <p>Tem certeza que deseja excluir este comentário?</p>
-             
-            </div>
-          </div>
+         
 
 
 
