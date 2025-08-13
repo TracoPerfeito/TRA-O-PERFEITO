@@ -7,9 +7,12 @@
     <div class="conteudo-editar-publicacao">
       <!-- Coluna esquerda: Carrossel de imagens -->
       <div class="carrossel-editar-publicacao">
-        <div class="lista-imagens-editar-publicacao">
-          <!-- Exemplo de imagem -->
-          
+        <div class="lista-imagens-editar-publicacao"></div>
+
+        <div class="controles-carrossel-editar" style="display:none; margin-top: 10px; text-align:center;">
+          <button class="seta-carrossel-esquerda" title="Imagem anterior">&#8592;</button>
+          <button class="seta-carrossel-direita" title="Próxima imagem">&#8594;</button>
+          <div class="indicadores-carrossel-editar" style="margin-top: 8px;"></div>
         </div>
       </div>
 
@@ -87,6 +90,7 @@
     margin: 10% auto;
     padding: 20px;
     width: 40%;
+    height: 80%;
     border-radius: 8px;
   }
 
@@ -97,63 +101,97 @@
   }
 
   .modal-content-editar-publicacao {
-  max-width: 90%;
-  width: 1000px;
-  margin: auto;
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  padding: 20px;
-}
+    max-width: 90%;
+    width: 1000px;
+    margin: auto;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px;
+  }
 
-.titulo-modal-editar-publicacao {
-  text-align: center;
-  margin-bottom: 20px;
-}
+  .titulo-modal-editar-publicacao {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
-.conteudo-editar-publicacao {
-  display: flex;
-  gap: 20px;
-}
+  .conteudo-editar-publicacao {
+    display: flex;
+    gap: 20px;
+  }
 
-.carrossel-editar-publicacao {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .carrossel-editar-publicacao {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.lista-imagens-editar-publicacao {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+  .lista-imagens-editar-publicacao {
+    width: 100%;
+    max-height: 400px;
+    position: relative;
+  }
 
-.item-imagem-editar-publicacao {
-  position: relative;
-}
+  .item-imagem-editar-publicacao {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
 
-.item-imagem-editar-publicacao img {
-  max-width: 100%;
-  border-radius: 6px;
-}
+  .item-imagem-editar-publicacao img {
+    width: 100%;
+    border-radius: 6px;
+    display: block;
+  }
 
-.btn-remover-imagem-editar-publicacao {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: rgba(255,0,0,0.8);
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  padding: 4px 6px;
-  border-radius: 4px;
-}
+  .btn-remover-imagem-editar-publicacao {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(255,0,0,0.8);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+    z-index: 10;
+  }
 
-.form-editar-publicacao {
-  flex: 1;
-}
+  .form-editar-publicacao {
+    flex: 1;
+  }
 
+  .seta-carrossel-esquerda,
+  .seta-carrossel-direita {
+    cursor: pointer;
+    margin: 0 10px;
+    padding: 6px 10px;
+    border: none;
+    background-color: #ddd;
+    border-radius: 4px;
+    font-size: 18px;
+  }
+
+  .seta-carrossel-esquerda:hover,
+  .seta-carrossel-direita:hover {
+    background-color: #bbb;
+  }
+
+  .indicadores-carrossel-editar p {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0 4px;
+    cursor: pointer;
+  }
+
+  .indicadores-carrossel-editar p.ativo {
+    background-color: #555;
+  }
 </style>
 
 <script>
@@ -188,13 +226,12 @@
 
     // Processa tags e imagens
     let tags = tagsStr ? tagsStr.split(",").map(t => t.trim()) : [];
-let imagens = [];
-try {
-  imagens = JSON.parse(imagensStr); // já vem como ["data:image/jpeg;base64,...", ...]
-} catch {
-  imagens = [];
-}
-
+    let imagens = [];
+    try {
+      imagens = JSON.parse(imagensStr); 
+    } catch {
+      imagens = [];
+    }
 
     console.log("Abrindo modal para publicação:", idPublicacao);
     console.log("Imagens para carregar no modal:", imagens);
@@ -211,20 +248,60 @@ try {
 
     // Preenche o carrossel de imagens do modal
     const carrossel = document.querySelector('.lista-imagens-editar-publicacao');
-    if (!carrossel) {
-      console.error('Carrossel de imagens não encontrado!');
-      return;
-    }
+    const controlesCarrossel = document.querySelector('.controles-carrossel-editar');
+    const indicadoresContainer = controlesCarrossel.querySelector('.indicadores-carrossel-editar');
+    const btnEsquerda = controlesCarrossel.querySelector('.seta-carrossel-esquerda');
+    const btnDireita = controlesCarrossel.querySelector('.seta-carrossel-direita');
+
     carrossel.innerHTML = ''; // limpa o conteúdo anterior
-    imagens.forEach(url => {
-      const div = document.createElement('div');
-      div.classList.add('item-imagem-editar-publicacao');
-      div.innerHTML = `
-        <img src="${url}" alt="Imagem da publicação">
-        <button class="btn-remover-imagem-editar-publicacao" title="Remover imagem">🗑</button>
-      `;
-      carrossel.appendChild(div);
-    });
+    indicadoresContainer.innerHTML = ''; 
+
+    if (imagens.length > 0) {
+      imagens.forEach((url, idx) => {
+        const div = document.createElement('div');
+        div.classList.add('item-imagem-editar-publicacao');
+        if (idx !== 0) div.style.display = 'none'; 
+
+        div.innerHTML = `
+          <img src="${url}" alt="Imagem da publicação">
+          <button class="btn-remover-imagem-editar-publicacao" title="Remover imagem">🗑</button>
+        `;
+        carrossel.appendChild(div);
+
+        // cria indicador
+        const indicador = document.createElement('p');
+        indicador.classList.toggle('ativo', idx === 0);
+        indicador.addEventListener('click', () => mostrarImagem(idx));
+        indicadoresContainer.appendChild(indicador);
+      });
+
+      if (imagens.length > 1) {
+        controlesCarrossel.style.display = 'block';
+      } else {
+        controlesCarrossel.style.display = 'none';
+      }
+    }
+
+    let indiceAtual = 0;
+
+    function mostrarImagem(novoIndice) {
+      const itens = carrossel.querySelectorAll('.item-imagem-editar-publicacao');
+      const indicadores = indicadoresContainer.querySelectorAll('p');
+
+      if (novoIndice < 0) novoIndice = itens.length - 1;
+      if (novoIndice >= itens.length) novoIndice = 0;
+
+      itens[indiceAtual].style.display = 'none';
+      indicadores[indiceAtual].classList.remove('ativo');
+
+      itens[novoIndice].style.display = 'block';
+      indicadores[novoIndice].classList.add('ativo');
+
+      indiceAtual = novoIndice;
+    }
+
+    btnEsquerda.onclick = () => mostrarImagem(indiceAtual - 1);
+    btnDireita.onclick = () => mostrarImagem(indiceAtual + 1);
 
     // Exibe o modal
     document.getElementById("modal-editar-publicacao").style.display = "block";
@@ -242,4 +319,3 @@ try {
     }
   });
 </script>
-

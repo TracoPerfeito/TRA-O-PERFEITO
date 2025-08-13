@@ -27,6 +27,8 @@
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
    <script src="js/simple-notify.js"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+   <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,7 +222,12 @@
   <button 
     class="btn-editar" 
     title="Editar publicação" 
-    data-id="<%= pub.ID_PUBLICACAO %>">
+       data-id="<%= pub.ID_PUBLICACAO %>"
+  data-titulo="<%= pub.NOME_PUBLICACAO %>"
+  data-categoria="<%= pub.CATEGORIA %>"
+  data-descricao="<%= pub.DESCRICAO_PUBLICACAO %>"
+  data-tags="<%= pub.TAGS %>"
+ data-imagens='<%- JSON.stringify(pub.imagensUrls || []) %>'>
     <ion-icon name="create-outline"></ion-icon>
     Editar
   </button>
@@ -383,6 +390,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="js/like.js"></script>
 <script src="js/mobile-navbar.js"></script>
 <script src="js/denuncia-compartilhamento.js"></script>
+
+<%- include('../partials/editar-publicacao') %>
 
 </body>
 </html>
