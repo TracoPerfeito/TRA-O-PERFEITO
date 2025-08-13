@@ -1,0 +1,245 @@
+<!-- Modal específico para edição de publicação -->
+<div id="modal-editar-publicacao" class="modal-editar-publicacao">
+  <div class="modal-content-editar-publicacao">
+    <span class="fechar-editar-publicacao" id="fechar-modal-editar-publicacao">&times;</span>
+    <h2 class="titulo-modal-editar-publicacao">Editar essa publicação</h2>
+
+    <div class="conteudo-editar-publicacao">
+      <!-- Coluna esquerda: Carrossel de imagens -->
+      <div class="carrossel-editar-publicacao">
+        <div class="lista-imagens-editar-publicacao">
+          <!-- Exemplo de imagem -->
+          
+        </div>
+      </div>
+
+      <!-- Coluna direita: Campos de edição -->
+      <div class="form-editar-publicacao">
+        <form action="/editar-publicacao" method="POST">
+          <input type="hidden" name="id_publicacao" id="id-editar-publicacao" value="">
+
+          <!-- Título -->
+          <section class="form-grupo-1" id="titulo-editar-publicacao-container">
+            <label for="titulo-editar-publicacao">Título:</label>
+            <input type="text" id="titulo-editar-publicacao" name="titulo_publicacao" class="caixa-texto" required>
+          </section>
+
+          <!-- Categoria -->
+          <section class="form-grupo-1" id="categoria-editar-publicacao-container">
+            <label for="categoria-editar-publicacao">Categoria:</label>
+            <select id="categoria-editar-publicacao" name="categoria" class="caixa-texto" required>
+              <option value="">-- Selecione a categoria --</option>
+              <option value="design_grafico">Design Gráfico</option>
+              <option value="ilustracao">Ilustração</option>
+              <option value="uiux">UI/UX</option>
+              <option value="arte_digital">Arte Digital</option>
+              <option value="arte_3d">Arte 3D</option>
+              <option value="animacao">Animação</option>
+              <option value="branding">Branding</option>
+              <option value="tipografia">Tipografia</option>
+              <option value="modelagem_3d">Modelagem 3D</option>
+              <option value="design_de_produto">Design de Produto</option>
+              <option value="design_editorial">Design Editorial</option>
+              <option value="design_de_jogos">Design de Jogos</option>
+              <option value="fotografia">Fotografia</option>
+              <option value="outro">Outros</option>
+            </select>
+            <section id="outra-categoria-container-editar" style="display:none; margin-top:10px;">
+              <label for="outraCategoria-editar">Digite a categoria:</label>
+              <input type="text" id="outraCategoria-editar" name="outraCategoria" placeholder="Ex: Lettering">
+            </section>
+          </section>
+
+          <!-- Descrição -->
+          <section class="form-grupo-1" id="descricao-editar-publicacao-container">
+            <label for="descricao-editar-publicacao">Descrição:</label>
+            <textarea id="descricao-editar-publicacao" name="descricao_publicacao" class="caixa-texto grande"></textarea>
+          </section>
+
+          <!-- Tags -->
+          <section class="form-grupo-1" id="tags-editar-publicacao-container">
+            <label for="tagInput-editar">Tags:</label>
+            <input id="tagInput-editar" name="tags" class="tags-look tagify--custom-dropdown caixa-texto" placeholder="Adicione tags à sua publicação...">
+          </section>
+
+          <button type="submit" class="btn-salvar-editar-publicacao">Salvar Alterações</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Estilo do Modal */
+  .modal-editar-publicacao {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content-editar-publicacao {
+    background: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    width: 40%;
+    border-radius: 8px;
+  }
+
+  .fechar-editar-publicacao {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .modal-content-editar-publicacao {
+  max-width: 90%;
+  width: 1000px;
+  margin: auto;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.titulo-modal-editar-publicacao {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.conteudo-editar-publicacao {
+  display: flex;
+  gap: 20px;
+}
+
+.carrossel-editar-publicacao {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lista-imagens-editar-publicacao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-imagem-editar-publicacao {
+  position: relative;
+}
+
+.item-imagem-editar-publicacao img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.btn-remover-imagem-editar-publicacao {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255,0,0,0.8);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.form-editar-publicacao {
+  flex: 1;
+}
+
+</style>
+
+<script>
+  // Cores para as tags no Tagify
+  var coresTags = ['#7490C9','#969ED0','#92C4E2','#B8D9BD','#9BB7CF','#C3E3DF','#C2E5F0','#ADBCE2'];
+
+  function transformarTag(tagData) {
+    var cor = coresTags[Math.floor(Math.random() * coresTags.length)];
+    tagData.color = cor;
+    tagData.style = "--tag-bg:" + cor;
+  }
+
+  // Inicializa Tagify no input das tags do modal
+  var tagifyEditar = new Tagify(document.querySelector('#tagInput-editar'), {
+    maxTags: 10,
+    dropdown: { maxItems: 20, classname: 'tags-look', enabled: 0, closeOnSelect: false },
+    transformTag: transformarTag
+  });
+
+  // Listener global para abrir modal ao clicar no botão editar
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".btn-editar");
+    if (!btn) return;
+
+    // Pega os dados do botão (data-*)
+    const idPublicacao = btn.getAttribute("data-id") || "";
+    const titulo = btn.getAttribute("data-titulo") || "";
+    const categoria = btn.getAttribute("data-categoria") || "";
+    const descricao = btn.getAttribute("data-descricao") || "";
+    const tagsStr = btn.getAttribute("data-tags") || "";
+    const imagensStr = btn.getAttribute("data-imagens") || "[]";
+
+    // Processa tags e imagens
+    let tags = tagsStr ? tagsStr.split(",").map(t => t.trim()) : [];
+let imagens = [];
+try {
+  imagens = JSON.parse(imagensStr); // já vem como ["data:image/jpeg;base64,...", ...]
+} catch {
+  imagens = [];
+}
+
+
+    console.log("Abrindo modal para publicação:", idPublicacao);
+    console.log("Imagens para carregar no modal:", imagens);
+
+    // Preenche os campos do formulário no modal
+    document.getElementById("id-editar-publicacao").value = idPublicacao;
+    document.getElementById("titulo-editar-publicacao").value = titulo;
+    document.getElementById("categoria-editar-publicacao").value = categoria;
+    document.getElementById("descricao-editar-publicacao").value = descricao;
+
+    // Preenche as tags no Tagify
+    tagifyEditar.removeAllTags();
+    tagifyEditar.addTags(tags);
+
+    // Preenche o carrossel de imagens do modal
+    const carrossel = document.querySelector('.lista-imagens-editar-publicacao');
+    if (!carrossel) {
+      console.error('Carrossel de imagens não encontrado!');
+      return;
+    }
+    carrossel.innerHTML = ''; // limpa o conteúdo anterior
+    imagens.forEach(url => {
+      const div = document.createElement('div');
+      div.classList.add('item-imagem-editar-publicacao');
+      div.innerHTML = `
+        <img src="${url}" alt="Imagem da publicação">
+        <button class="btn-remover-imagem-editar-publicacao" title="Remover imagem">🗑</button>
+      `;
+      carrossel.appendChild(div);
+    });
+
+    // Exibe o modal
+    document.getElementById("modal-editar-publicacao").style.display = "block";
+  });
+
+  // Fecha o modal ao clicar no "X"
+  document.getElementById("fechar-modal-editar-publicacao").addEventListener("click", function () {
+    document.getElementById("modal-editar-publicacao").style.display = "none";
+  });
+
+  // Fecha o modal clicando fora do conteúdo
+  window.addEventListener("click", function (event) {
+    if (event.target.id === "modal-editar-publicacao") {
+      document.getElementById("modal-editar-publicacao").style.display = "none";
+    }
+  });
+</script>
+

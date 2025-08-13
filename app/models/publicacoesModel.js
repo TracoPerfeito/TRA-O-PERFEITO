@@ -63,6 +63,21 @@ inserirConteudo: async (idPublicacao, imgBuffer) => {
         }
     },
 
+
+      deletarPublicacao: async (idPublicacao) => {
+        try {
+            const [result] = await pool.query
+            ('DELETE FROM PUBLICACOES_PROFISSIONAL WHERE ID_PUBLICACAO = ?', 
+            [idPublicacao]);
+
+            console.log("Publicação apagada pelo Model.")
+       return result; 
+        } catch (error) {
+            console.error('Erro ao excluir publicação:', error);
+            return null;
+        }
+    },
+
    
 };
 
