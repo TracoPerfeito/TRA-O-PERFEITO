@@ -1,0 +1,213 @@
+@import url(cores.css);
+
+
+  /* Estilo do Modal */
+  .modal-editar-publicacao {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: "Josefin Sans", sans-serif;
+  }
+
+  .modal-content-editar-publicacao {
+    background: var(--cor-fundo);
+    margin: 10% auto;
+    padding: 20px;
+    width: 60%;
+    
+    min-height: fit-content;
+    border-radius: 8px;
+    color: var(--text-color);
+  }
+
+  .fechar-editar-publicacao {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .titulo-modal-editar-publicacao {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-color);
+  }
+
+  .conteudo-editar-publicacao {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+  }
+
+  .carrossel-editar-publicacao {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+  }
+
+  .lista-imagens-editar-publicacao {
+    width: 100%;
+    max-height: 400px;
+    position: relative;
+  }
+
+  .item-imagem-editar-publicacao {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .item-imagem-editar-publicacao img {
+    width: 100%;
+    border-radius: 6px;
+    display: block;
+  }
+
+  .btn-remover-imagem-editar-publicacao {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(255,0,0,0.8);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+    z-index: 10;
+  }
+
+  .form-editar-publicacao {
+    flex: 1;
+  }
+
+  .seta-carrossel-esquerda,
+  .seta-carrossel-direita {
+    cursor: pointer;
+    margin: 0 10px;
+    padding: 6px 10px;
+    border: none;
+    background-color: #ddd;
+    border-radius: 4px;
+    font-size: 18px;
+  }
+
+  .seta-carrossel-esquerda:hover,
+  .seta-carrossel-direita:hover {
+    background-color: #bbb;
+  }
+
+  .indicadores-carrossel-editar p {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0 4px;
+    cursor: pointer;
+  }
+
+  .indicadores-carrossel-editar p.ativo {
+    background-color: #555;
+  }
+
+
+    #id_publicacao, #titulo-editar-publicacao,
+    #categoria-editar-publicacao, #outraCategoria-editar, 
+    #descricao-editar-publicacao, #tagInput-editar{
+        background: var(--cor-fundo);
+        color: var(--text-color);
+        border: 1px solid var(--text-color);
+        border-radius: 5px !important;
+        font-family: "Josefin Sans", sans-serif;
+        height: 30px;
+        padding: 4px;
+       
+
+  }
+
+  #descricao-editar-publicacao{
+    height: 200px;
+  }
+
+.tagify {
+  width: 100%;       
+  max-width: 100%;   
+  min-width: 100%;    
+  height: auto;      
+  box-sizing: border-box; 
+  overflow-x: auto;
+  border: 1px solid var(--cor-borda-n-pub);
+  color: var(--text-color);   
+  border-radius: 5px !important;
+
+}
+
+
+.tagify__input {
+  width: 100% !important;  
+  min-width: 0 !important; 
+  box-sizing: border-box;
+}
+
+  .form-grupo-1{
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 20px 0;
+  }
+
+  .dados{
+    width: 50%;
+  }
+
+ 
+  @media (max-width: 700px){
+    
+    .conteudo-editar-publicacao {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto auto;  
+        grid-template-areas:
+          "titulo"
+          "categoria"
+          "descricao"
+          "tags"
+          "img"
+          "btn";
+      }
+      
+  
+  .modal-content-editar-publicacao {
+    
+    height: 95%;
+    overflow-y: scroll;
+    width: 85%;
+
+   
+  }
+
+  .btn-salvar-editar-publicacao{
+    grid-area: btn;
+  }
+
+  .carrossel-editar-publicacao{
+    grid-area: img;
+    width: 100%;
+  }
+
+  .dados{
+    width: 100%;
+  }
+
+  
+
+
+
+  }

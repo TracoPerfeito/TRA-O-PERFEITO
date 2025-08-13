@@ -63,9 +63,6 @@ inserirConteudo: async (idPublicacao, imgBuffer) => {
         }
     },
 
-<<<<<<< HEAD
-    
-=======
 
       deletarPublicacao: async (idPublicacao) => {
         try {
@@ -80,7 +77,6 @@ inserirConteudo: async (idPublicacao, imgBuffer) => {
             return null;
         }
     },
->>>>>>> a71f5122e3b9ab2c2570a80cf2c528c9b1c4fb2e
 
    
 };

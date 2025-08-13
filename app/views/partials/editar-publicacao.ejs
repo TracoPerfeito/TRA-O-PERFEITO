@@ -1,198 +1,85 @@
+<link rel="stylesheet" href="/css/editar-publicacao.css">
+
 <!-- Modal específico para edição de publicação -->
-<div id="modal-editar-publicacao" class="modal-editar-publicacao">
-  <div class="modal-content-editar-publicacao">
+<section id="modal-editar-publicacao" class="modal-editar-publicacao">
+  <section class="modal-content-editar-publicacao">
     <span class="fechar-editar-publicacao" id="fechar-modal-editar-publicacao">&times;</span>
     <h2 class="titulo-modal-editar-publicacao">Editar essa publicação</h2>
 
-    <div class="conteudo-editar-publicacao">
-      <!-- Coluna esquerda: Carrossel de imagens -->
-      <div class="carrossel-editar-publicacao">
-        <div class="lista-imagens-editar-publicacao"></div>
-
-        <div class="controles-carrossel-editar" style="display:none; margin-top: 10px; text-align:center;">
-          <button class="seta-carrossel-esquerda" title="Imagem anterior">&#8592;</button>
-          <button class="seta-carrossel-direita" title="Próxima imagem">&#8594;</button>
-          <div class="indicadores-carrossel-editar" style="margin-top: 8px;"></div>
-        </div>
-      </div>
+   
 
       <!-- Coluna direita: Campos de edição -->
-      <div class="form-editar-publicacao">
+      <section class="form-editar-publicacao">
         <form action="/editar-publicacao" method="POST">
           <input type="hidden" name="id_publicacao" id="id-editar-publicacao" value="">
 
-          <!-- Título -->
-          <section class="form-grupo-1" id="titulo-editar-publicacao-container">
-            <label for="titulo-editar-publicacao">Título:</label>
-            <input type="text" id="titulo-editar-publicacao" name="titulo_publicacao" class="caixa-texto" required>
-          </section>
 
-          <!-- Categoria -->
-          <section class="form-grupo-1" id="categoria-editar-publicacao-container">
-            <label for="categoria-editar-publicacao">Categoria:</label>
-            <select id="categoria-editar-publicacao" name="categoria" class="caixa-texto" required>
-              <option value="">-- Selecione a categoria --</option>
-              <option value="design_grafico">Design Gráfico</option>
-              <option value="ilustracao">Ilustração</option>
-              <option value="uiux">UI/UX</option>
-              <option value="arte_digital">Arte Digital</option>
-              <option value="arte_3d">Arte 3D</option>
-              <option value="animacao">Animação</option>
-              <option value="branding">Branding</option>
-              <option value="tipografia">Tipografia</option>
-              <option value="modelagem_3d">Modelagem 3D</option>
-              <option value="design_de_produto">Design de Produto</option>
-              <option value="design_editorial">Design Editorial</option>
-              <option value="design_de_jogos">Design de Jogos</option>
-              <option value="fotografia">Fotografia</option>
-              <option value="outro">Outros</option>
-            </select>
-            <section id="outra-categoria-container-editar" style="display:none; margin-top:10px;">
-              <label for="outraCategoria-editar">Digite a categoria:</label>
-              <input type="text" id="outraCategoria-editar" name="outraCategoria" placeholder="Ex: Lettering">
+          <section class="conteudo-editar-publicacao">
+            <!-- Coluna esquerda: Carrossel de imagens -->
+            <section class="carrossel-editar-publicacao">
+              <section class="lista-imagens-editar-publicacao"></section>
+      
+              <section class="controles-carrossel-editar" style="display:none; margin-top: 10px; text-align:center;">
+                <button class="seta-carrossel-esquerda" title="Imagem anterior">&#8592;</button>
+                <button class="seta-carrossel-direita" title="Próxima imagem">&#8594;</button>
+                <section class="indicadores-carrossel-editar" style="margin-top: 8px;"></section>
+              </section>
             </section>
-          </section>
-
-          <!-- Descrição -->
-          <section class="form-grupo-1" id="descricao-editar-publicacao-container">
-            <label for="descricao-editar-publicacao">Descrição:</label>
-            <textarea id="descricao-editar-publicacao" name="descricao_publicacao" class="caixa-texto grande"></textarea>
-          </section>
-
-          <!-- Tags -->
-          <section class="form-grupo-1" id="tags-editar-publicacao-container">
-            <label for="tagInput-editar">Tags:</label>
-            <input id="tagInput-editar" name="tags" class="tags-look tagify--custom-dropdown caixa-texto" placeholder="Adicione tags à sua publicação...">
-          </section>
-
-          <button type="submit" class="btn-salvar-editar-publicacao">Salvar Alterações</button>
+<section class="dados">
+  
+            <!-- Título -->
+            <section class="form-grupo-1" id="titulo-editar-publicacao-container">
+              <label for="titulo-editar-publicacao">Título:</label>
+              <input type="text" id="titulo-editar-publicacao" name="titulo_publicacao" class="caixa-texto" required>
+            </section>
+  
+            <!-- Categoria -->
+            <section class="form-grupo-1" id="categoria-editar-publicacao-container">
+              <label for="categoria-editar-publicacao">Categoria:</label>
+              <select id="categoria-editar-publicacao" name="categoria" class="caixa-texto" required>
+                <option value="">-- Selecione a categoria --</option>
+                <option value="design_grafico">Design Gráfico</option>
+                <option value="ilustracao">Ilustração</option>
+                <option value="uiux">UI/UX</option>
+                <option value="arte_digital">Arte Digital</option>
+                <option value="arte_3d">Arte 3D</option>
+                <option value="animacao">Animação</option>
+                <option value="branding">Branding</option>
+                <option value="tipografia">Tipografia</option>
+                <option value="modelagem_3d">Modelagem 3D</option>
+                <option value="design_de_produto">Design de Produto</option>
+                <option value="design_editorial">Design Editorial</option>
+                <option value="design_de_jogos">Design de Jogos</option>
+                <option value="fotografia">Fotografia</option>
+                <option value="outro">Outros</option>
+              </select>
+              <section id="outra-categoria-container-editar" style="display:none; margin-top:10px;">
+                <label for="outraCategoria-editar">Digite a categoria:</label>
+                <input type="text" id="outraCategoria-editar" name="outraCategoria" placeholder="Ex: Lettering">
+              </section>
+            </section>
+  
+            <!-- Descrição -->
+            <section class="form-grupo-1" id="descricao-editar-publicacao-container">
+              <label for="descricao-editar-publicacao">Descrição:</label>
+              <textarea id="descricao-editar-publicacao" name="descricao_publicacao" class="caixa-texto grande"></textarea>
+            </section>
+  
+            <!-- Tags -->
+            <section class="form-grupo-1" id="tags-editar-publicacao-container">
+              <label for="tagInput-editar">Tags:</label>
+              <input id="tagInput-editar" name="tags" class="tags-look tagify--custom-dropdown caixa-texto" placeholder="Adicione tags à sua publicação...">
+            </section>
+  
+            <button type="submit" class="btn-salvar-editar-publicacao">Salvar Alterações</button>
+            </section>
+        </section>
         </form>
-      </div>
-    </div>
-  </div>
-</div>
+      </section>
+    </section>
+  </section>
+</section>
 
-<style>
-  /* Estilo do Modal */
-  .modal-editar-publicacao {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-
-  .modal-content-editar-publicacao {
-    background: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    width: 40%;
-    height: 80%;
-    border-radius: 8px;
-  }
-
-  .fechar-editar-publicacao {
-    float: right;
-    font-size: 24px;
-    cursor: pointer;
-  }
-
-  .modal-content-editar-publicacao {
-    max-width: 90%;
-    width: 1000px;
-    margin: auto;
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    padding: 20px;
-  }
-
-  .titulo-modal-editar-publicacao {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .conteudo-editar-publicacao {
-    display: flex;
-    gap: 20px;
-  }
-
-  .carrossel-editar-publicacao {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .lista-imagens-editar-publicacao {
-    width: 100%;
-    max-height: 400px;
-    position: relative;
-  }
-
-  .item-imagem-editar-publicacao {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-  }
-
-  .item-imagem-editar-publicacao img {
-    width: 100%;
-    border-radius: 6px;
-    display: block;
-  }
-
-  .btn-remover-imagem-editar-publicacao {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: rgba(255,0,0,0.8);
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    padding: 4px 6px;
-    border-radius: 4px;
-    z-index: 10;
-  }
-
-  .form-editar-publicacao {
-    flex: 1;
-  }
-
-  .seta-carrossel-esquerda,
-  .seta-carrossel-direita {
-    cursor: pointer;
-    margin: 0 10px;
-    padding: 6px 10px;
-    border: none;
-    background-color: #ddd;
-    border-radius: 4px;
-    font-size: 18px;
-  }
-
-  .seta-carrossel-esquerda:hover,
-  .seta-carrossel-direita:hover {
-    background-color: #bbb;
-  }
-
-  .indicadores-carrossel-editar p {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background-color: #bbb;
-    border-radius: 50%;
-    margin: 0 4px;
-    cursor: pointer;
-  }
-
-  .indicadores-carrossel-editar p.ativo {
-    background-color: #555;
-  }
-</style>
 
 <script>
   // Cores para as tags no Tagify
