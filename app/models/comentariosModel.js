@@ -1,27 +1,4 @@
-<<<<<<< HEAD
-var pool = require("../../config/pool_conexoes");
 
-const comentariosModel = {
-
- 
-
-    createComment: async (dadosForm) => {
-        try {
-            const [result] = await pool.query('INSERT INTO COMENTARIOS SET ?', [dadosForm])
-            console.log(result);
-            return result.insertId; 
-            
-        } catch (error) {
-            console.log('Erro ao salvar comentario:', error);
-            return null;
-        }  
-    },
-
-};
-
-    
-
-=======
 const pool = require('../../config/pool_conexoes');
  
  
@@ -81,6 +58,5 @@ const comentariosModel = {
 
  
 };
- 
->>>>>>> 4a4029f950c1f4e2debbb24d0d48734586a5626d
+
 module.exports = comentariosModel;

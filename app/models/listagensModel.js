@@ -97,7 +97,11 @@ findEspecializacaoByUserId: async (id) => {
     // 4) Adicionar o array de imagens em cada publicação
     publicacoes.forEach(pub => {
       pub.imagens = imagensPorPublicacao[pub.ID_PUBLICACAO] || [];
+
+      pub.imagensUrls = pub.imagens.map(imgBuffer => "data:image/jpeg;base64," + imgBuffer.toString('base64'));
     });
+
+
 
     return publicacoes;
 
@@ -142,6 +146,7 @@ const [imgsRows] = await pool.query(`
 // 3) Montar o objeto com o array de imagens
 const publicacao = pubRows[0];
 publicacao.imagens = imgsRows.map(row => row.IMG_PUBLICACAO);
+publicacao.imagensUrls = publicacao.imagens.map(buffer => "data:image/jpeg;base64," + buffer.toString('base64'));
 
 return publicacao;
 

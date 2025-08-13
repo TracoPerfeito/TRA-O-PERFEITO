@@ -57,7 +57,15 @@ const listagensController = {
   try {
     const publicacoes = await listagensModel.listarPublicacoes();
  
-    console.log("Publicações encontradas:", publicacoes);
+    console.log("Publicações encontradas:", publicacoes.map(pub => ({
+  ID_PUBLICACAO: pub.ID_PUBLICACAO,
+  NOME_PUBLICACAO: pub.NOME_PUBLICACAO,
+  NOME_USUARIO: pub.NOME_USUARIO,
+  TAGS: pub.TAGS,
+  qtdImagens: (pub.imagens || []).length,
+  qtdImagensUrls: (pub.imagensUrls || []).length,
+})));
+
  
    
     res.render('pages/index', {
@@ -113,7 +121,15 @@ const sessao = req.session.autenticado;
  
     const comentarios = await comentariosModel.listarComentarios(id);
  
-    console.log("Dados da publicação sendo exibida:", publicacao);
+ console.log("Dados da publicação sendo exibida:", {
+  ID_PUBLICACAO: publicacao.ID_PUBLICACAO,
+  NOME_PUBLICACAO: publicacao.NOME_PUBLICACAO,
+  NOME_USUARIO: publicacao.NOME_USUARIO,
+  TAGS: publicacao.TAGS,
+  qtdImagens: publicacao.imagens.length,
+  qtdImagensUrls: publicacao.imagensUrls.length,
+});
+
     console.log("Comentarios da publicação sendo exibida: ", comentarios)
     console.log("Usuário autenticado passado para a view:", usuario);
     res.render('pages/publicacao', {

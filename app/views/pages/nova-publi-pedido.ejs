@@ -39,123 +39,309 @@
             <p class="p-explicativo-np"> Especifique o que você deseja para que os artistas em nosso site possam entrar em contato com você.</p>
            
            
-            <form>
-       
-    <section class="colunas-form">
-        
-        
-                    <section class="coluna-esq">
-                        <section class="form-grupo-1" id="titulo-publicacao">
-                            <label for="titulo">Título:</label> <br>
-                            <input type="text" id="titulo" name="titulo" class="caixa-texto" required>
-                        </section>
-                        <section class="form-grupo-1" id="categoria-publicacao">
-                            <label for="categoria">Categoria:</label> <br>
-                            <select id="categoria" name="categoria" class="caixa-texto" required>
-                                <option value="">-- Selecione a categoria --</option>
-                                <option value="design_grafico">Design Gráfico</option>
-                                <option value="ilustracao">Ilustração</option>
-                                <option value="uiux">UI/UX</option>
-                                <option value="arte_digital">Arte Digital</option>
-                                <option value="arte_3d">Arte 3D</option>
-            
-                                <option value="animacao">Animação</option>
-            
-                                <option value="branding">Branding</option>
-                                <option value="tipografia">Tipografia</option>
-                                <option value="modelagem_3d">Modelagem 3D</option>
-            
-            
-                                <option value="design_de_produto">Design de Produto</option>
-            
-                                <option value="design_editorial">Design Editorial</option>
-                                <option value="design_de_jogos">Design de Jogos</option>
-            
-            
-            
-                                <option value="fotografia">Fotografia</option>
-                                <option value="outro">Outros</option>
-                            </select>
-                            <div id="erro-select" class="mensagem-erro"></div>
-    
-                            
-    <section id="outra-categoria-container" style="display:none; margin-top:10px;">
-      <label for="outraCategoria">Digite a categoria:</label>
-      <input type="text" id="outraCategoria" name="outraCategoria" placeholder="Ex: Lettering">
-    </section>
-    
-    
-    
-    <script>
-      const select = document.getElementById('categoria');
-    const container = document.getElementById('outra-categoria-container');
-    
-    select.addEventListener('change', () => {
-      if (select.value === 'outro') {
-        container.style.display = 'block';
-      } else {
-        container.style.display = 'none';
+       <form id="multiStepForm" novalidate>
+  <ul class="progressbar">
+    <li class="active">Dados básicos</li>
+    <li>Prazo e orçamento</li>
+    <li>Descrição e imagens</li>
+  </ul>
+
+  <!-- Step 1 -->
+  <section class="step active" id="step1">
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" required />
+    <div class="error-msg" id="errorTitulo"></div>
+
+    <label for="categoria">Categoria:</label>
+    <select id="categoria" name="categoria" required>
+      <option value="">-- Selecione a categoria --</option>
+      <option value="design_grafico">Design Gráfico</option>
+      <option value="ilustracao">Ilustração</option>
+      <option value="uiux">UI/UX</option>
+      <option value="arte_digital">Arte Digital</option>
+      <option value="arte_3d">Arte 3D</option>
+      <option value="animacao">Animação</option>
+      <option value="branding">Branding</option>
+      <option value="tipografia">Tipografia</option>
+      <option value="modelagem_3d">Modelagem 3D</option>
+      <option value="design_de_produto">Design de Produto</option>
+      <option value="design_editorial">Design Editorial</option>
+      <option value="design_de_jogos">Design de Jogos</option>
+      <option value="fotografia">Fotografia</option>
+      <option value="outro">Outros</option>
+    </select>
+    <div class="error-msg" id="errorCategoria"></div>
+
+    <label for="preferenciaEstilo">Preferência de estilo:</label>
+    <input type="text" id="preferenciaEstilo" name="preferenciaEstilo" placeholder="Ex: Minimalista, colorido..." />
+  </section>
+
+  <!-- Step 2 -->
+  <section class="step" id="step2">
+    <label for="prazoEntrega">Prazo de entrega (data):</label>
+    <input type="date" id="prazoEntrega" name="prazoEntrega" required />
+    <div class="error-msg" id="errorPrazo"></div>
+
+    <label for="orcamento">Orçamento (R$):</label>
+    <input type="number" id="orcamento" name="orcamento" min="0" step="0.01" required />
+    <div class="error-msg" id="errorOrcamento"></div>
+  </section>
+
+  <!-- Step 3 -->
+  <section class="step" id="step3">
+    <label for="descricao">Descrição detalhada:</label>
+    <div id="editor"></div>
+    <input type="hidden" id="descricao" name="descricao" />
+
+    <label for="uploadImages">Imagens (opcional):</label>
+    <input type="file" id="uploadImages" name="uploadImages" multiple accept="image/*" />
+    <div id="imagePreview"></div>
+  </section>
+
+  <div class="buttons">
+    <button type="button" id="prevBtn" disabled>Voltar</button>
+    <button type="button" id="nextBtn">Próximo</button>
+  </div>
+</form>
+
+<!-- Quill JS -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+  const form = document.getElementById('multiStepForm');
+  const steps = Array.from(document.querySelectorAll('.step'));
+  const progressItems = Array.from(document.querySelectorAll('.progressbar li'));
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  let currentStep = 0;
+
+  // Initialize Quill editor
+  const quill = new Quill('#editor', {
+    theme: 'snow',
+    placeholder: 'Descreva detalhadamente o que você procura...',
+  });
+
+  // Show current step
+  function showStep(n) {
+    steps.forEach((step, i) => {
+      step.classList.toggle('active', i === n);
+      progressItems[i].classList.toggle('active', i <= n);
+    });
+    prevBtn.disabled = n === 0;
+    nextBtn.textContent = n === steps.length - 1 ? 'Enviar' : 'Próximo';
+  }
+
+  function validateStep(n) {
+    let valid = true;
+
+    // Clear previous errors
+    document.querySelectorAll('.error-msg').forEach(e => e.textContent = '');
+
+    if (n === 0) {
+      const titulo = form.titulo.value.trim();
+      const categoria = form.categoria.value;
+
+      if (!titulo) {
+        document.getElementById('errorTitulo').textContent = 'Por favor, informe o título.';
+        valid = false;
       }
+      if (!categoria) {
+        document.getElementById('errorCategoria').textContent = 'Por favor, selecione a categoria.';
+        valid = false;
+      }
+    } else if (n === 1) {
+      const prazo = form.prazoEntrega.value;
+      const orcamento = form.orcamento.value;
+
+      if (!prazo) {
+        document.getElementById('errorPrazo').textContent = 'Por favor, informe o prazo de entrega.';
+        valid = false;
+      } else {
+        const hoje = new Date();
+        const prazoDate = new Date(prazo);
+        if (prazoDate < hoje.setHours(0,0,0,0)) {
+          document.getElementById('errorPrazo').textContent = 'A data de entrega deve ser futura.';
+          valid = false;
+        }
+      }
+
+      if (!orcamento) {
+        document.getElementById('errorOrcamento').textContent = 'Por favor, informe o orçamento.';
+        valid = false;
+      } else if (orcamento < 0) {
+        document.getElementById('errorOrcamento').textContent = 'Orçamento inválido.';
+        valid = false;
+      }
+    } 
+    return valid;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (currentStep > 0) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (validateStep(currentStep)) {
+      if (currentStep === steps.length -1) {
+        // Save Quill content to hidden input
+        form.descricao.value = quill.root.innerHTML;
+        // Submit form
+        form.submit();
+      } else {
+        currentStep++;
+        showStep(currentStep);
+      }
+    }
+  });
+
+  
+  // Image preview
+  const uploadInput = document.getElementById('uploadImages');
+  const preview = document.getElementById('imagePreview');
+
+  uploadInput.addEventListener('change', () => {
+    preview.innerHTML = '';
+    Array.from(uploadInput.files).forEach(file => {
+      if (!file.type.startsWith('image/')) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        preview.appendChild(img);
+      };
+      reader.readAsDataURL(file);
     });
-    
-    </script>
-                            </section>
-                        <!-----------------colocar aquele negocio do upload---------------------->
-                        <!-- <section class="lugar-botar-img">
-                        <label class="picture" for="picture__input" >
-                            <span class="picture__image"></span>
-                            <p>Carregar imagens</p>
-                          </label>
-                          <input type="file" name="picture__input" id="picture__input" accept="image/*">
-                        </section>  -->
-                                     <!-------------------------------------------------------------------------->
-                                     
+  });
 
+  showStep(currentStep);
+</script>
 
-                        <section class="form-grupo-1" id="tags-publicacao" >
-                            <label for="descricao">Tags:</label> <br>
-                           <input   id="tagInput"  name='input-custom-dropdown' class='tags-look tagify--custom-dropdown caixa-texto' placeholder='Adicione tags à sua publicação...' value='Design Gráfico, Arte Digital'>
-                          
-                          </section>
-                          <div id="erro-tags" class="mensagem-erro"></div>
-                    </section>
-
-                    <section class="coluna-dir">
-                        <section class="form-grupo-1" id="conteudo-publicacao">
-                            <label for="conteudo"> Explique o que você está procurando:</label> <br>
-                            <!-- <textarea id="conteudo" name="conteudo" class="caixa-texto grande
-                            " required></textarea> -->
-                            <section id="editor">
-        
-
-                                <!-- conteudo escrito -->
-        
-                            </section>
-        
-        
-                        </section>
-                    </section>
-    </section>
-                <section class="btn-publicar-area">
-                    <button type="submit" class="btn-publicar" >PUBLICAR</button>
-                </section>
-            </form>
-        </section>
-</main>
-
-
-<%- include('../partials/rodape'); %>
-
-  <!-- Include the Quill library -->
-  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-                      
-  <!-- Initialize Quill editor -->
-  <script>
-    const quill = new Quill('#editor', {
-      theme: 'snow'
-    });
-  </script>
-
+<style>
+    form {
+    max-width: 900px;
+    margin: auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  .step {
+    display: none;
+    animation: fadeIn 0.5s ease;
+  }
+  .step.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  .progressbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    counter-reset: step;
+  }
+  .progressbar li {
+    list-style: none;
+    width: 33%;
+    text-align: center;
+    position: relative;
+    color: #ccc;
+    cursor: default;
+  }
+  .progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 2px solid #ccc;
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    background-color: white;
+  }
+  .progressbar li.active {
+    color: #007bff;
+    font-weight: bold;
+  }
+  .progressbar li.active:before {
+    border-color: #007bff;
+    background-color: #007bff;
+    color: white;
+  }
+  .progressbar li:not(:last-child):after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
+    top: 15px;
+    left: 50%;
+    z-index: -1;
+  }
+  .progressbar li.active + li:after {
+    background-color: #007bff;
+  }
+  label {
+    font-weight: bold;
+  }
+  input[type=text], select, input[type=number], input[type=date] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  button[disabled] {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  .error-msg {
+    color: red;
+    font-size: 0.9em;
+    margin-top: -12px;
+    margin-bottom: 12px;
+  }
+  /* Quill editor height */
+  #editor {
+    height: 150px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  /* Image previews */
+  #imagePreview {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+  #imagePreview img {
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+</style>
 <script src="js/mobile-navbar.js"></script>
 </body>
 </html>
