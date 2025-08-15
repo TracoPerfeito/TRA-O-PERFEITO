@@ -125,6 +125,7 @@
   border: 1px solid var(--cor-borda-n-pub);
   color: var(--text-color);   
   border-radius: 5px !important;
+  font-family: "Josefin Sans";
 
 }
 
@@ -150,8 +151,33 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 40px;
   }
 
+  .btn-excluir-editar-publicacao{
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgb(151, 36, 36);
+    color: transparent;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  
+  #ion-trash{
+   
+    color: white;
+   
+  }
+
+  .btn-salvar-editar-publicacao{
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--cor-botao);
+    color: #fff;
+    border: 1px solid var(--cor-borda-btn-1);
+    font-family: "Montserrat", sans-serif;
+  }
  
   @media (max-width: 700px){
 
@@ -212,6 +238,17 @@
   #descricao-editar-publicacao {
     height: 100px;
 }
+
+
+.btn-excluir-editar-publicacao{
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgb(151, 36, 36);
+  color: transparent;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+}
+
      
   }
 
