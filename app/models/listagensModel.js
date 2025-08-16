@@ -256,7 +256,67 @@ listarPublicacoesUsuarioLogado: async (idUsuario) => {
     console.error("Erro ao listar publicações do usuário:", error);
     return [];
   }
-}
+},
+
+
+
+
+
+
+
+
+
+listarPropostas: async () => {
+  try {
+    const [propostas] = await pool.query(`
+      SELECT 
+        p.ID_PROPOSTA,
+        p.ID_USUARIO,
+        p.TITULO_PROPOSTA,
+        p.DESCRICAO_PROPOSTA,
+        p.CATEGORIA_PROPOSTA,
+        p.PREFERENCIA_PROPOSTA,
+        p.PRAZO_ENTREGA,
+        p.ORCAMENTO,
+        p.DATA_PROPOSTA,
+        u.NOME_USUARIO,
+        u.FOTO_PERFIL_PASTA_USUARIO
+      FROM PROPOSTA_PROJETO p
+      LEFT JOIN USUARIOS u ON p.ID_USUARIO = u.ID_USUARIO
+      ORDER BY p.DATA_PROPOSTA DESC
+      LIMIT 50
+    `);
+
+    // Mapear profissional requerido baseado na categoria
+    const mapaProfissional = {
+      design_grafico: "Designer Gráfico",
+      ilustracao: "Ilustrador(a)",
+      uiux: "Designer UI/UX",
+      arte_digital: "Artista Digital",
+      arte_3d: "Artista 3D",
+      animacao: "Animador(a)",
+      branding: "Especialista em Branding",
+      tipografia: "Tipógrafo(a)",
+      modelagem_3d: "Modelador(a) 3D",
+      design_de_produto: "Designer de Produto",
+      design_editorial: "Designer Editorial",
+      design_de_jogos: "Designer de Jogos",
+      fotografia: "Fotógrafo(a)",
+      outro: "Profissional Diverso"
+    };
+
+    propostas.forEach(p => {
+      p.profissionalRequerido = mapaProfissional[p.CATEGORIA_PROPOSTA] || "Profissional Diverso";
+    });
+
+    return propostas;
+
+  } catch (error) {
+    console.error("Erro ao listar propostas de projeto:", error);
+    return [];
+  }
+},
+
 
 
 };

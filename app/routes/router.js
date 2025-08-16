@@ -262,11 +262,26 @@ router.post(
 
 
 
-router.get("/nova-publi-pedido", function (req, res) { //perfil alheio logado
-    res.render('pages/nova-publi-pedido')
- 
+router.get("/nova-publi-pedido", function (req, res) { 
+    res.render('pages/nova-publi-pedido', {
+        dadosNotificacao: null,
+        listaErros: null
+    });
 });
 
+
+
+
+
+
+
+router.post(
+  "/enviar-proposta-projeto",
+ publicacoesController.regrasValidacaoCriarPropostaProjeto,
+  async function (req, res) {
+    publicacoesController.criarPropostadeProjeto(req, res);
+  }
+);
 
 router.get("/chat-logado", function (req, res) { //chat
     res.render('pages/chat-logado')
@@ -375,10 +390,11 @@ router.get("/escolher-assinatura", function (req, res) {
 
 
 router.get("/oportunidades", function (req, res) { //oportunidades logado
-    res.render('pages/oportunidades');
-
+   listagensController.listarPropostas(req, res);
  
 });
+
+
 
 
 router.get("/adm-inicial", function (req, res) { //index adm teste

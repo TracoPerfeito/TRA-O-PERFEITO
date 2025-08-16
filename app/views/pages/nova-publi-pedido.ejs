@@ -12,12 +12,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="js/simple-notify.js"></script>
 
 </head>
 
     
   
 <body>
+
+
+   <%  if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "top right");
+                                   
+        </script>
+    <% } %>
 
     
     <%- include('../partials/menu-logado'); %>
@@ -39,7 +50,7 @@
             <p class="p-explicativo-np"> Especifique o que você deseja para que os artistas em nosso site possam entrar em contato com você.</p>
            
            
-       <form id="multiStepForm" novalidate>
+       <form id="multiStepForm" action="/enviar-proposta-projeto" method="POST" novalidate>
   <ul class="progressbar">
     <li class="active">Dados básicos</li>
     <li>Prazo e orçamento</li>
@@ -73,7 +84,7 @@
     <div class="error-msg" id="errorCategoria"></div>
 
     <label for="preferenciaEstilo">Preferência de estilo:</label>
-    <input type="text" id="preferenciaEstilo" name="preferenciaEstilo" placeholder="Ex: Minimalista, colorido..." />
+    <input type="text" id="preferenciaEstilo" name="preferencia" placeholder="Ex: Minimalista, colorido..." />
   </section>
 
   <!-- Step 2 -->
@@ -93,9 +104,9 @@
     <div id="editor"></div>
     <input type="hidden" id="descricao" name="descricao" />
 
-    <label for="uploadImages">Imagens (opcional):</label>
+    <!-- <label for="uploadImages">Imagens (opcional):</label>
     <input type="file" id="uploadImages" name="uploadImages" multiple accept="image/*" />
-    <div id="imagePreview"></div>
+    <div id="imagePreview"></div> -->
   </section>
 
   <div class="buttons">
@@ -112,7 +123,7 @@
   const progressItems = Array.from(document.querySelectorAll('.progressbar li'));
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
-
+ 
   let currentStep = 0;
 
   // Initialize Quill editor
@@ -185,17 +196,18 @@
 
   nextBtn.addEventListener('click', () => {
     if (validateStep(currentStep)) {
-      if (currentStep === steps.length -1) {
-        // Save Quill content to hidden input
-        form.descricao.value = quill.root.innerHTML;
-        // Submit form
-        form.submit();
-      } else {
+       if (currentStep === steps.length -1) {
+    form.descricao.value = quill.root.innerHTML;
+    form.submit(); // vai mandar o POST para /criar-proposta
+}
+else {
         currentStep++;
         showStep(currentStep);
       }
     }
   });
+
+
 
   
   // Image preview

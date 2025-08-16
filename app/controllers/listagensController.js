@@ -147,6 +147,52 @@ const sessao = req.session.autenticado;
     res.status(500).send('Erro ao carregar publicação');
   }
 },
+
+
+
+
+
+
+
+
+listarPropostas: async (req, res) => {
+  try {
+    const propostas = await listagensModel.listarPropostas();
+
+    console.log("Propostas encontradas:", propostas.map(p => ({
+      ID_PROPOSTA: p.ID_PROPOSTA,
+      TITULO_PROPOSTA: p.TITULO_PROPOSTA,
+      NOME_USUARIO: p.NOME_USUARIO,
+      PROFISSIONAL_REQUERIDO: p.profissionalRequerido,
+      PRAZO_ENTREGA: p.PRAZO_ENTREGA,
+      ORCAMENTO: p.ORCAMENTO
+    })));
+
+    res.render('pages/oportunidades', {
+      propostas,
+      autenticado: req.session.autenticado,
+      logado: req.session.logado,
+      listaErros: null,
+      dadosNotificacao: null
+   
+    });
+
+  } catch (error) {
+    console.error("Erro no controller ao listar propostas:", error);
+    res.status(500).render('pages/oportunidades', {
+      propostas: [],
+      autenticado: req.session.autenticado,
+      logado: req.session.logado,
+      listaErros: ['Erro ao carregar propostas'],
+      dadosNotificacao:{
+          titulo: 'Não foi possível carregar Propostas de Projeto.',
+          mensagem: 'Tente novamente mais tarde.',
+          tipo: 'error'
+      }
+    });
+  }
+},
+
  
  
  

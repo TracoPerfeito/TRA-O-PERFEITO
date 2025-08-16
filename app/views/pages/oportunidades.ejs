@@ -16,14 +16,29 @@
 
     <link rel="stylesheet" href="css/oportunidades.css">
 
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="js/simple-notify.js"></script>
+
+
  
     <title>Oportunidades </title>
 </head>
 <body>
 
+
+    <%  if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "top right");
+                                   
+        </script>
+    <% } %>
+
+
     <%- include('../partials/menu-logado'); %>
 
    
+
 
     <main>
 
@@ -110,79 +125,62 @@
         <!----------------------------------- FIM DA SEÇÃO DE FILTRO QUANO ABERTO ----------------------------------------------->
 
 
+        <script>
+  const mapaProfissional = {
+    design_grafico: "Designer Gráfico",
+    ilustracao: "Ilustrador(a)",
+    uiux: "Designer UI/UX",
+    arte_digital: "Artista Digital",
+    arte_3d: "Artista 3D",
+    animacao: "Animador(a)",
+    branding: "Especialista em Branding",
+    tipografia: "Tipógrafo(a)",
+    modelagem_3d: "Modelador(a) 3D",
+    design_de_produto: "Designer de Produto",
+    design_editorial: "Designer Editorial",
+    design_de_jogos: "Designer de Jogos",
+    fotografia: "Fotógrafo(a)",
+    outro: "Profissional Diverso"
+  };
+
+  document.querySelectorAll('.resposta-especificacao[data-categoria]').forEach(span => {
+      const categoria = span.dataset.categoria;
+      span.textContent = mapaProfissional[categoria] || "Profissional Diverso";
+  });
+</script>
+
 
             <section class="container-oportunidades">
-
-                <section class="proposta-oportunidades" onclick="location.href='/propostadeprojeto'">
-                    
-                    <section class="info-oportunidade"><img src="imagens/fotoperfil1.jpeg"> <h2> Amanda Moraes</h2></section>
-                    <span class="especificacao">Profissional requerido:</span> <span class="resposta-especificacao"> Designer Gráfico</span> <br>
-                    <span class="especificacao">Tipo de trabalho:</span> <span class="resposta-especificacao"> Identidade Visual</span>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
-                        .Ducimus ullam molestias ab fugit id pariatur doloribus
-                        ipsam dolorem, animi amet suscipit ex magni esse, optio
-                        quibusdam? Eveniet necessitatibus atque officia.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam aperiam aspernatur repudiandae quasi! Quos consequatur velit sunt eveniet adipisci officia deserunt impedit quas, harum aliquam molestiae, laboriosam dolores, laudantium placeat.</p>
-                     </section>
-
-
-                
-                <section class="proposta-oportunidades" onclick="location.href='/propostadeprojeto'">
-                    <section class="info-oportunidade"><img src="imagens/fotoperfil1.jpeg"> <h2> Amanda Moraes</h2></section>
-                    <span class="especificacao">Profissional requerido:</span> <span class="resposta-especificacao"> Designer Gráfico</span> <br>
-                    <span class="especificacao">Tipo de trabalho:</span> <span class="resposta-especificacao"> Identidade Visual</span>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
-                        .Ducimus ullam molestias ab fugit id pariatur doloribus
-                        ipsam dolorem, animi amet suscipit ex magni esse, optio
-                        quibusdam? Eveniet necessitatibus atque officia.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam aperiam aspernatur repudiandae quasi! Quos consequatur velit sunt eveniet adipisci officia deserunt impedit quas, harum aliquam molestiae, laboriosam dolores, laudantium placeat.</p>
-                     </section>
-
-
-                
-                <section class="proposta-oportunidades" onclick="location.href='/propostadeprojeto'">
-                    
-                    <section class="info-oportunidade"><img src="imagens/fotoperfil1.jpeg"> <h2> Amanda Moraes</h2></section>
-                    <span class="especificacao">Profissional requerido:</span> <span class="resposta-especificacao"> Designer Gráfico</span> <br>
-                    <span class="especificacao">Tipo de trabalho:</span> <span class="resposta-especificacao"> Identidade Visual</span>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
-                        .Ducimus ullam molestias ab fugit id pariatur doloribus
-                        ipsam dolorem, animi amet suscipit ex magni esse, optio
-                        quibusdam? Eveniet necessitatibus atque officia.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam aperiam aspernatur repudiandae quasi! Quos consequatur velit sunt eveniet adipisci officia deserunt impedit quas, harum aliquam molestiae, laboriosam dolores, laudantium placeat.</p>
-                     </section>
-
-
-                
-                <section class="proposta-oportunidades" onclick="location.href='/propostadeprojeto'">
-                    
-                    <section class="info-oportunidade"><img src="imagens/fotoperfil1.jpeg"> <h2> Amanda Moraes</h2></section>
-                    <span class="especificacao">Profissional requerido:</span> <span class="resposta-especificacao"> Designer Gráfico</span> <br>
-                    <span class="especificacao">Tipo de trabalho:</span> <span class="resposta-especificacao"> Identidade Visual</span>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
-                        .Ducimus ullam molestias ab fugit id pariatur doloribus
-                        ipsam dolorem, animi amet suscipit ex magni esse, optio
-                        quibusdam? Eveniet necessitatibus atque officia.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam aperiam aspernatur repudiandae quasi! Quos consequatur velit sunt eveniet adipisci officia deserunt impedit quas, harum aliquam molestiae, laboriosam dolores, laudantium placeat.</p>
-                     </section>
-
-
-
-                
-                <section class="proposta-oportunidades" onclick="location.href='/propostadeprojeto'">
-                    
-                    <section class="info-oportunidade"><img src="imagens/fotoperfil1.jpeg"> <h2> Amanda Moraes</h2></section>
-                    <span class="especificacao">Profissional requerido:</span> <span class="resposta-especificacao"> Designer Gráfico</span> <br>
-                    <span class="especificacao">Tipo de trabalho:</span> <span class="resposta-especificacao"> Identidade Visual</span>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit
-                        .Ducimus ullam molestias ab fugit id pariatur doloribus
-                        ipsam dolorem, animi amet suscipit ex magni esse, optio
-                        quibusdam? Eveniet necessitatibus atque officia.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam aperiam aspernatur repudiandae quasi! Quos consequatur velit sunt eveniet adipisci officia deserunt impedit quas, harum aliquam molestiae, laboriosam dolores, laudantium placeat.</p>
-                     </section>
-
-
+    <% propostas.forEach(proposta => { %>
+        <section class="proposta-oportunidades" onclick="location.href='/propostadeprojeto/<%= proposta.ID_PROPOSTA %>'">
+            
+            <section class="info-oportunidade">
+                <img src="imagens/fotoperfil1.jpeg">
+                <h2> <%= proposta.NOME_PROPOSTA || 'Anônimo' %> </h2>
             </section>
+
+            <span class="especificacao">Profissional requerido:</span>
+            <span class="resposta-especificacao" data-categoria="<%= proposta.CATEGORIA_PROPOSTA %>"> </span> <br>
+
+            <span class="especificacao">Tipo de trabalho:</span>
+            <span class="resposta-especificacao"><%= proposta.CATEGORIA_PROPOSTA.replace('_',' ') %></span> <br>
+
+            <span class="especificacao">Data de envio:</span>
+            <span class="resposta-especificacao"><%= proposta.DATA_PROPOSTA.toLocaleDateString() %></span> <br>
+
+            <span class="especificacao">Prazo de entrega:</span>
+            <span class="resposta-especificacao"><%= proposta.PRAZO_ENTREGA ? proposta.PRAZO_ENTREGA.toLocaleDateString() : 'Não definido' %></span> <br>
+
+            <span class="especificacao">Orçamento:</span>
+           <span class="resposta-especificacao">
+  <%= proposta.ORCAMENTO ? `R$ ${Number(proposta.ORCAMENTO).toFixed(2)}` : 'Não definido' %>
+</span>
+            <p><%- proposta.DESCRICAO_PROPOSTA %></p>
+
+
+        </section>
+    <% }) %>
+</section>
 
      
     </main>

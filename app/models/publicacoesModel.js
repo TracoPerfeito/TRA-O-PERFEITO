@@ -78,6 +78,32 @@ inserirConteudo: async (idPublicacao, imgBuffer) => {
         }
     },
 
+   criarPropostadeProjeto: async (dados) => {
+    try {
+        const [result] = await pool.query(
+            `INSERT INTO PROPOSTA_PROJETO 
+            (ID_USUARIO, DATA_PROPOSTA, TITULO_PROPOSTA, DESCRICAO_PROPOSTA, CATEGORIA_PROPOSTA, PREFERENCIA_PROPOSTA, PRAZO_ENTREGA, ORCAMENTO) 
+            VALUES (?, NOW(), ?, ?, ?, ?, ?, ?)`,
+            [
+                dados.ID_USUARIO,
+                dados.TITULO_PROPOSTA,
+                dados.DESCRICAO_PROPOSTA,
+                dados.CATEGORIA_PROPOSTA,
+                dados.PREFERENCIA_PROPOSTA,
+                dados.PRAZO_ENTREGA,
+                dados.ORCAMENTO
+            ]
+        );
+        return result.insertId; 
+    } catch (error) {
+        console.error('Erro ao criar proposta de projeto:', error);
+        return null;
+    }
+},
+
+
+
+
    
 };
 

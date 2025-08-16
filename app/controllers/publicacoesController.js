@@ -46,6 +46,42 @@ const publicacoesController = {
       })
   ],
 
+
+
+  regrasValidacaoCriarPropostaProjeto: [
+    body("titulo")
+      .trim()
+      .isLength({ min: 2, max: 50 })
+      .withMessage("O título deve ter entre 2 e 50 caracteres."),
+    
+    body("categoria")
+      .trim()
+      .notEmpty()
+      .withMessage("A categoria é obrigatória."),
+    
+    body("preferencia")
+      .optional({ checkFalsy: true })
+      .trim()
+      .isLength({ max: 30 })
+      .withMessage("A preferência deve ter no máximo 30 caracteres."),
+
+    body("prazoEntrega")
+      .optional({ checkFalsy: true })
+      .isDate({ format: "YYYY-MM-DD" })
+      .withMessage("O prazo de entrega deve ser uma data válida."),
+
+    body("orcamento")
+      .optional({ checkFalsy: true })
+      .isFloat({ min: 0 })
+      .withMessage("O orçamento deve ser um valor positivo."),
+
+       body("descricao")
+      .trim()
+      .isLength({ min: 2, max: 2000 })
+      .withMessage("A descrição deve ter entre 2 e 2000 caracteres."),
+
+  ],
+
   criarPublicacao: async (req, res) => {
 
     try {
@@ -143,6 +179,100 @@ const publicacoesController = {
     } catch (erro) {
       console.error("Erro ao criar publicação:", erro);
       return res.status(500).json({ erro: "Erro interno ao criar publicação." });
+    }
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  criarPropostadeProjeto: async (req, res) => {
+
+    try {
+
+      // Avisa que chegou aqui e mostra os valores recebidos.
+      console.log("Chegou no criarPropostadeProjeto.");
+      console.log("Body:", req.body);
+   
+
+
+      //Verifica se a validação retornou algum erro.
+      const erros = validationResult(req);
+      if (!erros.isEmpty()) {
+      console.log("Deu erro na validação !!");
+
+      return res.render('pages/nova-publi-pedido', {
+        listaErros: erros,
+        dadosNotificacao: {
+          titulo: 'Erro ao enviar Proposta de Projeto!',
+          mensagem: 'Verifique se os campos foram corretamente preenchidos.',
+          tipo: 'error'
+        },
+        usuario: req.session.autenticado || null,
+        autenticado: !!req.session.autenticado,
+      });
+    }
+     
+      const { titulo, categoria, preferencia, data_entrega, orcamento, descricao} = req.body;
+      // Pega o ID do usuário logado.
+      const idUsuario = req.session.autenticado.id;
+
+      // Cria a publicação com seus dados base, na tabela de propostas.
+      const resultado = await publicacoesModel.criarPropostadeProjeto({
+        ID_USUARIO: idUsuario,
+        TITULO_PROPOSTA: titulo,
+        DESCRICAO_PUBLICACAO: descricao,
+        CATEGORIA_PROPOSTA: categoria,
+        PREFERENCIA_PROPOSTA: preferencia,
+        PRAZO_ENTREGA: data_entrega,
+        ORCAMENTO: orcamento,
+        DESCRICAO_PROPOSTA: descricao
+             
+      });
+
+      console.log(resultado) // Mostra o que foi inserido na tabela Proposta de projeto.
+
+      // Se não houver resultado, ou seja, nada foi inserido, retorna um erro. 
+  if (!resultado) {
+      console.log("Deu erro ao salvar Proposta de Projeto!");
+
+    
+      return res.render('pages/nova-publi-pedido', {
+        listaErros: null,
+        dadosNotificacao: {
+          titulo: 'Erro ao enviar Proposta de Projeto.',
+          mensagem: 'Não foi possível salvar sua proposta.',
+          tipo: 'error'
+        },
+        usuario: req.session.autenticado || null,
+        autenticado: !!req.session.autenticado,
+      });
+    }
+
+   
+    return res.render('pages/nova-publi-pedido', {
+      listaErros: null,
+      dadosNotificacao: {
+        titulo: 'Proposta de Projeto enviada!',
+        mensagem: "Sua Proposta de Projeto foi salva com sucesso.",
+        tipo: "success"
+      },
+    
+      usuario: req.session.autenticado || null,
+      autenticado: !!req.session.autenticado,
+    });
+    } catch (erro) {
+      console.error("Erro ao criar proposta de projeto:", erro);
+      return res.status(500).json({ erro: "Erro interno ao criar proposta de projeto." });
     }
   }
 
