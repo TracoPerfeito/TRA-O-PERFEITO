@@ -187,7 +187,23 @@ const usuariosModel = {
     console.error(error);
     return error; 
   }
-}
+},
+
+ findInativoId: async (id) => {
+    try {
+        const [resultados] = await pool.query(
+            `SELECT ID_USUARIO, NOME_USUARIO, USER_USUARIO, TIPO_USUARIO, STATUS_USUARIO
+             FROM USUARIOS
+             WHERE STATUS_USUARIO = 'pendente' AND ID_USUARIO = ?`,
+            [id]
+        );
+        return resultados;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+},
+
 
 
 

@@ -112,11 +112,6 @@ router.get("/pedido", function (req, res) { //pedido (publicacao do oportunidade
 
 
 
-router.get("/menu-artista-logado", function (req, res) { //menu-logado
-    res.render('pages/menu-artista-logado')
- 
-});
-
 
 
 
@@ -457,7 +452,7 @@ router.post( "/teste-cadastro", usuariosController.regrasValidacaoCadastro, func
 
 
 router.get("/login", function (req, res) { //login
-    res.render('pages/login',  {retorno: null, valores: {email: "", password: ""}, errosLogin: null});
+    res.render('pages/login',  {retorno: null, valores: {email: "", password: ""}, errosLogin: null,   dadosNotificacao:  null});
 
  
 });
@@ -478,6 +473,40 @@ router.get("/logout", limparSessao, function (req, res) {
   res.redirect("/");
 });
 
+
+router.get(
+  "/ativar-conta",
+  verificarUsuAutenticado,
+  async function (req, res) {
+    usuariosController.ativarConta(req, res);
+  }
+);
+/*
+router.get("/recuperar-senha", 
+  verificarUsuAutenticado, 
+  function(req, res){
+    res.render("pages/rec-senha",
+      { listaErros: null, dadosNotificacao: null });
+});
+
+router.post("/recuperar-senha",
+  verificarUsuAutenticado,
+  usuariosController.regrasValidacaoFormRecSenha, 
+  function(req, res){
+    usuariosController.recuperarSenha(req, res);
+});
+
+router.get("/resetar-senha", 
+  function(req, res){
+    usuariosController.validarTokenNovaSenha(req, res);
+  });
+  
+router.post("/reset-senha", 
+    usuariosController.regrasValidacaoFormNovaSenha,
+  function(req, res){
+    usuariosController.resetarSenha(req, res);
+});
+*/
  const db = require('../../config/pool_conexoes');
 
 

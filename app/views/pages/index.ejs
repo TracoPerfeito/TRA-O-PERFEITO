@@ -60,6 +60,11 @@
     <% } %>
 
 
+<% if (status_usuario === 'pendente') { %>
+    <%- include('../partials/aviso-pendente') %>
+    
+<% } %>
+  
 
 
    <% if (tipo_usuario === 'profissional') { %>

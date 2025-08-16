@@ -7,6 +7,10 @@ var salt = bcrypt.genSaltSync(10);
 const {removeImg} = require("../util/removeImg");
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const https = require('https');
+const jwt = require("jsonwebtoken");
+const { enviarEmail } = require("../util/email");
+
+const emailAtivarConta = require("../util/email-ativar-conta");
 
 
 const { verificadorCelular, validarCPF } = require("../helpers/validacoes");
@@ -211,6 +215,7 @@ cadastrarUsuario: async (req, res) => {
         const resultado = await usuariosModel.create(dadosForm);
         console.log("Usuário criado com sucesso.");
 
+
         // resultado.insertId é o ID do usuário recém criado
         const idUsuario = resultado.insertId;
 
@@ -230,14 +235,25 @@ cadastrarUsuario: async (req, res) => {
         };
 
         const nome = dadosForm.nome_usuario;
+        
+        const token = jwt.sign(
+        { userId: resultado.insertId },
+        process.env.SECRET_KEY
+      );
+      console.log(token);
+      const html = require('../util/email-ativar-conta')(process.env.URL_BASE, token, nome);
+      
 
-        req.session.dadosNotificacao = {
+       enviarEmail(dadosForm.email_usuario, "Confirme seu e-mail no Traço Perfeito", null, html, ()=>{
+         req.session.dadosNotificacao = {
             titulo: "Sucesso!",
              mensagem: `Cadastro realizado com sucesso. Bem-vindo(a), ${nome}!`,
             tipo: "success"
             };
             res.redirect("/");
 
+      });
+       
 
         } catch (error) {
             console.log(error);
@@ -1128,7 +1144,75 @@ desativarConta: async (req, res) => {
       abaAtiva: "conta"
     });
   }
-}
+},
+
+
+
+
+
+ativarConta: async (req, res) => {
+  try {
+    const token = req.query.token;
+    console.log(token);
+
+    jwt.verify(token, process.env.SECRET_KEY, async (err, decoded) => { // coloquei async aqui
+      console.log(decoded);
+      if (err) {
+        console.log({ message: "Token inválido ou expirado" });
+      } else {
+        // Espera a Promise resolver
+        const resultados = await usuariosModel.findInativoId(decoded.userId);
+        const user = resultados[0]; // pega o primeiro resultado
+
+        if (!user) {
+          console.log({ message: "Usuário não encontrado" });
+        } else {
+          await usuariosModel.update({ STATUS_USUARIO: 'ativo' }, decoded.userId);
+          console.log({ message: "Conta ativada" });
+
+          req.session.autenticado = {
+            autenticado: true,
+            id: user.ID_USUARIO,
+            tipo: user.TIPO_USUARIO,
+            nome: user.NOME_USUARIO,
+            user: user.USER_USUARIO
+          };
+
+          const nome = req.session.autenticado.nome;
+
+          req.session.dadosNotificacao = {
+            titulo: "Sua conta foi ativada!",
+            mensagem: `Conta ativada com sucesso, ${nome}! Agora você pode acessar seu perfil e aproveitar todos os recursos da plataforma.`,
+            tipo: "success"
+          };
+
+          res.redirect("/");
+        }
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
