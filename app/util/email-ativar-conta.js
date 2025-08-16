@@ -100,7 +100,7 @@ return `<!DOCTYPE html>
 
     <!-- Rodapé -->
     <section class="footer">
-      © <%= new Date().getFullYear() %> Traço Perfeito. Todos os direitos reservados.
+       © 2025 Traço Perfeito. Todos os direitos reservados.
     </section>
   </section>
 </body>
