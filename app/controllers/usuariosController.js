@@ -247,7 +247,7 @@ cadastrarUsuario: async (req, res) => {
        enviarEmail(dadosForm.email_usuario, "Confirme seu e-mail no Traço Perfeito", null, html, ()=>{
          req.session.dadosNotificacao = {
             titulo: "Sucesso!",
-             mensagem: `Cadastro realizado com sucesso. Bem-vindo(a), ${nome}!`,
+             mensagem: `Cadastro realizado com sucesso. Bem-vindo(a), ${nome}! Enviamos um e-mail de confirmação para ${dadosForm.email_usuario}.`,
             tipo: "success"
             };
             res.redirect("/");

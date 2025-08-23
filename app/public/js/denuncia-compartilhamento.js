@@ -49,16 +49,21 @@ document.querySelectorAll('.icone-menu').forEach(icone => {
 
     // Script do compartilhar
 
+function openModal(idPublicacao) {
+  const modal = document.getElementById('modal-share');
+  const shareLink = document.getElementById("shareLink");
 
-  function openModal() {
-    document.getElementById('modal-share').style.display = 'flex';
-  }
+  // Atualiza o link dinâmico com o ID passado
+  shareLink.textContent = `https://tracoperfeito.onrender.com/publicacao/${idPublicacao}`;
 
-  function closeModal() {
-    document.getElementById('modal-share').style.display = 'none';
-  }
+  modal.style.display = 'flex';
+}
 
- function copyToClipboard() {
+function closeModal() {
+  document.getElementById('modal-share').style.display = 'none';
+}
+
+function copyToClipboard() {
   const text = document.getElementById("shareLink").innerText;
   const tooltip = document.getElementById("tooltip");
   const copyIcon = document.getElementById("copyIcon");
@@ -76,7 +81,6 @@ document.querySelectorAll('.icone-menu').forEach(icone => {
     tooltip.style.display = "block";
 
     setTimeout(() => {
-    
       copyIcon.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px; margin-right: 4px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2M16 8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8a2 2 0 01-2-2v-2"/>
@@ -87,4 +91,3 @@ document.querySelectorAll('.icone-menu').forEach(icone => {
     }, 2000);
   });
 }
-
