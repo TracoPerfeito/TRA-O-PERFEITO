@@ -1,9 +1,10 @@
-  <section class="aviso-conta-pendente">
-<p>
-  
-        Parece que você ainda não ativou a sua conta. Clique aqui para receber o e-mail para autenticá-la.
-</p>   
- </section>
+<section class="aviso-conta-pendente" id="aviso-conta" onclick="<%='window.location=\'/enviaremail\''%>">
+  <ion-icon name="alert-circle" id="icon-alerta"></ion-icon>
+  <p>
+    Parece que você ainda não ativou a sua conta. 
+    <strong>Clique aqui para receber o e-mail para autenticá-la.</strong>
+  </p>   
+</section>
 
 
  <style>
@@ -11,23 +12,67 @@
 
 .aviso-conta-pendente {
     width: 100%;
-    height: 30px;
-    background-color: #afdaff;
-    color: rgb(36, 36, 80);
+    background-color: #ffc0af;
+    color: rgb(138, 20, 20);
     text-align: center;
-    line-height: 30px;
+    padding: 6px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Montserrat";
+}
+
+#icon-alerta{
+    margin-right: 10px;
+    color: rgb(157, 27, 27);
+}
+
+.aviso-conta-pendente p {
+ display: inline-block;    
+}
+
+@media screen and (max-width: 768px) {
+    .aviso-conta-pendente {
+        height: 45px;
+        font-size: 80%;
+        padding: 0 5px;
+    }
+
+      #icon-alerta {
+    font-size: 30px; 
+  }
+
 }
 
  </style>
 
 
 <script>
-        // Ajusta o header para ficar abaixo do aviso
-        document.addEventListener("DOMContentLoaded", function() {
-            const header = document.querySelector(".header");
-            if(header){
-                header.style.top = "30px"; // altura do aviso
-            }
-        });
+    function atualizarEspacos() {
+  const aviso = document.querySelector(".aviso-conta-pendente");
+  const header = document.querySelector(".header");
+  const pesquisas = document.querySelector(".pesquisas");
+
+  if (aviso && header) {
+    const alturaAviso = aviso.offsetHeight;
+    header.style.top = alturaAviso + "px";
+    if (pesquisas) {
+      pesquisas.style.top = (58 + alturaAviso) + "px";
+    }
+  } else if (header) {
+    // Se não tem aviso, reseta
+    header.style.top = "0px";
+    if (pesquisas) pesquisas.style.top = "58px";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", atualizarEspacos);
+window.addEventListener("resize", atualizarEspacos);
+
         
 </script>
+

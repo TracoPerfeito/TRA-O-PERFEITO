@@ -1080,12 +1080,46 @@ alterarTipoUsuario: async (req, res) => {
 
 
 
+enviarEmailparaAtivarConta: async (req, res) => {
+  console.log("Chegou no enviarEmailparaAtivarConta")
+
+  try {
+  const idUsuario = req.session.autenticado.id;
+const usuario = await usuariosModel.findId(idUsuario); 
+if (!usuario) {
+  console.log("Usuário não encontrado no DB:", idUsuario);
+  return res.status(404).send("Usuário não encontrado");
+}
+console.log("Email do usuário:", usuario.EMAIL_USUARIO);
 
 
 
+    const token = jwt.sign(
+      { userId: usuario.id },
+      process.env.SECRET_KEY,
+      { expiresIn: '1h' }
+    );
 
+    const html = require('../util/email-ativar-conta')(process.env.URL_BASE, token, usuario.nome);
 
+    enviarEmail(usuario.EMAIL_USUARIO, "Confirme seu e-mail no Traço Perfeito", null, html, () => {
+      req.session.dadosNotificacao = {
+        titulo: "Sucesso!",
+        mensagem: `Enviamos um e-mail de confirmação para ${usuario.EMAIL_USUARIO}.`,
+        tipo: "success"
+      };
+      
+      // pega a página de origem
+      const redirectTo = req.get('referer') || '/';
+      console.log("Redirecionando para:", redirectTo);
+      res.redirect(redirectTo); // volta para a página que chamou a função
+    });
 
+  } catch (error) {
+    console.error("Erro ao enviar e-mail de ativação:", error);
+    res.status(500).send("Erro ao enviar e-mail.");
+  }
+},
 
 
 

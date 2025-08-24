@@ -85,19 +85,18 @@ const usuariosModel = {
         },
 
         findId: async (id) => {
-        try {
-            const [linhas,campos] = await pool.query('SELECT * FROM USUARIOS WHERE STATUS_USUARIO = 1 and ID_USUARIO = ?',[id] )
-            const usuario = linhas[0];
-            if (!usuario) {
-                throw new Error("Usuário não encontrado");
-            }
-                    
-            return linhas;
-        } catch (error) {
-            console.log(error);
-            return error;
+    try {
+        const [linhas, campos] = await pool.query('SELECT * FROM USUARIOS WHERE ID_USUARIO = ?', [id]);
+        const usuario = linhas[0]; // pega o primeiro (único) usuário
+        if (!usuario) {
+            throw new Error("Usuário não encontrado");
         }
-    },
+        return usuario; // <<< retorna o objeto, não o array
+    } catch (error) {
+        console.log(error);
+        return null; // ou lança erro de novo
+    }
+},
 
     findProfissional: async (id) => {
     try {
