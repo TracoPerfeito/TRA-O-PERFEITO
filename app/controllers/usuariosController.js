@@ -1096,12 +1096,12 @@ console.log("Email do usuário:", usuario[0].EMAIL_USUARIO,);
 
 
     const token = jwt.sign(
-      { userId: usuario.id },
+      { userId: usuario[0].ID_USUARIO },
       process.env.SECRET_KEY,
       { expiresIn: '1h' }
     );
 
-    const html = require('../util/email-ativar-conta')(process.env.URL_BASE, token, usuario.nome);
+    const html = require('../util/email-ativar-conta')(process.env.URL_BASE, token, usuario[0].NOME_USUARIO);
 
     enviarEmail(usuario[0].EMAIL_USUARIO, "Confirme seu e-mail no Traço Perfeito", null, html, () => {
       req.session.dadosNotificacao = {
