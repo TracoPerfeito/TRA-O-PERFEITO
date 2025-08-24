@@ -180,6 +180,39 @@ regrasValidacaoSenha: [
   verificarUsuAutorizado(["profissional", "comum"], "pages/acesso-negado"),
 ],
 
+  regrasValidacaoFormNovaSenha: [
+    body("senha_usu")
+      .isStrongPassword()
+      .withMessage(
+        "A senha deve ter no mínimo 8 caracteres (mínimo 1 letra maiúscula, 1 caractere especial e 1 número)"
+      )
+      .custom(async (value, { req }) => {
+        if (value !== req.body.csenha_usu) {
+          throw new Error("As senhas não são iguais!");
+        }
+      }),
+    body("csenha_usu")
+      .isStrongPassword()
+      .withMessage(
+        "A senha deve ter no mínimo 8 caracteres (mínimo 1 letra maiúscula, 1 caractere especial e 1 número)"
+      ),
+  ],
+
+  regrasValidacaoFormRecSenha: [
+    body("email_usu")
+      .isEmail()
+      .withMessage("Digite um e-mail válido!")
+      .custom(async (value) => {
+        const nomeUsu = await usuariosModel.findCampoCustom({ email_usuario: value });
+        if (nomeUsu == 0) {
+          throw new Error("E-mail não encontrado");
+        }
+      }),
+  ],
+
+
+
+
 
 
 
@@ -1236,10 +1269,111 @@ ativarConta: async (req, res) => {
 
 
 
+recuperarSenha: async (req, res) => {
+    const erros = validationResult(req);
+    console.log(erros);
+    if (!erros.isEmpty()) {
+      return res.render("pages/rec-senha", {
+        listaErros: erros,
+        dadosNotificacao: null,
+        valores: req.body,
+      });
+    }
 
 
 
 
+    try {
+      //logica do token
+      user = await usuariosModel.findUserCustom({
+        email_usuario: req.body.email_usu,
+      });
+     const token = jwt.sign(
+  { userId: user[0].ID_USUARIO },
+  process.env.SECRET_KEY,
+  { expiresIn: "40m" } 
+);
+
+      //enviar e-mail com link usando o token
+      const html = require("../util/email-reset-senha")(process.env.URL_BASE, token)
+      enviarEmail(req.body.email_usu, "Pedido de recuperação de senha", null, html, ()=>{
+         res.redirect("/");
+      });
+
+    } catch (e) {
+      console.log(e);
+    }
+  },
+
+
+
+
+  validarTokenNovaSenha: async (req, res) => {
+    //receber token da URL
+
+    const token = req.query.token;
+    console.log(token);
+    //validar token
+    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+      if (err) {
+        res.render("pages/rec-senha", {
+          listaErros: null,
+          dadosNotificacao: { titulo: "Link expirado!", mensagem: "Insira seu e-mail para iniciar o reset de senha.", tipo: "error", },
+          valores: req.body
+        });
+      } else {
+        res.render("pages/resetar-senha", {
+          listaErros: null,
+          autenticado: req.session.autenticado,
+          id_usuario: decoded.userId,
+          dadosNotificacao: null,
+          
+          
+        });
+      }
+    });
+  },
+
+  resetarSenha: async (req, res) => {
+  const erros = validationResult(req);
+  console.log("Body recebido:", req.body);
+
+
+  if (!erros.isEmpty()) {
+
+    console.log("Erros encontrados:", erros);
+      return res.render("pages/resetar-senha", {
+        listaErros: erros.array(),
+        dadosNotificacao: null,
+        valores: req.body,
+        id_usuario: req.body.id_usuario,
+        dadosNotificacao: null,
+       
+       
+      });
+    }
+
+
+  try {
+    const senha = bcrypt.hashSync(req.body.senha_usu);
+    const resetar = await usuariosModel.update({ SENHA_USUARIO: senha }, req.body.id_usuario);
+    console.log(resetar);
+
+    res.render("pages/login", {
+      errosLogin: null,
+      retorno: null,
+      valores: { email: "", password: "" },
+      dadosNotificacao: {
+        titulo: "Perfil alterado!",
+        mensagem: "Sua nova senha foi registrada com sucesso!",
+        tipo: "success",
+      },
+    });
+
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 
 

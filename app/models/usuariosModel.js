@@ -84,20 +84,21 @@ const usuariosModel = {
             }
         },
 
-        findId: async (id) => {
-        try {
-            const [linhas,campos] = await pool.query('SELECT * FROM USUARIOS WHERE ID_USUARIO = ?',[id] )
-            const usuario = linhas[0];
-            if (!usuario) {
-                throw new Error("Usuário não encontrado");
+
+
+          findUserCustom: async (criterioWhere) => {
+            try {
+                const [resultados] = await pool.query(
+                    "SELECT *  FROM USUARIOS WHERE ?",
+                    [criterioWhere]
+                )
+                return resultados;
+            } catch (error) {
+                console.log(error);
+                return error;
             }
-                    
-            return linhas;
-        } catch (error) {
-            console.log(error);
-            return error;
-        }
-    },
+        },
+
 
         findId: async (id) => {
         try {
@@ -113,6 +114,7 @@ const usuariosModel = {
             return error;
         }
     },
+
 
     findProfissional: async (id) => {
     try {

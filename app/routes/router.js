@@ -500,7 +500,7 @@ router.get(
     usuariosController.ativarConta(req, res);
   }
 );
-/*
+
 router.get("/recuperar-senha", 
   verificarUsuAutenticado, 
   function(req, res){
@@ -525,7 +525,7 @@ router.post("/reset-senha",
   function(req, res){
     usuariosController.resetarSenha(req, res);
 });
-*/
+
  const db = require('../../config/pool_conexoes');
 
 

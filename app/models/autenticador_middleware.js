@@ -28,7 +28,8 @@ gravarUsuAutenticado = async (req, res, next) => {
         return res.render("pages/login", {
             valores: req.body,
             errosLogin: erros.array(),
-            retorno: "Erro de validação nos dados informados."
+            retorno: "Erro de validação nos dados informados.",
+             dadosNotificacao: null
         });
     }
 
@@ -44,7 +45,8 @@ gravarUsuAutenticado = async (req, res, next) => {
         return res.render("pages/login", {
             valores: req.body,
             errosLogin: [],
-            retorno: "Email não encontrado."
+            retorno: "Email não encontrado.",
+            dadosNotificacao: null
         });
     }
 
@@ -56,7 +58,8 @@ gravarUsuAutenticado = async (req, res, next) => {
     return res.render("pages/login", {
         valores: req.body,
         errosLogin: [],
-        retorno: "Sua conta está inativa. Entre em contato com o suporte."
+        retorno: "Sua conta está inativa. Entre em contato com o suporte.",
+        dadosNotificacao: null
     });
 }
 
@@ -70,7 +73,8 @@ gravarUsuAutenticado = async (req, res, next) => {
         return res.render("pages/login", {
             valores: req.body,
             errosLogin: [],
-            retorno: "Senha incorreta."
+            retorno: "Senha incorreta.",
+            dadosNotificacao: null
         });
     }
 
