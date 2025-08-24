@@ -489,14 +489,17 @@ router.get("/logout", limparSessao, function (req, res) {
   res.redirect("/");
 });
 
-router.post("/enviaremail", function (req, res) {
-  usuariosController.enviarEmailparaAtivarConta(req, res);
-});
-
 router.get('/enviaremail', (req, res) => {
   usuariosController.enviarEmailparaAtivarConta(req, res);
 });
 
+router.get(
+  "/ativar-conta",
+  verificarUsuAutenticado,
+  async function (req, res) {
+    usuariosController.ativarConta(req, res);
+  }
+);
 /*
 router.get("/recuperar-senha", 
   verificarUsuAutenticado, 

@@ -1088,7 +1088,7 @@ enviarEmailparaAtivarConta: async (req, res) => {
 const usuario = await usuariosModel.findId(idUsuario); 
 if (!usuario) {
   console.log("Usuário não encontrado no DB:", idUsuario);
-  return res.status(404).send("Usuário não encontrado");
+ res.redirect(redirectTo);
 }
 console.log("Email do usuário:", usuario.EMAIL_USUARIO);
 
