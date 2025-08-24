@@ -345,7 +345,8 @@ cadastrarUsuario: async (req, res) => {
                 pinterest: "", instagram: "", whatsapp: ""
             },
             dadosNotificacao: null,
-            msgErro: "Erro ao carregar perfil"
+            msgErro: "Erro ao carregar perfil",
+            publicacoes: [] 
         });
     }
 },
@@ -1090,7 +1091,7 @@ if (!usuario) {
   console.log("Usuário não encontrado no DB:", idUsuario);
  res.redirect(redirectTo);
 }
-console.log("Email do usuário:", usuario.EMAIL_USUARIO);
+console.log("Email do usuário:", usuario[0].EMAIL_USUARIO,);
 
 
 
@@ -1102,10 +1103,10 @@ console.log("Email do usuário:", usuario.EMAIL_USUARIO);
 
     const html = require('../util/email-ativar-conta')(process.env.URL_BASE, token, usuario.nome);
 
-    enviarEmail(usuario.EMAIL_USUARIO, "Confirme seu e-mail no Traço Perfeito", null, html, () => {
+    enviarEmail(usuario[0].EMAIL_USUARIO, "Confirme seu e-mail no Traço Perfeito", null, html, () => {
       req.session.dadosNotificacao = {
         titulo: "Sucesso!",
-        mensagem: `Enviamos um e-mail de confirmação para ${usuario.EMAIL_USUARIO}.`,
+        mensagem: `Enviamos um e-mail de confirmação para ${usuario[0].EMAIL_USUARIO}.`,
         tipo: "success"
       };
       

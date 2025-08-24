@@ -35,6 +35,14 @@
     <% } %>
 
 
+    
+<% if (status_usuario === 'pendente') { %>
+    <%- include('../partials/aviso-pendente') %>
+    
+<% } %>
+  
+
+
     <%- include('../partials/menu-logado'); %>
 
    

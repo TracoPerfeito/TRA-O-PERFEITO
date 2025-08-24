@@ -26,6 +26,11 @@
     <body>
 
     
+<% if (status_usuario === 'pendente') { %>
+    <%- include('../partials/aviso-pendente') %>
+    
+<% } %>
+  
 
    <% if (tipo_usuario === 'profissional') { %>
   <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
