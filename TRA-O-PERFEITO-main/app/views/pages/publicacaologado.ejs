@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/publicacao.css">
+
+    
+    <title>Publicação</title>
+</head>
+
+
+
+<body>
+
+    
+    <%- include('../partials/menu-logado'); %>
+
+
+
+    
+    <main>
+
+        <section class="botao-de-voltar">   
+            <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+                
+               
+            </button>
+            <p class="lado-botao">Publicação de Jaqueline Maria </p>
+        </section>
+
+      
+
+        <section class="container-pag-publi">
+
+            <section class="principal-pag-publi">
+                <section class="publi-info">
+                    <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil">
+                    <a href=/perfilalogado>
+                        <p class="nome-dono-post">Jaqueline Maria  </p>
+                    </a>
+                </section>
+
+
+                <section class="container-img">
+    
+                    <img src="imagens/castelo.jpg" id="img-principal">
+    
+                </section>
+
+
+                <section class="con-img-expandida" id="con-img-expandida">
+
+                    <span class="fechar" id="fechar" > &times; </span>
+                    <img src="castelo.jpg" id="imgExpandida">
+    
+
+                </section> 
+
+
+                <section class="descricao-like">
+                    <section class="nome-like">
+                        <p class="nome-da-publicacao">Castelinho</p>
+                        <button class="like-button" title="Curtir">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </section>
+                    <p class="descricao-publi-prin">Lorem ipsum dolor sit amet consectetur,
+                         adipisicing elit. Aut minima nisi similique numquam velit
+                        , ut quas odit ratione consequuntur repudiandae fuga volupta
+                        tes cumque nostrum magnam, officia commodi eaque dignissimo
+                        s! Mollitia!</p>
+                      
+                </section>
+
+            </section>
+
+
+
+
+
+            <section class="comentarios">
+
+                <h2 id="comentarios-nome-secao"> Comentários</h2>
+
+                <section class="adicionar-comentario">
+
+                    <form>
+                        <label for="adicionar-comentario" >Adicionar comentário:</label>
+                        <textarea id="ad-comentario" name="ad-comentario" rows="4" cols="50" placeholder="Digite seu comentário aqui..."></textarea>
+                        <br>
+                        <section class="button-container-submit"><input type="submit" value="Enviar" class="enviar-comentario"></section>
+                      </form>
+
+                </section>
+
+                <section class="comentario">
+                    <section class="comentario-info">
+                        <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                        <a href=/perfilalogado>
+                            <p class="nome-comentario"> Mariana Sanchez</p>
+                        </a>
+                    </section>
+                    <section class="escrita-comentario">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipis
+                            icing elit. Amet earum nulla facilis, soluta ipsam do
+                            loremque corporis neque porro possimus quas assu
+                            menda dignissimos ea expedita commodi atque magn
+                            am tenetur obcaecati labore!</p>
+                    </section>
+                </section>
+
+                <section class="comentario">
+                    <section class="comentario-info">
+                        <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                        <a href=/perfilalogado>
+                            <p class="nome-comentario"> Fábinho Ilustrações</p>
+                        </a>
+                    </section>
+                    <section class="escrita-comentario">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ipsam lacupiditate voluptate. Accusamus totam labore tenetur.
+
+
+                        </p>
+                    </section>
+                </section>
+    
+            
+
+                <section class="comentario">
+                    <section class="comentario-info">
+                        <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                        <a href=/perfilalogado>
+                            <p class="nome-comentario"> Creuza Aparecida </p>
+                        </a>
+                    </section>
+                    <section class="escrita-comentario">
+                        <p>Mi piace il tuo lavoro! Accusamus totam labore tenetur</p>
+                    </section>
+                </section>
+
+              
+    
+            
+    
+            
+
+            </section>
+
+
+            <section class="publi-relacionadas">
+
+
+                    <h2 id="publi-rel-nome-secao">
+                        Publicações Relacionadas
+                    </h2>
+                    
+               
+                <section class="publicacoes-rel-caixas">
+    
+                    <section class="publi-re">
+                        <img src="imagens/2.jpg" >
+
+                        <section class="publi-rel-info">
+
+                            <section class="foto-nome-p-rel">
+                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <a href=/perfilalogado>
+                                    <p>Joaquina Fernandes</p>
+                                </a>
+                            </section>
+                            <button class="like-button" title="Curtir">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </section>
+
+                    </section>
+
+
+                    <section class="publi-re">
+                        <img src="imagens/5.jpg" >
+
+                        <section class="publi-rel-info">
+
+                            <section class="foto-nome-p-rel">
+                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <a href=/perfilalogado>
+                                    <p>Joaquina Fernandes</p>
+                                </a>
+                            </section>
+                            <button class="like-button" title="Curtir">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </section>
+
+                    </section>
+
+
+                    <section class="publi-re">
+                        <img src="imagens/11.jpg" >
+
+                        <section class="publi-rel-info">
+
+                            <section class="foto-nome-p-rel">
+                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <a href=/perfilalogado>
+                                    <p>Joaquina Fernandes</p>
+                                </a>
+                            </section>
+                            <button class="like-button" title="Curtir">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </section>
+
+                    </section>
+
+                    
+                    <section class="publi-re">
+                        <img src="imagens/arte4.jpg" >
+
+                        <section class="publi-rel-info">
+
+                            <section class="foto-nome-p-rel">
+                                <img src="imagens/fotoperfil1.jpeg" class="foto-de-perfil" >
+                                <a href=/perfilalogado>
+                                    <p>Joaquina Fernandes</p>
+                                </a>
+                            </section>
+                            <button class="like-button" title="Curtir">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </section>
+
+                    </section>
+
+                   
+    
+                </section>
+
+            </section>
+
+
+            </section>
+        </section>
+
+
+    </main>
+
+
+
+
+
+    <%- include('../partials/rodape'); %>
+    <script src="js/like.js"></script>
+    <script src="js/voltar.js"></script>
+    <script src="js/expan-img.js"></script>
+    <script src="js/mobile-navbar.js"></script>
+    
+</body>
+</html>

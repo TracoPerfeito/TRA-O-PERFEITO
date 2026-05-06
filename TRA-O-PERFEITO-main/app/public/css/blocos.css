@@ -1,0 +1,204 @@
+@import url(cores.css);
+
+*{
+    padding: 0;
+    margin: 10;
+
+}
+
+
+
+
+
+.container-pag-explorar {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 50px;
+    margin: 30px 50px;
+    color: var(--text-color);
+
+}
+
+
+  .foto-perfil-explorar {
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+   
+}
+
+    
+.item-explorar{
+    height: auto;
+    /* min-width: 270px; */
+    border-radius: 7px;
+} 
+
+.publicacao-img{
+    width: 100%;
+    border-radius: 7px;
+    object-fit: cover;
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
+    aspect-ratio: 4/3;
+   
+}
+
+.publicacao-img:hover {
+    filter: brightness(50%);
+    transition: all 0.2s;
+}
+
+.nome-e-btn-like{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0px;
+}
+
+.foto-nome-dono-publi{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nome-dono-post-ex a{
+    font-family: "Josefin Sans";
+    color: var(--text-color);
+    margin-left: 10px;
+}
+
+.descricao-item-explorar {
+    font-family: "Josefin Sans";
+    font-size: 12px;
+
+}
+
+
+.like-button{
+    background-color: transparent;
+    border: 0px;
+    font-size: 110%;
+    transition: all 0.2s;
+    color: var(--text-color);
+}
+
+.like-button:hover{
+    font-size: 115%;
+    transform: translateY(-3px) ;
+   
+
+   
+}
+
+.like-button.liked{
+    color: red;
+}
+ 
+
+
+
+
+@media (max-width:1000px){
+
+    .container-pag-explorar {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 20px;
+        row-gap: 50px;
+        margin: 30px 25px;
+
+    }
+
+}
+
+
+  
+  @media (max-width: 670px) {
+
+    .container-pag-explorar {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 20px;
+        row-gap: 50px;
+        margin: 30px 25px;
+
+    }
+
+    .item-explorar{
+        min-width: none;
+      
+    } 
+
+
+  }
+
+
+  @media (max-width:500px) {
+
+    .container-pag-explorar {
+
+        display: block;
+        margin: 30px 25px;
+
+    }
+
+    .foto-perfil-explorar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+
+        
+    .item-explorar{
+        margin-bottom: 50px;
+        height: auto;
+        min-width: 300px;
+        border-radius: 7px;
+    } 
+
+    .publicacao-img{
+        width: 100%;
+        height: 250px;
+        border-radius: 7px;
+        object-fit: cover;
+        box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .nome-e-btn-like{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 10px 0px;
+    }
+
+    .foto-nome-dono-publi{
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .nome-dono-post-ex a{
+        font-family: "Josefin Sans";
+        color: var(--text-color);
+        margin-left: 10px;
+    }
+
+    .descricao-item-explorar {
+        font-family: "Josefin Sans";
+
+    }
+
+    .like-button{
+
+        font-size: 130%;
+    }
+
+
+
+  }
+  
+

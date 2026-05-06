@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traço Perfeito</title>
+<link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js">
+
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+<link rel="stylesheet" href="css/barrapesquisa.css">
+<link rel="stylesheet" href="css/contratar.css">
+<link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+       
+    <%- include('../partials/menu'); %>
+
+    <section class="pesquisas">
+        <section class="search">
+            <section class="icon"> <ion-icon name="search-outline"></ion-icon></section>
+            <input class="search-input" type="search" placeholder="O que você está procurando hoje?">
+           
+        </section>
+
+        <button id="botao-filtro"> <ion-icon name="filter-outline" id="icon-filtro"></ion-icon></button>
+
+    </section>
+
+        <section class="secao-filtro" id="secao-filtro">
+
+            <button id="fechar-aba"> X </button>
+            <h2 id="filtros-nome-h2">Filtros</h2>
+
+            <section class="categoria-filtro">
+                <span class="caret">▶</span> Avaliações
+            </section>
+
+            <section class="opcoes-categoria">
+                <button class="mostrar-ranking"> <img src="imagens/coroa.png" id="coroa"> Mostrar Ranking do mês </button>
+                <p class="filtro-p"> De acordo com a média de avaliações:</p>
+                <section class="estrelinhas">
+                    <ion-icon name="star-outline" class="far estrela" id="f-star"></ion-icon>
+                    <ion-icon name="star-outline" class="far estrela" id="s-star"></ion-icon>
+                    <ion-icon name="star-outline" class="far estrela" id="t-star"></ion-icon>
+                    <ion-icon name="star-outline" class="far estrela" id="f-star"></ion-icon>
+                    <ion-icon name="star-outline" class="far estrela" id="fi-star"></ion-icon> <br>
+                </section>
+
+            
+            </section>
+
+            <hr class="linha">
+
+            <section class="categoria-filtro">
+                <span class="caret">▶</span> Tipo
+            </section>
+            
+            <section class="opcoes-categoria">
+                <label><input type="checkbox" > Branding e Identidade Visual</label><br>
+                <label><input type="checkbox"> Design Gráfico</label><br>
+                <label><input type="checkbox"> Ilustração </label> <br>
+                <label><input type="checkbox"> Arte Conceitual</label> <br>
+                <label><input type="checkbox"> Design de Interface (UI/UX)</label> <br>
+                <label><input type="checkbox"> Design de Produtos</label> <br>
+                <label><input type="checkbox"> Logotipos</label> <br>
+                <label><input type="checkbox"> Edição de Fotos e Vídeos</label> 
+            </section>
+
+            <hr>
+
+            <section class="categoria-filtro">
+                <span class="caret">▶</span> Estilo
+            </section>
+
+            <section class="opcoes-categoria">
+                <label><input type="checkbox"> Minimalista</label><br>
+                <label><input type="checkbox"> Detalhado</label><br>
+                <label><input type="checkbox"> 3D</label> <br>
+                <label><input type="checkbox"> Flat Design</label> 
+                
+            </section>
+
+            <hr>
+
+            
+            <section class="categoria-filtro">
+                <span class="caret">▶</span> Especialização
+            </section>
+
+           
+
+            <section class="opcoes-categoria">
+                <label><input type="checkbox"> Graduação </label><br>
+                <label><input type="checkbox"> Curso Técnico</label><br>
+                <label><input type="checkbox"> Sem formação</label><br>
+              
+                
+            </section>
+
+            
+
+            
+
+            <button id="aplicar-filtros">Aplicar</button>
+        </section>
+
+   
+ 
+ 
+           
+ <section class="container-perfis">
+
+
+
+    <%- include('../partials/perfis-contratar'); %>
+    <%- include('../partials/perfis-contratar'); %>
+    <%- include('../partials/perfis-contratar'); %>
+    <%- include('../partials/perfis-contratar'); %>
+    <%- include('../partials/perfis-contratar'); %>
+    <%- include('../partials/perfis-contratar'); %>
+    <%- include('../partials/perfis-contratar'); %>
+    <%- include('../partials/perfis-contratar'); %>
+
+
+
+
+ </section>
+ 
+ <%- include('../partials/rodape'); %>
+
+ <script src="js/filtro.js"></script>
+ <script src="js/like.js"></script>
+ <script src="https://kit.fontawesome.com/2fcd7931ea.js" crossorigin="anonymous"></script>
+ <script src="js/mobile-navbar.js"></script>
+ 
+</body>
+</html>
