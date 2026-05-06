@@ -1,0 +1,263 @@
+@import url(cores.css);
+
+
+body{
+  background-color: var(--cor-fundo);
+}
+
+/* Container principal */
+main.container {
+ 
+  font-family: "Josefin Sans";
+  color: var(--text-color);
+
+}
+
+/* Título */
+.criarContratacao {
+  font-family: "Montserrat";
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+/* Labels */
+form label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  font-family: "Josefin Sans";
+  color: var(--text-color);
+}
+
+/* Inputs e textareas */
+form input,
+form textarea,
+form select {
+  background-color: transparent !important;
+  border-radius: 5px !important;
+  border: 1px solid var(--cor-borda-n-pub) !important;
+  width: 100% !important;
+  padding: 10px;
+  font-family: "Josefin Sans";
+  color: var(--text-color);
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease;
+}
+
+form textarea{
+  width: 100% !important;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border: 1px solid var(--cor-av-borda-n-pub) !important;
+  outline: none;
+}
+
+/* Placeholder */
+form input::placeholder,
+form textarea::placeholder {
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+/* Área de termos */
+.card {
+  border: 1px solid var(--cor-borda-n-pub);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-color);
+}
+
+.card h5 {
+  font-family: "Montserrat";
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 15px;
+}
+.form-check {
+  display: inline-flex; /* impede que ocupe a largura toda */
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+.form-check-input {
+  appearance: none; /* remove o estilo padrão do navegador */
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgb(107, 128, 211);
+  border-radius: 4px;
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* efeito ao passar o mouse */
+.form-check-input:hover {
+  border-color: rgb(90, 109, 186);
+}
+
+/* quando estiver marcado */
+.form-check-input:checked {
+  background-color: rgb(107, 128, 211) !important;
+  border-color: rgb(107, 128, 211) !important;
+}
+
+/* “check” branco centralizado */
+.form-check-input:checked::after {
+  content: "✔";
+  color: #ffffff;
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -58%);
+}
+
+
+.form-check-label {
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.input-invalido {
+  border-color: rgb(219, 84, 97) !important;
+  background-color: rgba(219, 84, 97, 0.05);
+}
+
+.msg-erro {
+  font-size: 0.85rem;
+}
+
+
+/* Botão */
+form button[type="submit"] {
+  background-color: var(--cor-av-borda-n-pub);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  padding: 12px;
+  font-family: "Montserrat";
+  font-weight: 600;
+  transition: all 0.4s;
+}
+
+form button[type="submit"]:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
+  background-color: var(--hover-btn);
+}
+
+
+
+/* Grelha do formulário: mobile empilha; desktop mostra 2 colunas */
+.form-grid {
+  display: block; /* mobile: empilha */
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* garante que cada coluna ocupe 100% no mobile */
+.form-grid > .col {
+  width: 100%;
+}
+
+/* no desktop vira 2 colunas */
+@media (min-width: 768px) {
+    .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* esquerda | direita */
+    gap: 40px;
+    align-items: start;
+  }
+
+  .conteudo-principal {
+  padding: 10px 2rem !important;
+}
+
+}
+
+/* opcional: faz os textareas da coluna direita terem altura maior por padrão */
+.form-grid > .col textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* se quiser diferenciar left/right (ex.: right alinhado ao topo) */
+.form-grid > .right-col { align-self: start; }
+
+
+
+
+#section-termos{
+  width: 100%;
+  margin: 10px 0px;
+  padding: 10px;
+}
+
+
+.conteudo-principal {
+  padding: 10px 1rem;
+}
+
+
+
+
+/* Remove interferência do Bootstrap */
+.form-grid .col {
+  flex: none !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Garante que todos os inputs e textareas tenham mesma largura */
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* Mantém labels no topo */
+.form-grid label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Garante alinhamento dos campos entre colunas */
+.form-grid .mb-3 {
+  margin-bottom: 20px;
+}
+
+
+
+
+@media (max-width: 650px) {
+  main.container {
+    margin: 15px;
+  }
+
+  .criarContratacao {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  form button[type="submit"] {
+    width: 100%;
+  }
+}

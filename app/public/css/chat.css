@@ -1,0 +1,638 @@
+@import url(cores.css);
+
+
+.botao-de-voltar{
+    width: 100%;
+    background-color: var(--cor-btn-voltar-section);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.btn-voltar{
+    border-radius: 50%;
+    border: 1px solid var(--cor-btn-voltar-borda);
+    width: 30px;
+    height: 30px;
+    background-color: var(--cor-btn-voltar);
+    color: var(--cor-btn-voltar-seta);
+    margin: 0px 0px 0px 60px;
+    font-size: 17px;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-voltar:hover {
+    background-color: var(--cor-btn-voltar-hover);
+    cursor: pointer;
+    
+}
+
+.lado-botao {
+    margin: 0px 10px;
+    font-family: "Josefin Sans";
+    font-weight: 400;
+    font-size: 15px;
+    color: var( --cor-btn-voltar-texto);
+}
+
+.foto-perfil {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px; /* espaço entre foto e info */
+    flex-shrink: 0;     /* não deixa a foto encolher */
+}
+
+.contato-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;             /* ocupa todo o espaço restante */
+    overflow: hidden;    /* evita que o texto quebre o layout */
+}
+
+.contato-item {
+    list-style: none; /* remove bolinha da li */
+    padding: 0; /* tirar padding da li */
+    margin: 0; /* tirar margin da li */
+    width: 100%;
+}
+
+.contato-nome {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* corta o texto se for muito grande */
+}
+
+
+.contato-nome-hora {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.hora-ultima-msg {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300; 
+    font-size: 12px;
+    flex-shrink: 0; /* não encolhe */
+}
+
+
+.user-link {
+    display: flex;       /* inline-flex pode dar problema no 100% */
+    flex-direction: row;
+    align-items: center;
+    width: 100%;         /* ocupar toda a largura da li */
+   
+     padding: 16px 10px;
+    box-sizing: border-box; /* para padding não extrapolar */
+    text-decoration: none; /* remove underline do link */
+    color: inherit;       
+      border-bottom: 1px solid var( --verde2-chat);
+}
+.foto-perfil-con-ant {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.chat-container-principal {
+    display: grid;
+    grid-template-columns: 2fr 5fr; 
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "aba-minhas-conversas chat-atual";
+    border-top: 1px solid var(--verde2-chat);
+
+}
+
+.chat-list {
+    grid-area: aba-minhas-conversas;
+    padding: 10px;
+    background-color: var(--lado-chat);
+    color: var(--text-color) !important;
+   
+    border-right: 1px solid  var(--verde2-chat);
+    z-index: 100;
+
+ 
+}
+
+
+
+.chat-window {
+    grid-area: chat-atual;
+}
+
+
+
+.abrir-con-ant {
+    display: none;
+}
+
+.con-ant-h2-button {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-family: "Montserrat";
+}
+
+.con-ant-h2-button h2 {
+    font-size: large;
+}
+
+
+.close-chat-list {
+    visibility: hidden;
+}
+
+
+    
+.lista-conversas-anteriores li {
+color: var(--text-color) !important;
+    display: flex;  
+    align-items: center;
+
+    font-family: "Josefin Sans";
+  
+
+}
+
+.lista-conversas-anteriores li:hover {
+    background-color: var(--hover-chat);
+    cursor: pointer;
+}
+
+.lista-conversas-anteriores a{
+    color: var(--text-color);
+}
+
+.msg-area {
+    clear: both;
+    padding: 10px;
+    height: 70vh;
+}
+
+
+.mensagem-env,
+.mensagem-rec {
+    width: 100%;
+    clear: both;
+    margin-bottom: 10px;
+}
+
+.balao-msg,
+.balao-msg-rec {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    word-wrap: break-word; 
+    margin: 5px 0px 5px 10px;
+    font-family: "Josefin Sans";
+    font-weight: 350;
+}
+
+.balao-msg-rec {
+    border-bottom-left-radius: 0;
+}
+
+.balao-msg {
+    border-bottom-right-radius: 0;
+}
+
+
+.mensagem-env .balao-msg {
+    background-color: var(--balao-msg2);
+    color: White;
+    float: right;
+    text-align: right;
+}
+
+.mensagem-rec .balao-msg-rec {
+    background-color: var(--balao-msg1);
+    color: #3f5b6b;
+    width: fit-content;
+    text-align: left;
+}
+
+.mensagem-rec {
+    display: flex;
+    align-items: center;
+}
+
+
+.msg-area {
+
+    overflow-y: auto;
+
+}
+
+
+
+.area-digitar{
+
+    display: flex;
+   
+    margin: 10px;
+    margin-bottom: 10px;
+    
+  
+}
+
+.area-digitar form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    padding: 15px 0; /* espaço acima e abaixo */
+    box-sizing: border-box; /* garante que padding seja dentro da largura/altura */
+}
+
+    
+.area-digitar input {
+    background-color: var(--cor-fundo-comentario);
+    flex: 1; /* ocupa todo espaço disponível */
+    height: 40px; /* altura fixa */
+    border-radius: 5px;
+    border: none;
+    padding: 0 10px;
+    font-family: "Josefin Sans";
+    font-size: 14px;
+    color: var(--texto-barra-pesquisa);
+    box-sizing: border-box;
+}
+
+
+.area-input input::placeholder{
+    color: var( --texto-barra-pesquisa);
+    opacity: 0.5;
+
+}
+
+
+
+#sendBtn {
+    background-color: var(--cor-fundo-comentario);
+    border: none;
+    border-radius: 5px;
+    width: 40px; /* largura fixa */
+    height: 40px; /* mesma altura do input */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--texto-barra-pesquisa);
+    font-size: 18px;
+}
+
+#sendBtn:hover {
+    border: solid 1px #103b2b;
+}
+
+.input-area {
+    margin: 5px;
+    padding-bottom: 0px; 
+    height: 50px;
+}
+ .h2-cont{
+    color: var(--text-color);
+}
+
+@media (max-width: 700px){
+
+    .btn-voltar {
+        margin: 0px 0px 0px 20px;
+    }
+
+    .chat-container-principal {
+        display: block;
+       width: 100%;
+    
+    }
+
+
+    .chat-list {
+        padding: 10px;
+        position: fixed; 
+        top: 13.5vh; 
+        bottom: 0;
+        left: 0;
+        width: 250px; 
+        max-height: 80vh;
+        
+        overflow-y: auto; /* Para rolagem  */
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+       
+     
+    }
+
+    .abrir-con-ant {
+        border: none;
+        border-radius: 50%;
+        background-color: transparent;
+       
+        margin: 0px 20px 0px 15px;
+        display: block;
+    }
+
+    .con-ant-h2-button {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-family: "Montserrat";
+        display: block;
+    }
+
+    .con-ant-h2-button h2 {
+        font-size: large;
+        
+    }
+
+
+    .close-chat-list {
+        position: absolute;
+        right: 10px;
+        top: 3px;
+       
+        border: none; 
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+       
+        cursor: pointer; 
+        visibility: visible;
+    }
+    
+   
+
+
+    
+    .lista-conversas-anteriores li {
+
+        display: flex;
+        align-items: center;
+     
+        font-family: "Josefin Sans";
+      
+
+    }
+
+
+    .lista-conversas-anteriores li span {
+        margin-left: 10px;
+    }
+
+
+
+    .chat-window {
+        display: block;
+    }
+
+    .nome-chat-atual{
+
+        display: flex;
+        align-items: center;
+      
+        padding: 5px;
+    }
+
+    .nome-chat-atual h2 {
+        
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+
+
+    
+    .chat-container-principal.show-chat-list .chat-list{
+        transform: translateX(0);
+    }
+
+    .chat-window {
+        width: 100%;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+
+}
+
+
+/* Container do chat */
+.msg-area {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: 70vh;
+    overflow-y: auto;
+    gap: 5px;
+
+    font-family: "Josefin Sans", sans-serif;
+}
+
+/* Bloco de mensagem */
+.mensagem-bloco {
+    display: flex;
+    align-items: flex-end;
+    max-width: 100%;
+}
+
+/* Mensagem do outro usuário (esquerda) */
+.mensagem-bloco.other {
+    justify-content: flex-start;
+}
+
+/* Mensagem do usuário logado (direita) */
+.mensagem-bloco.me {
+    justify-content: flex-end;
+}
+
+/* Conteúdo do balão */
+.conteudo-msg {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 70%;           /* limita largura */
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 14px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: pre-wrap;
+    background-clip: padding-box;
+}
+
+/* Balão do outro usuário */
+.mensagem-bloco.other .conteudo-msg {
+    background-color: var(--msg-outro);
+    color: var(--balao-msg-cor-text);
+    border-radius: 8px 8px 8px 0;
+}
+
+/* Balão do usuário logado */
+.mensagem-bloco.me .conteudo-msg {
+    background-color: var(--msg-eu);
+    color: white;
+    border-radius: 8px 8px 0 8px;
+}
+
+/* Container do texto + hora */
+.msg-texto {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    word-break: break-word;
+}
+
+/* Texto da mensagem */
+.msg-texto span {
+    word-break: break-word;
+    white-space: pre-wrap;
+    text-align: left;
+}
+
+/* Hora da mensagem (dentro do balão, canto direito) */
+.hora-msg {
+    flex-shrink: 0;
+    font-size: 10px;
+    color: rgba(155, 155, 155, 0.751);
+    margin-left: 8px;
+    align-self: flex-end;
+}
+
+.mensagem-bloco.me .hora-msg{
+    color: rgba(255, 255, 255, 0.715);
+}
+
+/* Mensagem apagada */
+.conteudo-msg.apagada {
+    font-style: italic;
+    color: rgba(0,0,0,0.4);
+}
+
+/* Separador de dia */
+.dia-separador {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    margin: 10px 0;
+    position: relative;
+}
+.dia-separador::before,
+.dia-separador::after {
+    content: "";
+    display: inline-block;
+    width: 30%;
+    height: 1px;
+    background: #ccc;
+    vertical-align: middle;
+    margin: 0 5px;
+}
+
+
+.secao-cima, .foto-nome-user {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.secao-cima{
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nome-user{
+    margin-left: 10px;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.nome-chat-atual{
+
+    display: flex;
+    align-items: center;
+    background-color: var(--verde-chat);
+    color: rgb(232, 232, 232);
+    padding: 5px;
+}
+
+.nome-chat-atual h2 {
+  
+    font-family: "Josefin Sans";
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.nome-user small {
+    font-family: "Josefin Sans";
+    color: var(--cor-btn-azul);
+}
+
+
+
+
+.badge {
+      background-color: rgb(210, 110, 110);
+    font-family: "Montserrat";
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+      aspect-ratio: 1;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+
+.lista-conversas-anteriores .ultima-msg-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lista-conversas-anteriores .ultima-mensagem {
+    display: block;
+    white-space: nowrap;    
+    overflow: hidden;       
+    text-overflow: ellipsis;  
+    max-width: 130px;           
+}
+
+
+.formalizar-contrato{
+    padding: 7px 12px;
+    font-family: "Montserrat";
+    border: 1px solid #fff;
+    border-radius: 7px;
+    font-weight: 400;
+    background-color: #316886;
+    color: #ececec;
+}
+
+
+.formalizar-contrato:hover{
+    background-color: #1e465b;
+    cursor: pointer;
+   
+}
+
+.placeholder {
+    color: var(--text-color);
+}

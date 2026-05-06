@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólios de <%= usuario.NOME_USUARIO %></title>
+
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js">
+
+        
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/portfolios.css">
+
+</head>
+<body>
+
+  
+<% if (status_usuario === 'pendente') { %>
+    <%- include('../partials/aviso-pendente') %>
+    
+<% } %>
+  
+    
+
+   <% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+
+
+    <section class="botao-de-voltar">   
+    <button class="btn-voltar" onclick="voltarPagina()"> 
+        <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+    </button>
+    <p class="lado-botao">
+        <% if (id_usuario === usuario.ID_USUARIO) { %>
+            Meus Portfólios
+        <% } else { %>
+            Portfólios de <%= usuario.NOME_USUARIO %>
+        <% } %>
+    </p>
+</section>
+
+<main>
+    <h1 id="nome-pagina">
+        <% if (id_usuario === usuario.ID_USUARIO) { %>
+            Meus Portfólios
+        <% } else { %>
+            Portfólios de <%= usuario.NOME_USUARIO %>
+        <% } %>
+    </h1>
+
+
+
+    <section class="container-portfolios">
+  <% if (portfolios.length > 0) { %>
+    <% portfolios.forEach(portfolio => { %>
+      <section class="portfolio" onclick="location.href='/portfolio/<%= portfolio.ID_PORTFOLIO %>'">
+        <section class="portfolio-item">
+          <section class="image-container">
+
+          <section class="image-row">
+  <img src="<%= portfolio.imagensCapa[0] %>" class="portfolio-image">
+  <img src="<%= portfolio.imagensCapa[1] %>" class="portfolio-image">
+</section>
+<section class="image-row">
+  <img src="<%= portfolio.imagensCapa[2] %>" class="portfolio-image">
+  <img src="<%= portfolio.imagensCapa[3] %>" class="portfolio-image">
+</section>
+
+
+            <section class="overlay">
+              <h3 class="portfolio-name"><%= portfolio.NOME_PORTFOLIO %></h3>
+              <p class="prev-descrip"><%= portfolio.DESCRICAO_PORTFOLIO %></p>
+            </section>
+          </section>
+        </section>
+      </section>
+    <% }) %>
+  <% } else { %>
+       <img src="/imagens/sem-resultados.png" alt="Sem resultados">
+    <p class="sem-portfolio">Nenhum portfólio enviado ainda.</p>
+  <% } %>
+</section>
+
+
+    </main>
+
+
+
+
+
+
+
+
+    
+   <% if (tipo_usuario === 'profissional') { %>
+
+                 <%- include('../partials/fab-button') %>
+<% }   else if(tipo_usuario === 'comum') {   %>
+        <%- include('../partials/fab-button-comum') %>
+  <% } %>
+  
+
+
+
+    <%- include('../partials/rodape'); %>
+
+
+    
+
+ <script src="/js/like.js"></script>
+ <script src="https://kit.fontawesome.com/2fcd7931ea.js" crossorigin="anonymous"></script>
+ <script src="/js/mobile-navbar.js"></script>
+  <script src="/js/voltar.js"></script>
+ 
+
+ 
+
+    
+</body>
+</html>

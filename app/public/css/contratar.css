@@ -1,0 +1,289 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container-perfis {
+    margin:auto;
+    width: fit-content;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.badge-pro {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 12px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  background: #92b8f2; /* azul joia */
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.badge-pro::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0), rgba(255,255,255,0.4));
+  transform: skewX(-20deg);
+  animation: shine-loop 2s linear infinite;
+}
+
+@keyframes shine-loop {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+.card {
+    background-color: var(--cor-fundo-card-perfis);
+    width: 320px;
+    border-radius: 10px;
+   
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: 'Josefin Sans';
+    color: var(--text-color);
+    position:  relative;
+}
+
+.card:hover {
+    cursor:pointer;
+}
+
+.card-header .background-image {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+  
+}
+
+
+.card-content {
+    padding: 15px;
+    padding-top: 0px;
+   
+}
+
+.card-content p {
+    color: var(--text-color);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    object-fit: cover;
+    margin-top: -40px; /* Ajuste solicitado */
+}
+
+.informacoes-card {
+    margin-left: 15px;
+    width: 100%;
+}
+
+.name-row {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    font-size: 17px;
+    margin: 0;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.role {
+    color: #666;
+    margin: 2px 0 0;
+    font-size: 13px;
+}
+
+.estrela-perfil {
+    color: #f5b301;
+    font-size: 18px;
+    margin-left: 5px;
+    padding-bottom: 20px;
+}
+
+.rating {
+    font-weight: bold;
+    margin-left: 5px;
+    padding-bottom: 20px;
+}
+
+.description {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.description p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;    /* limita a 3 linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nota-prof{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.info-prof {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.estrela-perfil {
+    color: #f5b301;
+    font-size: 18px;
+}
+
+.rating {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.container-perfis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+    padding: 0 10px 2em 10px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.dados-perfil {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.dados-perfil section {
+    flex: 1;
+    position: relative;
+}
+
+.dados-perfil section:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background-color: #ddd;
+}
+
+.dados-perfil p {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.dados-perfil span {
+    font-size: 13px;
+    color: #b0b0b0;
+}
+
+
+
+/* teste acaba aqui */
+
+ 
+.pesquisas {
+    margin-top: 20px;
+}
+
+
+
+/* CONFIGURAÇÕES RESPONSIVIDADE */
+
+
+
+
+@media (max-width: 1400px) {
+ 
+    .container-perfis {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1070px) {
+ 
+  
+
+    .container-perfis {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 740px) {
+
+   
+    .container-perfis {
+        grid-template-columns: 1fr; 
+    }
+
+}
+
+
+/* 
+@media (max-width: 1400px) {
+    .container-perfis {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 724px) {
+    .container-perfis {
+        grid-template-columns: repeat(1, 1fr);
+    }
+} */
+
+
+
+
+
+
+

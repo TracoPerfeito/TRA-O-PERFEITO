@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Publicação</title>
+    <link rel="stylesheet" href="/css/nova-publicacao.css">
+    
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+   <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="js/simple-notify.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+
+    
+   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+  
+
+
+<!-- JS do Tagify -->
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    
+
+    
+
+</head>
+
+     
+<body>
+
+  <%  if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "top right");
+                                   
+        </script>
+    <% } %>
+
+
+  
+<% if (status_usuario === 'pendente') { %>
+    <%- include('../partials/aviso-pendente') %>
+    
+<% } %>
+  
+    
+    <%- include('../partials/menu-logado'); %>
+
+
+ <% if (pro === false) { %>
+  <% if (resultado >= 3) { %>
+    <!-- Modal travando a tela -->
+    <section id="modal-limite" style="
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    ">
+      <section class="modal-conteudo-restricao">
+        <h2>Limite de publicações mensais atingido!</h2>
+        <p>Usuários gratuitos podem fazer até 3 publicações por mês.</p>
+        <p>Assine o Traço Perfeito Pro para ter publicações ilimitadas e outros benefícios.</p>
+        <section class="btns-modal-restricao">
+          <button onclick="window.location='/'" class="voltar-inicio">Voltar à página inicial</button>
+          <button onclick="window.location='/planos-assinaturas'" class="btn-assinar-plano">Assinar Traço Perfeito Pro</button>
+        </section>
+      </section>
+    </section>
+
+    <script>
+      // Impede qualquer interação com a página
+      document.body.style.overflow = 'hidden';
+    </script>
+
+  <% } else { %>
+    <!-- Aviso vermelho para quem ainda pode publicar -->
+ <% 
+  const restantes = 3 - resultado; 
+  const palavra = restantes === 1 ? 'publicação' : 'publicações';
+%>
+
+<section id="aviso-quant-publi">
+  <p>Você ainda pode fazer <%= restantes %> <%= palavra %> este mês.</p>
+  <button onclick="window.location='/planos-assinaturas'" class="btn-assinar-plano"
+    >
+    Assine o Traço Perfeito Pro e publique ilimitado
+  </button>
+</section>
+
+  <% } %>
+<% } %>
+
+
+
+<main>
+    
+            <h1 class="novaPublicacao">Nova Publicação</h1>
+            <br>
+            <br>
+            <p class="instrucao-tipo-btn">Selecione o tipo de publicação que você deseja fazer:</p>
+            <section class="button-group">
+    
+    
+                    <button class="ativo" title="SELECIONADO - Crie uma nova publicação para seu portfólio."><a href=/nova-publicacao >Nova Publicação</a></button>
+                    <button class="nao-ativo" title="Publique uma proposta de projeto para os profissionais da plataforma."><a href=/nova-publi-pedido >Proposta de projeto</a></button>
+    
+            </section>
+
+            <p class="p-explicativo-np">Publique seu trabalho para compor seu portfólio.</p>
+            <form  id="post-form" enctype="multipart/form-data" method="POST" action=/enviar-publicacao>
+    
+    <section class="colunas-form">
+        
+                    <section class="coluna-esq">
+                        <section class="form-grupo-1" id="titulo-publicacao">
+                            <label for="titulo">Título:</label> <br>
+                            <input type="text" id="titulo" name="titulo" class="caixa-texto" required>
+                            <section id="erro-titulo" class="mensagem-erro"></section>
+                        </section>
+                        <section class="form-grupo-1" id="categoria-publicacao">
+                        <label for="categoria">Categoria:</label> <br>
+                        <select id="categoria" name="categoria" class="caixa-texto" required>
+                            <option value="">-- Selecione a categoria --</option>
+                            <option value="Design Gráfico">Design Gráfico</option>
+                            <option value="Ilustração">Ilustração</option>
+                            <option value="UI/UX">UI/UX</option>
+                            <option value="Arte Digital">Arte Digital</option>
+                            <option value="Arte 3D">Arte 3D</option>
+                            <option value="Animação">Animação</option>
+                            <option value="Branding">Branding</option>
+                            <option value="Tipografia">Tipografia</option>
+                            <option value="Modelagem 3D">Modelagem 3D</option>
+                            <option value="Design de Produto">Design de Produto</option>
+                            <option value="Design Editorial">Design Editorial</option>
+                            <option value="Design de Jogos">Design de Jogos</option>
+                            <option value="Fotografia">Fotografia</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                        <section id="erro-select" class="mensagem-erro"></section>
+
+                        
+<section id="outra-categoria-container" style="display:none; margin-top:10px;">
+  <label for="outraCategoria">Digite a categoria:</label>
+  <input type="text" id="outraCategoria" name="outraCategoria" placeholder="Ex: Lettering">
+</section>
+
+
+
+<script>
+  const select = document.getElementById('categoria');
+const container = document.getElementById('outra-categoria-container');
+
+select.addEventListener('change', () => {
+  if (select.value === 'outro') {
+    container.style.display = 'block';
+  } else {
+    container.style.display = 'none';
+  }
+});
+
+</script>
+                        </section>
+                         <section class="form-grupo-1" id="descricao-publicacao">
+                            <label for="descricao">Descrição:</label> <br>
+                            <textarea id="descricao" name="descricao" class="caixa-texto grande
+                            " ></textarea>
+                            <section id="erro-descricao" class="mensagem-erro"></section>
+                        </section>
+                        <section class="form-grupo-1" id="tags-publicacao" >
+                            <label for="descricao">Tags:</label> <br>
+                           <input   id="tagInput"  name='input-custom-dropdown' class='tags-look tagify--custom-dropdown caixa-texto' placeholder='Adicione tags à sua publicação...' value='Design Gráfico, Arte Digital'>
+                          
+                          </section>
+                          <section id="erro-tags" class="mensagem-erro"></section>
+                    </section>
+        
+                    <!-----------------colocar aquele negocio do upload---------------------->
+                 <section class="coluna-dir">
+  <section class="previeweinput">
+   <section class="upload-wrapper">
+  <label for="image-input" class="custom-file-label">Selecionar imagens <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" ><path d="M720-330q0 104-73 177T470-80q-104 0-177-73t-73-177v-370q0-75 52.5-127.5T400-880q75 0 127.5 52.5T580-700v350q0 46-32 78t-78 32q-46 0-78-32t-32-78v-370h80v370q0 13 8.5 21.5T470-320q13 0 21.5-8.5T500-350v-350q-1-42-29.5-71T400-800q-42 0-71 29t-29 71v370q-1 71 49 120.5T470-160q70 0 119-49.5T640-330v-390h80v390Z"/></svg></label>
+  <input type="file" id="image-input" name="images" accept="image/*" multiple />
+  <span class="image-count" id="image-count">Nenhuma imagem selecionada. Selecione de 1 até 10 imagens</span>
+</section>
+<section id="erro-imagens" class="mensagem-erro"></section>
+    <section class="preview-section" id="preview-section" style="display:none;">
+      <section class="main-image-container" id="main-image-container">
+        <img id="main-image" src="" alt="Main preview" />
+      </section>
+      <section id="thumbnail-row"  class="sortable-preview"></section>
+    </section>
+  </section>
+</section>
+
+
+                    
+    </section>
+             <!-------------------------------------------------------------------------->
+            
+                <section class="btn-publicar-area">
+                    <button class="btn-publicar" id="prosseguir">Prosseguir</button>
+                </section>
+
+
+                                
+                <section id="confirm-modal" >
+                  <section class="dentro-modal">
+                    <h2>Confirme sua publicação</h2>
+                    <p><strong>Título:</strong> <span id="confirm-title"></span></p>
+                    <p><strong>Categoria:</strong> <span id="confirm-category"></span></p>
+                    <p><strong>Descrição:</strong> <span id="confirm-description"></span></p>
+                    <p><strong>Tags:</strong> <span id="confirm-tags"></span></p>
+                    
+                     <p><strong>Imagens selecionadas:</strong> </p>
+                    <section id="confirm-images" ></section>
+                    <section class="btns-modal">
+                      <button id="cancel-btn" type="button">Cancelar</button>
+                      <button id="send-btn" type="submit">Enviar</button>
+                    </section>
+                  </section>
+                </section>
+
+
+            </form>
+
+
+
+
+
+  <section id="limite-modal" class="modais">
+  <section class="dentromodais" >
+    <p>Limite máximo de 10 imagens. As imagens extras foram descartadas.</p>
+    <button onclick="fecharModal()" style="margin-top: 10px; padding: 6px 12px;">OK</button>
+  </section>
+</section>
+
+
+<!-- Modal de aviso de múltiplas imagens -->
+
+
+<section id="avisoimgs-modal" class="modal-aviso-imgs modais">
+  <section class="modal-conteudo dentromodais">
+    <p><strong>Aviso:</strong> É recomendado que todas as imagens tenham proporções semelhantes para uma melhor visualização.</p>
+    <button onclick="fecharModalavisoimgs()">Entendi</button>
+  </section>
+</section>
+
+
+        
+</main>
+
+
+
+
+
+
+
+
+<script>
+const inputFile = document.getElementById('image-input'); //pega o input
+const previewSection = document.getElementById('preview-section'); // pega a seção de pré-visualização
+const mainImage = document.getElementById('main-image'); // pega a img principal, a grandona de pre view
+const thumbnailRow = document.getElementById('thumbnail-row'); //pega a seção de fotinhas em miniatura
+const imageCount = document.getElementById('image-count');//pega a seção que mostra a quantidade de imgs selecionadas
+
+let jaMostrouAviso = false; // variável pro aviso de mais de uma img
+
+
+let imageFiles = []; // cria um array para armazenar as imagens selecionadas, por enquanto vazio
+let currentIndex = 0; // índice da imagem atual, começa em 0
+
+inputFile.addEventListener('change', (e) => { // ao usar o input
+  const newFiles = Array.from(e.target.files); // pega os novos arquivos selecionados e transforma em array
+  imageFiles = [...imageFiles, ...newFiles]; // adiciona os novos arquivos ao array existente
+
+
+   if (imageFiles.length > 10) { // "se o array de imgs for maior que 10"
+    imageFiles = imageFiles.slice(0, 10); // mantém só os 10 primeiros
+    mostrarModalLimite(); // mostra o aviso
+  }
+
+
+  if (imageFiles.length > 0) {// Se o array de imgs for maior que 0
+    previewSection.style.display = 'block'; // Mostra a seção de pré-visualização
+  }
+
+  currentIndex = 0; // Reseta o índice atual para 0, para começar a mostrar a primeira imagem
+  displayImages(); //chama a função que exibe as imagens
+  updateImageCount(); //atualiza a contagem de imagens selecionadas
+});
+
+function displayImages() { //função para exibir as imagens selecionadas
+  thumbnailRow.innerHTML = ''; // Limpa a seção de miniaturas antes de exibir as novas imagens
+
+  if (imageFiles[currentIndex]) { // Se houver uma imagem selecionada no índice atual
+    const reader = new FileReader(); // Cria um novo FileReader para ler a imagem
+    reader.onload = (e) => { // Quando a leitura da imagem for concluída
+      mainImage.src = e.target.result; // Define a imagem principal para o resultado da leitura, ou seja, aquela img grandona de pre view
+    };
+    reader.readAsDataURL(imageFiles[currentIndex]); // Começa a leitura da imagem. O resultado virá como uma URL do tipo base64
+  }
+
+  imageFiles.forEach((file, index) => { //Para cada img do array de imagens
+    const reader = new FileReader(); // Cria um novo FileReader para ler a imagem
+    reader.onload = (e) => { // Quando a leitura da imagem for concluída - Mano o vs code não para de completar os comentários, espero que ele esteja certo ein fio
+        const thumbContainer = document.createElement('section'); // Cria um novo elemento section para a miniatura
+        thumbContainer.classList.add('thumbnail-container'); // Adiciona a classe de contêiner de miniatura
+        thumbContainer.classList.add('img-box'); // mais uma classe pra section criada 
+        thumbContainer.setAttribute('data-nome', file.name); // Define um atributo data-nome com o name do arquivo, para facilitar a ordenação depois
+
+        const img = document.createElement('img'); // cria uma constante para a img de miniatura, cada uma das imgs do array
+        img.src = e.target.result; // Define o src da img para o resultado da leitura, ou seja, a imagem em miniatura
+        img.title = "Clique para visualizar"; // O titulo, quando a pessoa deixa o mouse em cima da img por um tempo
+
+        img.addEventListener('click', () => { //quando a pessoa clicar na img miniatura
+          currentIndex = index; //atualiza o índice atual para o índice da imagem clicada
+          mainImage.src = e.target.result; //Exibe na img grande de pre view a img clicada
+        });
+
+        const delBtn = document.createElement('button'); //Cria uma constante para o botão de deletar
+        delBtn.classList.add('thumbnail-delete'); //adicion uma classe pro btn de deletar
+        delBtn.innerHTML = '&times;'; // bota o x no btn de deletar das imgszinhas
+        delBtn.title = "Remover imagem"; // O titulo, quando a pessoa deixa o mouse em cima do botão de deletar por um tempo
+
+        delBtn.addEventListener('click', (ev) => { // quando a pessoa clicar no botãozin de deletar
+          ev.stopPropagation(); // impede que o clique afete o preview
+
+          imageFiles.splice(index, 1); // Remove a imagem do array de imagens usando o índice da imagem clicada
+
+          if (currentIndex >= imageFiles.length) { // se o índice atual for maior ou igual ao tamanho do array de imagens
+            currentIndex = 0; // Reseta o índice atual para 0, para começar a mostrar a primeira imagem novamente
+          }
+
+          if (imageFiles.length === 0) { // se o array de imgs nao tiver nada
+            previewSection.style.display = 'none'; // Esconde a seção de pré-visualização
+            mainImage.src = ''; //Nçao mostra nada na img grande de pre view
+          }
+
+          displayImages(); // chama a função que exibe as imagens novamente, para atualizar 
+          updateImageCount(); // atualiza acontagem 
+        });
+
+          thumbContainer.appendChild(img); // Adiciona a img miniatura dentro da section criada
+          thumbContainer.appendChild(delBtn); // Adiciona o botão de deletar dentro da section criada
+          thumbnailRow.appendChild(thumbContainer); // Adiciona a section com a img e o botão de deletar dentro da seção de miniaturas
+        };
+        reader.readAsDataURL(file); // Começa a leitura da imagem sla 
+    });
+
+ 
+new Sortable(thumbnailRow, { // agora o coisinha de arrastar e soltar
+  animation: 250, // animação, acho que é tipo o tempo
+  onEnd: () => { // quando a pessoa soltar a imagem depois de arrastar
+  
+    const boxes = Array.from(thumbnailRow.querySelectorAll('.img-box')); // cria uma constante boxes que pega todas as sections com a classe img-box dentro da seção de miniaturas
+    const novaOrdem = boxes.map(box => box.getAttribute('data-nome')); // Cria um novo array com os nomes das imagens na nova ordem, usando o atributo data-nome de cada section
+
+    // Reorganiza o array imageFiles de acordo com a nova ordem do DOM
+    const novaImageFiles = []; // cria imagefiles vazio para armazenar as imagens na nova ordem
+    novaOrdem.forEach(nome => { //pra cada coisinha do novaordem
+      const encontrado = imageFiles.find(img => img.name === nome); // tenta encontrar a imagem no array original imageFiles pelo nome
+      if (encontrado) novaImageFiles.push(encontrado); // se encontrar, adiciona a imagem no novo array novaImageFiles
+    });
+
+    imageFiles = novaImageFiles; // Atualiza o array imageFiles com a nova ordem, que o usuário escolheu
+
+    // Atualiza o índice da imagem principal com base na nova posição dela
+    const mainAtual = mainImage.src; // pega o src da imagem principal
+    const novaIndex = boxes.findIndex(box => { // tenta encontrar o índice da imagem principal na nova ordem
+      const img = box.querySelector('img'); // pega a img dentro da section
+      return img && img.src === mainAtual; // verifica se o src da img é igual ao src da imagem principal
+    });
+    if (novaIndex !== -1) { // se encontrar a imagem principal na nova ordem 
+      currentIndex = novaIndex; // o index atual passa a ser o novo índice da imagem principal
+    }
+
+    // Atualiza só a imagem principal sem redesenhar tudo
+    if (imageFiles[currentIndex]) { // Verifica se existe uma imagem no índice atual da lista de arquivos
+      const reader = new FileReader(); // Cria um leitor de arquivo
+
+      reader.onload = (e) => {// Define o que acontece quando o arquivo terminar de ser lido
+        mainImage.src = e.target.result;// Define a imagem principal do preview com o conteúdo da imagem lida 
+      };
+      reader.readAsDataURL(imageFiles[currentIndex]); // Começa a leitura da imagem.
+    }
+  }
+});
+
+}
+
+function updateImageCount() { // funcao de atualizar a contagem de imgs
+  const count = imageFiles.length; // constante count é o tamanho do array de imgs
+  if (count === 0) { // se o tamanho for 0
+    imageCount.textContent = 'Nenhuma imagem selecionada'; // mostra essa mnsagem
+  } else if (count === 1) {// se for 1 img só
+    imageCount.textContent = '1 imagem selecionada'; // mostra isso
+  } else { // se for mais de uma img
+    imageCount.textContent = `${count} imagens selecionadas`; // mostra essa msg, no plural e com o numero de imgs no lugar do numero
+  }
+
+
+  //acho que dá pra adicionar o verificador de mais de uma img aqui
+
+  if (count > 1 && !jaMostrouAviso) {  // se tem mais de uma img e nao mostrou o aviso ainda
+    setTimeout(() => { // espera 5 segundos para verificar as proporções
+    
+      const promessas = imageFiles.map(file => {// para cada arquivo no array de imgs
+        return new Promise((resolve) => { // cria uma nova promessa
+          const img = new Image(); // cria const img
+          img.onload = () => resolve({ width: img.width, height: img.height }); // quando a imagem carregar, resolve a promessa com as dimensões
+          img.src = URL.createObjectURL(file);
+        });
+      });
+
+      Promise.all(promessas).then(dimensoes => {
+        const proporcaoBase = dimensoes[0].width / dimensoes[0].height;
+        const proporcoesIguais = dimensoes.every(d => { // vai verificar se todas as imagens têm a mesma proporção
+
+          const proporcao = d.width / d.height;  // calcula a proporção da imagem atual
+          return Math.abs(proporcao - proporcaoBase) < 0.05; // tolerância de 5%
+        });
+
+           if (!proporcoesIguais) { // se as proporções nao forem iguais
+          mostrarModalavisoImgs();  // exibe o aviso
+          jaMostrouAviso = true; // evita avisar novamente
+        }
+      });
+    }, 5000); // espera 500ms antes de verificar as proporções
+  }
+
+
+}
+
+
+//  Adiciona botão e função para exibir a ordem atual no console e na tela - só pra teste por enquanto . depois tirar esse bloco
+function mostrarOrdem() {
+  const boxes = Array.from(document.querySelectorAll('#thumbnail-row .img-box'));
+  const ordemAtual = boxes.map(el => el.getAttribute('data-nome'));
+  console.log('Ordem atual:', ordemAtual);
+  alert('Ordem atual:\n' + ordemAtual.join('\n')); 
+}
+// tirar até aqui 
+
+
+
+
+
+function mostrarModalavisoImgs() { // função para exibir o modal de limite de imgs
+  const modalaviso = document.getElementById('avisoimgs-modal'); // pega o modal pelo id
+  if (modalaviso) { // se tiver o modal 
+    modalaviso.style.display = 'flex'; // mostra o modal
+  }
+}
+
+function fecharModalavisoimgs() { // função para fechar o modal de aviso
+  const modalaviso = document.getElementById('avisoimgs-modal'); // pega o modal de aviso pelo id
+  if (modalaviso) {
+    modalaviso.style.display = 'none'; // nao mostra o modal
+  }
+}
+
+
+    
+
+
+function mostrarModalLimite() { // função para exibir o modal de limite de imgs
+  const modal = document.getElementById('limite-modal'); // pega o modal pelo id
+  if (modal) { // se tiver o modal 
+    modal.style.display = 'flex'; // mostra o modal
+  }
+}
+
+function fecharModal() { // função para fechar o modal
+  const modal = document.getElementById('limite-modal'); // pega o modal pelo id (de novo?) acho que tem como reutilizar isso, nao?
+  if (modal) {
+    modal.style.display = 'none'; // nao mostra o modal
+  }
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('../partials/rodape'); %>
+
+<script src="js/mobile-navbar.js"></script>
+
+<script>
+var input = document.querySelector('input[name="input-custom-dropdown"]');
+
+var colors = [
+  '#7490C9', 
+  '#969ED0',  
+  '#92C4E2', 
+  '#B8D9BD', 
+  '#9BB7CF', 
+  '#C3E3DF',
+  '#C2E5F0', 
+  '#ADBCE2', 
+ 
+];
+
+function transformTag(tagData) {
+  // escolhe uma cor da lista, aleatoriamente
+  var color = colors[Math.floor(Math.random() * colors.length)];
+  tagData.color = color;
+  tagData.style = "--tag-bg:" + color;
+}
+
+
+
+
+var tagify = new Tagify(input, {
+  whitelist: [
+  // Design geral
+  "Design Gráfico",
+  "Design para Web",
+  "Arte Digital",
+  "UI/UX",
+  "Design de Embalagens",
+  "Design de Produto",
+  "Ilustração Digital",
+  "Tipografia",
+  "Identidade Visual",
+  "Branding",
+  "Design Editorial",
+  "Design de Interface",
+  "Design Responsivo",
+  
+  // Estilos de arte
+  "Arte Conceitual",
+  "Arte Vetorial",
+  "Arte Tradicional",
+  "Pintura Digital",
+  "Animação",
+  "Motion Graphics",
+  "Pixel Art",
+  "Ilustração Infantil",
+  "Quadrinhos",
+  "Arte Abstrata",
+  
+  // Técnicas/ferramentas
+  "Photoshop",
+  "Illustrator",
+  "Procreate",
+  "CorelDRAW",
+  "Sketch",
+  "Figma",
+  "Blender",
+  "Cinema 4D",
+  "After Effects",
+  "InDesign",
+  
+  // Cores (para inspiração, tema, etc)
+  "Cores Vibrantes",
+  "Tons Pastel",
+  "Monocromático",
+  "Cores Frias",
+  "Cores Quentes",
+  "Paleta Neutra",
+  "Contraste Alto",
+  "Preto e Branco",
+  
+  // Outros
+  "Tipografia Criativa",
+  "Prototipagem",
+  "Design de Aplicativos",
+  "Design de Jogos",
+  "Arte para Redes Sociais",
+  "Ilustração Editorial",
+  "Design Sustentável"
+],
+
+  maxTags: 10,
+  dropdown: {
+    maxItems: 20,
+    classname: 'tags-look',
+    enabled: 0,
+    closeOnSelect: false
+  },
+  transformTag: transformTag
+});
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  
+  const formModal = document.getElementById('post-form'); // form principal
+  const modalConfirm = document.getElementById('confirm-modal');
+  const btnCancel = document.getElementById('cancel-btn');
+  const btnSend = document.getElementById('send-btn');
+
+  const inputTitulo = document.getElementById('titulo');
+  const erroTitulo = document.getElementById('erro-titulo');
+
+  const selectCategoria = document.getElementById('categoria');
+  const outraCategoriaInput = document.getElementById('outraCategoria');
+  const erroCategoria = document.getElementById('erro-select');
+
+  const inputDescricao = document.getElementById('descricao');
+  const erroDescricao = document.getElementById('erro-descricao');
+
+  const inputTag = document.getElementById('tagInput');
+  const erroTags = document.getElementById('erro-tags');
+  const erroImagens = document.getElementById('erro-imagens');
+
+
+  let modalImageFiles = [...imageFiles]; 
+
+
+  function validarTitulo() {
+    const val = inputTitulo.value.trim();
+    if (val.length < 2 || val.length > 30) {
+      erroTitulo.textContent = 'O título deve conter entre 2 e 30 caracteres.';
+      inputTitulo.classList.add('erro');
+      return false;
+    } else {
+      erroTitulo.textContent = '';
+      inputTitulo.classList.remove('erro');
+      return true;
+    }
+  }
+
+  function validarCategoria() {
+    let val = selectCategoria.value.trim();
+    if (val === 'outro' && outraCategoriaInput.value.trim() !== '') {
+      val = outraCategoriaInput.value.trim();
+    }
+    if (!val) {
+      erroCategoria.textContent = 'Selecione uma categoria.';
+      selectCategoria.classList.add('erro');
+      return false;
+    } else {
+      erroCategoria.textContent = '';
+      selectCategoria.classList.remove('erro');
+      return true;
+    }
+  }
+
+  function validarDescricao() {
+    const val = inputDescricao.value.trim();
+    if (val.length < 2 || val.length > 300) {
+      erroDescricao.textContent = 'A descrição deve conter entre 2 e 300 caracteres.';
+      inputDescricao.classList.add('erro');
+      return false;
+    } else {
+      erroDescricao.textContent = '';
+      inputDescricao.classList.remove('erro');
+      return true;
+    }
+  }
+
+  function validarTags() {
+  // Captura as tags inseridas (array de objetos), extrai os valores
+  const tags = tagify.value.map(tag => tag.value);
+
+  if (tags.length === 0) {
+    // Exibe a mensagem de erro
+    erroTags.textContent = 'Adicione pelo menos uma tag.';
+
+    // Adiciona a classe de erro no container visual do Tagify
+    tagify.DOM.scope.classList.add('erro');
+
+    return false;
+  } else {
+    // Remove a mensagem de erro
+    erroTags.textContent = '';
+
+    // Remove a classe de erro, se houver
+    tagify.DOM.scope.classList.remove('erro');
+
+    return true;
+  }
+}
+
+
+function validarImagens() {
+  const erroImagens = document.getElementById('erro-imagens');
+
+  if (!imageFiles || imageFiles.length === 0) {
+    erroImagens.textContent = 'Adicione pelo menos uma imagem.';
+    erroImagens.classList.add('erro-img-msg');  
+    return false;
+  } else {
+    erroImagens.textContent = '';
+    erroImagens.classList.remove('erro-img-msg');  
+    return true;
+  }
+}
+
+
+  
+  inputTitulo.addEventListener('input', validarTitulo);
+  selectCategoria.addEventListener('change', validarCategoria);
+  outraCategoriaInput.addEventListener('input', validarCategoria); // se selecionada a categoria "outro"
+  inputDescricao.addEventListener('input', validarDescricao);
+  tagify.on('change', validarTags);
+  // Para imagens, chamar validarImagens sempre que imageFiles for alterado 
+
+  // Ao clicar no botão Prosseguir, valida tudo e mostra modal se ok 
+  document.getElementById('prosseguir').addEventListener('click', (event) => {
+    event.preventDefault();
+
+    // Atualiza lista de imagens para o modal
+    modalImageFiles = [...imageFiles];
+
+    // Executa todas as validações
+    const tituloValido = validarTitulo();
+    const categoriaValida = validarCategoria();
+    const descricaoValida = validarDescricao();
+    const tagsValidas = validarTags();
+    const imagensValidas = validarImagens();
+
+    if (!tituloValido || !categoriaValida || !descricaoValida || !tagsValidas || !imagensValidas) {
+      // Se algum campo inválido, não abre o modal
+      return;
+    }
+
+    // Preenche o modal com os dados do form
+    document.getElementById('confirm-title').textContent = inputTitulo.value.trim();
+
+    let categoria = selectCategoria.value.trim();
+    if (categoria === 'outro' && outraCategoriaInput.value.trim() !== '') {
+      categoria = outraCategoriaInput.value.trim();
+    }
+    document.getElementById('confirm-category').textContent = categoria;
+
+    document.getElementById('confirm-description').textContent = inputDescricao.value.trim();
+
+    const tagsArray = tagify.value.map(tag => tag.value);
+    document.getElementById('confirm-tags').textContent = tagsArray.join(', ');
+
+    const confirmImagessection = document.getElementById('confirm-images');
+    confirmImagessection.innerHTML = '';
+    modalImageFiles.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.style.width = '80px';
+        img.style.height = '80px';
+        img.style.objectFit = 'cover';
+        confirmImagessection.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    modalConfirm.style.display = 'block';
+  });
+
+  // Cancelar modal
+  btnCancel.addEventListener('click', () => {
+    modalConfirm.style.display = 'none';
+  });
+
+  btnSend.addEventListener('click', async (event) => {
+  event.preventDefault();
+  console.log("[DEBUG] btnSend clicado");
+
+  // Desabilita o botão para evitar múltiplos cliques
+  btnSend.disabled = true;
+
+  // Muda o texto do botão para indicar que está carregando
+  const originalText = btnSend.textContent;
+  btnSend.textContent = 'Enviando...';
+  console.log("[DEBUG] Botão desabilitado e texto alterado");
+
+  const formData = new FormData();
+  formData.append('titulo', inputTitulo.value.trim());
+
+  let categoria = selectCategoria.value.trim();
+  if (categoria === 'outro' && outraCategoriaInput.value.trim() !== '') {
+    categoria = outraCategoriaInput.value.trim();
+  }
+  formData.append('categoria', categoria);
+  formData.append('descricao', inputDescricao.value.trim());
+
+  const tags = tagify.value.map(tag => tag.value);
+  formData.append('tags', JSON.stringify(tags));
+
+  modalImageFiles.forEach((file) => {
+    formData.append('images', file, file.name);
+  });
+  console.log("[DEBUG] FormData preparado:", formData);
+
+  try {
+    console.log("[DEBUG] Enviando fetch para /enviar-publicacao...");
+    const response = await fetch('/enviar-publicacao', {
+      method: 'POST',
+      body: formData
+    });
+    console.log("[DEBUG] Fetch completado, status:", response.status);
+
+    const data = await response.json(); 
+    if (data.sucesso) {
+      console.log("[DEBUG] Redirecionando para a publicação", data.idPublicacao);
+      window.location.href = `/publicacao/${data.idPublicacao}`;
+    } else {
+      console.error("[DEBUG] Falha ao criar publicação:", data.mensagem);
+     
+
+      
+      modalConfirm.style.display = 'none';
+
+  // Mostra notificação de erro
+  dadosNotificacao = {
+    titulo: "Ocorreu um erro.",
+    mensagem: "Não foi possível salvar sua publicação.",
+    tipo: "error"
+  };
+  
+  // Aqui você chamaria a função de mostrar notificação
+  notify(dadosNotificacao.titulo, dadosNotificacao.mensagem, dadosNotificacao.tipo, "top right", 4000);
+
+  // Reabilita o botão
+  btnSend.disabled = false;
+  btnSend.textContent = originalText;
+
+
+    }
+
+  } catch (erro) {
+    console.error("[DEBUG] Erro ao enviar publicação:", erro);
+   
+
+
+      modalConfirm.style.display = 'none';
+
+  // Mostra notificação de erro
+  dadosNotificacao = {
+    titulo: "Ocorreu um erro.",
+    mensagem: "Não foi possível enviar a publicação. Tente novamente.",
+    tipo: "error"
+  };
+  
+  // Aqui você chamaria a função de mostrar notificação
+  notify(dadosNotificacao.titulo, dadosNotificacao.mensagem, dadosNotificacao.tipo, "top right", 4000);
+
+  // Reabilita o botão
+  btnSend.disabled = false;
+  btnSend.textContent = originalText;
+
+
+  }
+});
+
+
+</script>
+
+
+
+
+   <% if (tipo_usuario === 'profissional') { %>
+
+                 <%- include('../partials/fab-button') %>
+<% }   else if(tipo_usuario === 'comum') {   %>
+        <%- include('../partials/fab-button-comum') %>
+  <% } %>
+  
+
+
+</body>
+</html>

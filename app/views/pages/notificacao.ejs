@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+   <link rel="shortcut icon" href="/imagens/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/css/notificacao.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+   
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+   
+  
+  
+  <title>Notificações</title>
+
+
+  
+</head>
+<body>
+<% if (status_usuario === 'pendente') { %>
+  <%- include('../partials/aviso-pendente') %>
+<% } %>
+
+<% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu', { tipo_usuario }) %>
+<% } %>
+
+<section class="botao-de-voltar">   
+  <button class="btn-voltar" onclick="voltarPagina()"> 
+    <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+  </button>
+  <p class="lado-botao"> Notificações</p>
+</section>
+<section class="container">
+  <!-- Lista lateral de notificações -->
+  <section class="lista-notificacoes">
+    <% if (notificacoes.length === 0) { %>
+      <p class="empty-message">Você não tem notificações no momento.</p>
+      <img src="/imagens/sem-notificacoes.png" alt="Sem notificações" class="empty-img">
+    <% } else { %>
+      <% notificacoes.forEach((n, index) => { %>
+        <section class="notificacao <%= n.STATUS === 'NAO_LIDA' ? 'highlight' : '' %>" onclick="abrirMensagem(<%= index %>)">
+          <h4><%= n.TITULO_NOTIFICACAO %></h4>
+          <small>
+            <%= new Date(n.DATA_CRIACAO_NOTIFICACAO.getTime() - (3 * 60 * 60 * 1000))
+                  .toLocaleString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  }) %>
+          </small>
+        </section>
+      <% }) %>
+    <% } %>
+  </section>
+
+  <!-- Conteúdo da mensagem -->
+  <section class="conteudo-mensagem">
+    <section class="top-bar"></section>
+    <section class="mensagem-box" id="mensagemContent">
+      <!-- Conteúdo será preenchido via JS -->
+    </section>
+  </section>
+</section>
+
+<!-- Passa o array de notificações e o ID selecionado para o front -->
+<script>
+  const mensagens = <%- JSON.stringify(notificacoes) %>;
+  const idSelecionado = "<%= idNotificacao %>";
+</script>
+
+<!-- Script de abrir mensagem -->
+<script>
+  function abrirMensagem(index) {
+    const msg = mensagens[index];
+
+    document.getElementById("mensagemContent").innerHTML = `
+      <h2>${msg.TITULO_NOTIFICACAO}</h2>
+      <small>${
+        new Date(msg.DATA_CRIACAO_NOTIFICACAO).getTime()
+          ? new Date(new Date(msg.DATA_CRIACAO_NOTIFICACAO).getTime() - (3*60*60*1000))
+              .toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+          : ''
+      }</small>
+      <p>${msg.CONTEUDO_NOTIFICACAO}</p>
+    `;
+
+    // Marcar notificação como lida via fetch
+    if (msg.STATUS === 'NAO_LIDA') {
+      fetch('/notificacao/marcar-como-lida/' + msg.ID_NOTIFICACAO, { method: 'PUT' })
+        .then(() => { 
+          msg.STATUS = 'LIDA';
+          const item = document.querySelectorAll('.notificacao')[index];
+          if(item) item.classList.remove('highlight');
+        })
+        .catch(err => console.error(err));
+    }
+  }
+
+  // Ao carregar a página, abre a notificação correta
+  window.addEventListener('DOMContentLoaded', () => {
+    if (mensagens.length === 0) return;
+
+    // Procura a notificação pelo ID recebido
+    const index = mensagens.findIndex(msg => msg.ID_NOTIFICACAO == idSelecionado);
+
+    if (index !== -1) abrirMensagem(index);
+    else abrirMensagem(0); // fallback: abre a primeira
+  });
+</script>
+
+
+
+   <% if (tipo_usuario === 'profissional') { %>
+
+                 <%- include('../partials/fab-button') %>
+<% }   else if(tipo_usuario === 'comum') {   %>
+        <%- include('../partials/fab-button-comum') %>
+  <% } %>
+  
+
+<script src="/js/mobile-navbar.js"></script>
+<script src="/js/voltar.js"></script>
+</body>
+</html>

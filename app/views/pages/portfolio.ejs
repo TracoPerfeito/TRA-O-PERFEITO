@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio af</title>
+
+    <link rel="shortcut icon" href="/imagens/favicon.ico" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js">
+
+    
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="js/simple-notify.js"></script>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/portfolio-pag.css">
+     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+
+    </head>
+    <body>
+
+
+
+       <%  if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "top right");
+                                   
+        </script>
+    <% } %>
+
+    
+<% if (status_usuario === 'pendente') { %>
+    <%- include('../partials/aviso-pendente') %>
+    
+<% } %>
+  
+
+   <% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+
+
+  <%- include('../partials/adicionar-publis-portfolio') %>
+  <%- include('../partials/editar-portfolio') %>
+    
+    <section class="botao-de-voltar">   
+        <button class="btn-voltar" onclick="voltarPagina()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon></button>
+        <p class="lado-botao"> Portfólio de <%= portfolio.NOME_USUARIO %> - <%= portfolio.NOME_PORTFOLIO %></p>
+    </section>
+
+    <section class="nome-desc">
+        
+            <section class="dados-portfolio">
+              <h1><%= portfolio.NOME_PORTFOLIO %></h1>
+              <p><%= portfolio.DESCRICAO_PORTFOLIO %></p>
+              
+                     
+            <%
+  const cores = [
+    '#7490C9', '#969ED0', '#92C4E2', '#B8D9BD',
+    '#9BB7CF', '#C3E3DF', '#C2E5F0', '#ADBCE2'
+  ];
+
+  let tagsArray = [];
+  if (portfolio && portfolio.tagsPortfolio) {
+    tagsArray = portfolio.tagsPortfolio.map(tag => tag.replace(/[\[\]"]+/g,'').trim());
+  }
+%>
+
+              
+              <section class="tags">
+                <% tagsArray.forEach(tag => { 
+                     const cor = cores[Math.floor(Math.random() * cores.length)]; %>
+                  <p class="tag" style="background-color: <%= cor %>">
+                    #<%= tag %>
+                  </p>
+                <% }) %>
+              </section>
+            </section>
+
+            <% if (autenticado && id_usuario === portfolio.ID_USUARIO) { %>
+              <section class="acoes-portfolio">
+
+
+  <section class="botao-e-texto">
+      <button id="btn-abrir-modal-edit-port" class="btn-editar-portfolio acao-btn"
+       data-id="<%= portfolio.ID_PORTFOLIO %>"
+        data-titulo="<%= portfolio.NOME_PORTFOLIO %>"
+        data-descricao="<%= portfolio.DESCRICAO_PORTFOLIO %>"
+        data-tags="<%= tagsArray.join(', ') %>">
+        <i class="fa-solid fa-pen-to-square"></i>
+        
+      </button>
+       <p>Editar Portfólio</p>
+  </section>
+
+  <section class="botao-e-texto">
+    <button id="btn-abrir-modal-add-publis" class="acao-btn" >
+      <i class="fa-solid fa-plus"></i>
+        </button>
+      <p>Adicionar Publicações</p>
+  </section>
+
+
+
+
+
+</section>
+
+<% } %>
+
+          
+</section>
+
+    </section>
+
+  <section class="container-conteudo">
+
+  <% if (!publicacoesPortfolio || publicacoesPortfolio.length === 0) { %>
+    <section class="sem-publicacoes">
+         <img src="/imagens/sem-resultados.png" alt="Sem resultados">
+      <p>Não há publicações neste portfólio.</p>
+    </section>
+  <% } else { %>
+    <% publicacoesPortfolio.forEach(pub => { %>
+      <section class="item-explorar item-1">
+
+        <a href="/publicacao/<%= pub.ID_PUBLICACAO %>">
+      
+<section class="carrossel-imagens-explorar" 
+  onmouseenter="mostrarControles(this)" 
+  onmouseleave="esconderControles(this)">
+  
+  <section class="container-imgs" 
+    ontouchstart="startSwipe(event, this)" 
+    ontouchmove="swipeMove(event)" 
+    ontouchend="endSwipe(event, this)">
+
+    <% if (pub.imagens && pub.imagens.length > 0) { %>
+      <% pub.imagens.forEach((img, idx) => { %>
+        <img 
+          src="data:image/jpeg;base64,<%= img.toString('base64') %>" 
+          class="publicacao-img<%= idx === 0 ? ' ativa' : '' %>" 
+          alt="Imagem da publicação"
+          onerror="this.src='/imagens/fallback.png';"
+        />
+      <% }) %>
+    <% } else { %>
+    
+      <img 
+        src="/imagens/img-quebrada.png" 
+        class="publicacao-img ativa" 
+        alt="Imagem padrão"
+      />
+    <% } %>
+  </section>
+
+  <% if (pub.imagens && pub.imagens.length > 1) { %>
+    <button class="seta-carrossel esquerda" onclick="event.preventDefault();prevImg(this)">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </button>
+    <button class="seta-carrossel direita" onclick="event.preventDefault();nextImg(this)">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </button>
+
+    <section class="indicadores">
+      <% pub.imagens.forEach((_, idx) => { %>
+        <span class="indicador<%= idx === 0 ? ' ativo' : '' %>"></span>
+      <% }) %>
+    </section>
+  <% } %>
+</section>
+
+
+  </a>
+
+
+        <!-- Menu de opções: Editar, Compartilhar, Denunciar -->
+        <section class="menu-opcoes">
+          <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+            <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/>
+          </svg>
+
+          <section class="opcoes-menu">
+            <% if (autenticado && id_usuario === pub.ID_USUARIO) { %>
+              <button 
+                class="btn-editar" 
+                title="Editar publicação" 
+                data-id="<%= pub.ID_PUBLICACAO %>"
+                data-titulo="<%= pub.NOME_PUBLICACAO %>"
+                data-categoria="<%= pub.CATEGORIA %>"
+                data-descricao="<%= pub.DESCRICAO_PUBLICACAO %>"
+                data-tags="<%= pub.TAGS %>"
+                data-imagens='<%- JSON.stringify(pub.imagensUrls || []) %>'>
+                <ion-icon name="create-outline"></ion-icon>
+                Editar
+              </button>
+            <% } %>
+
+            <button class="btn-compartilhar" title="Compartilhar" id="openShareModal" onclick="openModal('<%= pub.ID_PUBLICACAO %>')">
+              <ion-icon name="share-social-outline"></ion-icon>
+              Compartilhar
+            </button>
+            <button class="btn-denunciar" title="Denunciar">
+              <ion-icon name="flag-outline"></ion-icon>
+              Denunciar
+            </button>
+          </section>
+        </section>
+
+        <!-- Foto e botão de like -->
+        <section class="nome-e-btn-like">
+
+            <p class="descricao-item-explorar"><%= pub.DESCRICAO_PUBLICACAO %></p>
+      
+
+        
+
+         <button class="like-button">
+  <a href="/favoritar?id=<%= pub.ID_PUBLICACAO %>&sit=<%= pub.FAVORITO %>&idDono=<%= pub.ID_USUARIO %>&nomePub=<%= encodeURIComponent(pub.NOME_PUBLICACAO) %>"  
+     onclick="localStorage.setItem('scrollPos', window.scrollY)">
+    <i class="<%= pub.FAVORITO === 'favorito' ? 'fas' : 'far' %> fa-heart <%= pub.FAVORITO %>"></i>
+  </a>
+</button>
+        </section>
+
+        <!-- Descrição da publicação -->
+        
+
+        <!-- Modal de denúncia -->
+        <section id="modalDenuncia" class="modal">
+          <section class="modal-content">
+            <h3>Qual o motivo da denúncia?</h3>
+            <form id="formDenuncia">
+              <label><input type="radio" name="motivo" value="Conteúdo ofensivo"> Conteúdo ofensivo</label><br>
+              <label><input type="radio" name="motivo" value="Spam"> Spam</label><br>
+              <label><input type="radio" name="motivo" value="Informação falsa ou enganosa"> Informação falsa ou enganosa</label><br>
+              <label><input type="radio" name="motivo" value="Nudez ou conteúdo sexual"> Nudez ou conteúdo sexual</label><br>
+              <label><input type="radio" name="motivo" value="Plágio ou cópia não autorizada"> Plágio ou cópia não autorizada</label><br>
+              <label><input type="radio" name="motivo" value="Outro"> Outro</label><br><br>
+              <button type="submit">Enviar denúncia</button>
+              <button type="button" id="fecharModal">Cancelar</button>
+            </form>
+          </section>
+        </section>
+
+        <!-- Modal de compartilhamento -->
+        <section id="modal-share">
+          <section class="modal-content-share">
+            <h2>Compartilhar link da publicação</h2>
+            <section class="link-container">
+              <section id="shareLink">
+                tracoperfeito.onrender.com/publicacao/<%= pub.ID_PUBLICACAO %>
+              </section>
+              <button class="copy-button" onclick="copyToClipboard()">
+                <section id="copyIcon">
+                  <svg xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px; margin-right: 4px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2M16 8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8a2 2 0 01-2-2v-2"/>
+                  </svg>
+                </section>
+                <section id="copyText">Copiar link</section>
+                <section id="tooltip">Copiado!</section>
+              </button>
+            </section>
+            <button class="close-modal-btn" onclick="closeModal()">×</button>
+          </section>
+        </section>
+
+      </section>
+    <% }) %>
+  <% } %>
+
+</section>
+
+    </body>
+
+
+
+
+    
+   <% if (tipo_usuario === 'profissional') { %>
+
+                 <%- include('../partials/fab-button') %>
+<% }   else if(tipo_usuario === 'comum') {   %>
+        <%- include('../partials/fab-button-comum') %>
+  <% } %>
+  
+
+    <%- include('../partials/rodape'); %>
+
+
+
+    <script>
+
+  
+
+// autoplay
+document.addEventListener('DOMContentLoaded', () => {
+  const carrosseis = document.querySelectorAll('.carrossel-imagens-explorar');
+
+  carrosseis.forEach(carrossel => {
+    let idx = 0;
+    const total = carrossel.querySelectorAll('.publicacao-img').length;
+
+    if (total > 1 && window.innerWidth > 500) {
+      setInterval(() => {
+        idx = (parseInt(carrossel.dataset.idx || '0') + 1) % total;
+        updateCarrossel(carrossel, idx);
+      }, 10000);
+    }
+
+    updateCarrossel(carrossel, 0);
+  });
+});
+</script>
+
+    
+
+    <!-- <script src="/js/like.js"></script> -->
+    <script src="https://kit.fontawesome.com/2fcd7931ea.js" crossorigin="anonymous"></script>
+    <script src="/js/mobile-navbar.js"></script>
+    <script src="/js/voltar.js"></script>
+    <script src="/js/modal-add-publis.js"></script>
+
+    <script src="/js/abrirmodaleditarport.js"></script>
+
+    <script src="/js/publicacoesindex.js"></script>
+
+    <script src="js/rolagem-atualizar-pag.js"></script>
+
+    <script src="/js/denuncia-compartilhamento.js"></script>
+
+</html>

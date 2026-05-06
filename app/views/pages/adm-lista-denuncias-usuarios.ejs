@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denúncias de Usuários</title>
+    <title>Painel de Denúncias</title>
+    <link rel="stylesheet" href="/css/pag-adm.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Mo… rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swa… rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="/css/adm-lista-denuncias-comentarios.css"> -->
+
+    
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+   <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="/js/simple-notify.js"></script>
+
+    <link rel="stylesheet" href="/css/adm-lista-denuncias-perfis.css">
+    <link rel="stylesheet" href="/css/simple-notify.css">
+
+        <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+
+<body>
+
+
+   <%  if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "top right");
+                                   
+        </script>
+    <% } %>
+
+    <!--INICIO DO MENU TOP ADM -->
+ 
+    <%- include('../partials/menu_top_adm.ejs'); %>
+ 
+    <!--FIM DO MENU TOP ADM  -->
+ 
+ 
+    <!-- MENU LATERAL DO ADM -->
+ 
+    <%- include('../partials/menu_lateral_adm.ejs'); %>
+ 
+    <!-- MENU LATERAL DO ADM -->
+ 
+
+<section class="secao-denuncias">
+    <h1 class="titulo-denuncias">📋 Denúncias de Perfil</h1>
+
+    <% if (denuncias && denuncias.length > 0) { %>
+      <% denuncias.forEach(den => { %>
+        <article class="card-denuncia-perfil">
+          <header class="cabecalho-denuncia-perfil">
+            <h2>#<%= den.ID_DENUNCIA %></h2>
+            <span class="status-denuncia <%= den.STATUS %>"><%= den.STATUS %></span>
+          </header>
+
+          <section class="conteudo-denuncia-perfil">
+            <p><strong>Denunciante:</strong> 
+              <%= den.NOME_DENUNCIANTE %> (ID: <%= den.ID_USUARIO_DENUNCIANTE %>)
+            </p>
+            <p><strong>Denunciado:</strong> 
+              <%= den.NOME_DENUNCIADO %> (ID: <%= den.ID_USUARIO_DENUNCIADO %>)
+            </p>
+            <p><strong>Motivo:</strong> <%= den.MOTIVO %></p>
+            <p><strong>Data:</strong> 
+              <%= new Date(den.DATA_DENUNCIA).toLocaleString('pt-BR') %>
+            </p>
+          </section>
+
+          <footer class="rodape-denuncia-perfil">
+            <button class="btn-detalhes-denuncia" class="btn-detalhes-denuncia" 
+    onclick="window.location.href='/perfil/<%= den.ID_USUARIO_DENUNCIADO %>'"
+  >Ir para o perfil</button>
+            <button 
+              class="btn-alterar-status" 
+              data-denuncia-id="<%= den.ID_DENUNCIA %>" 
+              data-usuario-id="<%= den.ID_USUARIO_DENUNCIADO %>"
+            >
+              Alterar Status
+            </button>
+          </footer>
+        </article>
+      <% }) %>
+    <% } else { %>
+      <p class="msg-sem-denuncia"> Nenhuma denúncia encontrada</p>
+    <% } %>
+  </section>
+
+
+<section id="modalStatusPerfil" class="modal-perfil">
+  <section class="modal-conteudo-perfil">
+    <h2>Alterar Status da Denúncia</h2>
+
+    <form id="formStatusPerfil" method="POST">
+      <input type="hidden" name="idDenuncia" id="idDenunciaInput">
+      <input type="hidden" name="idUsuarioDenunciado" id="idUsuarioInput">
+      <input type="hidden" name="_method" id="methodInput" value="POST">
+
+      <label for="acaoPerfil">Ação:</label>
+      <select id="acaoPerfil" name="acao">
+        <option value="">Selecione...</option>
+        <option value="suspender">Suspender Usuário</option>
+        <option value="descartar">Descartar Denúncia</option>
+      </select>
+
+      <section class="botoes-modal-perfil">
+        <button type="submit" class="btn-confirmar">Confirmar</button>
+        <button type="button" onclick="fecharModal()" class="btn-cancelar">Cancelar</button>
+      </section>
+    </form>
+  </section>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("modalStatusPerfil");
+  const selectAcao = document.getElementById("acaoPerfil");
+  const form = document.getElementById("formStatusPerfil");
+  const methodInput = document.getElementById("methodInput");
+
+  let idDenuncia = null;
+  let idUsuarioDenunciado = null;
+
+  // 🔹 Abrir modal e preencher IDs
+  document.querySelectorAll(".btn-alterar-status").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      idDenuncia = btn.getAttribute("data-denuncia-id");
+      idUsuarioDenunciado = btn.getAttribute("data-usuario-id");
+
+      document.getElementById("idDenunciaInput").value = idDenuncia;
+      document.getElementById("idUsuarioInput").value = idUsuarioDenunciado;
+
+      modal.style.display = "flex";
+    });
+  });
+
+  // 🔹 Fechar modal clicando fora
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) fecharModal();
+  });
+
+  // 🔹 Mudar o destino do form conforme ação
+  form.addEventListener("submit", (e) => {
+    const acao = selectAcao.value;
+
+    if (!acao) {
+      e.preventDefault();
+      alert("Selecione uma ação antes de confirmar.");
+      return;
+    }
+
+    if (acao === "suspender") {
+      form.action = `/adm/desativar-usuario/${idUsuarioDenunciado}`;
+      methodInput.value = "PUT"; // necessário para o método override
+    } else if (acao === "descartar") {
+      form.action = "/adm/excluir-denuncia-usuario";
+      methodInput.value = "POST";
+    }
+  });
+
+  // 🔹 Função pra fechar modal
+  window.fecharModal = function fecharModal() {
+    modal.style.display = "none";
+    selectAcao.value = "";
+  };
+});
+
+</script>
+
+
+
+    <script src="/js/adm-lista-denuncias-perfis.js"></script>
+
+        <!-- LINK DO MENU LATERAL -->
+      <script src="/js/menu-lateral-adm.js"></script>
+
+    <!-- LINK DAS NOTIFICAÇÕES -->
+      <script src="js/simple-notify.js"></script>
+
+
+
+
+</body>
+</html>

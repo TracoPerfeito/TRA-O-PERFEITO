@@ -1,0 +1,89 @@
+<section class="filtro-ordenacao">
+  <button id="btnOrdenar" class="btn-ordenar">
+   <ion-icon name="filter-outline"></ion-icon>
+    <span id="textoOrdenar">Mais Recentes</span>
+    <span id="iconeSeta"><ion-icon name="chevron-up"></ion-icon></span>
+  </button>
+  <section id="opcoesOrdenacao" class="opcoes-ordenacao oculto">
+    <section data-ordem="recomendado">Recomendado <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="mais-curtidos">Mais Curtidos <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="mais-vistos">Mais Vistos <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="mais-comentados">Mais Comentados <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="mais-recentes" class="selecionada">Mais Recentes <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="mais-antigos">Mais Antigos <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+  </section>
+</section>
+
+
+
+
+<script>
+
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const btnOrdenar = document.getElementById("btnOrdenar");
+  const textoOrdenar = document.getElementById("textoOrdenar");
+  const iconeSeta = document.getElementById("iconeSeta");
+  const opcoesOrdenacao = document.getElementById("opcoesOrdenacao");
+  const opcoes = opcoesOrdenacao.querySelectorAll("section");
+
+  // Atualiza seleção
+  const atualizarSelecao = (selecionada) => {
+    opcoes.forEach(o => o.classList.remove("selecionada"));
+    selecionada.classList.add("selecionada");
+    textoOrdenar.textContent = selecionada.textContent.replace("✔", "").trim();
+  };
+
+  // Toggle dropdown
+  btnOrdenar.addEventListener("click", () => {
+    const aberto = !opcoesOrdenacao.classList.toggle("oculto");
+    iconeSeta.style.transform = aberto ? "rotate(180deg)" : "rotate(0deg)";
+  });
+
+  // Clique nas opções
+  opcoes.forEach(opcao => {
+    opcao.addEventListener("click", () => {
+      atualizarSelecao(opcao);
+      ordenarPublicacoes(opcao.dataset.ordem);
+      opcoesOrdenacao.classList.add("oculto");
+      iconeSeta.style.transform = "rotate(0deg)";
+    });
+  });
+
+  // Inicializa texto do botão com a opção selecionada
+  const inicial = opcoesOrdenacao.querySelector(".selecionada");
+  if (inicial) {
+    textoOrdenar.textContent = inicial.textContent.replace("✔", "").trim();
+  }
+
+  // Função de ordenação (igual antes)
+  const ordenarPublicacoes = (tipo) => {
+    const container = document.querySelector(".container-pag-explorar");
+    if (!container) return;
+
+    const publicacoes = Array.from(container.querySelectorAll(".item-explorar"));
+    publicacoes.sort((a, b) => {
+      switch(tipo) {
+        case "mais-curtidos":
+          return parseInt(b.dataset.curtida) - parseInt(a.dataset.curtida);
+        case "mais-vistos":
+          return parseInt(b.dataset.visualizacoes) - parseInt(a.dataset.visualizacoes);
+        case "mais-comentados":
+          return parseInt(b.dataset.comentarios) - parseInt(a.dataset.comentarios);
+        case "mais-recentes":
+          return new Date(b.dataset.data_publicacao) - new Date(a.dataset.data_publicacao);
+        case "mais-antigos":
+          return new Date(a.dataset.data_publicacao) - new Date(b.dataset.data_publicacao);
+        case "recomendado":
+          return (parseInt(b.dataset.curtida)+parseInt(b.dataset.visualizacoes))-
+                 (parseInt(a.dataset.curtida)+parseInt(a.dataset.visualizacoes));
+        default:
+          return 0;
+      }
+    });
+    publicacoes.forEach(pub => container.appendChild(pub));
+  };
+});
+
+</script>

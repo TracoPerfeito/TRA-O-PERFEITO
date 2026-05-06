@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+  <link rel="stylesheet" href="/css/oportunidades.css">
+ <link rel="stylesheet" href="/css/barrapesquisa.css">
+
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="/js/simple-notify.js"></script>
+
+
+ 
+    <title>Oportunidades </title>
+</head>
+<body>
+
+
+ 
+ 
+ <%  if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "top right");
+                                   
+        </script>
+    <% } %>
+
+    
+<% if (status_usuario === 'pendente') { %>
+    <%- include('../partials/aviso-pendente') %>
+    
+<% } %>
+  
+
+
+    <%- include('../partials/menu-logado'); %>
+
+   
+
+
+    <main>
+
+            <h1 id="nome-pag-oportunidades"> Oportunidades</h1> <br>
+            <p class="msg-oportunidades"> Confira as oportunidades recentes que podem te interessar!</p>
+
+
+
+
+
+            
+    <section class="pesquisas">
+  <section class="barra-filtro-centralizada">
+
+     <button id="botao-filtro">
+     <ion-icon name="funnel"></ion-icon>
+    </button>
+      <form action="/pesquisar-propostas" id="form-pesquisa" method="get">
+                         <section class="search">
+                             <section class="icon" id="btn-pesquisa">
+                             <button type="submit"><ion-icon name="search-outline"></ion-icon></button>
+                             </section>
+                             <input 
+                             name="q"
+                               class="search-input" 
+                               type="search"  
+                               id="input-pesquisa"
+                               placeholder="Qual seu próximo projeto?"
+                               value="<%= termoPesquisa %>"
+                             >
+
+
+                           </section>
+
+                    
+
+                       </form>
+
+                              
+                        <%- include('../partials/ordenar-propostas') %>
+
+   
+  </section>
+</section>
+
+
+
+
+
+
+
+
+        
+  
+<section class="resultado-pesquisa">
+  <% if (termoPesquisa) { %>
+    <% if (propostas.length > 0) { %>
+      <h1 class="titulo-termo"><%= termoPesquisa %></h1>
+      <p class="descricao-termo">
+        <% if (propostas.length > 5) { %>
+          Confira várias oportunidades de "<%= termoPesquisa %>" disponíveis no Traço Perfeito.
+        <% } else { %>
+          Encontramos algumas propostas relacionadas a "<%= termoPesquisa %>".
+        <% } %>
+      </p>
+    <% } else { %>
+      <h1 class="titulo-termo">Nenhum resultado encontrado</h1>
+        <img src="/imagens/sem-resultados.png" alt="Sem resultados" style="opacity:0.5; margin: 15px auto; width: 200px;">
+                            <p class="descricao-termo" style="padding: 5px;">
+        Não encontramos propostas relacionadas a "<%= termoPesquisa %>". 
+        Tente outro termo ou verifique a ortografia.
+      </p>
+    <% } %>
+  <% } %>
+</section>
+
+
+
+    <% if (propostas.length > 0) { %>
+      <section class="grid">
+  <% propostas.forEach(proposta => { 
+       const hoje = new Date();
+
+       // Badge de status
+       let badgeStatus = 'Aberta';
+       let badgeClass = 'open';
+       if (proposta.PRAZO_ENTREGA) {
+         const prazo = new Date(proposta.PRAZO_ENTREGA);
+         if (prazo < hoje) {
+           badgeStatus = 'Expirada';
+           badgeClass = 'expired';
+         }
+       } else if (proposta.STATUS_PROPOSTA === 'fechada') {
+         badgeStatus = 'Fechada';
+         badgeClass = 'closed';
+       }
+
+       // Prazo de entrega e contagem de dias
+       let prazoTexto = 'Prazo não definido';
+       let prazoClasse = 'ok';
+       if (proposta.PRAZO_ENTREGA) {
+         const prazo = new Date(proposta.PRAZO_ENTREGA);
+         const diffDays = Math.ceil((prazo - hoje) / (1000 * 60 * 60 * 24));
+         prazoTexto = `${prazo.toLocaleDateString()} — ${diffDays < 0 ? 'Vencido' : diffDays + ' dias restantes'}`;
+         prazoClasse = diffDays < 0 ? 'expired' : (diffDays <= 2 ? 'urgent' : (diffDays <= 5 ? 'soon' : 'ok'));
+       }
+  %>
+
+    <section class="card" 
+      data-dataproposta="<%= proposta.DATA_PROPOSTA %>"
+      data-prazoentrega="<%= proposta.PRAZO_ENTREGA %>"
+      data-orcamento="<%= proposta.ORCAMENTO %>"
+      data-titulo="<%= proposta.TITULO_PROPOSTA %>"
+    data-categoria="<%= proposta.CATEGORIA_PROPOSTA %>"  
+    data-status="<%= (proposta.STATUS_PROPOSTA || 'aberta').toLowerCase() %>" >
+
+      <!-- Badges: status e categoria -->
+      <section class="info-top">
+        <section class="badges" data-categoria="<%= proposta.CATEGORIA_PROPOSTA %>">
+          <span class="badge <%= badgeClass %>"><%= badgeStatus %></span>
+          <span class="badge categoria"></span>
+        </section>
+
+        <script>
+        document.querySelectorAll('.badges').forEach(badgeContainer => {
+          const cat = badgeContainer.dataset.categoria;
+          const slug = cat.normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+                        .toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9\-]/g,'');
+          const badge = badgeContainer.querySelector('.badge.categoria');
+          badge.classList.add('categoria-' + slug);
+          badge.textContent = cat;
+        });
+        </script>
+
+        <!-- Menu de opções estilo três pontinhos -->
+        <section class="menu-opcoes">
+          <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000">
+            <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/>
+          </svg>
+          <section class="opcoes-menu">
+            <% if (autenticado && id_usuario === proposta.ID_USUARIO) { %>
+              <button 
+                class="btn-editar" 
+                title="Editar Proposta" 
+                data-id="<%= proposta.ID_PROPOSTA %>"
+                data-titulo="<%= proposta.TITULO_PROPOSTA %>"
+                data-categoria="<%= proposta.CATEGORIA_PROPOSTA %>"
+                data-descricao="<%- proposta.DESCRICAO_PROPOSTA %>"
+                data-prazoentrega="<%= proposta.PRAZO_ENTREGA ? (proposta.PRAZO_ENTREGA.toISOString ? proposta.PRAZO_ENTREGA.toISOString().slice(0,10) : (proposta.PRAZO_ENTREGA + '').slice(0,10)) : '' %>"
+                data-orcamento="<%= proposta.ORCAMENTO %>"
+                data-dataproposta="<%= proposta.DATA_PROPOSTA %>">
+                <ion-icon name="create-outline"></ion-icon>
+                Editar
+              </button>
+
+              <button type="button" class="btn-excluir-proposta" data-id="<%= proposta.ID_PROPOSTA %>" title="Excluir proposta">
+                <ion-icon name="trash-outline"></ion-icon>
+                Excluir
+              </button>
+            <% } %>
+
+            <% if (tipo_usuario && id_usuario !== proposta.ID_USUARIO) { %>
+              <button class="btn-denunciar btn-denunciar-proposta" data-id="<%= proposta.ID_PROPOSTA %>">
+                <ion-icon name="flag-outline"></ion-icon> Denunciar
+              </button>
+            <% } %>
+          </section>
+        </section>
+      </section>
+
+      <!-- Nome da proposta -->
+      <h3><%= proposta.TITULO_PROPOSTA %></h3>
+
+      <!-- Descrição -->
+      <section class="desc"><p><%- proposta.DESCRICAO_PROPOSTA %></p></section>
+
+      <!-- Orçamento -->
+      <section class="budget-prof">
+        <span class="budget">
+          <%= proposta.ORCAMENTO ? `R$ ${Number(proposta.ORCAMENTO).toFixed(2)}` : 'Não definido' %>
+        </span>
+      </section>
+
+      <!-- Prazo de entrega -->
+      <section class="deadline">
+        <span class="<%= prazoClasse %> prazo-entrega">
+          <ion-icon name="time-outline"></ion-icon> <%= prazoTexto %>
+        </span>
+      </section>
+
+      <!-- Ações -->
+      <section class="actions">
+        <% if (id_usuario !== proposta.ID_USUARIO) { %>
+          
+         <button 
+    id="irparachat" 
+    class="btn primary" style="display: flex; align-items: center; justify-content: center; gap: 3px;" 
+    onclick="location.href='/chat?destinatarioId=<%= proposta.ID_USUARIO %>&nome=<%= encodeURIComponent(proposta.NOME_USUARIO) %>&username=<%= encodeURIComponent(proposta.USER_USUARIO) %>&tipo=<%= encodeURIComponent(proposta.TIPO_USUARIO) %>'">
+    
+    <ion-icon name="chatbubbles-outline" style="font-size:15px; width:15px; height:15px;"></ion-icon>
+    Conversar
+  </button>
+        <% } %>
+        <button class="btn outline" onclick="event.stopPropagation(); window.location.href='/propostadeprojeto/<%= proposta.ID_PROPOSTA %>'">
+          Ver Detalhes
+        </button>
+
+
+      </section>
+
+
+
+    </section>
+    <% }) %>
+     </section>
+  <% } else if( propostas.length === 0 && !termoPesquisa) { %>
+     <section class="sem-propostas" style="opacity: 0.6; display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 10px;">
+      <img src="/imagens/sem-resultados.png" alt="Sem profissionais" style="margin: 20px auto; width: 200px;">
+      <p style="font-family: 'Montserrat'; font-size: 1.5rem; text-align: center; color: var(--text-color); margin-bottom: 20px;">
+        Não há propostas no momento.
+      </p>
+    </section>
+   
+  <% } %>
+</section>
+
+
+<section class="filtro-lateral" id="filtroLateral">
+  <section class="filtro-conteudo">
+    <h2 class="h2-filtro">Filtros</h2>
+<section class="filtro-secao">
+  <section class="filtro-header">Categoria <ion-icon name="chevron-forward-outline"></ion-icon></section>
+  <section class="filtro-opcoes">
+    <label><input type="checkbox" data-valor="Design Gráfico"> Design Gráfico</label>
+    <label><input type="checkbox" data-valor="Ilustração"> Ilustração</label>
+    <!-- demais categorias -->
+  </section>
+</section>
+
+<section class="filtro-secao">
+  <section class="filtro-header">
+    Faixa de preço
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </section>
+
+  <section class="filtro-opcoes filtro-slider">
+    <div class="slider-container">
+      <input type="range" id="precoMin" min="0" max="5000" step="100" value="0">
+      <input type="range" id="precoMax" min="0" max="5000" step="100" value="5000">
+      <div class="slider-track"></div>
+    </div>
+    <div class="slider-labels">
+      <span>0</span>
+      <span>1k</span>
+      <span>2k</span>
+      <span>3k</span>
+      <span>4k</span>
+      <span>5k+</span>
+    </div>
+    <p>De <span id="precoMinLabel">R$ 0</span> a <span id="precoMaxLabel">Acima de R$ 5.000</span></p>
+  </section>
+</section>
+
+
+<section class="filtro-secao">
+  <section class="filtro-header">Status <ion-icon name="chevron-forward-outline"></ion-icon></section>
+  <section class="filtro-opcoes">
+    <label><input type="checkbox" data-valor="aberta"> Aberta</label>
+    <label><input type="checkbox" data-valor="fechada"> Fechada</label>
+  </section>
+</section>
+
+<section class="filtro-secao">
+  <section class="filtro-header">Data de entrega <ion-icon name="chevron-forward-outline"></ion-icon></section>
+  <section class="filtro-opcoes">
+    <input type="date" id="dataEntregaMin">
+    <input type="date" id="dataEntregaMax">
+  </section>
+</section>
+
+<section class="filtro-secao">
+  <section class="filtro-header">Data de publicação <ion-icon name="chevron-forward-outline"></ion-icon></section>
+  <section class="filtro-opcoes">
+    <input type="date" id="dataPublicacaoMin">
+    <input type="date" id="dataPublicacaoMax">
+  </section>
+</section>
+
+
+
+   <button id="aplicar-filtro">Aplicar filtros</button>
+</section>
+
+</section>
+
+
+<script>
+  // ----------------- ABRIR FECHAR FILTRO -----------------
+  const botaoFiltro = document.getElementById("botao-filtro");
+  const filtroLateral = document.getElementById("filtroLateral");
+  const headersFiltro = document.querySelectorAll(".filtro-header");
+
+  botaoFiltro.addEventListener("click", () => {
+    filtroLateral.classList.toggle("aberto");
+  });
+
+  headersFiltro.forEach(header => {
+    header.addEventListener("click", () => {
+      const ativo = header.classList.contains("ativo");
+      document.querySelectorAll(".filtro-header").forEach(h => h.classList.remove("ativo"));
+      document.querySelectorAll(".filtro-opcoes").forEach(o => o.classList.remove("ativo"));
+      if (!ativo) {
+        header.classList.add("ativo");
+        header.nextElementSibling.classList.add("ativo");
+      }
+    });
+  });
+
+  // ----------------- FILTRO FIXO NA ROLAGEM -----------------
+  const footer = document.querySelector("footer");
+  window.addEventListener("scroll", () => {
+    const rect = footer?.getBoundingClientRect();
+    if (!rect) return;
+    if (rect.top < window.innerHeight - 50) {
+      filtroLateral.style.position = "absolute";
+      filtroLateral.style.top = `${window.scrollY + rect.top - filtroLateral.offsetHeight - 50}px`;
+    } else {
+      filtroLateral.style.position = "fixed";
+      filtroLateral.style.top = "90px";
+    }
+  });
+
+  // ----------------- SLIDER AVALIAÇÃO -----------------
+  const minRange = document.getElementById("avaliacaoMin");
+  const maxRange = document.getElementById("avaliacaoMax");
+  const valMin = document.getElementById("valorMin");
+  const valMax = document.getElementById("valorMax");
+
+  function updateRanges() {
+    let minVal = parseFloat(minRange.value);
+    let maxVal = parseFloat(maxRange.value);
+
+    if (minVal > maxVal - 0.1) minVal = maxVal - 0.1;
+    if (maxVal < minVal + 0.1) maxVal = minVal + 0.1;
+
+    minRange.value = minVal.toFixed(1);
+    maxRange.value = maxVal.toFixed(1);
+
+    valMin.textContent = minVal.toFixed(1);
+    valMax.textContent = maxVal.toFixed(1);
+
+    const track = minRange.parentNode.querySelector(".slider-track");
+    const percent1 = (minVal / 5) * 100;
+    const percent2 = (maxVal / 5) * 100;
+    track.style.background = `linear-gradient(to right, #ddd ${percent1}%, var(--cor-btn-azul) ${percent1}%, var(--cor-btn-azul) ${percent2}%, #ddd ${percent2}%)`;
+  }
+
+  [minRange, maxRange].forEach(el => el.addEventListener("input", updateRanges));
+  updateRanges();
+
+  // ----------------- SLIDER PREÇO -----------------
+  const precoMin = document.getElementById('precoMin');
+  const precoMax = document.getElementById('precoMax');
+  const precoMinLabel = document.getElementById('precoMinLabel');
+  const precoMaxLabel = document.getElementById('precoMaxLabel');
+  const limiteMax = 5000;
+
+  function atualizarPreco() {
+    let min = parseInt(precoMin.value);
+    let max = parseInt(precoMax.value);
+
+    // impedir cruzamento
+    if (min > max - 100) min = max - 100;
+    if (max < min + 100) max = min + 100;
+
+    precoMin.value = min;
+    precoMax.value = max;
+
+    precoMinLabel.textContent = min > 0 ? `R$ ${min}` : 'R$ 0';
+    precoMaxLabel.textContent = max >= limiteMax ? `Acima de R$ ${limiteMax.toLocaleString()}` : `R$ ${max}`;
+
+    // atualizar barra do slider
+    const track = precoMin.parentNode.querySelector('.slider-track');
+    const percent1 = (min / limiteMax) * 100;
+    const percent2 = (max / limiteMax) * 100;
+    track.style.background = `linear-gradient(to right, #ddd ${percent1}%, var(--cor-btn-azul) ${percent1}%, var(--cor-btn-azul) ${percent2}%, #ddd ${percent2}%)`;
+  }
+
+  [precoMin, precoMax].forEach(slider => slider.addEventListener('input', atualizarPreco));
+  atualizarPreco();
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ Script de filtro de propostas carregado.");
+
+  const botaoAplicar = document.getElementById("aplicar-filtro");
+  const cards = Array.from(document.querySelectorAll(".grid .card"));
+
+  const todasPropostas = cards.map(card => ({
+    el: card,
+    categoria: card.dataset.categoria?.trim().toLowerCase() || "",
+    status: card.dataset.status?.trim().toLowerCase() || "aberta",
+    orcamento: parseFloat(card.dataset.orcamento || 0),
+    prazoEntrega: card.dataset.prazoentrega ? new Date(card.dataset.prazoentrega) : null,
+    dataPublicacao: card.dataset.dataproposta ? new Date(card.dataset.dataproposta) : null
+  }));
+
+  console.log("Todas as propostas encontradas: ", todasPropostas);
+
+  let ultimoFiltro = null;
+//valores padrao
+  const padrao = {
+    categorias: [],
+    status: [],
+    precoMin: parseFloat(document.getElementById("precoMin").defaultValue),
+    precoMax: parseFloat(document.getElementById("precoMax").defaultValue),
+    dataEntregaMin: "",
+    dataEntregaMax: "",
+    dataPublicacaoMin: "",
+    dataPublicacaoMax: ""
+  };
+
+  console.log("🔧 Valores padrão dos filtros:", padrao);
+
+  botaoAplicar.addEventListener("click", () => {
+    console.clear();
+    console.log("🎯 Clique em 'Aplicar filtros' detectado!");
+
+    // Captura estado atual
+  const categoriasSelecionadas = Array.from(
+  document.querySelectorAll('.filtro-secao .filtro-opcoes input[type="checkbox"][data-valor]:checked')
+).map(cb => cb.dataset.valor.trim().toLowerCase());
+
+    console.log("Categorias selecionadas: ", categoriasSelecionadas);
+
+    const statusSelecionados = Array.from(
+      document.querySelectorAll('.filtro-secao:nth-child(3) input[type="checkbox"]:checked')
+    ).map(cb => cb.dataset.valor.trim().toLowerCase());
+
+     console.log("Status selecionados: ", statusSelecionados);
+
+    const precoMin = parseFloat(document.getElementById("precoMin").value);
+    const precoMax = parseFloat(document.getElementById("precoMax").value);
+
+     console.log("Preço min: ", precoMin);
+      console.log("Preço max: ", precoMax);
+
+    const dataEntregaMin = document.getElementById("dataEntregaMin").value;
+    const dataEntregaMax = document.getElementById("dataEntregaMax").value;
+
+
+
+    
+    const dataPublicacaoMin = document.getElementById("dataPublicacaoMin").value;
+    const dataPublicacaoMax = document.getElementById("dataPublicacaoMax").value;
+
+    console.log("📊 Estado atual dos filtros:");
+    console.log("→ Categorias:", categoriasSelecionadas);
+    console.log("→ Status:", statusSelecionados);
+    console.log("→ Preço:", precoMin, "-", precoMax);
+    console.log("→ Data de entrega:", dataEntregaMin, "-", dataEntregaMax);
+    console.log("→ Data de publicação:", dataPublicacaoMin, "-", dataPublicacaoMax);
+
+    const filtroAtual = {
+      categorias: categoriasSelecionadas,
+      status: statusSelecionados,
+      precoMin,
+      precoMax,
+      dataEntregaMin,
+      dataEntregaMax,
+      dataPublicacaoMin,
+      dataPublicacaoMax
+    };
+
+    // Evita reaplicar se nada mudou
+    if (JSON.stringify(filtroAtual) === JSON.stringify(ultimoFiltro)) {
+      console.log("🟡 Nenhuma mudança desde o último filtro. Ignorando.");
+      return;
+    }
+    ultimoFiltro = filtroAtual;
+
+    const filtrosAtivos = {
+      categorias: categoriasSelecionadas.length > 0,
+      status: statusSelecionados.length > 0,
+      preco: precoMin !== padrao.precoMin || precoMax !== padrao.precoMax,
+      dataEntrega: dataEntregaMin !== padrao.dataEntregaMin || dataEntregaMax !== padrao.dataEntregaMax,
+      dataPublicacao: dataPublicacaoMin !== padrao.dataPublicacaoMin || dataPublicacaoMax !== padrao.dataPublicacaoMax
+    };
+
+    const algumFiltroAtivo = Object.values(filtrosAtivos).some(Boolean);
+    if (!algumFiltroAtivo) {
+      console.log("🔵 Nenhum filtro alterado. Exibindo todas as propostas.");
+      todasPropostas.forEach(p => p.el.style.display = "");
+      return;
+    }
+
+    console.log("✅ Filtros ativos:", filtrosAtivos);
+
+    let visiveis = 0;
+
+    todasPropostas.forEach((p, i) => {
+      let visivel = true;
+      console.groupCollapsed(`📄 Analisando proposta #${i + 1}`);
+      console.log("→ Categoria:", p.categoria);
+      console.log("→ Status:", p.status);
+      console.log("→ Orçamento:", p.orcamento);
+      console.log("→ Prazo de entrega:", p.prazoEntrega);
+      console.log("→ Data de publicação:", p.dataPublicacao);
+
+      // Categoria
+      if (filtrosAtivos.categorias && !categoriasSelecionadas.includes(p.categoria)) {
+        visivel = false;
+        console.warn("🚫 Excluída por categoria");
+      }
+
+      // Status
+      if (visivel && filtrosAtivos.status && !statusSelecionados.includes(p.status)) {
+        visivel = false;
+        console.warn("🚫 Excluída por status");
+      }
+
+      // Preço
+      if (visivel && filtrosAtivos.preco) {
+        if (precoMax >= 5000) {
+          if (p.orcamento < precoMin) visivel = false;
+        } else if (p.orcamento < precoMin || p.orcamento > precoMax) {
+          visivel = false;
+        }
+        if (!visivel) console.warn("🚫 Excluída por preço");
+      }
+
+      // Data de entrega
+      if (visivel && filtrosAtivos.dataEntrega) {
+        const min = dataEntregaMin ? new Date(dataEntregaMin) : null;
+        const max = dataEntregaMax ? new Date(dataEntregaMax) : null;
+        if ((min && (!p.prazoEntrega || p.prazoEntrega < min)) ||
+            (max && (!p.prazoEntrega || p.prazoEntrega > max))) {
+          visivel = false;
+          console.warn("🚫 Excluída por data de entrega");
+        }
+      }
+
+      // Data de publicação
+      if (visivel && filtrosAtivos.dataPublicacao) {
+        const min = dataPublicacaoMin ? new Date(dataPublicacaoMin) : null;
+        const max = dataPublicacaoMax ? new Date(dataPublicacaoMax) : null;
+        if ((min && (!p.dataPublicacao || p.dataPublicacao < min)) ||
+            (max && (!p.dataPublicacao || p.dataPublicacao > max))) {
+          visivel = false;
+          console.warn("🚫 Excluída por data de publicação");
+        }
+      }
+
+      p.el.style.display = visivel ? "" : "none";
+      if (visivel) visiveis++;
+      console.log("📌 Resultado:", visivel ? "✅ Mantida" : "❌ Ocultada");
+      console.groupEnd();
+    });
+
+    console.log(`🎯 Filtro finalizado. Propostas visíveis: ${visiveis}/${todasPropostas.length}`);
+  });
+});
+</script>
+
+     
+    </main>
+
+
+    <section class="modal modal-denuncia">
+  <section class="modal-content">
+    <h3>Qual o motivo da denúncia?</h3>
+    <form class="form-denuncia" action="/denunciar-proposta" method="post">
+      <input type="hidden" id="id-proposta-denuncia" name="idProposta" value="">
+      <label><input type="radio" name="motivo" value="Conteúdo ofensivo" required> Conteúdo ofensivo</label><br>
+      <label><input type="radio" name="motivo" value="Spam"> Spam</label><br>
+      <label><input type="radio" name="motivo" value="Informação falsa ou enganosa"> Informação falsa ou enganosa</label><br>
+      <label><input type="radio" name="motivo" value="Nudez ou conteúdo sexual"> Nudez ou conteúdo sexual</label><br>
+      <label><input type="radio" name="motivo" value="Plágio ou cópia não autorizada"> Plágio ou cópia não autorizada</label><br>
+      <label><input type="radio" name="motivo" value="Outro"> Outro</label><br><br>
+      <section class="btns-enviar-denuncia">
+        <button type="button" id="fechar-modal-denuncia">Cancelar</button>
+        <button type="submit">Enviar denúncia</button>
+      </section>
+    </form>
+  </section>
+</section>
+
+
+
+<!-- Modal de confirmação de exclusão -->
+<section id="modal-excluir-proposta" class="modal">
+  <section class="modal-content">
+    <h3>Tem certeza que deseja excluir esta proposta?</h3>
+    <form id="formExcluirProposta" action="/excluir-proposta" method="POST">
+      <input type="hidden" name="idProposta" id="id-proposta-excluir" value="">
+      <section class="btns-enviar-denuncia">
+        <button type="button" id="fechar-modal-excluir">Cancelar</button>
+        <button type="submit" id="excluir">Excluir</button>
+      </section>
+    </form>
+  </section>
+</section>
+
+
+
+
+
+    <!-- Modal de edição de proposta -->
+    <%- include('../partials/editar-proposta'); %>
+    
+   <% if (tipo_usuario === 'profissional') { %>
+
+                 <%- include('../partials/fab-button') %>
+<% }   else if(tipo_usuario === 'comum') {   %>
+        <%- include('../partials/fab-button-comum') %>
+  <% } %>
+  
+
+    <%- include('../partials/rodape'); %>
+
+    <script src="js/filtro.js"></script>
+    <script src="js/oportunidades-menu.js"></script>
+
+     <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modalDenuncia = document.querySelector(".modal-denuncia");
+  const fecharModalBtn = document.getElementById("fechar-modal-denuncia");
+  const inputIdProposta = document.getElementById("id-proposta-denuncia");
+
+  document.querySelectorAll(".btn-denunciar-proposta").forEach(btn => {
+    btn.addEventListener("click", () => {
+      console.log("Clicou no denunciar");
+      if (inputIdProposta) inputIdProposta.value = btn.dataset.id;
+      if (modalDenuncia) {
+        modalDenuncia.style.display = "block";
+        document.body.style.overflow = "hidden";
+        console.log("Modal aberto");
+      }
+    });
+  });
+
+  if (fecharModalBtn) {
+    fecharModalBtn.addEventListener("click", () => {
+      modalDenuncia.style.display = "none";
+      document.body.style.overflow = "auto";
+      console.log("Modal fechado pelo botão");
+    });
+  }
+
+  window.addEventListener("click", (event) => {
+    if (event.target === modalDenuncia) {
+      modalDenuncia.style.display = "none";
+      document.body.style.overflow = "auto";
+      console.log("Modal fechado clicando fora");
+    }
+  });
+});
+
+
+    </script>
+
+
+<script>
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const modalExcluir = document.getElementById("modal-excluir-proposta");
+  const inputExcluir = document.getElementById("id-proposta-excluir");
+  const btnFecharExcluir = document.getElementById("fechar-modal-excluir");
+  const formExcluir = document.getElementById("formExcluirProposta");
+
+  // Botões de excluir em cada card
+  document.querySelectorAll(".btn-excluir-proposta").forEach(btn => {
+    btn.addEventListener("click", () => {
+      inputExcluir.value = btn.dataset.id; // seta o ID da proposta no form do modal
+      modalExcluir.style.display = "block";
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  // Fechar modal
+  btnFecharExcluir.addEventListener("click", () => {
+    modalExcluir.style.display = "none";
+    document.body.style.overflow = "auto";
+  });
+
+  // Fechar clicando fora
+  modalExcluir.addEventListener("click", (e) => {
+    if (e.target === modalExcluir) {
+      modalExcluir.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  });
+});
+
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,134 @@
+<section class="filtro-ordenacao">
+  <button id="btnOrdenar" class="btn-ordenar">
+     <ion-icon name="filter-outline"></ion-icon>
+    <span id="textoOrdenar">Mais Recentes</span>
+    <span id="iconeSeta"><ion-icon name="chevron-up"></ion-icon></span>
+  </button>
+  <section id="opcoesOrdenacao" class="opcoes-ordenacao oculto">
+    <section data-ordem="mais-recentes">Mais Recentes <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="mais-antigos">Mais Antigos <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="prazo-curto">Prazo mais curto <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="prazo-longo">Prazo mais longo <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="orcamento-maior">Orçamento maior <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="orcamento-menor">Orçamento menor <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="titulo-az">Título A-Z <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="titulo-za">Título Z-A <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+  </section>
+</section>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btnOrdenar = document.getElementById("btnOrdenar");
+  const textoOrdenar = document.getElementById("textoOrdenar");
+  const iconeSeta = document.getElementById("iconeSeta");
+  const opcoesOrdenacao = document.getElementById("opcoesOrdenacao");
+  const opcoes = opcoesOrdenacao.querySelectorAll("section");
+
+  console.log("🎯 DOM carregado - iniciando script de ordenação");
+
+  // Função para atualizar seleção visual
+  const atualizarSelecao = (selecionada) => {
+    console.log("✅ Atualizando seleção para:", selecionada.dataset.ordem);
+    opcoes.forEach(o => o.classList.remove("selecionada"));
+    selecionada.classList.add("selecionada");
+    textoOrdenar.textContent = selecionada.textContent.replace("✔", "").trim();
+    console.log("📌 Texto do botão agora é:", textoOrdenar.textContent);
+  };
+
+  // Toggle dropdown
+  btnOrdenar.addEventListener("click", () => {
+    const aberto = !opcoesOrdenacao.classList.toggle("oculto");
+    iconeSeta.style.transform = aberto ? "rotate(180deg)" : "rotate(0deg)";
+    console.log("📂 Dropdown aberto?", aberto);
+  });
+
+  // Clique nas opções
+  opcoes.forEach(opcao => {
+    opcao.addEventListener("click", () => {
+      console.log("🎯 Opção clicada:", opcao.dataset.ordem);
+      atualizarSelecao(opcao);
+      ordenarPropostas(opcao.dataset.ordem);
+      opcoesOrdenacao.classList.add("oculto");
+      iconeSeta.style.transform = "rotate(0deg)";
+    });
+  });
+
+  // Inicializa a opção selecionada (mais recentes por padrão)
+  let inicial = opcoesOrdenacao.querySelector(".selecionada");
+  if (!inicial) {
+    inicial = Array.from(opcoes).find(o => o.dataset.ordem === "mais-recentes");
+    if (inicial) {
+      console.log("🎯 Seleção inicial: mais recentes");
+      atualizarSelecao(inicial);
+    }
+  } else {
+    textoOrdenar.textContent = inicial.textContent.replace("✔", "").trim();
+  }
+
+  // Função para pegar data segura (trata vazio)
+  const getData = (el, campo) => {
+    const val = el.dataset[campo];
+    return val ? new Date(val) : Infinity; // Infinity para colocar no final se vazio
+  };
+
+  // Função para pegar número seguro (trata vazio)
+  const getNumero = (el, campo) => parseFloat(el.dataset[campo]) || 0;
+
+  // Função de ordenação das propostas
+  const ordenarPropostas = (tipo) => {
+    console.log("📊 Ordenando propostas por:", tipo);
+    const container = document.querySelector(".grid");
+    if (!container) {
+      console.warn("⚠️ Container de propostas não encontrado");
+      return;
+    }
+
+    const propostas = Array.from(container.querySelectorAll(".card"));
+    console.log("📌 Propostas encontradas:", propostas.length);
+    propostas.forEach((p, i) => {
+      console.log(`📝 #${i+1}: ${p.dataset.titulo || p.dataset.dataproposta} | Preço: ${p.dataset.orcamento || '0'} | Prazo: ${p.dataset.prazoentrega || 'N/A'}`);
+    });
+
+    propostas.sort((a, b) => {
+      switch(tipo) {
+        case "mais-recentes":
+          return getData(b, "dataproposta") - getData(a, "dataproposta");
+        case "mais-antigos":
+          return getData(a, "dataproposta") - getData(b, "dataproposta");
+        case "prazo-curto":
+          return getData(a, "prazoentrega") - getData(b, "prazoentrega"); // menor prazo primeiro
+        case "prazo-longo":
+          return getData(b, "prazoentrega") - getData(a, "prazoentrega"); // maior prazo primeiro
+        case "orcamento-maior":
+          return getNumero(b, "orcamento") - getNumero(a, "orcamento");
+        case "orcamento-menor":
+          return getNumero(a, "orcamento") - getNumero(b, "orcamento");
+       case "titulo-az":
+          const tituloA = (a.dataset.titulo || "").replace(/^[^a-zA-Z0-9]+/, "");
+          const tituloB = (b.dataset.titulo || "").replace(/^[^a-zA-Z0-9]+/, "");
+          return tituloA.localeCompare(tituloB);
+        case "titulo-za":
+          const tituloA2 = (a.dataset.titulo || "").replace(/^[^a-zA-Z0-9]+/, "");
+          const tituloB2 = (b.dataset.titulo || "").replace(/^[^a-zA-Z0-9]+/, "");
+          return tituloB2.localeCompare(tituloA2);
+
+           default:
+          return 0;
+      }
+    });
+
+    propostas.forEach(p => container.appendChild(p));
+    console.log("✅ Ordenação aplicada!");
+  };
+
+  // Aplica ordenação inicial
+  const inicialOrdem = opcoesOrdenacao.querySelector(".selecionada");
+  if (inicialOrdem) {
+    console.log("🎯 Aplicando ordenação inicial:", inicialOrdem.dataset.ordem);
+    ordenarPropostas(inicialOrdem.dataset.ordem);
+  }
+});
+</script>

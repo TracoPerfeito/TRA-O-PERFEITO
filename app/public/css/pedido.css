@@ -1,0 +1,48 @@
+
+*{
+    
+    margin: 0;
+    padding: 0;
+}
+
+.botao {
+    padding: 10px 20px 10px 20px;
+    margin: 0px;
+    display: flex;
+    background-color: rgba(224, 236, 240, 0.801);
+    border-bottom: #01c38d solid 1px;
+    
+    }
+    
+    .lado-botao{
+    padding: 5px;
+    margin: 10px 0px 5px 10px;
+    font-family: "Josefin Sans";
+    
+    }
+    
+    
+    .btn-voltar{
+        grid-area: botao;
+        background-color: #acdabf7a;
+        padding: 10px;
+        border-radius: 50%;
+        border: none;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        
+        
+        }
+    
+    #seta {
+    color:#165040;
+    font-size: 20px;
+    }
+
+
+    article {
+        margin: auto;
+        width: 700px;
+    }
+    

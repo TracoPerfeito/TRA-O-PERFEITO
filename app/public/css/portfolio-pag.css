@@ -1,0 +1,519 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url(cores.css);
+@import url(share-button.css);
+
+
+.botao-de-voltar{
+  width: 100%;
+  background-color: var(--cor-btn-voltar-section);
+  
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  
+}
+
+.btn-voltar{
+  border-radius: 50%;
+  border: 1px solid var(--cor-btn-voltar-borda);
+  width: 30px;
+  height: 30px;
+  aspect-ratio: 1/1 !important;
+  background-color: var(--cor-btn-voltar);
+  color: var(--cor-btn-voltar-seta);
+  margin: 0px 0px 0px 60px;
+  font-size: 17px;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-voltar:hover {
+  background-color: var(--cor-btn-voltar-hover);
+  cursor: pointer;
+  
+}
+
+.lado-botao {
+  margin: 0px 10px;
+  font-family: "Josefin Sans";
+  font-weight: 400;
+  font-size: 15px;
+  color: var( --cor-btn-voltar-texto);
+   text-overflow: ellipsis;
+      overflow-wrap: break-word; 
+  word-wrap: break-word; 
+  word-break: break-word;   
+  white-space: normal; 
+}
+
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+ 
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+
+.nome-desc {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 30px 40px;
+  color: var(--text-color);
+}
+h1 {
+     text-overflow: ellipsis;
+      overflow-wrap: break-word; 
+  word-wrap: break-word; 
+  word-break: break-word;   
+  white-space: normal; 
+}
+
+p {
+     text-overflow: ellipsis;
+      overflow-wrap: break-word; 
+  word-wrap: break-word; 
+  word-break: break-word;   
+  white-space: normal; 
+}
+
+
+
+
+.container-conteudo {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 50px;
+    margin: 30px 40px;
+    color: var(--text-color);
+
+}
+
+
+  .foto-perfil-explorar {
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+   
+}
+
+    
+.item-explorar{
+    height: auto;
+    /* min-width: 270px; */
+    border-radius: 7px;
+} 
+
+.publicacao-img{
+ 
+     width: 100%;
+    border-radius: 7px;
+    object-fit: cover;
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18) !important;
+    aspect-ratio: 4/3 !important;
+    min-height: 160px;
+    flex-shrink: 0;
+    display: block;
+   
+}
+
+.publicacao-img:hover {
+    filter: brightness(50%);
+    transition: all 0.2s;
+}
+
+.nome-e-btn-like{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0px;
+}
+
+.foto-nome-dono-publi{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nome-dono-post-ex a{
+    font-family: "Josefin Sans";
+    color: var(--text-color);
+    margin-left: 10px;
+}
+
+.descricao-item-explorar {
+    font-family: "Josefin Sans";
+    font-size: 12px;
+
+}
+
+
+.like-button{
+    background-color: transparent;
+    border: 0px;
+    font-size: 110%;
+    transition: all 0.2s;
+    color: var(--text-color);
+}
+
+.like-button:hover{
+    font-size: 115%;
+    transform: translateY(-3px) ;
+   
+
+   
+}
+
+
+
+
+  .item-explorar .favorito{
+    color: #508BBF;
+    fill: #508BBF;
+  }
+  .item-explorar .favoritar{
+    color: rgb(211, 205, 205);
+  }
+
+/* .like-button.liked{
+    color: red;
+}
+  */
+
+/* 
+responsividade */
+
+
+
+
+@media (max-width:1000px){
+
+    .container-conteudo {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 20px;
+        row-gap: 50px;
+        margin: 30px 25px;
+
+    }
+
+    .nome-desc {
+  
+  margin: 30px 25px;
+  
+}
+}
+
+
+  
+  @media (max-width: 670px) {
+
+    .container-conteudo {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 20px;
+        row-gap: 50px;
+        margin: 30px 25px;
+
+    }
+
+    .item-explorar{
+        min-width: none;
+      
+    } 
+
+  }
+
+
+  @media (max-width:500px) {
+
+    .btn-voltar{
+
+        margin: 0px 0px 0px 25px;
+       
+      }
+
+    .nome-desc{
+        margin: 30px 25px;
+        color: var(--text-color);
+     
+    }
+
+
+
+    .container-conteudo {
+
+        display: block;
+        margin: 30px 25px;
+
+    }
+
+    .foto-perfil-explorar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+
+        
+    .item-explorar{
+        margin-bottom: 50px;
+        height: auto;
+        min-width: 300px;
+        border-radius: 7px;
+    } 
+
+    .publicacao-img{
+        width: 100%;
+        height: 250px;
+        border-radius: 7px;
+        object-fit: cover;
+        box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .nome-e-btn-like{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 10px 0px;
+    }
+
+    .foto-nome-dono-publi{
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .nome-dono-post-ex a{
+        font-family: "Josefin Sans";
+        color: var(--text-color);
+        margin-left: 10px;
+    }
+
+    .descricao-item-explorar {
+        font-family: "Josefin Sans";
+
+    }
+
+    .like-button{
+
+        font-size: 130%;
+    }
+
+
+
+  }
+  
+
+
+ 
+.carrossel-imagens-explorar {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18) !important;
+}
+
+.container-imgs {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.container-imgs img{
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18) !important;
+}
+
+
+.seta-carrossel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 24px;
+  border-radius: 50%;
+ display: none ; /* por padrão, escondidas */
+}
+
+.seta-carrossel.inativa {
+  visibility: hidden; /* ainda ocupa espaço pra não quebrar layout */
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.seta-carrossel.esquerda { left: 10px; }
+.seta-carrossel.direita { right: 10px; }
+
+.carrossel-imagens-explorar:hover .seta-carrossel {
+  display: block;
+}
+
+.indicadores {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+  display: none;
+}
+
+.indicador {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+}
+
+.indicador.ativo {
+  background: white;
+}
+
+.carrossel-imagens-explorar:hover .indicadores {
+  display: flex;
+}
+
+@media (max-width: 500px) {
+  .seta-carrossel {
+    display: none !important;
+  }
+
+  .indicadores {
+    display: flex !important;
+  }
+}
+
+
+@media (max-width:1000px){
+
+    .container-pag-explorar {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 20px;
+        row-gap: 50px;
+        margin: 30px 25px;
+
+    }
+
+}
+
+
+
+
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  margin: 10px auto;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: 8px;
+  color: rgb(63, 63, 63);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+
+
+
+.acoes-portfolio {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start; /* alinha à esquerda */
+  margin: 1rem 0px 1rem 30px;
+}
+
+.acao-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #eaeae5; /* parecido com o fundo do print */
+  border: none;
+  border-radius: 16px;
+  padding: 1rem;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.acao-btn i {
+  font-size: 1.5rem;
+
+ 
+}
+
+.acao-btn span {
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.acao-btn:hover {
+  background-color: #d6d6cf;
+}
+
+.botao-e-texto{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.7rem;
+   font-weight: bold;
+  text-align: center;
+}
+
+
+
+
+
+
+.dados-portfolio {
+  flex: 1; /* ocupa o espaço restante */
+  max-width: 70%; /* limita largura no desktop */
+}
+
+.acoes-portfolio {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin: 1rem 0;
+}
+
+
+/* --- Responsivo --- */
+@media (max-width: 900px) {
+  .nome-desc {
+    flex-direction: column; 
+  }
+
+  .dados-portfolio {
+    max-width: 100%;
+  }
+
+  .acoes-portfolio {
+    justify-content: flex-start; 
+    margin: 1rem 0 0 0;
+  }
+}

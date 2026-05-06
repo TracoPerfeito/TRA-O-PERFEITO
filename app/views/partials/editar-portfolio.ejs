@@ -1,0 +1,457 @@
+<style>
+@import url(cores.css);
+
+/* ===== Overlay do Modal ===== */
+.modal-edit-port {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+  animation: fadeIn 0.25s ease;
+}
+
+/* ===== Conteúdo ===== */
+.modal-content-edit-port {
+  background: var(--cor-fundo);
+  color: var(--text-color);
+  width: 70%;
+  max-width: 900px;
+  min-height: 70vh;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation: slideUp 0.3s ease;
+  overflow-y: auto;
+}
+
+/* ===== Botão Fechar ===== */
+.fechar-edit-port {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.fechar-edit-port:hover {
+  
+  transform: scale(1.1);
+}
+
+/* ===== Título ===== */
+.titulo-modal-edit-port {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+/* ===== Abas ===== */
+.abas-modal {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  
+}
+
+.aba-btn {
+  flex: 1;
+  padding: 10px 15px;
+  cursor: pointer;
+  border: 1px solid var(--text-color);
+  font-weight: 500;
+  border-radius: 8px;
+  background: var(--cor-fundo);
+  color: var(--text-color);
+  font-family: "Josefin Sans";
+  transition: background 0.25s, transform 0.2s;
+}
+
+.aba-btn:hover {
+  background: var(--cor-botao-hover, #bbb);
+}
+
+.aba-btn.ativa {
+  background: var(--cor-btn-azul);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.conteudo-aba {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.conteudo-aba.ativa {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+    height: 100%;
+    position: relative; 
+}
+
+
+
+/* ===== Inputs & Textarea ===== */
+form label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+form input[type="text"],
+form textarea {
+  width: 95%;
+padding: 10px;
+background-color: var(--cor-fundo);
+   
+  margin-top: 6px;
+  border: 1px solid var(--cor-borda, #ccc);
+  border-radius: 8px;
+  
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+
+form textarea{
+  resize: none;
+}
+
+form input:focus,
+form textarea:focus {
+  border: 1px solid var(--cor-av-borda-n-pub);
+  box-shadow: 0 0 5px var(--cor-botao);
+  outline: none;
+}
+
+/* ===== Botões de ação ===== */
+form button {
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--cor-btn-azul);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Montserrat";
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+
+form button:hover {
+
+  transform: translateY(-2px);
+}
+
+/* ===== Lista de Publicações ===== */
+.listagem-publi {
+  display: grid;
+  gap: 16px; 
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+ 
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.item-publi,
+.item-deletar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f2f2f2;
+  transition: transform 0.2s, border 0.2s;
+  aspect-ratio: 1;
+    max-width: 150px;
+  
+}
+
+.item-publi:hover,
+.item-deletar:hover {
+  transform: scale(1.02);
+}
+
+.item-publi.selecionado,
+.item-deletar.selecionado-remover {
+  transform: scale(0.95);
+  border: 4px solid #93C4E3; 
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.img-publi-modal {
+  aspect-ratio: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  object-fit: cover; 
+}
+
+.tags-section-modal{
+  margin: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background-color: var(--cor-fundo);
+   
+}
+
+.tags-section-modal label {
+  display: block;
+}
+
+/* Estilo da caixinha geral do Tagify */
+.tags-section-modal .tagify {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--cor-borda, #ccc);
+background-color: var(--cor-fundo);
+   
+  font-size: 1rem;
+  color: var(--text-color);
+  transition: border 0.2s, box-shadow 0.2s;
+  transform: translate(-5px, -20px);
+}
+
+/* Quando está focado */
+.tags-section-modal .tagify--focus {
+  border-color: var(--cor-principal);
+  box-shadow: 0 0 3px rgba(0,123,255,0.3);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end; /* joga para a direita */
+  gap: 10px; /* espaço entre os botões */
+  margin-top: auto;
+   padding-top: 10px;
+     position: absolute;
+     bottom: 20px; 
+       right: 20px;
+       
+}
+
+.form-actions button {
+  margin-top: 0; /* tira o margin-top padrão */
+}
+
+
+/* ===== Responsivo ===== */
+@media (max-width: 700px){
+
+
+  
+.form-actions {
+ 
+       left: 20px;
+       right: auto; 
+}
+
+  .modal-content-edit-port {
+    width: 95%;
+    height: 90vh;
+    min-height: unset;
+    border-radius: 10px;
+    padding: 15px;
+  }
+
+  .abas-modal {
+    flex-direction: column;
+  }
+}
+
+/* ===== Animações ===== */
+@keyframes fadeIn {
+  from { opacity: 0; } 
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; } 
+  to { transform: translateY(0); opacity: 1; }
+}
+
+</style>
+
+<section id="modal-editar-portfolio" class="modal-edit-port">
+  <section class="modal-content-edit-port">
+    <span class="fechar-edit-port" id="fechar-modal-editar-portfolio">&times;</span>
+
+    <h2 class="titulo-modal-edit-port">Editar Portfólio</h2>
+
+    <!-- Abas -->
+   <section class="abas-modal">
+  <button type="button" class="aba-btn ativa" data-aba="editar-info">Editar Informações</button>
+  <button type="button" class="aba-btn" data-aba="remover-pubs">Remover Publicações</button>
+  <button type="button" class="aba-btn" data-aba="excluir-port">Excluir Portfólio</button>
+</section>
+
+    <!-- Conteúdo das abas -->
+    <section class="conteudo-aba ativa" id="editar-info">
+      <form action="/editar-portfolio" method="post">
+        <input type="hidden" name="id_portfolio" id="id-editar-portfolio" value="">
+
+        <label for="titulo-editar-portfolio">Título:</label>
+        <input type="text" id="titulo-editar-portfolio" name="titulo" value="" required>
+
+        <label for="descricao-editar-portfolio">Descrição:</label>
+        <textarea id="descricao-editar-portfolio" name="descricao" required></textarea>
+
+        <section class="tags-section-modal">
+          <label for="tags-editar-portfolio">Tags:</label> <br>
+        <input type="hidden" name="tags" id="tags-hidden">
+              <input id="tags-editar-portfolio" name="input-custom-dropdown" class="tags-look tagify--custom-dropdown" placeholder="Adicione tags..." value="">
+      
+        </section>
+
+        <section class="form-actions"><button type="submit">Salvar Alterações</button></section>
+      </form>
+    </section>
+
+    <section class="conteudo-aba" id="remover-pubs">
+      <p>Selecione as publicações que deseja remover:</p>
+     <form action="/remover-publis-portfolio" method="post">
+       <section class="listagem-publi" id="listagemDeletar">
+       
+         <% if (!publicacoesPortfolio || publicacoesPortfolio.length === 0) { %>
+           <section class="sem-publicacoes">
+        <p>Não há publicações neste portfólio.</p>
+           </section>
+         <% } else { %>
+           <% publicacoesPortfolio.forEach(function(pub) { %>
+        <section class="item-deletar" data-id="<%= pub.ID_PUBLICACAO %>">
+          <section class="carrossel-imagens-explorar" onmouseenter="mostrarControles(this)" onmouseleave="esconderControles(this)">
+            <section class="container-imgs" ontouchstart="startSwipe(event, this)" ontouchmove="swipeMove(event)" ontouchend="endSwipe(event, this)">
+              <% pub.imagens.forEach(function(img, idx) { %>
+                <img
+                  src="data:image/jpeg;base64,<%= img.toString('base64') %>"
+                  class="publicacao-img<%= idx === 0 ? ' ativa' : '' %>"
+                  alt="Imagem da publicação"/>
+              <% }); %>
+            </section>
+          
+          </section>
+        </section>
+           <% }); %>
+         <% } %>
+       
+       </section>
+
+        <input type="hidden" name="id_portfolio" id="id-portfolio-remocao" value="">
+
+        <input type="hidden" id="publisParaRemocao" name="publisParaRemocao" value="">
+
+        <section class="form-actions"><button id="btn-remover-publicacoes" type="submit">Remover Selecionadas</button></section>
+     </form>
+    </section>
+
+
+
+    <section class="conteudo-aba" id="excluir-port">
+  <h3>Atenção!</h3>
+  <p>Esta ação é <strong>irreversível</strong>. Se você excluir o portfólio, todos os dados relacionados serão perdidos.</p>
+
+
+  <form action="/excluir-portfolio" method="post">
+    <input type="hidden" name="idPortfolio" id="id-portfolio-excluir" value="">
+
+
+
+    <label for="confirmar-exclusao">
+      Digite <strong>QueroExcluirEstePortfolio</strong> para confirmar:
+    </label>
+    <input 
+      type="text" 
+      id="confirmar-exclusao" 
+      name="confirmacao" 
+      placeholder="Digite exatamente aqui..."
+      required
+    >
+
+    <section class="form-actions"><button id="btn-excluir-portfolio" type="submit" disabled>Excluir Portfólio</button></section>
+  </form>
+</section>
+
+  </section>
+</section>
+
+
+<script>
+// Troca de abas
+const abasBtns = document.querySelectorAll(".aba-btn");
+const conteudosAbas = document.querySelectorAll(".conteudo-aba");
+
+abasBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const alvo = btn.dataset.aba;
+
+    // Alterna classes
+    abasBtns.forEach(b => b.classList.remove("ativa"));
+    btn.classList.add("ativa");
+
+    conteudosAbas.forEach(c => c.classList.remove("ativa"));
+    document.getElementById(alvo).classList.add("ativa");
+  });
+});
+
+
+ const itensDeletar = document.querySelectorAll('.item-deletar');
+  const inputRemover = document.getElementById('publisParaRemocao');
+
+  let publicacoesParaRemover = new Set();
+
+  function toggleSelecaoRemover(item, pubId) {
+    if (publicacoesParaRemover.has(pubId)) {
+      publicacoesParaRemover.delete(pubId);
+      item.classList.remove('selecionado-remover');
+    } else {
+      publicacoesParaRemover.add(pubId);
+      item.classList.add('selecionado-remover');
+    }
+    inputRemover.value = Array.from(publicacoesParaRemover).join(',');
+  }
+
+  itensDeletar.forEach(item => {
+    const pubId = item.dataset.id;
+    item.addEventListener('click', () => toggleSelecaoRemover(item, pubId));
+  });
+
+
+
+
+
+
+
+
+  const inputConfirmacao = document.getElementById("confirmar-exclusao");
+const btnExcluir = document.getElementById("btn-excluir-portfolio");
+
+if (inputConfirmacao) {
+  inputConfirmacao.addEventListener("input", () => {
+    if (inputConfirmacao.value === "QueroExcluirEstePortfolio") {
+      btnExcluir.disabled = false;
+    } else {
+      btnExcluir.disabled = true;
+    }
+  });
+}
+</script>
+

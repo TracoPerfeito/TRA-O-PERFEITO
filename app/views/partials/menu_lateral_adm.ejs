@@ -1,0 +1,125 @@
+   
+    <!--Inicio Sidebar-->
+    <section class="sidebar close">
+      
+      <section class="logo-details"> 
+        <i class="bx bx-menu"></i>
+        <span class="logo_name">Menu</span>
+      </section>
+            
+        <ul class="nav-links">
+          <li>  
+            <a href="/adm/adm-home">
+              <i class='bx bx-grid-alt' ></i>
+              <span class="link_name">Dashboard</span>
+            </a>
+              
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="/adm/adm-home">Home</a></li>
+            </ul>
+                
+          </li>
+              
+              <li>
+                
+                <section class="iocn-link">
+                  
+                  <a href="/adm/adm-lista-usuarios">
+                    <i class='bx bx-collection' ></i>
+                    <span class="link_name">Usuários</span>
+                  </a>
+                  
+                  <i class='bx bxs-chevron-down arrow' ></i>
+                
+                </section>
+                
+                <ul class="sub-menu">
+                  
+                  <li><a href="/adm/adm-lista-usuarios">Usuários</a></li>
+                  <li><a href="/adm/adm-listagem-comum">Comum</a></li>
+                  <li><a href="/adm/adm-listagem-profissional">Profissional</a></li>
+                </ul>
+                
+              </li>
+              
+              <li>
+                
+                <section class="iocn-link">
+                  
+                  <a href="#">
+                    <i class='bx bx-book-alt' ></i>
+                    <span class="link_name">Profissionais</span>
+                  </a>
+                  
+                  <i class='bx bxs-chevron-down arrow' ></i>
+                
+                </section>
+                
+                <ul class="sub-menu">
+                
+                  <li><a href="/adm/assinantes">Assinantes</a></li>
+                 
+                 
+                </ul>
+      
+              </li>
+      
+              <li>
+                
+
+                <section class="iocn-link">
+
+                <a href="#">
+                  <i class='bx bx-pie-chart-alt-2' ></i>
+                  <span class="link_name">Denúncias</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+
+                </section>
+
+                <ul class="sub-menu">
+                  
+                    <li><a class="" href="/adm/adm-lista-denuncias-usuarios">Denúncias</a></li>
+                    <li><a href="/adm/adm-lista-denuncias-usuarios">Usuário</a></li>
+                    <li><a href="/adm/adm-lista-denuncias-comentarios">Comentário</a></li>
+                    <li><a href="/adm/adm-lista-denuncias-proposta">Proposta de Projeto</a></li>
+                    <li><a href="/adm/adm-lista-denuncias-publicacoes">Publicação</a></li>                  
+                  </ul>
+      
+              </li>
+                    
+                                
+              
+                <section class="profile-details">
+                  
+                
+                  <section class="name-job">
+                    
+                    <section class="profile_name" ><%= nome_usuario %></section>
+                    <section class="job">Administrador</section>
+                  
+                  </section>
+                  
+                  <i class="bx bx-log-out"  id="openLogoutModal" style="fill: #fff !important; color: #fff !important; padding: 0 10px;"></i>
+                
+                </section>
+              
+              </li>
+      
+            </ul><!--Fecha ul-->
+      
+          </section>
+          <!--Fecha Sidebar-->
+
+
+          
+  <%- include('../partials/modal-logout'); %>
+
+
+     <link rel="stylesheet" href="/css/pag-adm.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Mo… rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swa… rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="/css/adm-lista-denuncias-comentarios.css"> -->
+
+    <link rel="stylesheet" href="/css/adm-lista-denuncias-perfis.css">

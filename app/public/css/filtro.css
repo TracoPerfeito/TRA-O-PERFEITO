@@ -1,0 +1,169 @@
+
+.filtragem{
+    margin-left: 67%;
+    top: 49%;
+    background-color:#acdabf7a;
+    padding: 7px;
+    border: none;
+    position: absolute;
+}
+
+
+
+.filtragem:hover{
+    cursor: pointer;
+}
+
+.filtro{
+    display: block;
+    background-color: #132d46;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: none;
+}
+
+.filtro:hover{
+    background-color: #2a5680;  
+}
+
+.filtragem:hover .filtro{
+    display: block;
+}
+
+ul{
+    list-style: none;
+    margin-top: 2%;
+    /* padding: 15px; */
+    display: none;
+}
+
+li a{
+    text-decoration: none;
+    color: white;
+    background-color: #132d46;
+}
+
+li a:hover{
+    background-color: #2a5680; 
+}
+
+
+
+#botao-filtro {
+    background-color: #acdabf7a;
+    color:  #165040;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    font-family: "Montserrat";
+    display: flex;
+    align-items: center;
+    margin: 15px 0px;
+
+}
+
+#icon-filtro {
+    margin-left: 10px;
+}
+
+
+
+
+
+.secao-filtro {
+    position: fixed;
+    right: -300px;
+    top: 70px;
+    width: 300px;
+    /* height: calc(100% - 100px);   */
+    height: fit-content; 
+    background-color: #ffffff;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    transition: right 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    font-family: "Josefin Sans";
+    z-index: 2;
+  }
+  
+  .secao-filtro h2 {
+    font-family: "Montserrat";
+
+  }
+  .secao-filtro.open {
+    right: 0; 
+    opacity: 1;
+  }
+  
+  .secao-filtro #fechar-aba {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+  }
+/* 
+  #fechar-aba {
+    color: #132d46;
+    border: 1px solid #132d46;
+  } */
+
+  #aplicar-filtros{
+        background-color:  #132d46;
+        color: #FFF;
+        font-family: "Josefin Sans";
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        margin-top: 20px;
+  }
+  
+/* 
+  Configurações expansão filtro */
+
+
+  .linha {
+     color:#132d462c;
+  }
+
+  .categoria-filtro {
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    margin: 5px 0;
+    
+}
+
+.caret {
+    margin-right: 10px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.caret.open {
+    transform: rotate(90deg); 
+}
+
+.opcoes-categoria {
+    display: none;
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.opcoes-categoria input {
+    margin-right: 10px;
+}
+
+.filtro-p{
+    padding: 10px 0px;
+}
+
+
+

@@ -1,0 +1,690 @@
+#form-pesquisa {
+  display: flex;
+  flex: 1;
+}
+
+.search {
+ 
+    --padding: 7px;
+ 
+    width:max-content;
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+    border-radius: 10px;
+    background: var(--verdinho-transparente-barra);
+    
+    border: 2px solid var(--borda-barra-pesquisa);
+   
+      flex: 1 1 0;     
+
+}
+
+.search1 {
+ 
+    --padding: 7px;
+ 
+    width:max-content;
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+    border-radius: 10px;
+    background: var(--verdinho-transparente-barra);
+  
+    margin: auto;
+    margin-top: 20px;
+    border: 2px solid var(--borda-barra-pesquisa);
+
+    flex: 1; 
+
+}
+
+
+
+.search:hover{
+    border: 2px solid var(--texto-barra-pesquisa);
+}
+
+
+
+
+.search1:hover{
+    border: 2px solid var(--texto-barra-pesquisa);
+}
+ 
+.search-input{
+    font-size: 16px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--text-color);
+    padding: var(--padding);
+    outline: none;
+    border: none;
+    background: transparent;
+    width: 100%;
+    flex: 1.
+ 
+}
+ 
+.search-input::placeholder, #botao-filtro, .search-icon {
+    color: var(--texto-barra-pesquisa);
+ 
+ 
+}
+
+.search-input::placeholder {
+    opacity: 60%;
+}
+ 
+.search  .icon{
+    margin-top: 4px;
+    margin-left: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--texto-barra-pesquisa);
+  }
+
+  .icon {
+    color: var(--texto-barra-pesquisa);
+  }
+
+  .pesquisas {
+    margin-top: 10px;
+    position: sticky; /* Daqui até o transition estão as configurações para manter a barra de pesquisas sempre visivel conforme rola a página.*/
+    top: 58px;
+    z-index: 3;
+    background-color: var(--cor-fundo);
+    padding: 10px 0;
+   transition: box-shadow 0.3s ease, border-bottom 0.3s ease;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   
+}
+
+.pesquisas.sombra {
+
+  border-bottom: 1px solid var(--linha-pesquisa);
+}
+
+
+#botao-filtro {
+    background-color: var(--verdinho-transparente-barra);
+    border-radius: 10px;
+    border: 2px solid var(--borda-barra-pesquisa);
+    padding: 7px;
+    margin-left: 10px;
+    width: 50px;
+   
+   
+}
+
+
+#botao-filtro:hover{
+    border: 2px solid  var(--texto-barra-pesquisa);
+    cursor: pointer;
+
+
+}
+
+#icon-filtro {
+    font-size: 25px;
+ }
+
+.pesquisas {
+    display: flex;
+    justify-content: center;
+    font-size: "Josefin Sans";
+}
+
+
+.barra-filtro-centralizada {
+  display: flex;
+  align-items: stretch;        /* faz os filhos terem mesma altura */
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 900px;            /* mantém a largura máxima desejada (ajusta se quiser 600px) */
+  margin: 0 auto;
+  box-sizing: border-box;
+  flex-wrap: nowrap;           /* evita quebra; o input vai encolher */
+        /* evita rolagem horizontal */
+  padding: 0 10px;             /* evita que encoste nas laterais em telas pequenas */
+}
+
+@media (max-width: 640px) {
+  .barra-filtro-centralizada {
+    width: 95% !important;
+  }
+}
+
+
+
+  
+@media (max-width:800px) {
+
+    .search, .search1 {
+
+        
+       
+    
+    }
+
+}
+
+     
+@media (max-width:640px) {
+
+    .search, .search1 {
+
+       
+    
+    }
+
+}
+
+ 
+
+#btn-pesquisa button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--texto-barra-pesquisa);
+    font-size: large;
+}
+
+
+.resultado-pesquisa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.titulo-termo {
+    font-family: "Montserrat", sans-serif;
+    font-size: 40px;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    text-align: center;
+      text-transform: capitalize;
+}
+
+.descricao-termo {
+text-align: center;
+    font-family: "Josefin Sans" , sans-serif;
+    font-size: 20px;
+    color: var(--text-color-mais-claro);
+}
+
+
+
+.barra-ordenar, .barra-filtro-centralizada {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+  width: 80%;
+ 
+  margin: 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap; /* impede estouro em telas pequenas */
+  box-sizing: border-box;
+}
+/* Garante que o botão ocupe toda a altura da barra */
+.barra-ordenar .btn-ordenar {
+  height: 100%;
+  box-sizing: border-box; /* mantém o tamanho certo mesmo com bordas */
+}
+
+
+/* ===== ORDENAR ===== */
+
+.filtro-ordenacao {
+  flex-shrink: 0;
+  position: relative; /* essencial para o dropdown ficar alinhado ao botão */
+}
+
+/* Botão */
+.btn-ordenar {
+      white-space: nowrap; 
+  font-size: 16px;
+  color: var(--text-color);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  font-family: 'Josefin Sans', sans-serif;
+  background: var(--verdinho-transparente-barra);
+  border: 2px solid var(--borda-barra-pesquisa);
+  transition: all 0.2s ease;
+}
+
+.btn-ordenar:hover {
+  border-color: var(--texto-barra-pesquisa);
+}
+
+#iconeSeta {
+  transition: transform 0.3s ease;
+}
+
+/* Dropdown */
+.opcoes-ordenacao {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  background-color: var(--cor-fundo);
+  color: var(--text-color);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  min-width: 100%;
+  width: max-content;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 10;
+  overflow: hidden;
+ font-family: 'Josefin Sans', sans-serif;
+}
+
+.opcoes-ordenacao section {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.2s;
+}
+
+.opcoes-ordenacao section:hover {
+   background-color: var(--selecionado);
+}
+
+.opcoes-ordenacao .selecionada {
+  font-weight: bold;
+  background-color: var(--selecionado);
+}
+
+.opcoes-ordenacao .check {
+  display: none;
+  color: green;
+}
+
+.opcoes-ordenacao section.selecionada .check {
+  display: inline;
+}
+
+/* Oculto */
+.oculto {
+  display: none;
+}
+
+/* 🔹 RESPONSIVIDADE: esconder texto no mobile */
+@media (max-width: 650px) {
+  #textoOrdenar {
+    display: none; /* some completamente */
+  }
+
+  .btn-ordenar {
+    padding: 8px 10px; /* reduz leve o espaço lateral */
+    gap: 4px; /* ícones mais próximos */
+  }
+}
+
+
+
+
+
+@media (max-width: 460px) {
+        
+    .search-input {
+        font-size: 70%;
+    
+    }
+
+  
+    
+.barra-ordenar {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+width: 95%;
+  margin: 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+/* === FILTRO LATERAL === */
+
+#botao-filtro {
+   white-space: nowrap; 
+  font-size: 16px;
+  color: var(--text-color);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'Josefin Sans', sans-serif;
+  background: var(--verdinho-transparente-barra);
+  border: 2px solid var(--borda-barra-pesquisa);
+  transition: all 0.2s ease;
+}
+
+#botao-filtro:hover {
+ border-color: var(--texto-barra-pesquisa);
+}
+
+/* container principal do filtro */
+.filtro-lateral {
+  position: fixed;
+  top: 160px; 
+  left: 0;
+  width: 280px;
+  background: var(--cor-fundo);
+  color: var(--text-color);
+  font-family: "Montserrat";
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0 12px 12px 0;
+  padding: 1rem;
+  z-index: 999;
+    border: 1px solid #ccc;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.filtro-lateral input[type="date"] {
+  border: 1px solid #ccc;
+  background-color: transparent;
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-family: "Montserrat";
+  color: var(--text-color-mais-claro)
+}
+
+
+/* quando ativo */
+.filtro-lateral.aberto {
+  transform: translateX(0);
+}
+
+/* conteúdo interno */
+.filtro-secao {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+.h2-filtro{
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+.filtro-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color-mais-claro);
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem 0;
+}
+
+.filtro-header ion-icon {
+  transition: transform 0.3s ease;
+}
+
+.filtro-header.ativo ion-icon {
+  transform: rotate(90deg);
+}
+
+.filtro-opcoes {
+  max-height: 0;
+  overflow: auto;
+  transition: max-height 0.3s ease;
+  padding-left: 0.5rem;
+}
+
+.filtro-opcoes.ativo {
+  max-height: 200px;
+  padding-bottom: 0.5rem;
+}
+
+.filtro-opcoes label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Josefin Sans', sans-serif;
+  color: var(--text-color-mais-claro);
+  font-size: 15px;
+  cursor: pointer;
+  margin: 6px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+#aplicar-filtro{
+  padding: 10px;
+  background-color: var(--cor-btn-azul);
+  font-family: "Montserrat";
+  border: none;
+  color: whitesmoke;
+  border-radius: 7px;
+  text-transform: uppercase;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+#aplicar-filtro:hover{
+
+  background-color: var(--hover-btn);
+  cursor: pointer;
+  
+}
+
+
+
+/* esconde o input padrão */
+.filtro-opcoes input[type="checkbox"],
+.filtro-opcoes input[type="radio"] {
+  appearance: none; /* remove estilo padrão */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--text-color-mais-claro);
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* radios ficam redondos */
+.filtro-opcoes input[type="radio"] {
+  border-radius: 50%;
+}
+
+/* cor de foco e hover */
+.filtro-opcoes input:hover {
+  border-color: var(--texto-barra-pesquisa);
+}
+
+/* quando marcado */
+.filtro-opcoes input[type="checkbox"]:checked,
+.filtro-opcoes input[type="radio"]:checked {
+  background-color: var(--cor-btn-azul); /* 🔹 muda pra tua cor preferida */
+  border-color: var(--cor-btn-azul);
+  color: white;
+}
+
+/* ícone de check customizado (usando pseudo-elemento) */
+.filtro-opcoes input[type="checkbox"]:checked::after {
+  content: "✔";
+  font-size: 14px;
+  color: white;
+  position: absolute;
+}
+
+/* ponto central para o radio marcado */
+.filtro-opcoes input[type="radio"]:checked::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+}
+
+
+/* seta rotaciona ao abrir */
+.filtro-header.ativo ion-icon {
+  transform: rotate(90deg);
+}
+
+/* transição suave de expansão */
+.filtro-opcoes {
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+/* organização visual */
+.filtro-opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 4px;
+}
+
+
+.filtro-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Container geral do slider */
+.slider-container {
+  position: relative;
+  width: 90%;
+  height: 32px; /* altura suficiente pra comportar os thumbs */
+  display: flex;
+  align-items: center;
+}
+
+/* Input range transparente, posicionado no meio da linha */
+.slider-container input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  width: 100%;
+  height: 32px;
+  background: transparent;
+  margin: 0;
+  pointer-events: none; /* evita conflitos entre os dois ranges */
+}
+
+/* Thumb (bolinha) */
+.slider-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: all;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cor-btn-azul);
+  border: 2px solid #fff;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Linha base (trilho) */
+.slider-track {
+  position: absolute;
+  width: 100%;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* Labels e valores */
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  font-size: 12px;
+  color: var(--text-color);
+}
+
+.filtro-slider p {
+  font-size: 13px;
+  color: var(--text-color);
+  margin-top: 5px;
+}
+
+/* Melhor alinhamento visual e sem corte */
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cor-btn-azul);
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+
+
+@media (max-width: 768px) {
+  .filtro-lateral {
+    width: 100%; /* ocupa só a largura visível da tela */
+    max-width: 100vw; /* garante que nunca passe da viewport */
+    border-radius: 12px 12px 0 0;
+    left: 0;
+    bottom: 0;
+    top: auto;
+    transform: translateY(100%);
+    max-height: 75vh;
+    overflow-x: hidden; /* impede qualquer scroll lateral interno */
+    box-sizing: border-box;
+    padding: 1rem; /* mantém espaço interno */
+  
+  }
+
+  .filtro-lateral.aberto {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    <link rel="stylesheet" href="/css/meuperfil.css" />
+    <link rel="shortcut icon" href="/imagens/favicon.ico" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <script src="js/simple-notify.js"></script>
+</head>
+  <body>
+
+<%
+
+
+let msgErro = "";
+let avisoErro = {
+  nome_usu: "",
+  nomeusu_usu: "",  
+  fone_usu: "",
+  email_usu: "",
+  imagem: "",
+  "imagem-capa_usu": ""
+};
+
+let errosArray = [];
+
+if (listaErros) {
+  if (Array.isArray(listaErros)) {
+    errosArray = listaErros;
+  } else if (Array.isArray(listaErros.errors)) {
+    errosArray = listaErros.errors;
+  }
+}
+
+
+errosArray.forEach((itemErro) => {
+    if (itemErro.path === "nome_usu") {
+      avisoErro.nome_usu = "erro";
+      msgErro += `* ${itemErro.msg} <br>`;
+    }
+    if (itemErro.path === "nomeusu_usu") {
+      avisoErro.nomeusu_usu = "erro";
+      msgErro += `* ${itemErro.msg} <br>`;
+    }
+    if (itemErro.path === "celular_usu") {
+      avisoErro.fone_usu = "erro";
+      msgErro += `* ${itemErro.msg} <br>`;
+    }
+    if (itemErro.path === "email_usu") {
+      avisoErro.email_usu = "erro";
+      msgErro += `* ${itemErro.msg} <br>`;
+    }
+    if (itemErro.path === "imagem-perfil_usu") {
+      avisoErro.imagem = "erro";
+      msgErro += `* ${itemErro.msg} <br>`;
+    }
+    if (itemErro.path === "imagem-capa_usu") {
+      avisoErro["imagem-capa_usu"] = "erro";
+      msgErro += `* ${itemErro.msg} <br>`;
+    }
+  });
+
+
+   
+          let arquivo = { imagem: "imagens/foto-perfil.png" }; 
+    
+        if (autenticado.img_perfil_banco) {
+          arquivo.imagem = autenticado.img_perfil_banco;
+        }
+
+        let arquivocapa = {imagem_capa: "imagens/bg.png" };
+
+        if (autenticado.img_capa_banco) {
+          arquivocapa.imagem_capa = autenticado.img_capa_banco;
+        }
+
+
+        
+
+   %>
+
+
+   <%   if (dadosNotificacao) {
+            %>
+           <script>
+    console.log("🔔 Notificação recebida!");
+    notify("<%= dadosNotificacao.titulo %>",
+           "<%= dadosNotificacao.mensagem %>",
+           "<%= dadosNotificacao.tipo %>",
+           "center");
+
+       // Comentado para não redirecionar:
+    // if ("<%= dadosNotificacao.tipo %>" == "success") {
+    //   setTimeout(function () {
+    //     window.location = "/";
+    //   }, 3000);
+    // }
+  </script>
+<% } %>
+
+
+
+
+ <%- include('../partials/modal-seguidores') %>
+  
+  
+
+
+<script>
+  window.onload = function() {
+    console.log('Data received:', valores);
+  };
+</script>
+
+
+<% if (status_usuario === 'pendente') { %>
+    <%- include('../partials/aviso-pendente') %>
+    
+<% } %>
+  
+
+
+<% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+   
+    <section class="base_cabecalho">
+      <section id="banner-perfil">
+       
+ <img src="<%= valores.IMG_BANNER_BANCO_USUARIO || '/imagens/bg.png' %>" id="banner-perfil">
+  
+      </section>
+      <section class="coluna_contaneir">
+        <section class="coluna-esquerda">
+
+          <section class="img__container">
+
+          
+  <img src="<%= valores.FOTO_PERFIL_BANCO_USUARIO || '/imagens/foto-perfil.png' %>" alt="Perfil" id="imgFoto">
+        
+            
+           
+          </section>
+
+        <section class="embaixo">
+          <h2 id="dados-principais-perfil">
+     
+            <h3 id="nome-perfil"> <%= nome_usuario %> <% if (valores.isPro) { %>
+              <section class="badge-pro">PRO</section>
+            <% } %></h3> 
+         
+
+          <p><%= valores.especializacao %></p>
+          <p>@<%= user_usuario %></p>
+          
+          <p><%=email_usuario %></p>
+
+          <p>
+          <button id="editarperfilbotao" class="editar-botao" onclick="window.location.href='/editar-perfil'">
+            Editar Perfil
+          </button>
+        </p>
+          </h2>
+        
+
+        </section>
+
+         <% if (tipo_usuario === 'profissional') { %>
+            <ul class="quan-p-t-c">
+              <li title="Quantidade de publicações feitas por você."><span> <%=publicacoes.length %></span>Publicações</li>
+              <li title="Quantidade de portfólios criados por você."><span><%= valores.QTD_PORTFOLIOS %></span>Portfólios</li>
+              <li title="Quantidade de vezes que você foi contratado através plataforma."><span>0</span>Contratações</li>
+
+                       
+<li id="btnAbrirModalSeguidores" 
+    data-userid="<%= valores.ID_USUARIO %>" 
+    title="Quantidade de seguidores de <%= valores.NOME_USUARIO %>">
+  <span><%= valores.QTD_SEGUIDORES; %></span> Seguidores
+</li>
+
+              
+              
+            </ul>
+          <% } %>
+
+
+
+          <% const descVazia = !descricao_perfil || descricao_perfil.trim() === ''; %>
+          <section class="sobre">
+            <% if (!descVazia) { %>
+            <section class="paragrafo-descricao">
+              <p class="descricao-meu-perfil">
+                <%= descricao_perfil %>
+              </p>
+            </section>
+          <% } %>
+
+          <% if (!descVazia || (valores.linkedin || valores.pinterest || valores.instagram || valores.whatsapp)) { %>
+   
+          <%
+          let totalRedes = 0;
+          if (valores.linkedin) totalRedes++;
+          if (valores.pinterest) totalRedes++;
+          if (valores.instagram) totalRedes++;
+          if (valores.whatsapp) totalRedes++;
+          let classeRedes = totalRedes <= 2 ? 'centralizadas' : 'espalhadas';
+        %>
+   
+            <ul class="redes-sociais-icons <%= classeRedes %>">
+      <% if (valores.linkedin) { %>
+        <li><a href="<%= valores.linkedin %>" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+      <% } %>
+      <% if (valores.pinterest) { %>
+        <li><a href="<%= valores.pinterest %>" target="_blank"><i class="fab fa-pinterest"></i></a></li>
+      <% } %>
+      <% if (valores.instagram) { %>
+        <li><a href="<%= valores.instagram %>" target="_blank"><i class="fab fa-instagram"></i></a></li>
+      <% } %>
+      <% if (valores.whatsapp) { %>
+        <li><a href="<%= valores.whatsapp %>" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+      <% } %>
+    </ul>
+  <% } %>
+
+
+
+          </section>
+   
+        </section> 
+        <section class="coluna-direta">
+          <section class="coluna-da-direita">
+            <ul class="p-t-c">
+              <li><a href="">Publicações</a></li>
+
+              <% if (tipo_usuario === 'profissional') { %>
+                <li><a href="/portfolios/<%= id_usuario %>" >Portfólios</a></li>
+              <% } %>
+
+                </ul>
+
+                <% if (tipo_usuario === 'profissional') { %>
+                  <a href=/nova-publicacao class="btn-link">Nova Publicação</a>
+                <% } else { %>
+                  <a href=/nova-publi-pedido class="btn-link">Nova Proposta de Projeto</a>
+                <% } %>
+
+
+          </section>
+
+          
+
+  
+            <% if (publicacoes.length > 0) { %>
+              <section class="publi">
+      <% publicacoes.forEach(pub => { %>
+      
+        <section class="publi-perfil">
+  
+             <a href="/publicacao/<%= pub.ID_PUBLICACAO %>">
+          <!-- Carrossel de imagens -->
+          <section class="carrossel-imagens-explorar" onmouseenter="mostrarControles(this)" onmouseleave="esconderControles(this)">
+        <section class="container-imgs" 
+    ontouchstart="startSwipe(event, this)" 
+    ontouchmove="swipeMove(event)" 
+    ontouchend="endSwipe(event, this)">
+
+    <% if (pub.imagens && pub.imagens.length > 0) { %>
+      <% pub.imagens.forEach((img, idx) => { %>
+        <img 
+          src="data:image/jpeg;base64,<%= img.toString('base64') %>" 
+          class="publicacao-img<%= idx === 0 ? ' ativa' : '' %>" 
+          alt="Imagem da publicação"
+          onerror="this.src='/imagens/fallback.png';"
+        />
+      <% }) %>
+    <% } else { %>
+    
+      <img 
+        src="/imagens/img-quebrada.png" 
+        class="publicacao-img ativa" 
+        alt="Imagem padrão"
+      />
+    <% } %>
+  </section>
+  
+            <% if (pub.imagens.length > 1) { %>
+              <button class="seta-carrossel esquerda" onclick="event.preventDefault();prevImg(this)">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </button>
+              <button class="seta-carrossel direita" onclick="event.preventDefault();nextImg(this)">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </button>
+  
+              <section class="indicadores">
+                <% pub.imagens.forEach((_, idx) => { %>
+                  <span class="indicador<%= idx === 0 ? ' ativo' : '' %>"></span>
+                <% }) %>
+              </section>
+            <% } %>
+            </a>
+          </section>
+          
+  
+          <!-- Nome e botão de like -->
+          <section class="nome-btn-like">
+            <p><%= pub.NOME_PUBLICACAO %></p>
+
+        
+
+            <section class="contagens-likes-visu">
+  
+              <section class="contagem">
+          
+                <ion-icon name="eye"></ion-icon>
+                <small><%= pub.N_VISUALIZACOES %></small>
+              </section>
+          
+          
+          
+                   <section class="contagem">
+          
+                    <button class="like-button">
+                      <a href="/favoritar?id=<%= pub.ID_PUBLICACAO %>&sit=<%= pub.FAVORITO %>&idDono=<%= pub.ID_USUARIO %>&nomePub=<%= encodeURIComponent(pub.NOME_PUBLICACAO) %>"  
+                         onclick="localStorage.setItem('scrollPos', window.scrollY)">
+                        <i class="<%= pub.FAVORITO === 'favorito' ? 'fas' : 'far' %> fa-heart <%= pub.FAVORITO %>"></i>
+                      </a>
+                    </button>
+                    
+          <small><%= pub.N_CURTIDAS %></small>
+          </section>
+        </section>
+          </section>
+  
+        </section>
+  
+    
+      <% }) %>
+      </section>
+    <% } else { %>
+      <section class="sem-profissionais" style="opacity: 0.6; display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 10px;">
+      <img src="/imagens/sem-resultados.png" alt="Sem publicações" style="margin: 20px auto; width: 160px;">
+      <p style="font-family: 'Montserrat'; font-size: 1rem; text-align: center; color: var(--text-color); margin-bottom: 20px;">
+        Você ainda não publicou nada.      </p>
+    </section>
+    <% } %>
+  </section>
+</section>
+
+        
+        
+      </section>
+    
+
+        
+
+    
+<% if (tipo_usuario === 'profissional') { %>
+   
+  <h2 id="secao-avaliacoes-h2">
+    Avaliações de seus clientes
+</h2>
+<% if (avaliacoes.length > 0) { %>
+    <small id="qtd-ava">
+  <%= avaliacoes.length %> 
+  <%= avaliacoes.length === 1 ? 'avaliação' : 'avaliações' %> 
+  - Média: <%= usuario.MEDIA_NOTA %>
+</small>
+
+    <section class="carousel-container">
+        <button class="carousel-button prev">&#10094;</button>
+        <section id="secao-avaliacoes" class="carousel-track">
+            <% avaliacoes.forEach(av => { %>
+                <section class="avaliacao">
+                    <section class="info-criador-ava">
+                     
+                        <img src="<%= av.FOTO_AVALIADOR || '/imagens/foto-perfil.png' %>" class="foto-de-perfil">
+                        <a href="/perfil/<%= av.ID_AVALIADOR %>">
+                            <p class="nome-criador-ava"><%= av.NOME_AVALIADOR %></p>
+                        </a>
+                    </section>
+                    
+                    <section class="estrelinhas-avaliacao">
+                    <% for(let i=1; i<=5; i++) { %>
+    <% if(i <= av.NOTA) { %>
+        <ion-icon name="star" class="estrela-preenchida"></ion-icon>
+    <% } else { %>
+        <ion-icon name="star-outline" class="estrela-vazia"></ion-icon>
+    <% } %>
+<% } %>
+
+                    </section>
+                    
+                    <section class="conteudo-avaliacao">
+                        <p><%= av.COMENTARIO %></p>
+                    </section>
+                </section>
+            <% }) %>
+        </section>
+        <button class="carousel-button next">&#10095;</button>
+    </section>
+<% } else { %>
+     <section class="sem-profissionais" style="opacity: 0.6; display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 10px;">
+      <img src="/imagens/estrelinha.png" alt="Sem avaliações" style="margin: 20px auto; width: 150px;">
+      <p style="font-family: 'Montserrat'; font-size: 1rem; text-align: center; color: var(--text-color); margin-bottom: 20px;">
+        Você ainda não possui avaliações.
+      </p>
+    </section>
+<% } %>
+
+    <% } %>
+
+
+
+    
+   <% if (tipo_usuario === 'profissional') { %>
+
+                 <%- include('../partials/fab-button') %>
+<% }   else if(tipo_usuario === 'comum') {   %>
+        <%- include('../partials/fab-button-comum') %>
+  <% } %>
+  
+   
+
+
+<%- include('../partials/rodape'); %>
+
+
+
+ <script src="/js/publicacoesindex.js"></script>
+    <script>
+
+  
+
+// autoplay
+document.addEventListener('DOMContentLoaded', () => {
+  const carrosseis = document.querySelectorAll('.carrossel-imagens-explorar');
+
+  carrosseis.forEach(carrossel => {
+    let idx = 0;
+    const total = carrossel.querySelectorAll('.publicacao-img').length;
+
+    if (total > 1 && window.innerWidth > 500) {
+      setInterval(() => {
+        idx = (parseInt(carrossel.dataset.idx || '0') + 1) % total;
+        updateCarrossel(carrossel, idx);
+      }, 10000);
+    }
+
+    updateCarrossel(carrossel, 0);
+  });
+});
+</script>
+      <!-- <script src="/js/like.js"></script> -->
+       <script src="js/rolagem-atualizar-pag.js"></script>
+
+  </body>
+
+  </html>
+        

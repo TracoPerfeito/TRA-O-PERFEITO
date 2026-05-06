@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Traço Perfeito</title>
+   <link rel="shortcut icon" href="/imagens/favicon.ico" type="image/x-icon">
+   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="stylesheet" href="/css/propostadeprojeto.css">
+   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
+   <script src="/js/proposta.js"></script>
+   
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+   <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="/js/simple-notify.js"></script>
+</head>
+<body>
+ 
+
+   
+ <%  if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "top right");
+                                   
+        </script>
+    <% } %>
+
+
+   <!-- Aviso de conta pendente -->
+   <% if (status_usuario === 'pendente') { %>
+      <%- include('../partials/aviso-pendente') %>
+   <% } %>
+
+   <!-- Barra de menu logado -->
+  <% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'administrador') { %>
+  <%- include('../partials/menu_adm_base', { tipo_usuario: tipo_usuario }) %>
+
+ <% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+
+   <!-- Botão voltar -->
+   <section class="botao-de-voltar">   
+      <button class="btn-voltar" onclick="voltarPagina()"> 
+         <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+      </button>
+      <p class="lado-botao">Proposta de <%= proposta.NOME_USUARIO %></p>
+   </section>
+
+   <section class="conteudo">
+      <section class="containerp">
+         <section class="projeto">
+          <section class="h1-btn-pontos">
+            
+              <h1 class="titulo-maior">Proposta de projeto</h1>
+            
+              <!-- Menu de opções -->
+              <section class="menu-opcoes">
+                 <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px"
+                      viewBox="0 -960 960 960" width="24px" fill="#000">
+                    <path d="M480-160q-33 0-56.5-23.5T400-240q0-33
+                             23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5
+                             56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33
+                             23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5
+                             56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33
+                             23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5
+                             56.5T480-640Z"/>
+                 </svg>
+                 <section class="opcoes-menu">
+                    <% if (autenticado && id_usuario === proposta.ID_USUARIO) { %>
+                       <!-- Editar proposta -->
+                          <button
+                             class="btn-editar"
+                             title="Editar proposta"
+                             id="abrirModalEditar"
+                             data-id="<%= proposta.ID_PROPOSTA %>"
+                             data-titulo="<%= proposta.TITULO_PROPOSTA %>"
+                             data-orcamento="<%= proposta.ORCAMENTO %>"
+                             data-prazoentrega="<%= proposta.PRAZO_ENTREGA ? (new Date(proposta.PRAZO_ENTREGA).toISOString().slice(0,10)) : '' %>"
+                             data-descricao="<%= proposta.DESCRICAO_PROPOSTA %>"
+                             data-categoria="<%= proposta.CATEGORIA_PROPOSTA %>">
+                             <ion-icon name="create-outline"></ion-icon>
+                             Editar
+                          </button>
+                       <!-- Excluir proposta -->
+                       <form action="/excluir-proposta" method="POST" class="form-excluir-proposta">
+              <input type="hidden" name="idProposta" value="<%= proposta.ID_PROPOSTA %>">
+              <button type="submit" class="btn-excluir-proposta"
+                      title="Excluir proposta">
+                 <ion-icon name="trash-outline"></ion-icon>
+                 Excluir
+              </button>
+                     </form>
+                    <% } %>
+                    <!-- Denunciar -->
+                    <% if (!autenticado || id_usuario !== proposta.ID_USUARIO) { %>
+             <button class="btn-denunciar-proposta" data-id="<%= proposta.ID_PROPOSTA %>">
+  <ion-icon name="flag-outline"></ion-icon> Denunciar
+</button>
+
+            <% } %>
+               </section>
+            </section>
+          </section>
+
+            <!-- Perfil do usuário -->
+            <section class="perfil">
+               <section class="foto-nome">
+                     <img 
+                         src="<%= proposta.FOTO_PERFIL_BANCO_USUARIO || '/imagens/img.png' %>" 
+                          class="foto-perfil-explorar"
+                        alt="Foto do usuário"
+                        onerror="this.onerror=null; this.src='/imagens/img.png'">
+       
+                  <p class="nome-dono-post-ex">
+                     <a href="/perfil/<%= proposta.ID_USUARIO %>"><%= proposta.NOME_USUARIO %></a>
+                  </p>
+               </section>
+              
+
+<% if (id_usuario !== proposta.ID_USUARIO) { %>
+  <button 
+    id="irparachat" 
+    class="conversar" 
+    onclick="location.href='/chat?destinatarioId=<%= proposta.ID_USUARIO %>&nome=<%= encodeURIComponent(proposta.NOME_USUARIO) %>&username=<%= encodeURIComponent(proposta.USER_USUARIO) %>&tipo=<%= encodeURIComponent(proposta.TIPO_USUARIO) %>'">
+    
+    <ion-icon name="chatbubbles-outline" style="font-size:15px; width:15px; height:15px;"></ion-icon>
+    Conversar
+  </button>
+<% } %>
+
+
+            </section>
+
+       
+            <!-- Descrição -->
+            <section class="pedidodescrito">
+<h2>
+  
+                <%= proposta.TITULO_PROPOSTA
+   %>
+</h2>
+
+<br>
+               <%- proposta.DESCRICAO_PROPOSTA %>
+            </section>
+         </section>
+      </section>
+
+
+    <section class="info-proposta">
+
+  <h2>Detalhes da proposta</h2>
+
+  <section id="titulo" class="card-info">
+    <ion-icon name="document-text-outline"></ion-icon>
+    <section class="texto-det">
+      <p class="label">Título</p>
+      <p><%= proposta.TITULO_PROPOSTA
+ %></p>
+    </section>
+  </section>
+
+  <section class="det">
+    <section id="categoria" class="card-info">
+      <ion-icon name="pricetag-outline"></ion-icon>
+      <section class="texto-det">
+        <p class="label">Categoria</p>
+        <p><%= proposta.CATEGORIA_PROPOSTA %></p>
+      </section>
+    </section>
+
+    <section id="profissional" class="card-info">
+      <ion-icon name="briefcase-outline"></ion-icon>
+      <section class="texto-det">
+        <p class="label">Profissional requerido</p>
+        <p>
+          <% if (!proposta.PROFISSIONAL_REQUERIDO || proposta.PROFISSIONAL_REQUERIDO.trim() === '') { %>
+            <% 
+              let prof = 'Profissional Diverso';
+              const cat = proposta.CATEGORIA_PROPOSTA?.toLowerCase();
+              if (cat?.includes('gráfico') || cat?.includes('design')) prof = 'Designer Gráfico';
+              else if (cat?.includes('tipografia')) prof = 'Tipógrafo';
+              else if (cat?.includes('ilustração')) prof = 'Ilustrador';
+            %>
+            <%= prof %>
+          <% } else { %>
+            <%= proposta.PROFISSIONAL_REQUERIDO %>
+          <% } %>
+        </p>
+      </section>
+    </section>
+  </section>
+
+  <section id="estilo" class="card-info">
+    <ion-icon name="color-palette-outline"></ion-icon>
+    <section class="texto-det">
+      <p class="label">Preferência de estilo</p>
+      <p>
+        <%= proposta.PREFERENCIA_PROPOSTA && proposta.PREFERENCIA_PROPOSTA.trim() !== '' ? proposta.PREFERENCIA_PROPOSTA : 'Não informada' %>
+      </p>
+    </section>
+  </section>
+
+  <section class="det">
+    <section id="orcamento" class="card-info">
+      <ion-icon name="cash-outline"></ion-icon>
+      <section class="texto-det">
+        <p class="label">Orçamento</p>
+        <p>R$<%= proposta.ORCAMENTO %></p>
+      </section>
+    </section>
+
+    <section id="entrega" class="card-info">
+      <ion-icon name="calendar-outline"></ion-icon>
+      <section class="texto-det">
+        <p class="label">Data de entrega</p>
+        <p>
+          <% 
+            const entrega = new Date(proposta.PRAZO_ENTREGA);
+            const hoje = new Date();
+            const diffTime = entrega - hoje;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          %>
+          <%= entrega.toLocaleDateString('pt-BR') %>
+          <% if (diffDays >= 0) { %>
+            <br><small><%= diffDays %> dias restantes</small>
+          <% } else { %>
+            <br><small>Prazo expirado</small>
+          <% } %>
+        </p>
+      </section>
+    </section>
+  </section>
+
+</section>
+
+
+
+</section>
+
+
+
+
+   </section>
+
+   
+                                                <!-- Modal de denúncia -->
+                  
+    <section class="modal modal-denuncia">
+  <section class="modal-content">
+    <h3>Qual o motivo da denúncia?</h3>
+    <form class="form-denuncia" action="/denunciar-proposta" method="post">
+      <input type="hidden" id="id-proposta-denuncia" name="idProposta" value="">
+      <label><input type="radio" name="motivo" value="Conteúdo ofensivo" required> Conteúdo ofensivo</label><br>
+      <label><input type="radio" name="motivo" value="Spam"> Spam</label><br>
+      <label><input type="radio" name="motivo" value="Informação falsa ou enganosa"> Informação falsa ou enganosa</label><br>
+      <label><input type="radio" name="motivo" value="Nudez ou conteúdo sexual"> Nudez ou conteúdo sexual</label><br>
+      <label><input type="radio" name="motivo" value="Plágio ou cópia não autorizada"> Plágio ou cópia não autorizada</label><br>
+      <label><input type="radio" name="motivo" value="Outro"> Outro</label><br><br>
+      <section class="btns-enviar-denuncia">
+        <button type="button" id="fechar-modal-denuncia">Cancelar</button>
+        <button type="submit">Enviar denúncia</button>
+      </section>
+    </form>
+  </section>
+</section>
+
+     <script>document.addEventListener("DOMContentLoaded", () => {
+  const modalDenuncia = document.querySelector(".modal-denuncia");
+  const fecharModalBtn = document.getElementById("fechar-modal-denuncia");
+  const inputIdProposta = document.getElementById("id-proposta-denuncia");
+
+  document.querySelectorAll(".btn-denunciar-proposta").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const idProposta = btn.dataset.id;
+      inputIdProposta.value = idProposta;
+      modalDenuncia.style.display = "block";
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  fecharModalBtn.addEventListener("click", () => {
+    modalDenuncia.style.display = "none";
+    document.body.style.overflow = "auto";
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target === modalDenuncia) {
+      modalDenuncia.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  });
+});
+
+
+    </script>
+
+
+   <!-- Tagify CDN para funcionamento do campo de tags do modal de edição -->
+   <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+
+   <!-- Modal de edição de proposta -->
+   <%- include('../partials/editar-proposta'); %>
+
+
+
+
+
+   
+
+<!-- Modal de confirmação de exclusão -->
+<section id="modal-excluir-proposta" class="modal">
+  <section class="modal-content">
+    <h3>Tem certeza que deseja excluir esta proposta?</h3>
+    <form id="formExcluirProposta" action="/excluir-proposta" method="POST">
+      <input type="hidden" name="idProposta" id="id-proposta-excluir" value="<%= proposta.ID_PROPOSTA %>">
+      <section class="btns-enviar-denuncia">
+        <button type="button" id="fechar-modal-excluir">Cancelar</button>
+        <button type="submit" id="excluir">Excluir</button>
+      </section>
+    </form>
+  </section>
+</section>
+
+
+
+   
+   <% if (tipo_usuario === 'profissional') { %>
+
+                 <%- include('../partials/fab-button') %>
+<% }   else if(tipo_usuario === 'comum') {   %>
+        <%- include('../partials/fab-button-comum') %>
+  <% } %>
+  
+
+   <!-- Rodapé -->
+   <%- include('../partials/rodape'); %>
+
+   <!-- Scripts -->
+   <script src="/js/voltar.js"></script>
+   <script src="/js/mobile-navbar.js"></script>
+   
+<script>
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const modalExcluir = document.getElementById("modal-excluir-proposta");
+  const inputExcluir = document.getElementById("id-proposta-excluir");
+  const btnFecharExcluir = document.getElementById("fechar-modal-excluir");
+  const formExcluir = document.getElementById("formExcluirProposta");
+
+  // Botões de excluir em cada card
+  document.querySelectorAll(".btn-excluir-proposta").forEach(btn => {
+    btn.addEventListener("click", () => {
+      inputExcluir.value = btn.dataset.id; // seta o ID da proposta no form do modal
+      modalExcluir.style.display = "block";
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  // Fechar modal
+  btnFecharExcluir.addEventListener("click", () => {
+    modalExcluir.style.display = "none";
+    document.body.style.overflow = "auto";
+  });
+
+  // Fechar clicando fora
+  modalExcluir.addEventListener("click", (e) => {
+    if (e.target === modalExcluir) {
+      modalExcluir.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  });
+});
+
+</script>
+</body>
+</html>

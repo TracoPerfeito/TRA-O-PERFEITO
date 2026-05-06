@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Publicação - Proposta de Projeto</title>
+    <link rel="stylesheet" href="css/nova-publicacao.css">
+    <link rel="stylesheet" href="/css/nova-proposta.css">
+    
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="js/simple-notify.js"></script>
+
+</head>
+
+    
+  <body>
+
+<% if (dadosNotificacao) { %>
+  <script>
+    notify("<%= dadosNotificacao.titulo %>", "<%= dadosNotificacao.mensagem %>", "<%= dadosNotificacao.tipo %>", "top right");
+  </script>
+<% } %>
+
+<% if (status_usuario === 'pendente') { %>
+  <%- include('../partials/aviso-pendente') %>
+<% } %>
+
+
+
+   <% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+<main>
+  <h1 class="novaPublicacao">Nova Proposta de Projeto</h1>
+  <br><br>
+
+    <% if (tipo_usuario === 'profissional') { %>
+  <p class="instrucao-tipo-btn">Selecione o tipo de publicação que você deseja fazer:</p>
+  <section class="button-group">
+    <button class="nao-ativo" title="Crie uma nova publicação para seu portfólio."><a href="/nova-publicacao">Nova Publicação</a></button>
+    <button class="ativo" title="Publique uma proposta de projeto para os profissionais da plataforma."><a href="/nova-publi-pedido">Proposta de projeto</a></button>
+  </section>
+<% } %>
+  <p class="p-explicativo-np">Especifique o que você deseja para que os artistas em nosso site possam entrar em contato com você.</p>
+
+  <form id="propostaForm" action="/enviar-proposta-projeto" method="POST" novalidate class="form-duas-colunas">
+
+    <section class="conteudo-form">
+      <!-- Coluna esquerda: campos -->
+      <section class="form-campos">
+        <section class="campo-form">
+          <label for="titulo">Título:</label>
+          <input type="text" id="titulo" name="titulo" required />
+          <section class="error-msg" id="errorTitulo"></section>
+        </section>
+
+        <section class="campo-form">
+          
+          <label for="categoria">Categoria:</label>
+          <select id="categoria" name="categoria" required>
+            <option value="">-- Selecione a categoria --</option>
+            <option value="Design Gráfico">Design Gráfico</option>
+            <option value="Ilustração">Ilustração</option>
+            <option value="UI/UX">UI/UX</option>
+            <option value="Arte Digital">Arte Digital</option>
+            <option value="Arte 3D">Arte 3D</option>
+            <option value="Animação">Animação</option>
+            <option value="Branding">Branding</option>
+            <option value="Tipografia">Tipografia</option>
+            <option value="Modelagem 3D">Modelagem 3D</option>
+            <option value="Design de Produto">Design de Produto</option>
+            <option value="Design Editorial">Design Editorial</option>
+            <option value="Design de Jogos">Design de Jogos</option>
+            <option value="Fotografia">Fotografia</option>
+            <option value="Outros">Outros</option>
+          </select>
+          <section class="error-msg" id="errorCategoria"></section>
+        </section>
+        <section class="campo-form">
+          
+          <label for="preferenciaEstilo">Preferência de estilo:</label>
+          <input type="text" id="preferenciaEstilo" name="preferencia" placeholder="Ex: Minimalista, colorido..." />
+        </section>
+        <section class="campo-form">
+          <label for="prazoEntrega">Prazo de entrega (data):</label>
+          <input type="date" id="prazoEntrega" name="prazoEntrega" required />
+          <section class="error-msg" id="errorPrazo"></section>
+        </section>
+        <section class="campo-form">
+          <label for="orcamento">Orçamento (R$):</label>
+          <input type="number" id="orcamento" name="orcamento" min="0" step="0.01" required />
+          <section class="error-msg" id="errorOrcamento"></section>
+        </section>
+      </section>
+      <!-- Coluna direita: Quill -->
+      <section class="form-quill">
+        <label for="descricao">Descrição detalhada:</label>
+        <section id="editor"></section>
+        <input type="hidden" id="descricao" name="descricao" />
+      </section>
+    </section>
+
+    <section class="btn-wrapper"><button type="submit" class="btn-enviar-proposta">Enviar Proposta</button></section>
+  </form>
+
+</main>
+
+
+<!-- Quill JS -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+  const quill = new Quill('#editor', {
+    theme: 'snow',
+    placeholder: 'Descreva detalhadamente o que você procura...'
+  });
+
+  const form = document.getElementById('propostaForm');
+
+  form.addEventListener('submit', (e) => {
+    form.descricao.value = quill.root.innerHTML;
+  });
+</script>
+
+<script src="js/mobile-navbar.js"></script>
+
+<% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/fab-button') %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/fab-button-comum') %>
+<% } %>
+
+<%- include('../partials/rodape'); %>
+</body>
+</html>

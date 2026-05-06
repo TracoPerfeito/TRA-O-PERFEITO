@@ -1,0 +1,355 @@
+<link rel="stylesheet" href="/css/editar-publicacao.css">
+
+<!-- Modal específico para edição de publicação -->
+<section id="modal-editar-publicacao" class="modal-editar-publicacao">
+  <section class="modal-content-editar-publicacao">
+    <span class="fechar-editar-publicacao" id="fechar-modal-editar-publicacao">&times;</span>
+    <h2 class="titulo-modal-editar-publicacao">Editar essa publicação</h2>
+
+    <!-- Formulário principal -->
+    <section class="form-editar-publicacao">
+      <form action="/editar-publicacao" method="POST">
+        <input type="hidden" name="id_publicacao" id="id-editar-publicacao" value="">
+
+        <section class="conteudo-editar-publicacao">
+          <!-- Coluna esquerda: Carrossel de imagens -->
+          <section class="editar-publicacao-carrossel"
+            onmouseenter="mostrarControles(this)"
+            onmouseleave="esconderControles(this)">
+            
+            <button class="editar-publicacao-seta editar-publicacao-seta-esquerda" title="Imagem anterior">&#10094;</button>
+
+            <section class="editar-publicacao-imagens-carrossel" id="editar-publicacao-imagens-carrossel"></section>
+
+            <button class="editar-publicacao-seta editar-publicacao-seta-direita" title="Próxima imagem">&#10095;</button>
+          </section>
+
+          <!-- Coluna direita: Campos -->
+          <section class="dados">
+            <section class="form-grupo-1" id="titulo-editar-publicacao-container">
+              <label for="titulo-editar-publicacao">Título:</label>
+              <input type="text" id="titulo-editar-publicacao" name="titulo_publicacao" class="caixa-texto" required>
+            </section>
+
+            <section class="form-grupo-1" id="categoria-editar-publicacao-container">
+              <label for="categoria-editar-publicacao">Categoria:</label>
+              <select id="categoria-editar-publicacao" name="categoria" class="caixa-texto" required>
+                <option value="">-- Selecione a categoria --</option>
+             <option value="Design Gráfico">Design Gráfico</option>
+<option value="Ilustração">Ilustração</option>
+<option value="UI/UX">UI/UX</option>
+<option value="Arte Digital">Arte Digital</option>
+<option value="Arte 3D">Arte 3D</option>
+<option value="Animação">Animação</option>
+<option value="Branding">Branding</option>
+<option value="Tipografia">Tipografia</option>
+<option value="Modelagem 3D">Modelagem 3D</option>
+<option value="Design de Produto">Design de Produto</option>
+<option value="Design Editorial">Design Editorial</option>
+<option value="Design de Jogos">Design de Jogos</option>
+<option value="Fotografia">Fotografia</option>
+<option value="Outros">Outros</option>
+              </select>
+
+              <section id="outra-categoria-container" style="display:none; margin-top:10px;">
+                <label for="outraCategoria">Digite a categoria:</label>
+                <input type="text" id="outraCategoria" name="outraCategoria" placeholder="Ex: Lettering">
+              </section>
+            </section>
+
+            <section class="form-grupo-1" id="descricao-editar-publicacao-container">
+              <label for="descricao-editar-publicacao">Descrição:</label>
+              <textarea id="descricao-editar-publicacao" name="descricao_publicacao" class="caixa-texto grande"></textarea>
+            </section>
+
+            <section class="form-grupo-1" id="tags-editar-publicacao-container">
+              <label for="tagInput-editar">Tags:</label>
+              <input id="tagInput-editar" name="tags" class="tags-look tagify--custom-dropdown caixa-texto" placeholder="Adicione tags à sua publicação...">
+            </section>
+          </section>
+        </section>
+
+        <section class="secao-btns-modal">
+          <button type="submit" class="btn-salvar-editar-publicacao">Salvar Alterações</button>
+        </section>
+      </form>
+
+     
+    </section>
+  </section>
+</section>
+
+
+
+
+
+
+
+
+<script>
+console.log("🟣 Script de edição carregado (versão debug).");
+
+// Tagify init
+const coresTags = ['#7490C9','#969ED0','#92C4E2','#B8D9BD','#9BB7CF','#C3E3DF','#C2E5F0','#ADBCE2'];
+function transformarTag(tagData) {
+  const cor = coresTags[Math.floor(Math.random() * coresTags.length)];
+  tagData.color = cor;
+  tagData.style = "--tag-bg:" + cor;
+}
+let tagifyEditar = null;
+try {
+  tagifyEditar = new Tagify(document.querySelector('#tagInput-editar'), {
+    maxTags: 10,
+    dropdown: { maxItems: 20, classname: 'tags-look', enabled: 0, closeOnSelect: false },
+    transformTag: transformarTag
+  });
+  console.log("✅ Tagify iniciado.");
+} catch (err) {
+  console.warn("⚠️ Tagify não iniciado:", err);
+}
+
+// Funções de controle das setas (hover)
+function mostrarControles(carrossel) {
+  const setas = carrossel.querySelectorAll(".editar-publicacao-seta, .seta-carrossel");
+  setas.forEach(s => s.style.opacity = "1");
+}
+function esconderControles(carrossel) {
+  const setas = carrossel.querySelectorAll(".editar-publicacao-seta, .seta-carrossel");
+  setas.forEach(s => s.style.opacity = "0.6");
+}
+
+// Evento para mostrar/ocultar "outra categoria"
+const campoCategoria = document.getElementById("categoria-editar-publicacao");
+const containerOutraCategoria = document.getElementById("outra-categoria-container");
+if (campoCategoria) {
+  campoCategoria.addEventListener("change", () => {
+    if (campoCategoria.value === "Outros") {
+      containerOutraCategoria.style.display = "block";
+    } else {
+      containerOutraCategoria.style.display = "none";
+      const inputOutra = document.getElementById("outraCategoria");
+      if (inputOutra) inputOutra.value = "";
+    }
+  });
+}
+
+// Abrir modal
+document.addEventListener("click", function (e) {
+  const btn = e.target.closest(".btn-editar");
+  if (!btn) return;
+
+  const idPublicacao = btn.getAttribute("data-id") || "";
+  const titulo = btn.getAttribute("data-titulo") || "";
+  const categoria = btn.getAttribute("data-categoria") || "";
+  const descricao = btn.getAttribute("data-descricao") || "";
+  const tagsStr = btn.getAttribute("data-tags") || "";
+  const imagensStr = btn.getAttribute("data-imagens") || "[]";
+
+  console.log("dados brutos:", { idPublicacao, titulo, categoria, descricao, tagsStr, imagensStr });
+
+  let tags = tagsStr ? tagsStr.split(",").map(t => t.trim()) : [];
+  let imagens = [];
+  try { imagens = JSON.parse(imagensStr); } catch (err) { imagens = []; console.warn("erro parse imagensStr:", err); }
+
+  // Preencher campos básicos
+  const idCampo = document.getElementById("id-editar-publicacao");
+  const idExcluir = document.getElementById("id-editar-publicacao-excluir");
+  const campoTitulo = document.getElementById("titulo-editar-publicacao");
+  const campoDescricao = document.getElementById("descricao-editar-publicacao");
+  const inputOutraCategoria = document.getElementById("outraCategoria");
+
+  if (idCampo) idCampo.value = idPublicacao;
+  if (idExcluir) idExcluir.value = idPublicacao;
+  if (campoTitulo) campoTitulo.value = titulo;
+  if (campoDescricao) campoDescricao.value = descricao;
+
+  // Categorias
+  if (campoCategoria) {
+    const options = Array.from(campoCategoria.options).map(opt => opt.value);
+    if (options.includes(categoria) && categoria !== "Outros") {
+      campoCategoria.value = categoria;
+      if (inputOutraCategoria) inputOutraCategoria.value = "";
+      containerOutraCategoria.style.display = "none";
+    } else {
+      campoCategoria.value = "Outros";
+      if (inputOutraCategoria) inputOutraCategoria.value = categoria;
+      containerOutraCategoria.style.display = "block";
+    }
+  }
+
+  // Tags
+  if (tagifyEditar) {
+    tagifyEditar.removeAllTags();
+    tagifyEditar.addTags(tags);
+  }
+
+  // Carrossel
+  const container = document.getElementById("editar-publicacao-imagens-carrossel") || document.getElementById("imagens-carrossel");
+  if (!container) console.warn("Container do carrossel não encontrado.");
+  else {
+    container.innerHTML = "";
+    imagens.forEach((url, idx) => {
+      const img = document.createElement("img");
+      img.src = url;
+      img.alt = "Imagem " + (idx+1);
+      if (idx === 0) img.classList.add("ativa");
+      container.appendChild(img);
+    });
+    console.log(`🖼️ ${imagens.length} imagens inseridas no carrossel.`);
+  }
+
+  // Setas do carrossel
+  const setaEsq = document.querySelector(".editar-publicacao-seta-esquerda") || document.querySelector(".seta-esquerda");
+  const setaDir = document.querySelector(".editar-publicacao-seta-direita") || document.querySelector(".seta-direita");
+  const imgs = container ? container.querySelectorAll("img") : [];
+  let indiceAtual = 0;
+
+  function mostrarImagem(indice) {
+    if (!imgs.length) return;
+    imgs.forEach((im, i) => im.classList.toggle("ativa", i === indice));
+    console.log(`➡️ imagem mostrada: ${indice+1}/${imgs.length}`);
+  }
+
+  if (imgs.length <= 1) {
+    if (setaEsq) setaEsq.style.display = "none";
+    if (setaDir) setaDir.style.display = "none";
+  } else {
+    if (setaEsq) setaEsq.style.display = "block";
+    if (setaDir) setaDir.style.display = "block";
+  }
+
+  if (setaEsq) setaEsq.onclick = () => { if (imgs.length) { indiceAtual = (indiceAtual - 1 + imgs.length) % imgs.length; mostrarImagem(indiceAtual); } };
+  if (setaDir) setaDir.onclick = () => { if (imgs.length) { indiceAtual = (indiceAtual + 1) % imgs.length; mostrarImagem(indiceAtual); } };
+
+  // Modal
+  const modal = document.getElementById("modal-editar-publicacao") || document.querySelector(".editar-publicacao-modal");
+  if (!modal) { console.error("Modal não encontrado."); return; }
+  modal.style.display = "flex";
+  modal.style.position = "fixed";
+  modal.style.top = "0";
+  modal.style.left = "0";
+  modal.style.width = "100%";
+  modal.style.height = "100%";
+  modal.style.zIndex = "999999";
+  modal.style.backgroundColor = modal.style.backgroundColor || "rgba(0,0,0,0.55)";
+
+  const content = modal.querySelector(".modal-content-editar-publicacao") || modal.querySelector(".editar-publicacao-modal-content");
+  if (content) { content.style.zIndex = "999999"; content.style.margin = "auto"; }
+  ajustarModalMobile(modal);
+  console.log("✅ Modal aberto com sucesso.");
+});
+
+// Fechar modal
+const btnFechar = document.getElementById("fechar-modal-editar-publicacao");
+if (btnFechar) btnFechar.addEventListener("click", fecharModalEditarPublicacao);
+window.addEventListener("click", function (event) {
+  const modal = document.getElementById("modal-editar-publicacao");
+  if (modal && event.target.id === "modal-editar-publicacao") fecharModalEditarPublicacao();
+});
+
+function fecharModalEditarPublicacao() {
+  const modal = document.getElementById("modal-editar-publicacao") || document.querySelector(".editar-publicacao-modal");
+  if (!modal) return;
+  modal.style.display = "none";
+  document.body.style.overflow = "";
+  console.log("❌ Modal fechado.");
+}
+
+// Responsividade
+function ajustarModalMobile(modal) {
+  const content = modal.querySelector(".modal-content-editar-publicacao") || modal.querySelector(".editar-publicacao-modal-content");
+  const alturaVisivel = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  if (!content) return;
+  if (window.innerWidth <= 768) {
+    content.style.maxHeight = (alturaVisivel - 20) + "px";
+    content.style.overflowY = "auto";
+  } else {
+    content.style.maxHeight = "90vh";
+    content.style.overflowY = "hidden";
+  }
+  document.body.style.overflow = "hidden";
+}
+
+window.addEventListener("resize", function() {
+  const modal = document.getElementById("modal-editar-publicacao") || document.querySelector(".editar-publicacao-modal");
+  if (modal && getComputedStyle(modal).display === "flex") ajustarModalMobile(modal);
+});
+</script>
+
+
+<script>
+console.log("🟣 Validação de front-end carregada.");
+
+// Função para mostrar mensagem de erro
+function mostrarErro(campoContainer, mensagem) {
+  let spanErro = campoContainer.querySelector(".erro-validacao");
+  if (!spanErro) {
+    spanErro = document.createElement("span");
+    spanErro.className = "erro-validacao";
+    spanErro.style.color = "red";
+    spanErro.style.fontSize = "0.9em";
+    campoContainer.appendChild(spanErro);
+  }
+  spanErro.textContent = mensagem;
+}
+
+// Função para limpar mensagens
+function limparErros() {
+  document.querySelectorAll(".erro-validacao").forEach(el => el.remove());
+}
+
+// Listener no submit do form
+const formEditar = document.querySelector("#modal-editar-publicacao form");
+if (formEditar) {
+  formEditar.addEventListener("submit", function(e) {
+    limparErros();
+    let valido = true;
+
+    // --- Título ---
+    const tituloContainer = document.getElementById("titulo-editar-publicacao-container");
+    const titulo = document.getElementById("titulo-editar-publicacao").value.trim();
+    if (titulo.length < 1 || titulo.length > 70) {
+      mostrarErro(tituloContainer, "O título deve ter entre 1 e 70 caracteres.");
+      valido = false;
+    }
+
+    // --- Categoria ---
+    const categoriaContainer = document.getElementById("categoria-editar-publicacao-container");
+    const categoria = document.getElementById("categoria-editar-publicacao").value;
+    const outraCategoria = document.getElementById("outraCategoria").value.trim();
+    if (!categoria || (categoria === "Outros" && outraCategoria.length === 0)) {
+      mostrarErro(categoriaContainer, "Selecione uma categoria ou informe a categoria personalizada.");
+      valido = false;
+    }
+
+    // --- Descrição ---
+    const descricaoContainer = document.getElementById("descricao-editar-publicacao-container");
+    const descricao = document.getElementById("descricao-editar-publicacao").value.trim();
+    if (descricao.length < 1 || descricao.length > 2000) {
+      mostrarErro(descricaoContainer, "A descrição deve ter entre 1 e 2000 caracteres.");
+      valido = false;
+    }
+
+    // --- Tags ---
+    const tagsContainer = document.getElementById("tags-editar-publicacao-container");
+    let tags = [];
+    if (tagifyEditar) {
+      tags = tagifyEditar.value.map(t => t.value);
+    }
+    
+if (!tags.length) {
+  mostrarErro(tagsContainer, "Adicione pelo menos uma tag.");
+  valido = false;
+} else if (tags.length > 10) {
+  mostrarErro(tagsContainer, "Máximo 10 tags permitidas.");
+  valido = false;
+}
+
+    // Se algum campo inválido, previne envio
+    if (!valido) {
+      e.preventDefault();
+      console.warn("⚠️ Formulário não enviado, campos inválidos.");
+    }
+  });
+}
+</script>

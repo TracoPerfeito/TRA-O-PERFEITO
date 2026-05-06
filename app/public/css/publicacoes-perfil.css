@@ -1,0 +1,49 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url(cores.css);
+
+.botao-de-voltar{
+  width: 100%;
+  background-color:  rgba(224, 236, 240, 0.37);
+  height: 5.5vh;
+  display: flex;
+  align-items: center;
+  
+}
+
+.btn-voltar{
+  border-radius: 50%;
+  border: none;
+  width: 30px;
+  height: 30px;
+  background-color: #acdabf7a;
+  color: #165040;
+  margin: 0px 0px 0px 60px;
+  font-size: 17px;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-voltar:hover {
+  background-color: #648b747a;
+  cursor: pointer;
+}
+
+.lado-botao {
+  margin: 0px 10px;
+  font-family: "Josefin Sans";
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+
+#container-publicacoes{
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+

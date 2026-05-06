@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traço Perfeito - Redefinir Senha</title>
+    <link rel="stylesheet" href="/css/redefinirsenha.css">
+    <script src="/app/public/js/simple-notify.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+</head>
+
+<body>
+<% 
+let avisoErro = {"senha_usu":"","csenha_usu":""};
+let mensagensErro = {"senha_usu":"","csenha_usu":""};
+let msgErro = "";
+
+if(listaErros && Array.isArray(listaErros)){
+    listaErros.forEach(function(itemErro){
+        if(itemErro.path == "senha_usu"){
+            avisoErro.senha_usu = "erro";
+            mensagensErro.senha_usu = itemErro.msg;
+            msgErro += `* ${itemErro.msg} <br>`;
+        }
+        if(itemErro.path == "csenha_usu"){
+            avisoErro.csenha_usu = "erro";
+            mensagensErro.csenha_usu = itemErro.msg;
+            msgErro += `* ${itemErro.msg} <br>`;
+        }
+    });
+
+    if(msgErro != ""){
+%>
+<script>
+    let msgErro ="<%= msgErro %>";
+    notify("Erro(s) no preenchimento", 
+           "Verifique o(s) campo(s) <br> " + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"), 
+           "error", "center", 5000);                        
+</script>
+<%
+    }
+} 
+
+if(dadosNotificacao){
+%>
+<script>
+    notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center");
+    if("<%= dadosNotificacao.tipo %>" == "success"){
+        setTimeout(function(){window.location="/"}, 3000);
+    }                        
+</script>
+<% } %>
+
+
+    <section class="container">
+     <section class="header">
+            
+        <section class="img"><img src="/imagens/logo.png" alt="Ilustração">
+        </section>
+
+        </section>
+
+        <section class="form-container">
+
+            <h2>Resetar Senha</h2>
+            
+            
+                <p class="instructions">Preencha os campos a baixo para definir nova senha</p>
+            
+                    
+                       
+                
+            <form action="/reset-senha" method="post" >
+
+
+
+                                <input type="hidden" name="id_usuario" value="<%= id_usuario %>">
+
+                                <section class="input-group">
+                                    <label for="email">Digite nova Senha</label>
+                                    <input type="password" name="senha_usu" placeholder="Nova senha" value=""
+                                        class="<%= avisoErro.senha_usu %> input-field" /><br>
+                                         <p class="erro-campo"><%= mensagensErro.senha_usu %></p>
+                                </section>
+                               
+                                <section class="input-group">
+                                    <label for="email">Confirmar nova Senha</label>
+                                         <input type="password" name="csenha_usu" placeholder="Repita a senha" value=""
+                                        class="<%=  avisoErro.csenha_usu %> input-field" /><br>
+                                         <p class="erro-campo"><%= mensagensErro.csenha_usu %></p>
+                                </section>
+                               <section class="button-group"><button type="submit" class="btn btn-primary">Entrar</button></section>
+                            </form>
+                            
+                   
+        </section>
+</body>
+</html>

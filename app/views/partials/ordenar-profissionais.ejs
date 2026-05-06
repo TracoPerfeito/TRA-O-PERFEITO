@@ -1,0 +1,127 @@
+<section class="filtro-ordenacao">
+  <button id="btnOrdenar" class="btn-ordenar">
+    <ion-icon name="filter-outline"></ion-icon>
+    <span id="textoOrdenar">Mais Recentes</span>
+    <span id="iconeSeta"><ion-icon name="chevron-up"></ion-icon></span>
+  </button>
+  <section id="opcoesOrdenacao" class="opcoes-ordenacao oculto">
+    <section data-ordem="mais-seguidores">Mais Seguidores <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="mais-contratados">Mais Contratados <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="melhor-avaliacao">Melhor Avaliação <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="mais-recentes" class="selecionada">Mais Recentes <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+    <section data-ordem="mais-antigos">Mais Antigos <span class="check"><ion-icon name="checkmark-outline"></ion-icon></span></section>
+  </section>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("📌 Script de ordenação de profissionais carregado");
+
+  const btnOrdenar = document.getElementById("btnOrdenar");
+  const textoOrdenar = document.getElementById("textoOrdenar");
+  const iconeSeta = document.getElementById("iconeSeta");
+  const opcoesOrdenacao = document.getElementById("opcoesOrdenacao");
+
+  if (!btnOrdenar) console.warn("⚠️ btnOrdenar NÃO encontrado");
+  if (!opcoesOrdenacao) console.warn("⚠️ opcoesOrdenacao NÃO encontrado");
+
+  // Função principal de ordenação
+  const ordenarProfissionais = (tipo) => {
+    console.log("➡️ ordenarProfissionais chamado com tipo:", tipo);
+
+    const container = document.querySelector(".container-perfis");
+    if (!container) {
+      console.error("❌ container-perfis NÃO encontrado no DOM");
+      return;
+    }
+    console.log("✅ container-perfis encontrado");
+
+    const profissionais = Array.from(container.querySelectorAll(".item-profissional"));
+    console.log(`🔎 Encontrados ${profissionais.length} elementos .item-profissional`);
+
+    profissionais.forEach((p, i) => {
+      console.log(`  [${i}] id?`, p.dataset.id || "(sem id)",
+                  "seguidores=", p.dataset.seguidores,
+                  "contratacoes=", p.dataset.contratacoes,
+                  "avaliacao=", p.dataset.avaliacao,
+                  "cadastro(raw)=", p.dataset.cadastro);
+    });
+
+    try {
+      profissionais.sort((a, b) => {
+        const seguidoresA = parseInt(a.dataset.seguidores) || 0;
+        const seguidoresB = parseInt(b.dataset.seguidores) || 0;
+        const contratacoesA = parseInt(a.dataset.contratacoes) || 0;
+        const contratacoesB = parseInt(b.dataset.contratacoes) || 0;
+        const avaliacaoA = parseFloat(a.dataset.avaliacao) || 0;
+        const avaliacaoB = parseFloat(b.dataset.avaliacao) || 0;
+
+        const parseDateSafe = (raw) => {
+          if (!raw) return new Date(0);
+          const part = raw.includes("T") ? raw.split("T")[0] : raw;
+          const d = new Date(part);
+          return isNaN(d) ? new Date(0) : d;
+        };
+
+        const dataA = parseDateSafe(a.dataset.cadastro);
+        const dataB = parseDateSafe(b.dataset.cadastro);
+
+        switch(tipo) {
+          case "mais-seguidores": return seguidoresB - seguidoresA;
+          case "mais-contratados": return contratacoesB - contratacoesA;
+          case "melhor-avaliacao": return avaliacaoB - avaliacaoA;
+          case "mais-recentes": return dataB - dataA;
+          case "mais-antigos": return dataA - dataB;
+          default: return 0;
+        }
+      });
+
+      console.log("🔁 Ordenação concluída — nova ordem:");
+      profissionais.forEach((p, i) => {
+        console.log(`  [${i}] id?`, p.dataset.id || "(sem id)", 
+                    "seguidores=", p.dataset.seguidores, 
+                    "cadastro=", p.dataset.cadastro);
+      });
+
+      profissionais.forEach(prof => container.appendChild(prof));
+      console.log("✅ Reinsersão no DOM concluída");
+
+    } catch (err) {
+      console.error("💥 Erro durante a ordenação:", err);
+    }
+  };
+
+  // Função para atualizar texto do botão e classe
+  const atualizarSelecao = (selecionada) => {
+    opcoesOrdenacao.querySelectorAll("section").forEach(o => o.classList.remove("selecionada"));
+    selecionada.classList.add("selecionada");
+    textoOrdenar.textContent = selecionada.textContent.replace("✔", "").trim();
+  };
+
+  // Toggle dropdown e seta
+  btnOrdenar.addEventListener("click", () => {
+    const aberto = !opcoesOrdenacao.classList.toggle("oculto");
+    iconeSeta.style.transform = aberto ? "rotate(180deg)" : "rotate(0deg)";
+    console.log("🔽 Dropdown toggle, aberto?", aberto);
+  });
+
+  const opcoes = opcoesOrdenacao.querySelectorAll("section");
+  opcoes.forEach(opcao => {
+    opcao.addEventListener("click", () => {
+      console.log("🟢 Opção clicada:", opcao.dataset.ordem);
+      atualizarSelecao(opcao);
+      ordenarProfissionais(opcao.dataset.ordem);
+      opcoesOrdenacao.classList.add("oculto");
+      iconeSeta.style.transform = "rotate(0deg)";
+    });
+  });
+
+  // Inicializa texto do botão
+  const inicial = opcoesOrdenacao.querySelector(".selecionada");
+  if (inicial) {
+    textoOrdenar.textContent = inicial.textContent.replace("✔", "").trim();
+  }
+
+  console.log("✅ Script de ordenação inicializado (pronto para uso)");
+});
+</script>

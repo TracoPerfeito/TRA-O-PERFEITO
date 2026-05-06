@@ -1,0 +1,183 @@
+<section class="filtro-container">
+  <button class="filtro-btn left" onclick="scrollFiltro(-1)"><i class="fas fa-arrow-left"></i> </button>
+  <section class="filtro-wrapper" id="filtroWrapper">
+   <section class="filtro-item" id="para-voce"><p>Para você</p></section>
+    <section class="filtro-item" id="seguindo"><p>Seguindo</p></section>
+    <section class="filtro-item" id="mais-curtidos"><p>Mais Curtidos</p></section>
+    <section class="filtro-item" id="design-grafico"><p>Design gráfico</p></section>
+    <section class="filtro-item" id="ilustracao"><p>Ilustração</p></section>
+    <section class="filtro-item" id="modelagem-3d"><p>Modelagem 3D</p></section>
+    <section class="filtro-item" id="logotipos"><p>Logotipos</p></section>
+    <section class="filtro-item" id="ui-ux"><p>UI/UX</p></section>
+    <section class="filtro-item" id="design-de-personagens"><p>Design de Personagens</p></section>
+    <section class="filtro-item" id="arte-para-jogos-digitais"><p>Arte para Jogos Digitais</p></section>
+    <section class="filtro-item" id="arte-conceitual"><p>Arte Conceitual</p></section>
+    <section class="filtro-item" id="storyboard"><p>Storyboard</p></section>
+    <section class="filtro-item" id="branding"><p>Branding</p></section>
+    <section class="filtro-item" id="minimalismo"><p>Minimalismo</p></section>
+    <section class="filtro-item" id="design-de-embalagens"><p>Design de Embalagens</p></section>
+    <section class="filtro-item" id="animacao-2d-3d"><p>Animação 2D/3D</p></section>
+    <section class="filtro-item" id="pixel-art"><p>Pixel Art</p></section>
+    <section class="filtro-item" id="cartoon"><p>Cartoon</p></section>
+    <section class="filtro-item" id="infantil"><p>Infantil</p></section>
+    <section class="filtro-item" id="design-publicitario"><p>Design Publicitário</p></section>
+
+
+</section>
+  <button class="filtro-btn right" onclick="scrollFiltro(1)"><i class="fas fa-arrow-right"></i> </button>
+</section>
+
+<script>
+  const wrapper = document.getElementById("filtroWrapper");
+  const leftBtn = document.querySelector(".filtro-btn.left");
+  const rightBtn = document.querySelector(".filtro-btn.right");
+
+  function scrollFiltro(direcao) {
+    const largura = 200; // valor fixo por clique
+    wrapper.scrollBy({ left: direcao * largura, behavior: 'smooth' });
+  }
+
+    wrapper.addEventListener("scroll", () => {
+    // Mostra/esconde botão da esquerda
+    if (wrapper.scrollLeft > 0) {
+      leftBtn.style.display = "block";
+    } else {
+      leftBtn.style.display = "none";
+    }
+
+    // Mostra/esconde botão da direita
+    if (wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 1) {
+      rightBtn.style.display = "none";
+    } else {
+      rightBtn.style.display = "block";
+    }
+  });
+
+  // Chama uma vez ao carregar para ajustar os botões
+  wrapper.dispatchEvent(new Event('scroll'));
+
+</script>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM carregado, script iniciado");
+
+  function normalizeString(str) {
+    return str
+      .toLowerCase()
+      .replace(/[-_]/g, " ")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+  }
+
+  const filtroItems = document.querySelectorAll(".filtro-item");
+  const publicacoes = document.querySelectorAll(".item-explorar");
+  const resultadoSec = document.querySelector(".resultado-pesquisa");
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const termoPesquisa = urlParams.get('q') || "";
+  const mostrarTexto = !termoPesquisa; // mostra texto apenas se não houver pesquisa
+
+  filtroItems.forEach(filtro => {
+    filtro.addEventListener("click", () => {
+      console.log("Filtro clicado:", filtro.id);
+      const categoriaFiltro = normalizeString(filtro.id);
+      console.log("Categoria filtro normalizada:", categoriaFiltro);
+
+      // Marca filtro ativo
+      filtroItems.forEach(f => f.classList.remove("ativo"));
+      filtro.classList.add("ativo");
+
+      let algumEncontrado = false;
+
+      if (categoriaFiltro === "mais curtidos") {
+        // Filtra por top 30% mais curtidos
+        const cardsArray = Array.from(publicacoes);
+        cardsArray.forEach(card => card.dataset.curtidaNum = Number(card.dataset.curtida) || 0);
+        const ordenados = cardsArray.sort((a, b) => b.dataset.curtidaNum - a.dataset.curtidaNum);
+        const topCount = Math.ceil(ordenados.length * 0.3);
+
+        ordenados.forEach((card, index) => {
+          if (index < topCount) {
+            card.style.display = "block";
+            card.style.opacity = 0;
+            setTimeout(() => card.style.opacity = 1, 50);
+            algumEncontrado = true;
+          } else {
+            card.style.display = "none";
+          }
+        });
+      } else {
+        // Filtro normal por categoria/tags
+        publicacoes.forEach(card => {
+          const categoriaCard = normalizeString(card.dataset.categoria || "");
+          const tagsCard = (card.dataset.tags || "").split(",").map(normalizeString);
+          const matches = categoriaCard === categoriaFiltro || tagsCard.includes(categoriaFiltro);
+
+          if (matches) {
+            card.style.display = "block";
+            card.style.opacity = 0;
+            setTimeout(() => card.style.opacity = 1, 50);
+            algumEncontrado = true;
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      // Atualiza o texto de resultado
+      if (resultadoSec) {
+        resultadoSec.innerHTML = "";
+        const nomeFiltro = filtro.textContent;
+        const titulo = document.createElement("h1");
+        titulo.classList.add("titulo-termo");
+        const descricao = document.createElement("p");
+        descricao.classList.add("descricao-termo");
+
+        if (termoPesquisa) {
+          // estamos em uma pesquisa
+          titulo.textContent = termoPesquisa;
+          if (algumEncontrado) {
+            descricao.textContent = resultadoSec.dataset.textoOriginal || `Encontramos alguns resultados para sua pesquisa por "${termoPesquisa}".`;
+          } else {
+            descricao.textContent = `Não encontramos publicações de ${nomeFiltro} relacionadas a "${termoPesquisa}".`;
+          }
+        } else {
+          // estamos no explorar normal
+          titulo.textContent = nomeFiltro;
+          if (algumEncontrado) {
+            if (categoriaFiltro === "mais curtidos") {
+              descricao.textContent = `Veja as publicações mais curtidas no Traço Perfeito.`;
+            } else {
+              switch (categoriaFiltro) {
+                case "arte digital":
+                  descricao.textContent = `Veja as melhores publicações de ${nomeFiltro} no Traço Perfeito.`;
+                  break;
+                case "design grafico":
+                  descricao.textContent = `Explore as publicações de ${nomeFiltro} e descubra os melhores trabalhos no Traço Perfeito.`;
+                  break;
+                case "ilustracao":
+                  descricao.textContent = `Confira as publicações de ${nomeFiltro} e inspire-se com os ilustradores no Traço Perfeito.`;
+                  break;
+                default:
+                  descricao.textContent = `Publicações filtradas por ${nomeFiltro} no Traço Perfeito.`;
+              }
+            }
+          } else {
+            descricao.textContent = `Nenhuma publicação encontrada para ${nomeFiltro}.`;
+          }
+        }
+
+        resultadoSec.appendChild(titulo);
+        resultadoSec.appendChild(descricao);
+        console.log("Texto atualizado:", descricao.textContent);
+      }
+
+    });
+  });
+});
+</script>

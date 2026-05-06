@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contratar profissionais | Traço Perfeito</title>
+<link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js">
+
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+<link rel="stylesheet" href="css/barrapesquisa.css">
+<link rel="stylesheet" href="css/contratar.css">
+<link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+       
+   
+<% if (status_usuario === 'pendente') { %>
+    <%- include('../partials/aviso-pendente') %>
+    
+<% } %>
+  
+
+   <% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+
+
+    <section class="pesquisas">
+  <section class="barra-filtro-centralizada">
+
+     <button id="botao-filtro">
+     <ion-icon name="funnel"></ion-icon>
+    </button>
+      <form action="/pesquisar-profissionais" id="form-pesquisa" method="get">
+                         <section class="search">
+                             <section class="icon" id="btn-pesquisa">
+                             <button type="submit"><ion-icon name="search-outline"></ion-icon></button>
+                             </section>
+                             <input 
+                             name="q"
+                               class="search-input" 
+                               type="search"  
+                               id="input-pesquisa"
+                               placeholder="Qual talento você procura hoje?"
+                               value="<%= termoPesquisa %>"
+                             >
+
+
+                           </section>
+
+                    
+
+                       </form>
+
+                              
+                        <%- include('../partials/ordenar-profissionais') %>
+
+   
+  </section>
+</section>
+
+
+  
+   
+ 
+        <section class="resultado-pesquisa">
+  <% if (termoPesquisa) { %>
+    <% if (profissionais.length > 0) { %>
+      <h1 class="titulo-termo"><%= termoPesquisa %></h1>
+      <p class="descricao-termo">
+        <% if (descricaoFamosa) { %>
+          <%= descricaoFamosa %>
+        <% } else { %>
+          <% if (profissionais.length > 5) { %>
+            Encontre os melhores profissionais de "<%= termoPesquisa %>" no Traço Perfeito.
+          <% } else { %>
+            Encontramos alguns profissionais para sua pesquisa por "<%= termoPesquisa %>".
+          <% } %>
+        <% } %>
+      </p>
+    <% } else { %>
+      <h1 class="titulo-termo">Nenhum resultado encontrado</h1>
+       <img src="/imagens/sem-resultados.png" alt="Sem resultados" style="opacity:0.5; margin: 15px auto; width: 200px;">
+                            <p class="descricao-termo" style="padding: 5px;">
+        Não encontramos profissionais relacionados a "<%= termoPesquisa %>". 
+        Tente outro termo ou verifique a ortografia.
+      </p>
+
+      
+    <% } %>
+  <% } %>
+</section>
+
+ 
+           
+ 
+
+
+    <% if (profissionais.length > 0) { %>
+
+      <section class="container-perfis">
+  <% profissionais.forEach(profissional => { %>
+    <section class="card item-profissional"
+    onclick="location.href='<%= (autenticado && id_usuario === profissional.ID_USUARIO) ? '/meu-perfil-artista' : ('/perfil/' + profissional.ID_USUARIO) %>'"
+    data-seguidores="<%= profissional.QUANT_SEGUIDORES || 0 %>"
+    data-contratacoes="0"
+   
+     data-cadastro="<%= profissional.DATA_CADASTRO ? (new Date(profissional.DATA_CADASTRO)).toISOString().split('T')[0] : '' %>"
+data-especializacao="<%= profissional.ESPECIALIZACAO_DESIGNER %>"
+data-avaliacao="<%= profissional.MEDIA_NOTA || 0 %>"
+data-media-preco="<%= profissional.MEDIA_PRECO %>"
+data-is-pro="<%= profissional.isPro ? 'true' : 'false' %>"
+>
+
+  <% if (profissional.isPro) { %>
+        <section class="badge-pro">PRO</section>
+      <% } %>
+
+    
+        <section class="card-header">
+           <img src="<%= profissional.IMG_BANNER_BANCO_USUARIO || '/imagens/bg.jpg' %>"  alt="Background Image"  class="background-image" onerror="this.onerror=null; this.src='/imagens/bg.png'">
+ 
+        </section>
+        <section class="card-content">
+            <section class="profile">
+                <img src="<%= profissional.FOTO_PERFIL_BANCO_USUARIO || '/imagens/img.png' %>" alt="Profile Picture" class="profile-image" onerror="this.onerror=null; this.src='/imagens/img.png'">
+
+                <section class="info-prof">
+  <section class="info-header">
+    <section class="informacoes-card">
+        <h2 class="name"><%= profissional.NOME_USUARIO %></h2>  
+        
+        <p class="role"><%= profissional.ESPECIALIZACAO_DESIGNER || 'Profissional' %></p>
+    </section>
+    <section class="nota-prof">
+  <ion-icon name="star-outline" class="estrela-perfil"></ion-icon>
+  <span class="rating">
+    <%= profissional.QTD_AVALIACOES > 0 ? profissional.MEDIA_NOTA: "-" %>
+  </span>
+</section>
+
+  </section>
+</section>
+            </section>
+
+
+            <section class="dados-perfil">
+  <section>
+    <p><%= profissional.QUANT_SEGUIDORES %></p>
+    <span>Seguidores</span>
+  </section>
+  <section>
+    <p><%= profissional.CONTRATOS_FINALIZADOS%></p>
+    <span>Contratações</span>
+  </section>
+  <section>
+    <p><%= profissional.QUANT_PUBLICACOES %></p>
+    <span>Publicações</span>
+  </section>
+</section>
+
+
+
+
+            <section class="description">
+                <p><%= profissional.DESCRICAO_PERFIL_USUARIO || 'Profissional criativo e dedicado.' %></p>
+            </section>
+        </section>
+    </section>
+    
+  <% }) %>
+
+  
+ </section>
+<% } else if (profissionais.length === 0 && !termoPesquisa) { %>
+   <!-- Caso não haja profissionais e não seja uma pesquisa -->
+    <section class="sem-profissionais" style="opacity: 0.6; display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 10px;">
+      <img src="/imagens/sem-resultados.png" alt="Sem profissionais" style="margin: 20px auto; width: 200px;">
+      <p style="font-family: 'Montserrat'; font-size: 1.5rem; text-align: center; color: var(--text-color); margin-bottom: 20px;">
+        Não há profissionais no momento.
+      </p>
+    </section>
+  <% } %>
+
+
+
+ <!-- Painel de filtro -->
+<section class="filtro-lateral" id="filtroLateral">
+  <section class="filtro-conteudo">
+    <h2 class="h2-filtro">Filtros</h2>
+    <section class="filtro-secao">
+      <section class="filtro-header">Área de atuação <ion-icon name="chevron-forward-outline"></ion-icon></section>
+      <section class="filtro-opcoes">
+          <label><input type="checkbox" data-valor="Design Gráfico"> Designer Gráfico</label>
+<label><input type="checkbox" data-valor="Ilustração"> Ilustrador(a)</label>
+<label><input type="checkbox" data-valor="Design UX/UI"> Designer de Interface (UI)</label>
+<label><input type="checkbox" data-valor="Design UX/UI"> Designer de Experiência (UX)</label>
+<label><input type="checkbox" data-valor="Design de Produto"> Designer de Produto</label>
+<label><input type="checkbox" data-valor="Design de Moda"> Designer de Moda</label>
+<label><input type="checkbox" data-valor="Design de Interiores"> Designer de Interiores</label>
+<label><input type="checkbox" data-valor="Modelagem 3D"> Artista 3D</label>
+<label><input type="checkbox" data-valor="Animação e Modelagem 2D / 3D"> Animador(a) 2D/3D</label>
+<label><input type="checkbox" data-valor="Fotografia"> Fotógrafo(a)</label>
+<label><input type="checkbox" data-valor="Videomaker"> Videomaker</label>
+<label><input type="checkbox" data-valor="Editor(a) de Vídeo"> Editor(a) de Vídeo</label>
+<label><input type="checkbox" data-valor="Arte Tradicional"> Artista Tradicional (pintura, desenho, etc.)</label>
+<label><input type="checkbox" data-valor="Letrista / Tipógrafo(a)"> Letrista / Tipógrafo(a)</label>
+<label><input type="checkbox" data-valor="Design de Logotipo"> Designer de Logotipo / Identidade Visual</label>
+<label><input type="checkbox" data-valor="Concept Artist"> Concept Artist</label>
+<label><input type="checkbox" data-valor="Web Designer"> Web Designer</label>
+<label><input type="checkbox" data-valor="Motion Designer"> Motion Designer</label>
+<label><input type="checkbox" data-valor="Design de Jogos"> Designer de Jogos</label>
+<label><input type="checkbox" data-valor="Design de Embalagens"> Designer de Embalagens</label>
+
+
+
+      </section>
+    </section>
+<section class="filtro-secao">
+  <section class="filtro-header">
+    Avaliação (média)
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </section>
+
+  <section class="filtro-opcoes filtro-slider">
+    <section class="slider-container">
+      <input type="range" id="avaliacaoMin" min="0" max="5" step="0.1" value="3">
+      <input type="range" id="avaliacaoMax" min="0" max="5" step="0.1" value="5">
+      <section class="slider-track"></section>
+    </section>
+    <section class="slider-labels">
+      <span>0</span>
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+      <span>5</span>
+    </section>
+    <p>De <span id="valorMin">3</span> ★ a <span id="valorMax">5</span> ★</p>
+  </section>
+</section>
+
+
+
+<!-- Usuários Pro -->
+<section class="filtro-secao">
+  <section class="filtro-header">Usuários Pro <ion-icon name="chevron-forward-outline"></ion-icon></section>
+  <section class="filtro-opcoes">
+    <label><input type="checkbox" name="usuariosPro" value="sim"> Mostrar apenas usuários PRO</label>
+  </section>
+</section>
+
+
+<section class="filtro-secao">
+  <section class="filtro-header">Faixa de preço médio <ion-icon name="chevron-forward-outline"></ion-icon></section>
+  <section class="filtro-opcoes filtro-slider">
+    <section class="slider-container">
+      <input type="range" min="0" max="5000" step="100" value="100" class="slider" id="precoMin">
+      <input type="range" min="0" max="5000" step="100" value="4000" class="slider" id="precoMax">
+      <section class="slider-track"></section>
+      <section class="slider-fill"></section>
+    </section>
+    <section class="slider-labels">
+      <span id="precoMinLabel">R$ 0</span>
+      <span id="precoMaxLabel">Acima de R$ 5.000</span>
+    </section>
+  </section>
+</section>
+
+
+
+   <button id="aplicar-filtro">Aplicar filtros</button>
+  </section>
+</section>
+
+<script>
+  const botaoFiltro = document.getElementById("botao-filtro");
+  const filtroLateral = document.getElementById("filtroLateral");
+  const headersFiltro = document.querySelectorAll(".filtro-header");
+
+  botaoFiltro.addEventListener("click", () => {
+    filtroLateral.classList.toggle("aberto");
+  });
+
+  headersFiltro.forEach(header => {
+    header.addEventListener("click", () => {
+      const ativo = header.classList.contains("ativo");
+      document.querySelectorAll(".filtro-header").forEach(h => h.classList.remove("ativo"));
+      document.querySelectorAll(".filtro-opcoes").forEach(o => o.classList.remove("ativo"));
+      if (!ativo) {
+        header.classList.add("ativo");
+        header.nextElementSibling.classList.add("ativo");
+      }
+    });
+  });
+
+  // Filtro segue a rolagem, mas para antes do rodapé
+  const footer = document.querySelector("footer");
+  window.addEventListener("scroll", () => {
+    const rect = footer?.getBoundingClientRect();
+    if (!rect) return;
+    if (rect.top < window.innerHeight - 50) {
+      filtroLateral.style.position = "absolute";
+      filtroLateral.style.top = `${window.scrollY + rect.top - filtroLateral.offsetHeight - 50}px`;
+    } else {
+      filtroLateral.style.position = "fixed";
+      filtroLateral.style.top = "90px";
+    }
+  });
+
+
+  const minRange = document.getElementById("avaliacaoMin");
+const maxRange = document.getElementById("avaliacaoMax");
+const valMin = document.getElementById("valorMin");
+const valMax = document.getElementById("valorMax");
+
+function updateRanges() {
+  let minVal = parseFloat(minRange.value);
+  let maxVal = parseFloat(maxRange.value);
+
+  // impedir que se cruzem
+  if (minVal > maxVal - 0.1) minVal = maxVal - 0.1;
+  if (maxVal < minVal + 0.1) maxVal = minVal + 0.1;
+
+  minRange.value = minVal.toFixed(1);
+  maxRange.value = maxVal.toFixed(1);
+
+  valMin.textContent = minVal.toFixed(1);
+  valMax.textContent = maxVal.toFixed(1);
+
+  // atualizar a barra azul do intervalo
+  const track = minRange.parentNode.querySelector(".slider-track");
+  const percent1 = (minVal / 5) * 100;
+  const percent2 = (maxVal / 5) * 100;
+  track.style.background = `linear-gradient(to right, #ddd ${percent1}%, var(--cor-btn-azul) ${percent1}%, var(--cor-btn-azul) ${percent2}%, #ddd ${percent2}%)`;
+}
+
+[minRange, maxRange].forEach(el => el.addEventListener("input", updateRanges));
+
+updateRanges(); // inicializa a barra
+
+const precoMin = document.getElementById('precoMin');
+const precoMax = document.getElementById('precoMax');
+const precoMinLabel = document.getElementById('precoMinLabel');
+const precoMaxLabel = document.getElementById('precoMaxLabel');
+
+const limiteMax = 5000;
+
+function atualizarLabels() {
+  precoMinLabel.textContent = precoMin.value > 0 ? `R$ ${precoMin.value}` : 'R$ 0';
+  precoMaxLabel.textContent = precoMax.value >= limiteMax ? `Acima de R$ ${limiteMax.toLocaleString()}` : `R$ ${precoMax.value}`;
+}
+
+precoMin.addEventListener('input', atualizarLabels);
+precoMax.addEventListener('input', atualizarLabels);
+
+// Inicializa labels
+atualizarLabels();
+
+
+</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ Script de filtro carregado.");
+
+  const botaoAplicar = document.getElementById("aplicar-filtro");
+  const perfis = Array.from(document.querySelectorAll(".item-profissional"));
+
+  const todosPerfis = perfis.map(card => ({
+    el: card,
+    especializacao: card.dataset.especializacao?.trim().toLowerCase() || "",
+    avaliacao: parseFloat(card.dataset.avaliacao || 0),
+    preco: parseFloat(card.dataset.mediaPreco || 0),
+    isPro: card.dataset.isPro === "true",
+  }));
+
+  let ultimoFiltro = null;
+
+  // 🔹 Valores padrão (iniciais)
+  const padrao = {
+    categorias: [],
+    pro: false,
+    avaliacaoMin: parseFloat(document.getElementById("avaliacaoMin").defaultValue),
+    avaliacaoMax: parseFloat(document.getElementById("avaliacaoMax").defaultValue),
+    precoMin: parseFloat(document.getElementById("precoMin").defaultValue),
+    precoMax: parseFloat(document.getElementById("precoMax").defaultValue)
+  };
+
+  console.log("🔧 Valores padrão dos filtros:", padrao);
+
+  botaoAplicar.addEventListener("click", () => {
+    console.clear();
+    console.log("🎯 Clique em 'Aplicar filtros' detectado!");
+
+    // Captura estado atual
+    const categoriasSelecionadas = Array.from(
+      document.querySelectorAll('.filtro-opcoes input[type="checkbox"][data-valor]:checked')
+    ).map(cb => cb.dataset.valor.trim().toLowerCase());
+
+    const proChecked = document.querySelector('input[name="usuariosPro"]:checked')?.value === "sim";
+    const avaliacaoMin = parseFloat(document.getElementById("avaliacaoMin").value);
+    const avaliacaoMax = parseFloat(document.getElementById("avaliacaoMax").value);
+    const precoMin = parseFloat(document.getElementById("precoMin").value);
+    const precoMax = parseFloat(document.getElementById("precoMax").value);
+
+    console.log("📊 Estado atual:");
+    console.log("→ Categorias:", categoriasSelecionadas);
+    console.log("→ PRO:", proChecked);
+    console.log(`→ Avaliação: ${avaliacaoMin}-${avaliacaoMax}`);
+    console.log(`→ Preço: ${precoMin}-${precoMax}`);
+
+    const filtroAtual = {
+      categorias: categoriasSelecionadas,
+      pro: proChecked,
+      avaliacaoMin,
+      avaliacaoMax,
+      precoMin,
+      precoMax
+    };
+
+    // Ignorar se nada mudou desde o último clique
+    if (JSON.stringify(filtroAtual) === JSON.stringify(ultimoFiltro)) {
+      console.log("🟡 Nenhuma mudança desde o último filtro. Ignorando.");
+      return;
+    }
+    ultimoFiltro = filtroAtual;
+
+    // Identificar filtros realmente alterados
+    const filtrosAtivos = {
+      categorias: categoriasSelecionadas.length > 0,
+      pro: proChecked !== padrao.pro,
+      avaliacao: avaliacaoMin !== padrao.avaliacaoMin || avaliacaoMax !== padrao.avaliacaoMax,
+      preco: precoMin !== padrao.precoMin || precoMax !== padrao.precoMax
+    };
+
+    const algumFiltroAtivo = Object.values(filtrosAtivos).some(Boolean);
+
+    if (!algumFiltroAtivo) {
+      console.log("🔵 Nenhum filtro alterado. Exibindo todos os perfis.");
+      todosPerfis.forEach(p => (p.el.style.display = ""));
+      return;
+    }
+
+    console.log("✅ Filtros ativos:", filtrosAtivos);
+
+    let visiveis = 0;
+    todosPerfis.forEach((p, i) => {
+      let visivel = true;
+      console.groupCollapsed(`👤 Analisando perfil #${i + 1}`);
+      console.log("→ Especialização:", p.especializacao);
+      console.log("→ Avaliação:", p.avaliacao);
+      console.log("→ Preço:", p.preco);
+      console.log("→ PRO:", p.isPro);
+
+      // Filtro por categoria
+      if (filtrosAtivos.categorias) {
+        visivel = categoriasSelecionadas.some(cat => p.especializacao.includes(cat));
+        if (!visivel) console.warn("🚫 Excluído por categoria.");
+      }
+
+      // Filtro por avaliação
+      if (visivel && filtrosAtivos.avaliacao) {
+        if (p.avaliacao < avaliacaoMin || p.avaliacao > avaliacaoMax) {
+          visivel = false;
+          console.warn("🚫 Excluído por avaliação fora do intervalo.");
+        }
+      }
+
+      // Filtro por preço
+      if (visivel && filtrosAtivos.preco) {
+        if (p.preco < precoMin || p.preco > precoMax) {
+          visivel = false;
+          console.warn("🚫 Excluído por preço fora do intervalo.");
+        }
+      }
+
+      // Filtro PRO
+      if (visivel && filtrosAtivos.pro) {
+        if (!p.isPro) {
+          visivel = false;
+          console.warn("🚫 Excluído por não ser PRO.");
+        }
+      }
+
+      p.el.style.display = visivel ? "" : "none";
+      if (visivel) visiveis++;
+      console.log("📌 Resultado:", visivel ? "✅ Mantido" : "❌ Ocultado");
+      console.groupEnd();
+    });
+
+    console.log(`🎯 Filtro finalizado. Perfis visíveis: ${visiveis}/${todosPerfis.length}`);
+  });
+});
+</script>
+
+
+
+ 
+   <% if (tipo_usuario === 'profissional') { %>
+
+                 <%- include('../partials/fab-button') %>
+<% }   else if(tipo_usuario === 'comum') {   %>
+        <%- include('../partials/fab-button-comum') %>
+  <% } %>
+  
+ 
+ <%- include('../partials/rodape'); %>
+
+<script>
+const nomes = document.querySelectorAll('.name');
+const ignorar = ['de', 'da', 'do', 'das', 'dos'];
+
+nomes.forEach(nome => {
+  const partesOriginais = nome.innerText.trim().split(' ');
+  
+  // Filtra as palavras que não estão na lista de ligação
+  const partesSemLigacao = partesOriginais.filter(p => !ignorar.includes(p.toLowerCase()));
+
+  if (partesSemLigacao.length > 3) {
+    // Pega o primeiro e o último nome úteis (ignorando 'de', 'da', etc.)
+    nome.innerText = `${partesSemLigacao[0]} ${partesSemLigacao[partesSemLigacao.length - 1]}`;
+  } else {
+    // Se tiver 3 ou menos nomes úteis, mantém o nome original
+    nome.innerText = partesOriginais.join(' ');
+  }
+});
+</script>
+
+
+ <script src="js/filtro.js"></script>
+ <script src="js/like.js"></script>
+ <script src="https://kit.fontawesome.com/2fcd7931ea.js" crossorigin="anonymous"></script>
+ <script src="js/mobile-navbar.js"></script>
+ 
+</body>
+</html>

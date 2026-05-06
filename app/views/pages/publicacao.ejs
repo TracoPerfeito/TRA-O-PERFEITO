@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+ 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/imagens/favicon.ico" type="image/x-icon">
+   
+    <link rel="stylesheet" href="/css/publicacao.css">
+     <link rel="stylesheet" href="/css/share-button.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+ 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+   <script src="/js/simple-notify.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+   <script src="/js/excluir-comentario" defer></script>
+ 
+   
+ 
+   
+    <title>Publicação</title>
+</head>
+ 
+ 
+ 
+<body>
+ 
+  
+<% if (status_usuario === 'pendente') { %>
+    <%- include('../partials/aviso-pendente') %>
+    
+<% } %>
+  
+ 
+ 
+ 
+ <% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'administrador') { %>
+  <%- include('../partials/menu_adm_base', { tipo_usuario: tipo_usuario }) %>
+
+ <% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+ 
+<% if (dadosNotificacao && Object.keys(dadosNotificacao).length > 0) { %>
+  <script>
+    notify("<%= dadosNotificacao.titulo %>", "<%= dadosNotificacao.mensagem %>", "<%= dadosNotificacao.tipo %>", "top right");
+  </script>
+<% } %>
+
+ 
+ 
+<%
+let cssErros = {conteudo: ""};
+let msgErros = {conteudo: ""};
+ 
+(listaErros || []).forEach(function(elemento) {
+    if(elemento.path === "conteudo") {
+        cssErros.conteudo = "erro-form";
+        msgErros.conteudo = elemento.msg;
+    }
+});
+%>
+ 
+ 
+ 
+   
+    <main>
+ 
+        <section class="botao-de-voltar">  
+            <button class="btn-voltar" onclick="voltarPaginaCustom()"> <ion-icon name="arrow-back-outline" id="seta"></ion-icon>
+               
+               
+            </button>
+            <p class="lado-botao">Publicação de <%= publicacao.NOME_USUARIO %></p>
+        </section>
+ 
+     
+ 
+        <section class="container-pag-publi">
+ 
+            <section class="principal-pag-publi">
+ 
+               <section class="publi-person-button">
+  <section class="publi-info">
+    <!-- Foto do perfil do usuário -->
+       <img 
+                         src="<%= publicacao.FOTO_PERFIL_BANCO_USUARIO || '/imagens/img.png' %>" 
+                          class="foto-de-perfil"
+                        alt="Foto do usuário"
+                        onerror="this.onerror=null; this.src='/imagens/img.png'">
+       
+    <!-- Link para o perfil do usuário, usando o ID do usuário -->
+    <a href="<%= (autenticado && id_usuario === publicacao.ID_USUARIO) ? '/meu-perfil-artista' : '/perfil/' + publicacao.ID_USUARIO %>">
+      <p class="nome-dono-post"><%= publicacao.NOME_USUARIO %></p>
+    </a>
+  </section>
+ 
+  <section class="menu-opcoes"> <!-- Denunciar e compartilhar-->
+    <svg class="icone-menu" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+      <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/>
+    </svg>
+ 
+    <section class="opcoes-menu">
+
+      <% if (autenticado && id_usuario === publicacao.ID_USUARIO) { %>
+        <button 
+          class="btn-editar" 
+          title="Editar publicação" 
+          data-id="<%= publicacao.ID_PUBLICACAO %>"
+          data-titulo="<%= publicacao.NOME_PUBLICACAO %>"
+          data-categoria="<%= publicacao.CATEGORIA %>"
+          data-descricao="<%= publicacao.DESCRICAO_PUBLICACAO %>"
+          data-tags="<%= publicacao.TAGS %>"
+          data-imagens='<%- JSON.stringify(publicacao.imagensUrls || []) %>'>
+          <ion-icon name="create-outline"></ion-icon>
+          Editar
+        </button>
+          
+
+        <button class="btn-excluir-publicacao" data-id="<%= publicacao.ID_PUBLICACAO %>" title="Excluir publicação">
+  <ion-icon name="trash-outline"></ion-icon>Excluir
+</button>
+
+      <% } %>
+
+      <button class="btn-compartilhar" title="Compartilhar" id="openShareModal" onclick="openModal('<%= publicacao.ID_PUBLICACAO %>')">
+        <ion-icon name="share-social-outline"></ion-icon>
+        Compartilhar
+      </button>
+     <% if (tipo_usuario && id_usuario !== publicacao.ID_USUARIO) { %>
+  <button class="btn-denunciar" data-id="<%= publicacao.ID_PUBLICACAO %>">
+    <ion-icon name="flag-outline"></ion-icon> Denunciar
+  </button>
+<% } %>
+
+    </section>
+  </section>
+</section>
+ 
+ 
+<section class="carrossel-imagens-explorar" onmouseenter="mostrarControles(this)" onmouseleave="esconderControles(this)">
+  <section class="container-imgs" ontouchstart="startSwipe(event, this)" ontouchmove="swipeMove(event)" ontouchend="endSwipe(event, this)">
+    
+    <% if (publicacao && publicacao.imagens && publicacao.imagens.length > 0) { %>
+      <% publicacao.imagens.forEach((img, idx) => { %>
+        <img
+          src="data:image/jpeg;base64,<%= img.toString('base64') %>"
+          class="publicacao-img<%= idx === 0 ? ' ativa' : '' %>"
+          alt="Imagem da publicação"/>
+      <% }) %>
+    <% } else { %>
+      <p class="sem-imagens">Não há imagens para esta publicação.</p>
+    <% } %>
+
+  </section>
+
+  <section class="aviso-zoom">
+    <ion-icon name="expand-outline"></ion-icon> <p>Clique para abrir a imagem</p>
+  </section>
+
+  <% if (publicacao && publicacao.imagens && publicacao.imagens.length > 1) { %>
+    <button class="seta-carrossel esquerda" onclick="event.preventDefault();prevImg(this)">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </button>
+    <button class="seta-carrossel direita" onclick="event.preventDefault();nextImg(this)">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </button>
+
+    <section class="indicadores">
+      <% publicacao.imagens.forEach((_, idx) => { %>
+        <p class="indicador<%= idx === 0 ? ' ativo' : '' %>"></p>
+      <% }) %>
+    </section>
+  <% } %>
+</section>
+
+<section class="con-img-expandida" id="con-img-expandida">
+  <p class="fechar" id="fechar">&times;</p>
+ <img src="" id="imgExpandida" alt="Imagem expandida">
+ <button id="prevArrow" class="arrow left"><ion-icon name="chevron-back-outline"></ion-icon></button>
+<button id="nextArrow" class="arrow right"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+ 
+ 
+</section>
+ 
+ 
+ 
+ 
+<section class="descricao-like">
+  <section class="nome-like">
+    <!-- Nome da publicação -->
+    <p class="nome-da-publicacao"><%= publicacao.NOME_PUBLICACAO %></p>
+ 
+ 
+<section class="contagens-likes-visu">
+  
+      <section class="contagem">
+  
+        <ion-icon name="eye"></ion-icon>
+        <small><%= N_VISUALIZACOES %></small>
+      </section>
+  
+  
+  
+           <section class="contagem">
+  
+           <button class="like-button">
+    <a href="/favoritar?id=<%= publicacao.ID_PUBLICACAO %>&sit=<%= publicacao.FAVORITO %>&idDono=<%= publicacao.ID_USUARIO %>&nomePub=<%= encodeURIComponent(publicacao.NOME_PUBLICACAO) %>"
+       onclick="localStorage.setItem('scrollPos', window.scrollY)">
+      <i class="<%= publicacao.FAVORITO === 'favorito' ? 'fas' : 'far' %> fa-heart <%= publicacao.FAVORITO %>"></i>
+    </a>
+  </button>
+  <small><%= N_CURTIDAS %></small>
+  </section>
+</section>
+  </section>
+ 
+  <!-- Descrição da publicação -->
+  <p class="descricao-publi-prin"><%= publicacao?.DESCRICAO_PUBLICACAO || '' %></p>
+</section>
+
+<% 
+  const cores = [
+    '#7490C9', 
+    '#969ED0',  
+    '#92C4E2', 
+    '#B8D9BD', 
+    '#9BB7CF', 
+    '#C3E3DF',
+    '#C2E5F0', 
+    '#ADBCE2'
+  ];
+
+  const tagsArray = (publicacao && publicacao.TAGS) ? publicacao.TAGS.split(',') : [];
+%>
+
+<section class="tags">
+  <% tagsArray.forEach(tag => { %>
+    <% const cor = cores[Math.floor(Math.random() * cores.length)]; %>
+    <p class="tag" style="background-color: <%= cor %>">
+      #<%= tag.trim() %>
+    </p>
+  <% }) %>
+</section>
+
+ 
+</section>
+ 
+ 
+ 
+ 
+ 
+              <section class="comentarios">
+  <h2 id="comentarios-nome-secao"> Comentários</h2>
+
+  <!-- Adicionar comentário -->
+  <section class="adicionar-comentario">
+    <form action="/salvarcomentario" method="post">
+      <label for="adicionar-comentario">Adicionar comentário:</label>
+      <textarea id="ad-comentario" name="conteudo" rows="4" cols="50" placeholder="Digite seu comentário aqui..." class="<%= cssErros.conteudo %>"></textarea>
+      <p class="msg-erro"></p>
+      <input type="hidden" name="idPublicacao" value="<%= publicacao.ID_PUBLICACAO %>">
+      <input type="hidden" name="donoPublicacao" value="<%= publicacao.ID_USUARIO %>">
+      <input type="hidden" name="nomePublicacao" value="<%= publicacao.NOME_PUBLICACAO %>">
+      <br>
+      <section class="button-container-submit">
+        <% if (!tipo_usuario) { %>
+          <button class="enviar-comentario" disabled>Entre em sua conta para comentar</button>
+          <p class="tooltip">Crie uma conta para publicar um comentário.</p>
+        <% } else if (status_usuario === 'pendente') { %>
+          <button class="enviar-comentario" disabled>Ative sua conta para comentar</button>
+          <p class="tooltip">Verifique seu e-mail para comentar.</p>
+        <% } else { %>
+          <button class="enviar-comentario">Enviar</button>
+        <% } %>
+      </section>
+    </form>
+  </section>
+
+  <!-- Lista de comentários -->
+  <section class="comentarios-caixa" id="comentariosSection">
+    <% if (comentarios && comentarios.length > 0) { %>
+      <% comentarios.forEach(comentario => { %>
+        <section class="comentario" data-id-comentario="<%= comentario.ID_COMENTARIO %>">
+          <section class="comentario-info-total">
+            <section class="comentario-info">
+               <img 
+                         src="<%= comentario.FOTO_PERFIL_BANCO_USUARIO || '/imagens/img.png' %>" 
+                          class="foto-de-perfil"
+                        alt="Foto do usuário"
+                        onerror="this.onerror=null; this.src='/imagens/img.png'">
+              <a href="<%= (autenticado && id_usuario === comentario.ID_USUARIO) ? '/meu-perfil-artista' : '/perfil/' + comentario.ID_USUARIO %>">
+                <p class="nome-comentario"><%= comentario.NOME_USUARIO %></p>
+              </a>
+                 <small class="data-comentario" data-data="<%= comentario.DATA_COMENTARIO %>"></small>
+            </section>
+
+         
+
+            <!-- Menu de opções do comentário -->
+            <section class="menu-opcoes-coment">
+              <svg class="icone-menu-coment" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/>
+              </svg>
+
+              <section class="opcoes-menu-coment" data-id-comentario="<%= comentario.ID_COMENTARIO %>">
+               <% if (autenticado && (id_usuario === comentario.ID_USUARIO || tipo_usuario === 'administrador')) { %>
+  <button class="btn-excluir-comentario" title="Excluir Comentário">
+    <ion-icon name="trash-outline"></ion-icon>Excluir
+  </button>
+<% } %>
+
+                  <% if (!autenticado || id_usuario !== comentario.ID_USUARIO) { %>
+                        <button class="btn-denunciar-comentario" title="Denunciar">
+                          <ion-icon name="flag-outline"></ion-icon> Denunciar
+                        </button>
+                      <% } %>
+
+              </section>
+            </section>
+
+          </section>
+
+          <!-- Conteúdo do comentário -->
+          <section class="escrita-comentario">
+            <p><%= comentario.CONTEUDO_COMENTARIO %></p>
+          </section>jdjd
+        </section>
+      <% }) %>
+    <% } else { %>
+         <section style="display: flex; flex-direction:column; align-items: center; opacity: 0.5;">
+           <img src="/imagens/msgs.png" alt="Sem resultados" style="width:40%;  margin:20px auto;">
+                 <p>Seja o primeiro a comentar!</p>
+         </section>
+    <% } %>
+  </section>
+</section>
+
+             
+ 
+ 
+           
+ 
+ 
+            </section>
+        </section>
+ 
+ 
+ 
+       
+ 
+                                                <!-- Modal de denúncia -->
+ <!-- Modal de denúncia -->
+<section id="modalDenuncia" class="modal hidden">
+  <section class="modal-content">
+    <h3>Qual o motivo da denúncia?</h3>
+    <form id="formDenuncia" action="/denunciar-publicacao" method="POST">
+      <input type="hidden" name="idPublicacao" id="idPublicacaoInput" value=" <%= publicacao.ID_PUBLICACAO %>">
+      
+      <label><input type="radio" name="motivo" value="Conteúdo ofensivo" required> Conteúdo ofensivo</label><br>
+      <label><input type="radio" name="motivo" value="Spam"> Spam</label><br>
+      <label><input type="radio" name="motivo" value="Informação falsa ou enganosa"> Informação falsa ou enganosa</label><br>
+      <label><input type="radio" name="motivo" value="Nudez ou conteúdo sexual"> Nudez ou conteúdo sexual</label><br>
+      <label><input type="radio" name="motivo" value="Plágio ou cópia não autorizada"> Plágio ou cópia não autorizada</label><br>
+      <label><input type="radio" name="motivo" value="Outro"> Outro</label><br><br>
+      
+      <button type="submit">Enviar denúncia</button>
+      <button type="button" id="fecharModal">Cancelar</button>
+    </form>
+  </section>
+</section>
+
+
+ 
+ 
+ 
+                <!-- Modal de compartilhamento -->
+                <section id="modal-share">
+                <section class="modal-content-share">
+                    <h2>Compartilhar link da publicação</h2>
+ 
+                    <section class="link-container">
+                    <section id="shareLink">
+                      https://tracoperfeito.onrender.com/publicacao/
+                    </section>
+ 
+                    <button class="copy-button" onclick="copyToClipboard()">
+                        <section id="copyIcon">
+                       
+                            <svg xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px; margin-right: 4px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2M16 8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8a2 2 0 01-2-2v-2"/>
+                            </svg>
+     
+                        </section>
+                        <section id="copyText">Copiar link</section>
+                        <section id="tooltip">Copiado!</section>
+                    </button>
+                    </section>
+ 
+                    <button class="close-modal-btn" onclick="closeModal()">×</button>
+                </section>
+                </section>
+
+
+<%- include('../partials/excluir-publi') %>
+                
+               
+<!-- Modal Excluir Comentário -->
+<section id="modalExcluirComentario" class="modal-coment hidden">
+  <section class="modal-content-coment">
+    <h2>Excluir Comentário</h2>
+    <form action="/excluir-comentario" method="POST">
+  <input type="hidden" name="idComentario" id="excluirComentarioId" value="">
+  <input type="hidden" name="idPublicacao" value="<%= publicacao.ID_PUBLICACAO %>">
+      <p>Tem certeza que deseja excluir este comentário?</p>
+      <section class="botoes-modal">
+        <button type="button" id="desistirdeexcluir"
+        class="btn-fechar-modal-coment" >Cancelar</button>
+        <button type="submit" id="excluir-coment-but">Sim, excluir</button>
+      </section>
+    </form>
+  </section>
+</section>
+
+<!-- Modal Denunciar Comentário -->
+<section id="modalDenunciarComentario" class="modal-coment hidden">
+  <section class="modal-content-coment">
+    <h2>Denunciar Comentário</h2>
+    <form action="/denunciar-comentario" method="POST">
+      <input type="hidden" name="idComentario" id="denunciarComentarioId" value="">
+      <input type="hidden" name="idPublicacao" value="<%= publicacao.ID_PUBLICACAO %>">
+
+      <label><input type="radio" name="motivo" value="Conteúdo ofensivo" required> Conteúdo ofensivo</label><br>
+      <label><input type="radio" name="motivo" value="Spam"> Spam</label><br>
+      <label><input type="radio" name="motivo" value="Informação falsa ou enganosa"> Informação falsa ou enganosa</label><br>
+      <label><input type="radio" name="motivo" value="Nudez ou conteúdo sexual"> Nudez ou conteúdo sexual</label><br>
+
+      <label><input type="radio" name="motivo" value="Outro"> Outro</label><br><br>
+
+      <section class="btns-denuncia">
+        <button type="button" class="btn-fechar-modal-coment">Cancelar</button>
+        <button type="submit">Enviar Denúncia</button>
+      </section>
+    </form>
+  </section>
+</section>
+
+ 
+ 
+    </main>
+    
+ 
+
+
+    
+   <% if (tipo_usuario === 'profissional') { %>
+
+                 <%- include('../partials/fab-button') %>
+<% }   else if(tipo_usuario === 'comum') {   %>
+        <%- include('../partials/fab-button-comum') %>
+  <% } %>
+  
+ 
+ 
+ 
+ 
+    <%- include('../partials/rodape'); %>
+    <!-- <script src="/js/like.js"></script>
+     -->
+    <script src="/js/expan-img.js" defer></script>
+    <script src="/js/mobile-navbar.js" defer></script>
+    <script src="/js/denuncia-compartilhamento.js" defer></script>
+    <script src="/js/publicacoesindex.js" defer></script>
+    <script src="/js/arrumardata.js" defer></script>
+    <script src="/js/eccomentario.js" defer></script>
+    <script>
+
+      function isSalvarComentarioRoute(path) {
+        return path === '/salvarcomentario';
+      }
+
+      function voltarPaginaCustom() {
+        const currentPath = window.location.pathname;
+        console.log('[VOLTAR] Página atual:', currentPath);
+
+        if (isSalvarComentarioRoute(currentPath)) {
+          console.log('[VOLTAR] Está em /salvarcomentario, voltando 2 passos no histórico');
+          window.history.go(-2);
+        } else {
+          console.log('[VOLTAR] Página normal, voltando 1 passo no histórico');
+          window.history.back();
+        }
+      }
+
+    </script>
+
+    <script src="js/rolagem-atualizar-pag.js"></script>
+
+
+
+<%- include('../partials/editar-publicacao') %>
+
+
+
+
+ 
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Contratações</title>
+<link rel="stylesheet" href="/css/contratacoes.css">
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ 
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+
+</head>
+<body>
+<% if (tipo_usuario === 'profissional') { %>
+  <%- include('../partials/menu-logado', { tipo_usuario: tipo_usuario }) %>
+<% } else if (tipo_usuario === 'comum') { %>
+  <%- include('../partials/menu-c-c', { tipo_usuario: tipo_usuario }) %>
+<% } else { %>
+  <%- include('../partials/menu', { tipo_usuario: tipo_usuario }) %>
+<% } %>
+
+<h1 id="hpag" class="texto-cor">Minhas contratações</h1>
+<main>
+ 
+  <!-- Cards de resumo -->
+  <section class="cards">
+  <section class="card" id="card-aguardando">
+     <ion-icon name="person-add-outline"></ion-icon>
+    <section class="card-text">
+      <h3>Aguardando Aceite</h3>
+      <p id="aguardando"><%= aguardandoAceite.length %></p>
+    </section>
+  </section>
+
+  <section class="card" id="card-aguardando-pag">
+     <ion-icon name="card-outline"></ion-icon>
+    <section class="card-text">
+      <h3>Aguardando Pagamento</h3>
+      <p id="aguardando-pag"><%= aguardandoPag.length %></p>
+    </section>
+  </section>
+
+  <section class="card" id="card-andamento">
+     <ion-icon name="play-circle-outline"></ion-icon>
+    <section class="card-text">
+      <h3>Em Andamento</h3>
+      <p id="andamento"><%= emAndamento.length %></p>
+    </section>
+  </section>
+
+  <section class="card" id="card-concluidas">
+     <ion-icon name="checkmark-done-outline"></ion-icon>
+    <section class="card-text">
+      <h3>Concluídas</h3>
+      <p id="concluidas"><%= concluidas.length %></p>
+    </section>
+  </section>
+
+  <section class="card" id="card-canceladas">
+     <ion-icon name="close-circle-outline"></ion-icon>
+    <section class="card-text">
+      <h3>Canceladas</h3>
+      <p id="canceladas"><%= canceladas.length %></p>
+    </section>
+  </section>
+</section>
+
+
+
+
+
+<!-- Contratações -->
+<% if(aguardandoAceite.length > 0) { %>
+<h2 class="texto-cor">Contratações Aguardando Aceite</h2>
+<section class="contratacoes-container">
+  <% aguardandoAceite.forEach(c => { 
+       const hoje = new Date();
+       const entrega = new Date(c.DATA_ENTREGA);
+       const diffDias = Math.ceil((entrega - hoje) / (1000*60*60*24));
+  %>
+    <section class="contratacao-card">
+      <!-- Cabeçalho -->
+      <section class="card-header">
+        <h3><%= c.NOME_PROJETO %></h3>
+        <span class="status-tag status-aguardando">Aguardando Aceite</span>
+      </section>
+
+      <!-- Informações principais -->
+      <section class="card-info">
+        <section class="info-block">
+          <strong>Cliente</strong>
+          <p><%= c.NOME_CLIENTE %></p>
+          <small><%= c.EMAIL_CLIENTE %></small>
+        </section>
+        <section class="info-block">
+          <strong>Profissional</strong>
+          <p><%= c.NOME_PROFISSIONAL %></p>
+          <small><%= c.EMAIL_PROFISSIONAL %></small>
+        </section>
+        <section class="info-block">
+          <strong>Valor</strong>
+          <p>R$ <%= c.VALOR_TOTAL.toFixed(2) %></p>
+        </section>
+        <section class="info-block">
+          <strong>Prazo</strong>
+          <p><%= entrega.toLocaleDateString('pt-BR') %></p>
+          <small class="tempo-restante"><%= diffDias >= 0 ? diffDias : 0 %> dias restantes</small>
+        </section>
+      </section>
+
+      <!-- Observações -->
+      <% if(c.OBSERVACOES && c.OBSERVACOES.trim() !== '') { %>
+      <section class="card-observacoes">
+        <strong>Observações</strong>
+        <p><%= c.OBSERVACOES %></p>
+      </section>
+      <% } %>
+
+      <!-- Botões -->
+      <section class="card-buttons">
+        <a href="#" class="ver-detalhes"
+           data-id-contratacao="<%= c.ID_CONTRATACAO %>"
+           data-projeto="<%= c.NOME_PROJETO %>"
+           data-cliente="<%= c.NOME_CLIENTE %>"
+           data-profissional="<%= c.NOME_PROFISSIONAL %>"
+           data-valor="<%= c.VALOR_TOTAL.toFixed(2) %>"
+           data-prazo="<%= entrega.toLocaleDateString('pt-BR') %>"
+           data-obs="<%= c.OBSERVACOES || 'Nenhuma' %>"
+           data-contratante="<%= c.ID_CLIENTE %>"
+           data-pago="<%= c.PAGO %>">
+           Ver Detalhes
+        </a>
+
+        <% if(Number(c.ID_USUARIO_CRIADOR) !== id_usuario) { %>
+          <form action="/contratacoes/aceitar/<%= c.ID_CONTRATACAO %>" method="POST">
+            <button class="aceitar">Aceitar</button>
+          </form>
+          <form action="/contratacoes/recusar/<%= c.ID_CONTRATACAO %>" method="POST">
+            <button class="recusar">Recusar</button>
+          </form>
+        <% } %>
+
+      
+      </section>
+    </section>
+  <% }) %>
+</section>
+<% } %>
+
+
+<!-- Contratações Aguardando Pagamento -->
+<% if(aguardandoPag.length > 0) { %>
+<h2 class="texto-cor">Contratações Aguardando Pagamento</h2>
+<section class="contratacoes-container">
+  <% aguardandoPag.forEach(c => { 
+       const hoje = new Date();
+       const entrega = new Date(c.DATA_ENTREGA);
+       const diffDias = Math.ceil((entrega - hoje) / (1000*60*60*24));
+  %>
+    <section class="contratacao-card">
+      <!-- Cabeçalho -->
+      <section class="card-header">
+        <h3><%= c.NOME_PROJETO %></h3>
+        <span class="status-aguardando-pag status-tag">Aguardando Pagamento</span>
+      </section>
+
+      <!-- Informações principais -->
+      <section class="card-info">
+        <section class="info-block">
+          <strong>Cliente</strong>
+          <p><%= c.NOME_CLIENTE %></p>
+          <small><%= c.EMAIL_CLIENTE %></small>
+        </section>
+        <section class="info-block">
+          <strong>Profissional</strong>
+          <p><%= c.NOME_PROFISSIONAL %></p>
+          <small><%= c.EMAIL_PROFISSIONAL %></small>
+        </section>
+        <section class="info-block">
+          <strong>Valor</strong>
+          <p>R$ <%= c.VALOR_TOTAL.toFixed(2) %></p>
+        </section>
+        <section class="info-block">
+          <strong>Prazo</strong>
+          <p><%= entrega.toLocaleDateString('pt-BR') %></p>
+          <small class="tempo-restante"><%= diffDias >= 0 ? diffDias : 0 %> dias restantes</small>
+        </section>
+      </section>
+
+      <!-- Observações -->
+      <% if(c.OBSERVACOES && c.OBSERVACOES.trim() !== '') { %>
+      <section class="card-observacoes">
+        <strong>Observações</strong>
+        <p><%= c.OBSERVACOES %></p>
+      </section>
+      <% } %>
+
+      <!-- Botões -->
+      <section class="card-buttons">
+        <a href="#" class="ver-detalhes"
+           data-id-contratacao="<%= c.ID_CONTRATACAO %>"
+           data-projeto="<%= c.NOME_PROJETO %>"
+           data-cliente="<%= c.NOME_CLIENTE %>"
+           data-profissional="<%= c.NOME_PROFISSIONAL %>"
+           data-valor="<%= c.VALOR_TOTAL.toFixed(2) %>"
+           data-prazo="<%= entrega.toLocaleDateString('pt-BR') %>"
+           data-obs="<%= c.OBSERVACOES || 'Nenhuma' %>"
+           data-contratante="<%= c.ID_CLIENTE %>"
+           data-pago="<%= c.PAGO %>">
+           Ver Detalhes
+        </a>
+
+      <% if (Number(c.ID_CLIENTE) === id_usuario && c.PAGO === 'nao' && c.STATUS === 'AGUARDANDO PAGAMENTO') { %>
+  <a href="/pagarcontratacao/<%= c.ID_CONTRATACAO %>" class="btn btn-pagar">Pagar para iniciar projeto</a>
+<% } %>
+
+      </section>
+    </section>
+  <% }) %>
+</section>
+<% } %>
+
+<!-- Contratações Em Andamento -->
+<% if(emAndamento.length > 0) { %>
+<h2 class="texto-cor">Contratações Em Andamento</h2>
+<section class="contratacoes-container">
+  <% emAndamento.forEach(c => { 
+       const hoje = new Date();
+       const entrega = new Date(c.DATA_ENTREGA);
+       const diffDias = Math.ceil((entrega - hoje) / (1000*60*60*24));
+  %>
+    <section class="contratacao-card">
+      <!-- Cabeçalho -->
+      <section class="card-header">
+        <h3><%= c.NOME_PROJETO %></h3>
+        <span class=" status-andamento  status-tag">Em Andamento</span>
+      </section>
+
+      <!-- Informações principais -->
+      <section class="card-info">
+        <section class="info-block">
+          <strong>Cliente</strong>
+          <p><%= c.NOME_CLIENTE %></p>
+          <small><%= c.EMAIL_CLIENTE %></small>
+        </section>
+        <section class="info-block">
+          <strong>Profissional</strong>
+          <p><%= c.NOME_PROFISSIONAL %></p>
+          <small><%= c.EMAIL_PROFISSIONAL %></small>
+        </section>
+        <section class="info-block">
+          <strong>Valor</strong>
+          <p>R$ <%= c.VALOR_TOTAL.toFixed(2) %></p>
+        </section>
+        <section class="info-block">
+          <strong>Prazo</strong>
+          <p><%= entrega.toLocaleDateString('pt-BR') %></p>
+          <small class="tempo-restante"><%= diffDias >= 0 ? diffDias : 0 %> dias restantes</small>
+        </section>
+      </section>
+
+      <!-- Observações -->
+      <% if(c.OBSERVACOES && c.OBSERVACOES.trim() !== '') { %>
+      <section class="card-observacoes">
+        <strong>Observações</strong>
+        <p><%= c.OBSERVACOES %></p>
+      </section>
+      <% } %>
+
+      <!-- Botões -->
+      <section class="card-buttons">
+        <a href="#" class="ver-detalhes"
+           data-id-contratacao="<%= c.ID_CONTRATACAO %>"
+           data-projeto="<%= c.NOME_PROJETO %>"
+           data-cliente="<%= c.NOME_CLIENTE %>"
+           data-profissional="<%= c.NOME_PROFISSIONAL %>"
+           data-valor="<%= c.VALOR_TOTAL.toFixed(2) %>"
+           data-prazo="<%= entrega.toLocaleDateString('pt-BR') %>"
+           data-obs="<%= c.OBSERVACOES || 'Nenhuma' %>"
+           data-contratante="<%= c.ID_CLIENTE %>"
+           data-pago="<%= c.PAGO %>">
+           Ver Detalhes
+        </a>
+
+        <% if(Number(c.ID_CLIENTE) === id_usuario && c.PAGO === 'nao') { %>
+          <a href="/pagarcontratacao/<%= c.ID_CONTRATACAO %>" class="btn btn-pagar">Pagar para iniciar projeto</a>
+        <% } %>
+      </section>
+    </section>
+  <% }) %>
+</section>
+<% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Tabela completa de contratações -->
+  <h2 class="texto-cor">Todos os Projetos</h2>
+  <section class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Projeto</th>
+          <th>Cliente</th>
+          <th>Valor</th>
+          <th>Prazo</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="listaContratacoes">
+        <% todas.forEach(c => { %>
+          <tr>
+            <td data-label="Projeto"><span><%= c.NOME_PROJETO %></span></td>
+    <td data-label="Cliente"><span><%= c.ID_CLIENTE %></span></td>
+    <td data-label="Valor"><span>R$ <%= c.VALOR_TOTAL.toFixed(2) %></span></td>
+    <td data-label="Prazo"><span><%= new Date(c.DATA_ENTREGA).toLocaleDateString('pt-BR') %></span></td>
+    <td data-label="Status"><span><%= c.STATUS.replace('_', ' ') %></span></td>
+    <td data-label="Ações">
+      <section class="acoes">
+        <% if(c.STATUS === "AGUARDANDO_CONFIRMACAO") { %>
+          <form action="/contratacoes/aceitar/<%= c.ID_CONTRATACAO %>" method="POST" style="display:inline-block;">
+            <button class="aceitar">Aceitar</button>
+          </form>
+          <form action="/contratacoes/recusar/<%= c.ID_CONTRATACAO %>" method="POST" style="display:inline-block;">
+            <button class="recusar">Recusar</button>
+          </form>
+
+          
+        <% } %>
+
+        <% if (c.STATUS === "INICIADO" && 
+       ((id_usuario === c.ID_PROFISSIONAL && c.CONFIRMACAO_PROFISSIONAL === 0) ||
+        (id_usuario === c.ID_CLIENTE && c.CONFIRMACAO_CLIENTE === 0))) { %>
+  
+  <form action="/contratacoes/confirmarFinalizacao/<%= c.ID_CONTRATACAO %>" method="POST" style="display:inline-block;">
+    <button class="aceitar">Marcar como finalizada</button>
+  </form>
+
+<% } %>
+
+
+<% if (c.STATUS === "FINALIZADA" && id_usuario === c.ID_CLIENTE && !c.AVALIACAO_NOTA) { %>
+  <a href="/perfil/<%= c.ID_PROFISSIONAL %>?idContratacao=<%= c.ID_CONTRATACAO %>">
+    Avaliar Profissional
+  </a>
+<% } %>
+
+
+
+
+
+                <% if(Number(c.ID_CLIENTE) === id_usuario && c.PAGO === 'nao' && c.STATUS === "AGUARDANDO PAGAMENTO") { %>
+                  <a href="/pagarcontratacao/<%= c.ID_CONTRATACAO %>" class="btn-pagar btn">Pagar para iniciar projeto</a>
+                <% } %>
+                <a href="#" class="ver-detalhes"
+           data-id-contratacao="<%= c.ID_CONTRATACAO %>"
+           data-projeto="<%= c.NOME_PROJETO %>"
+           data-descricao="<%= c.DESCRICAO || '' %>"
+           data-cliente="<%= c.NOME_CLIENTE %>"
+           data-email-cliente="<%= c.EMAIL_CLIENTE || '' %>"
+           data-user-cliente="<%= c.USER_CLIENTE || '' %>"
+           data-profissional="<%= c.NOME_PROFISSIONAL %>"
+           data-email-profissional="<%= c.EMAIL_PROFISSIONAL || '' %>"
+           data-user-profissional="<%= c.USER_PROFISSIONAL || '' %>"
+           data-valor="<%= c.VALOR_TOTAL.toFixed(2) %>"
+           data-prazo="<%= c.DATA_ENTREGA.toISOString() %>"
+           data-data-criacao="<%= c.DATA_CRIACAO.toISOString() %>"
+           data-obs="<%= c.OBSERVACOES || 'Nenhuma' %>"
+           data-status="<%= c.STATUS %>"
+           data-contratante="<%= c.ID_CLIENTE %>"
+           data-pago="<%= c.PAGO %>">
+           Ver Detalhes
+        </a>
+      </section>
+
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+
+
+
+<section id="modalDetalhes" class="modal-detalhes">
+  <section class="modal-detalhes__content">
+    <button id="fecharModal" class="modal-detalhes__close">×</button>
+    <h2 id="modalProjeto" class="modal-info__title"></h2>
+
+    <section class="modal-info__info">
+      <section class="modal-info__info-block">
+        <strong>Descrição do Projeto</strong>
+        <p id="modalDescricao"></p>
+      </section>
+      <section class="modal-info__info-block">
+        <strong>Cliente</strong>
+        <p id="modalCliente"></p>
+        <small id="modalEmailCliente"></small>
+        <small id="modalUserCliente"></small>
+      </section>
+      <section class="modal-info__info-block">
+        <strong>Profissional</strong>
+        <p id="modalProfissional"></p>
+        <small id="modalEmailProfissional"></small>
+        <small id="modalUserProfissional"></small>
+      </section>
+      <section class="modal-info__info-block">
+        <strong>Valor</strong>
+        <p>R$ <span id="modalValor"></span></p>
+      </section>
+      <section class="modal-info__info-block">
+        <strong>Prazo de Entrega</strong>
+        <p id="modalPrazo"></p>
+        <small id="modalDiasRestantes"></small>
+      </section>
+      <section class="modal-info__info-block">
+        <strong>Data de Criação</strong>
+        <p id="modalDataCriacao"></p>
+      </section>
+      <section class="modal-info__info-block modal-info__info-block--full">
+        <strong>Observações</strong>
+        <p id="modalObs"></p>
+      </section>
+      <section class="modal-info__info-block">
+        <strong>Status</strong>
+        <p id="modalStatus"></p>
+      </section>
+    </section>
+
+
+    
+  </section>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM carregado, script do modal iniciado");
+const modal = document.querySelector(".modal-detalhes");
+
+  console.log("Modal selecionado:", modal);
+
+  const fechar = document.getElementById("fecharModal");
+  console.log("Botão fechar selecionado:", fechar);
+
+  const btnPagar = document.getElementById("btnPagar");
+  console.log("Botão pagar selecionado:", btnPagar);
+
+  const usuarioLogado = <%= id_usuario %>;
+  console.log("ID do usuário logado:", usuarioLogado);
+
+  const detalhesBtns = document.querySelectorAll(".ver-detalhes");
+  console.log("Botões 'ver detalhes' encontrados:", detalhesBtns.length);
+
+  detalhesBtns.forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+      console.log("Botão clicado:", btn.dataset);
+
+      const hoje = new Date();
+      const entrega = new Date(btn.dataset.prazo);
+      const diffDias = Math.ceil((entrega - hoje)/(1000*60*60*24));
+      console.log("Data entrega:", entrega, "Dias restantes:", diffDias);
+
+      try {
+        document.getElementById("modalProjeto").textContent = btn.dataset.projeto;
+        document.getElementById("modalDescricao").textContent = btn.dataset.descricao || "Nenhuma descrição";
+        document.getElementById("modalCliente").textContent = btn.dataset.cliente;
+        document.getElementById("modalEmailCliente").textContent = btn.dataset.emailCliente || '';
+        document.getElementById("modalUserCliente").textContent = btn.dataset.userCliente || '';
+        document.getElementById("modalProfissional").textContent = btn.dataset.profissional;
+        document.getElementById("modalEmailProfissional").textContent = btn.dataset.emailProfissional || '';
+        document.getElementById("modalUserProfissional").textContent = btn.dataset.userProfissional || '';
+        document.getElementById("modalValor").textContent = btn.dataset.valor;
+        document.getElementById("modalPrazo").textContent = entrega.toLocaleDateString('pt-BR');
+        document.getElementById("modalDiasRestantes").textContent = `${diffDias >= 0 ? diffDias : 0} dias restantes`;
+        document.getElementById("modalDataCriacao").textContent = new Date(btn.dataset.dataCriacao).toLocaleDateString('pt-BR');
+        document.getElementById("modalObs").textContent = btn.dataset.obs || 'Nenhuma';
+        document.getElementById("modalStatus").textContent = btn.dataset.status;
+        console.log("Dados do modal preenchidos com sucesso");
+      } catch(err) {
+        console.error("Erro ao preencher modal:", err);
+      }
+
+     
+      try {
+        modal.style.display = "flex";
+        console.log("Modal aberto");
+      } catch(err) {
+        console.error("Erro ao abrir modal:", err);
+      }
+    });
+  });
+
+  fechar.addEventListener("click", () => {
+    modal.style.display = "none";
+    console.log("Modal fechado pelo botão X");
+  });
+
+  modal.addEventListener("click", e => { 
+    if(e.target === modal) {
+      modal.style.display = "none"; 
+      console.log("Modal fechado clicando fora");
+    }
+  });
+});
+</script>
+
+
+
+   <% if (tipo_usuario === 'profissional') { %>
+
+                 <%- include('../partials/fab-button') %>
+<% }   else if(tipo_usuario === 'comum') {   %>
+        <%- include('../partials/fab-button-comum') %>
+  <% } %>
+  
+
+
+
+</body>
+</html>
